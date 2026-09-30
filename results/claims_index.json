@@ -31,6 +31,478 @@
   "source": "results/theory.json#stopping",
   "note": ""
  },
+ "closed_loop_eval_tier0_FULL_F1_trail_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_collision": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_ditch": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_fail_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_false_stops": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_false_stops",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_n": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_oob": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_success": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_success",
+  "value": "9",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F1_trail_water": {
+  "id": "closed_loop_eval_tier0_FULL_F1_trail_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F2F3_ditch_crest_n": {
+  "id": "closed_loop_eval_tier0_FULL_F2F3_ditch_crest_n",
+  "value": "20",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field + results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; families F2_ditch_field + F3_crest_ditch summed; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_F2F3_ditch_crest_success": {
+  "id": "closed_loop_eval_tier0_FULL_F2F3_ditch_crest_success",
+  "value": "11",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field + results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; families F2_ditch_field + F3_crest_ditch summed; runs that reached B"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_arrived_short",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_collision": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_ditch": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_fail_arrived_short",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_fail_stuck": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_fail_stuck",
+  "value": "3",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.failure_types.stuck",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs whose referee failure type is stuck"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_false_stops": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_false_stops",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_n": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_oob": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_success": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_success",
+  "value": "5",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F2_ditch_field_water": {
+  "id": "closed_loop_eval_tier0_FULL_F2_ditch_field_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_collision": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_ditch": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_ditch",
+  "value": "2",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_fail_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_fail_ditch_entry": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_fail_ditch_entry",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.failure_types.ditch_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs whose referee failure type is ditch_entry"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_fail_stuck": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_fail_stuck",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.failure_types.stuck",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs whose referee failure type is stuck"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_false_stops": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_false_stops",
+  "value": "3",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_n": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_oob": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_success": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_success",
+  "value": "6",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F3_crest_ditch_water": {
+  "id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_arrived_short",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_collision": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_collision",
+  "value": "7",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_ditch": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_fail_collision": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_fail_collision",
+  "value": "7",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.failure_types.collision",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; runs whose referee failure type is collision"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_fail_stuck": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_fail_stuck",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.failure_types.stuck",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; runs whose referee failure type is stuck"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_false_stops": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_false_stops",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_n": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_oob": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_success": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_success",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_water": {
+  "id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_arrived_short",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_collision": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_ditch": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_false_stops": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_false_stops",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_n": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_oob": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_success": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_success",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F5_lighting_water": {
+  "id": "closed_loop_eval_tier0_FULL_F5_lighting_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_arrived_short",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_collision": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_ditch": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_fail_water_entry": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_fail_water_entry",
+  "value": "9",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.failure_types.water_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; runs whose referee failure type is water_entry"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_false_stops": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_false_stops",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_n": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_oob": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_success": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_success",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_F6_water_mud_water": {
+  "id": "closed_loop_eval_tier0_FULL_F6_water_mud_water",
+  "value": "9",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; water entries (referee, GT)"
+ },
  "closed_loop_eval_tier0_FULL_arrived_short": {
   "id": "closed_loop_eval_tier0_FULL_arrived_short",
   "value": "4",
@@ -54,6 +526,54 @@
   "label": "Simulated",
   "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.ditch_entries",
   "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_FULL_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_fail_arrived_short",
+  "value": "4",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_FULL_fail_collision": {
+  "id": "closed_loop_eval_tier0_FULL_fail_collision",
+  "value": "7",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types.collision",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is collision"
+ },
+ "closed_loop_eval_tier0_FULL_fail_ditch_entry": {
+  "id": "closed_loop_eval_tier0_FULL_fail_ditch_entry",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types.ditch_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is ditch_entry"
+ },
+ "closed_loop_eval_tier0_FULL_fail_stuck": {
+  "id": "closed_loop_eval_tier0_FULL_fail_stuck",
+  "value": "5",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types.stuck",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is stuck"
+ },
+ "closed_loop_eval_tier0_FULL_fail_water_entry": {
+  "id": "closed_loop_eval_tier0_FULL_fail_water_entry",
+  "value": "9",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types.water_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is water_entry"
+ },
+ "closed_loop_eval_tier0_FULL_false_stops": {
+  "id": "closed_loop_eval_tier0_FULL_false_stops",
+  "value": "5",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; stops that ground truth does not justify (referee)"
  },
  "closed_loop_eval_tier0_FULL_final_err_p50": {
   "id": "closed_loop_eval_tier0_FULL_final_err_p50",
@@ -111,6 +631,486 @@
   "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.water_entries",
   "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; water entries (referee, GT)"
  },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_ditch": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_fail_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_false_stops": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_false_stops",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_oob": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_success",
+  "value": "9",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F1_trail_water": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F1_trail_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F1_trail; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2F3_ditch_crest_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2F3_ditch_crest_n",
+  "value": "20",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field + results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; families F2_ditch_field + F3_crest_ditch summed; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2F3_ditch_crest_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2F3_ditch_crest_success",
+  "value": "8",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field + results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; families F2_ditch_field + F3_crest_ditch summed; runs that reached B"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_arrived_short",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_ditch": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_ditch",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_fail_ditch_entry": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_fail_ditch_entry",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.failure_types.ditch_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs whose referee failure type is ditch_entry"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_fail_out_of_bounds": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_fail_out_of_bounds",
+  "value": "5",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.failure_types.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs whose referee failure type is out_of_bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_false_stops": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_false_stops",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_oob": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_oob",
+  "value": "5",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_success",
+  "value": "4",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_water": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F2_ditch_field; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_arrived_short",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_ditch": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_ditch",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_arrived_short",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_ditch_entry": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_ditch_entry",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.failure_types.ditch_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs whose referee failure type is ditch_entry"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_out_of_bounds": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_out_of_bounds",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.failure_types.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs whose referee failure type is out_of_bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_stuck": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_fail_stuck",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.failure_types.stuck",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs whose referee failure type is stuck"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_false_stops": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_false_stops",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_oob": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_oob",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_success",
+  "value": "4",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_water": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F3_crest_ditch; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_arrived_short",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_collision",
+  "value": "5",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_ditch": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_fail_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_fail_collision",
+  "value": "5",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.failure_types.collision",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; runs whose referee failure type is collision"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_false_stops": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_false_stops",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_oob": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_success",
+  "value": "5",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_water": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F4_sudden_obstacle; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_ditch": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_fail_arrived_short",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_false_stops": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_false_stops",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_oob": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_success",
+  "value": "9",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F5_lighting_water": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_water",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F5_lighting; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_arrived_short",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_collision",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_ditch": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_ditch",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_fail_water_entry": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_fail_water_entry",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.failure_types.water_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; runs whose referee failure type is water_entry"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_false_stops": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_false_stops",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; stops that ground truth does not justify (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_n",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_oob": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_success",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_F6_water_mud_water": {
+  "id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_water",
+  "value": "10",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; family F6_water_mud; water entries (referee, GT)"
+ },
  "closed_loop_eval_tier0_TYPICAL_arrived_short": {
   "id": "closed_loop_eval_tier0_TYPICAL_arrived_short",
   "value": "4",
@@ -134,6 +1134,62 @@
   "label": "Simulated",
   "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.ditch_entries",
   "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_fail_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_fail_arrived_short",
+  "value": "4",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is arrived_short"
+ },
+ "closed_loop_eval_tier0_TYPICAL_fail_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_fail_collision",
+  "value": "5",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types.collision",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is collision"
+ },
+ "closed_loop_eval_tier0_TYPICAL_fail_ditch_entry": {
+  "id": "closed_loop_eval_tier0_TYPICAL_fail_ditch_entry",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types.ditch_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is ditch_entry"
+ },
+ "closed_loop_eval_tier0_TYPICAL_fail_out_of_bounds": {
+  "id": "closed_loop_eval_tier0_TYPICAL_fail_out_of_bounds",
+  "value": "7",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is out_of_bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_fail_stuck": {
+  "id": "closed_loop_eval_tier0_TYPICAL_fail_stuck",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types.stuck",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is stuck"
+ },
+ "closed_loop_eval_tier0_TYPICAL_fail_water_entry": {
+  "id": "closed_loop_eval_tier0_TYPICAL_fail_water_entry",
+  "value": "10",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types.water_entry",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs whose referee failure type is water_entry"
+ },
+ "closed_loop_eval_tier0_TYPICAL_false_stops": {
+  "id": "closed_loop_eval_tier0_TYPICAL_false_stops",
+  "value": "2",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.false_stops",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; stops that ground truth does not justify (referee)"
  },
  "closed_loop_eval_tier0_TYPICAL_final_err_p50": {
   "id": "closed_loop_eval_tier0_TYPICAL_final_err_p50",

@@ -14,7 +14,9 @@ Sources
    embedded row with the same id.
 3. :func:`closed_loop_eval_rows`: stable ids for the final EVAL file
    ``results/closed_loop_eval.json`` (written by :mod:`metagross.sim.closed_loop_summary`), one row
-   per ``closed_loop_eval_<mode>_<config>_<metric>`` (see :data:`EVAL_METRICS`). The file's own
+   per ``closed_loop_eval_<mode>_<config>_<metric>`` (see :data:`EVAL_METRICS`), per family
+   ``closed_loop_eval_<mode>_<config>_<family>_<metric>`` (:data:`FAMILY_METRIC_SUFFIXES`), one
+   ``..._fail_<type>`` row per referee failure type, and the summed :data:`FAMILY_GROUPS`. The file's own
    ``claims`` list is ignored, because ``closed_loop_summary.make_claims`` names its rows
    ``closed_loop_<mode>_<config>_*``, the same ids as the DEV file. Nothing is emitted when the file
    is absent.
@@ -110,7 +112,13 @@ EVAL_METRICS: tuple[EvalMetric, ...] = (
                "declared ARRIVED in its own pose estimate but ended outside the success radius"),
     EvalMetric("final_err_p50", "final_error_median_m", "m", "{:.2f}", "median GT distance to B at episode end"),
     EvalMetric("mean_speed", "mean_speed_mps", "m/s", "{:.2f}", "mean over runs of referee path length / episode time"),
+    EvalMetric("false_stops", "false_stops", "count", "{:d}", "stops that ground truth does not justify (referee)"),
 )
+
+#: Per-family rows ``closed_loop_eval_<mode>_<config>_<family>_<suffix>`` (subset of :data:`EVAL_METRICS`).
+FAMILY_METRIC_SUFFIXES = frozenset({"n", "success", "ditch", "collision", "water", "oob", "arrived_short", "false_stops"})
+#: Derived family groups quoted on the deck: summed ``n`` and ``n_success`` of the member families.
+FAMILY_GROUPS: dict[str, tuple[str, ...]] = {"F2F3_ditch_crest": ("F2_ditch_field", "F3_crest_ditch")}
 
 # seg_cpu: training finished if the last per-epoch validation line closes the planned iterations
 SEG_CPU_FILE = "seg_cpu.json"
@@ -218,19 +226,52 @@ def closed_loop_eval_rows(results_dir: Path = RESULTS) -> list[dict[str, str]]:
             seed_txt = f"seeds {min(seeds)}-{max(seeds)}" if seeds else "seeds not listed"
             base = (f"EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode {mode}, config {cfg}, "
                     f"n={al['n']}, {seed_txt}, split={doc.get('split', '?')}; referee on GT")
-            for m in EVAL_METRICS:
-                val = al.get(m.key)
-                if val is None:
-                    LOG.warning("closed_loop_eval %s/%s: %s missing", mode, cfg, m.key)
+            rows += _eval_metric_rows(al, EVAL_METRICS, f"closed_loop_eval_{mode}_{cfg}",
+                                      f"{mode}.aggregate.{cfg}.all", base, f"{mode}/{cfg}")
+            fams = _dig(agg, f"{cfg}.by_family") or {}
+            fam_metrics = tuple(m for m in EVAL_METRICS if m.suffix in FAMILY_METRIC_SUFFIXES)
+            for fam in sorted(fams):
+                fb = fams[fam]
+                if not isinstance(fb, dict) or not fb.get("n"):
                     continue
-                try:
-                    text = m.fmt.format(int(val) if m.fmt == "{:d}" else float(val))
-                except (TypeError, ValueError):
-                    text = str(val)
-                rows.append({"id": f"closed_loop_eval_{mode}_{cfg}_{m.suffix}", "value": text, "unit": m.unit,
-                             "label": "Simulated",
-                             "source": f"results/{CLOSED_LOOP_EVAL_FILE}#{mode}.aggregate.{cfg}.all.{m.key}",
-                             "note": f"{base}; {m.meaning}"})
+                rows += _eval_metric_rows(fb, fam_metrics, f"closed_loop_eval_{mode}_{cfg}_{fam}",
+                                          f"{mode}.aggregate.{cfg}.by_family.{fam}", f"{base}; family {fam}",
+                                          f"{mode}/{cfg}/{fam}")
+            for group, members in FAMILY_GROUPS.items():
+                parts = [fams.get(f) for f in members]
+                if not all(isinstance(p, dict) and p.get("n") for p in parts):
+                    continue
+                n = sum(int(p["n"]) for p in parts)
+                ok = sum(int(p["n_success"]) for p in parts)
+                src = " + ".join(f"results/{CLOSED_LOOP_EVAL_FILE}#{mode}.aggregate.{cfg}.by_family.{f}" for f in members)
+                for suffix, val, meaning in (("n", n, "number of EVAL runs"), ("success", ok, "runs that reached B")):
+                    rows.append({"id": f"closed_loop_eval_{mode}_{cfg}_{group}_{suffix}", "value": str(val),
+                                 "unit": "runs", "label": "Simulated", "source": src,
+                                 "note": f"{base}; families {' + '.join(members)} summed; {meaning}"})
+    return rows
+
+
+def _eval_metric_rows(block: dict, metrics: tuple[EvalMetric, ...], id_prefix: str, json_path: str,
+                      note: str, where: str) -> list[dict[str, str]]:
+    """Rows for one aggregate block (``all`` or one family): the metrics, then one row per failure type."""
+    rows: list[dict[str, str]] = []
+    for m in metrics:
+        val = block.get(m.key)
+        if val is None:
+            LOG.warning("closed_loop_eval %s: %s missing", where, m.key)
+            continue
+        try:
+            text = m.fmt.format(int(val) if m.fmt == "{:d}" else float(val))
+        except (TypeError, ValueError):
+            text = str(val)
+        rows.append({"id": f"{id_prefix}_{m.suffix}", "value": text, "unit": m.unit, "label": "Simulated",
+                     "source": f"results/{CLOSED_LOOP_EVAL_FILE}#{json_path}.{m.key}", "note": f"{note}; {m.meaning}"})
+    for ftype, count in sorted((block.get("failure_types") or {}).items()):
+        if ftype in ("None", "null", ""):  # successes are the 'success' row
+            continue
+        rows.append({"id": f"{id_prefix}_fail_{ftype}", "value": str(int(count)), "unit": "runs", "label": "Simulated",
+                     "source": f"results/{CLOSED_LOOP_EVAL_FILE}#{json_path}.failure_types.{ftype}",
+                     "note": f"{note}; runs whose referee failure type is {ftype}"})
     return rows
 
 
