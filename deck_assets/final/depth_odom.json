@@ -1,0 +1,290 @@
+{
+  "figure": "depth_odom",
+  "label": "Simulated",
+  "png_px": [
+    1935,
+    1173
+  ],
+  "provenance": "tier-0 synthetic depth sensor (no images, no SGBM); 30 recorded DEV drives (results/raw/odometry_dev/*.npz) replayed open loop along the GT oracle path; no EVAL seeds",
+  "data_file": "deck_assets/final/odometry_dev.json",
+  "command": "python -m metagross.eval.odometry_dev analyse --tune 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 --out results/odometry_dev.json",
+  "split_note": "All 30 DEV drives are one set. The stored analysis carries a tune (100-115) / holdout (116-129) split, but it is not a clean holdout: localizer.py documents localiser settings chosen on DEV seeds 100-129 using final error (incl. seed 124), and the stack was tuned on DEV 100-129 (docs/BUILD_LOG.md). The split medians are NOT used.",
+  "numbers": [
+    {
+      "what": "per-drive final position error, wheel + gyro (grey dots) and + depth odometry (navy dots)",
+      "value": [
+        {
+          "seed": 105,
+          "family": "F4_sudden_obstacle",
+          "x_rank": 0,
+          "wheel_gyro_final_err_m": 5.021,
+          "wheel_gyro_depth_final_err_m": 3.988
+        },
+        {
+          "seed": 129,
+          "family": "F4_sudden_obstacle",
+          "x_rank": 1,
+          "wheel_gyro_final_err_m": 4.059,
+          "wheel_gyro_depth_final_err_m": 1.771
+        },
+        {
+          "seed": 128,
+          "family": "F3_crest_ditch",
+          "x_rank": 2,
+          "wheel_gyro_final_err_m": 3.899,
+          "wheel_gyro_depth_final_err_m": 1.568
+        },
+        {
+          "seed": 120,
+          "family": "F1_trail",
+          "x_rank": 3,
+          "wheel_gyro_final_err_m": 3.644,
+          "wheel_gyro_depth_final_err_m": 0.673
+        },
+        {
+          "seed": 123,
+          "family": "F4_sudden_obstacle",
+          "x_rank": 4,
+          "wheel_gyro_final_err_m": 3.638,
+          "wheel_gyro_depth_final_err_m": 2.019
+        },
+        {
+          "seed": 114,
+          "family": "F1_trail",
+          "x_rank": 5,
+          "wheel_gyro_final_err_m": 3.63,
+          "wheel_gyro_depth_final_err_m": 0.825
+        },
+        {
+          "seed": 125,
+          "family": "F6_water_mud",
+          "x_rank": 6,
+          "wheel_gyro_final_err_m": 3.588,
+          "wheel_gyro_depth_final_err_m": 1.06
+        },
+        {
+          "seed": 111,
+          "family": "F4_sudden_obstacle",
+          "x_rank": 7,
+          "wheel_gyro_final_err_m": 3.523,
+          "wheel_gyro_depth_final_err_m": 2.046
+        },
+        {
+          "seed": 119,
+          "family": "F6_water_mud",
+          "x_rank": 8,
+          "wheel_gyro_final_err_m": 3.51,
+          "wheel_gyro_depth_final_err_m": 0.83
+        },
+        {
+          "seed": 101,
+          "family": "F6_water_mud",
+          "x_rank": 9,
+          "wheel_gyro_final_err_m": 3.495,
+          "wheel_gyro_depth_final_err_m": 1.405
+        },
+        {
+          "seed": 102,
+          "family": "F1_trail",
+          "x_rank": 10,
+          "wheel_gyro_final_err_m": 3.472,
+          "wheel_gyro_depth_final_err_m": 0.566
+        },
+        {
+          "seed": 112,
+          "family": "F5_lighting",
+          "x_rank": 11,
+          "wheel_gyro_final_err_m": 3.446,
+          "wheel_gyro_depth_final_err_m": 1.366
+        },
+        {
+          "seed": 127,
+          "family": "F2_ditch_field",
+          "x_rank": 12,
+          "wheel_gyro_final_err_m": 3.422,
+          "wheel_gyro_depth_final_err_m": 0.414
+        },
+        {
+          "seed": 107,
+          "family": "F6_water_mud",
+          "x_rank": 13,
+          "wheel_gyro_final_err_m": 3.308,
+          "wheel_gyro_depth_final_err_m": 1.545
+        },
+        {
+          "seed": 118,
+          "family": "F5_lighting",
+          "x_rank": 14,
+          "wheel_gyro_final_err_m": 3.05,
+          "wheel_gyro_depth_final_err_m": 0.807
+        },
+        {
+          "seed": 124,
+          "family": "F5_lighting",
+          "x_rank": 15,
+          "wheel_gyro_final_err_m": 2.903,
+          "wheel_gyro_depth_final_err_m": 1.436
+        },
+        {
+          "seed": 109,
+          "family": "F2_ditch_field",
+          "x_rank": 16,
+          "wheel_gyro_final_err_m": 2.844,
+          "wheel_gyro_depth_final_err_m": 0.601
+        },
+        {
+          "seed": 104,
+          "family": "F3_crest_ditch",
+          "x_rank": 17,
+          "wheel_gyro_final_err_m": 2.704,
+          "wheel_gyro_depth_final_err_m": 2.412
+        },
+        {
+          "seed": 117,
+          "family": "F4_sudden_obstacle",
+          "x_rank": 18,
+          "wheel_gyro_final_err_m": 2.634,
+          "wheel_gyro_depth_final_err_m": 0.598
+        },
+        {
+          "seed": 103,
+          "family": "F2_ditch_field",
+          "x_rank": 19,
+          "wheel_gyro_final_err_m": 2.567,
+          "wheel_gyro_depth_final_err_m": 0.819
+        },
+        {
+          "seed": 110,
+          "family": "F3_crest_ditch",
+          "x_rank": 20,
+          "wheel_gyro_final_err_m": 2.5,
+          "wheel_gyro_depth_final_err_m": 1.565
+        },
+        {
+          "seed": 100,
+          "family": "F5_lighting",
+          "x_rank": 21,
+          "wheel_gyro_final_err_m": 2.435,
+          "wheel_gyro_depth_final_err_m": 0.599
+        },
+        {
+          "seed": 106,
+          "family": "F5_lighting",
+          "x_rank": 22,
+          "wheel_gyro_final_err_m": 2.389,
+          "wheel_gyro_depth_final_err_m": 0.454
+        },
+        {
+          "seed": 121,
+          "family": "F2_ditch_field",
+          "x_rank": 23,
+          "wheel_gyro_final_err_m": 2.057,
+          "wheel_gyro_depth_final_err_m": 0.819
+        },
+        {
+          "seed": 108,
+          "family": "F1_trail",
+          "x_rank": 24,
+          "wheel_gyro_final_err_m": 2.047,
+          "wheel_gyro_depth_final_err_m": 1.56
+        },
+        {
+          "seed": 115,
+          "family": "F2_ditch_field",
+          "x_rank": 25,
+          "wheel_gyro_final_err_m": 1.946,
+          "wheel_gyro_depth_final_err_m": 1.446
+        },
+        {
+          "seed": 116,
+          "family": "F3_crest_ditch",
+          "x_rank": 26,
+          "wheel_gyro_final_err_m": 1.84,
+          "wheel_gyro_depth_final_err_m": 0.749
+        },
+        {
+          "seed": 126,
+          "family": "F1_trail",
+          "x_rank": 27,
+          "wheel_gyro_final_err_m": 1.713,
+          "wheel_gyro_depth_final_err_m": 0.495
+        },
+        {
+          "seed": 122,
+          "family": "F3_crest_ditch",
+          "x_rank": 28,
+          "wheel_gyro_final_err_m": 1.626,
+          "wheel_gyro_depth_final_err_m": 0.65
+        },
+        {
+          "seed": 113,
+          "family": "F6_water_mud",
+          "x_rank": 29,
+          "wheel_gyro_final_err_m": 1.502,
+          "wheel_gyro_depth_final_err_m": 0.562
+        }
+      ],
+      "unit": "m",
+      "source": "deck_assets/final/odometry_dev.json#drives_tune[]+drives_holdout[].wheel_gyro.final_err_m / .wheel_gyro_depth.final_err_m",
+      "how": "|estimated - GT| planar position at the last frame, launch (A) frame; drives ordered by wheel + gyro error, largest first"
+    },
+    {
+      "what": "median final error, wheel + gyro (grey dashed line, label)",
+      "value": 2.98,
+      "unit": "m",
+      "source": "deck_assets/final/odometry_dev.json#summary_all.wheel_gyro.final_err_m_median",
+      "how": "median over the 30 drives (asserted equal to np.median of the per-drive values)"
+    },
+    {
+      "what": "median final error, + depth odometry (navy dashed line, label)",
+      "value": 0.83,
+      "unit": "m",
+      "source": "deck_assets/final/odometry_dev.json#summary_all.wheel_gyro_depth.final_err_m_median",
+      "how": "median over the 30 drives (asserted equal to np.median of the per-drive values)"
+    },
+    {
+      "what": "drives whose final error went down (header line)",
+      "value": 30,
+      "of": 30,
+      "source": "deck_assets/final/odometry_dev.json#drives_tune[]+drives_holdout[]",
+      "how": "count of drives with wheel_gyro_depth.final_err_m < wheel_gyro.final_err_m"
+    },
+    {
+      "what": "median along-track distance over-count (scale error), before -> after (header line)",
+      "value": "6.3 -> 1.5",
+      "unit": "%",
+      "source": "deck_assets/final/odometry_dev.json#summary_all.wheel_gyro(_depth).scale_err_pct_median",
+      "how": "estimated planar path length / GT planar path length - 1, median over the 30 drives"
+    },
+    {
+      "what": "drive length range and wheel-slip range (footnote)",
+      "value": "40.1-59.8 m; 3.0-8.0 %",
+      "source": "deck_assets/final/odometry_dev.json#drives_tune[]+drives_holdout[].wheel_gyro.gt_path_m, .scenario_slip_long",
+      "how": "min / max over the 30 drives"
+    }
+  ],
+  "json_only_not_drawn": {
+    "median_final_err_pct_of_path": [
+      6.2,
+      1.9
+    ],
+    "max_final_err_m": [
+      5.02,
+      3.99
+    ],
+    "worst_drive": "seed 105 (F4_sudden_obstacle): 5.02 m -> 3.99 m",
+    "depth_odom_accepted_frac_median": 0.935,
+    "depth_odom_ms": "about 10 ms per frame (median of per-drive medians 9.4 ms, max per-drive p95 15.8 ms in the stored run; a re-run in the same container gave 9.6 / 18.6 ms), 4-vCPU Linux cloud container, shared, load-dependent. The analysis JSON's timing_note says 'laptop'; that is a fixed string and is wrong for this run.",
+    "order": "[wheel + gyro, + depth odometry]",
+    "source": "deck_assets/final/odometry_dev.json#summary_all"
+  },
+  "registration_needed": {
+    "status": "NOT yet in results/ nor results/claims.csv (this agent may not write there). Before the figure goes on a slide: run the command above (writes results/odometry_dev.json), re-run this script (it then cites results/odometry_dev.json), and append these rows.",
+    "proposed_claims_rows": [
+      "depth_odom_final_err_median_m_wheel_gyro,2.98,m,Simulated,results/odometry_dev.json#summary_all.wheel_gyro.final_err_m_median,\"30 DEV drives (seeds 100-129), tier-0 synthetic depth, open loop along GT oracle path, 40-60 m; localiser tuned on these drives\"",
+      "depth_odom_final_err_median_m_with_do,0.83,m,Simulated,results/odometry_dev.json#summary_all.wheel_gyro_depth.final_err_m_median,\"same 30 DEV drives replayed with depth odometry on; everything else identical\"",
+      "depth_odom_drives_improved,30/30,,Simulated,results/odometry_dev.json#drives_tune[],\"drives whose final error went down with depth odometry\"",
+      "depth_odom_scale_err_median_pct,6.3 -> 1.5,%,Simulated,results/odometry_dev.json#summary_all.*.scale_err_pct_median,\"median along-track distance over-count from wheel slip, wheel + gyro vs + depth odometry\""
+    ]
+  }
+}

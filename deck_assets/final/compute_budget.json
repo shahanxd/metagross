@@ -1,0 +1,308 @@
+{
+ "figure": "compute_budget",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images); compute measured while the EVAL runs ran",
+ "machine": "Linux cloud container, 4 vCPU, no GPU, Python 3.11, OMP_NUM_THREADS=1, 4 EVAL episodes in parallel (each episode = simulator process + autonomy process), per docs/BUILD_LOG.md 2026-09-30. The embedded target (Jetson Orin Nano-class) is Proposed and not measured (README).",
+ "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv (60 runs, 10454 ticks)",
+ "method": "Per module: numpy median and 95th percentile (linear interpolation) over every tick of all 60 FULL EVAL runs. Summary row = timings.csv compute_ms (frame in -> wheel command), which is the sum of the nine module timers (median remainder 0.04 ms); its median/p95 equal the registered claims closed_loop_eval_tier0_FULL_compute_p50/p95 (asserted against results/closed_loop_eval.json and results/claims.csv). Headroom = 200 ms - registered p95.",
+ "timers": "node.py: compute_ms stops at the wheel command. The telemetry column times only the Telemetry message build (ego_costmap_u4 costmap crop + resample_path waypoints), after the command. 'total' = compute_ms + that + debug-bundle prep (rollout transform, map crop). Packet encoding (codec.encode_with_info) runs later in process.py _Logs.write and is in none of these columns.",
+ "not_included": {
+  "what": "Tier-0 frames carry disparity, no images: SGBM stereo matching, visual odometry and the terrain segmenter do not run, so they are not in these timings.",
+  "stereo_mode_measured_separately": {
+   "perception_incl_sgbm_and_segmenter_1of3_p50_p95_ms": [
+    81.0,
+    107.7
+   ],
+   "perception_source": "results/perception_dev.json#timing_ab_stereo.after (registered perc_dev_stereo_perception_p50_ms_after / p95_ms_after); 85 DEV stereo frames, shared loaded laptop",
+   "localizer_update_incl_vo_p50_p95_ms": [
+    58.4,
+    124.0
+   ],
+   "localizer_source": "results/vo_sim_dev.json#localizer_timing_paired.current (p95 registered as localizer_p95_ms_sim_paired); loaded laptop, inflated vs idle (file note: 23 / 41 ms)"
+  },
+  "warning": "These are different machines and loads: do not add them to the tier-0 bars and call the sum measured. The 111 ms p95 headroom applies to tier-0 only."
+ },
+ "tick_budget_ms": 200.0,
+ "modules": [
+  {
+   "key": "localizer",
+   "label": "Localisation (EKF + depth odometry)",
+   "n": 10454,
+   "p50_ms": 11.38,
+   "p95_ms": 17.67,
+   "max_ms": 63.57
+  },
+  {
+   "key": "perception",
+   "label": "Perception (ground, hazards, ditches)",
+   "n": 10454,
+   "p50_ms": 32.99,
+   "p95_ms": 48.21,
+   "max_ms": 159.87
+  },
+  {
+   "key": "map",
+   "label": "Rolling map",
+   "n": 10454,
+   "p50_ms": 2.25,
+   "p95_ms": 3.46,
+   "max_ms": 23.9
+  },
+  {
+   "key": "costmap",
+   "label": "Costmap",
+   "n": 10454,
+   "p50_ms": 2.61,
+   "p95_ms": 3.98,
+   "max_ms": 22.8
+  },
+  {
+   "key": "global",
+   "label": "Global planner",
+   "n": 10454,
+   "p50_ms": 5.86,
+   "p95_ms": 13.21,
+   "max_ms": 43.65
+  },
+  {
+   "key": "supervisor",
+   "label": "Safety supervisor",
+   "n": 10454,
+   "p50_ms": 0.03,
+   "p95_ms": 0.06,
+   "max_ms": 5.0
+  },
+  {
+   "key": "governor",
+   "label": "Speed governor",
+   "n": 10454,
+   "p50_ms": 0.4,
+   "p95_ms": 0.62,
+   "max_ms": 28.11
+  },
+  {
+   "key": "mppi",
+   "label": "MPPI, 512 rollouts",
+   "n": 10454,
+   "p50_ms": 5.38,
+   "p95_ms": 8.06,
+   "max_ms": 35.57
+  },
+  {
+   "key": "gate_mixer",
+   "label": "Safety gate + wheel mixer",
+   "n": 10454,
+   "p50_ms": 0.14,
+   "p95_ms": 0.24,
+   "max_ms": 8.31
+  }
+ ],
+ "summary_row_sense_to_wheel_command": {
+  "label": "Sense to wheel command (compute_ms)",
+  "n": 10454,
+  "p50_ms": 62.5,
+  "p95_ms": 88.7,
+  "p99_ms": 103.6,
+  "max_ms": 205.7,
+  "ticks_over_budget": 1,
+  "worst_tick": {
+   "compute_ms": 205.7,
+   "run": "007",
+   "tick": 4,
+   "perception_ms": 159.9
+  },
+  "registered": {
+   "closed_loop_eval_tier0_FULL_compute_p50": 62.5,
+   "closed_loop_eval_tier0_FULL_compute_p95": 88.7
+  }
+ },
+ "whole_tick_total_column": {
+  "p50_ms": 63.33,
+  "p95_ms": 89.96,
+  "max_ms": 205.88,
+  "ticks_over_budget": 1,
+  "note": "not drawn; see 'timers'"
+ },
+ "telemetry_message_build": {
+  "n": 3505,
+  "n_packets_logged": 3505,
+  "p50_ms": 2.01,
+  "p95_ms": 2.97,
+  "note": "not drawn: built after the wheel command, on ticks with tick % 3 == 0 (count asserted equal to the logged packets per run)"
+ },
+ "derived": {
+  "p95_headroom_ms": 111.3,
+  "median_share_of_budget": 0.312,
+  "frac_ticks_over_budget": 9.6e-05
+ },
+ "registration_status": "Only the summary row (62.5 / 88.7 ms) is in results/claims.csv. Every other drawn number is listed in claims_to_register (embedded-claims format of metagross/eval/claims.py) and must be registered before the slide ships.",
+ "claims_to_register": [
+  {
+   "id": "deck_compute_eval_tier0_FULL_localizer_p50_ms",
+   "value": 11.38,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the localizer timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_perception_p50_ms",
+   "value": 32.99,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the perception timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_map_p50_ms",
+   "value": 2.25,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the map timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_costmap_p50_ms",
+   "value": 2.61,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the costmap timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_global_p50_ms",
+   "value": 5.86,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the global timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_supervisor_p50_ms",
+   "value": 0.03,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the supervisor timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_governor_p50_ms",
+   "value": 0.4,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the governor timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_mppi_p50_ms",
+   "value": 5.38,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the mppi timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_gate_mixer_p50_ms",
+   "value": 0.14,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; median of the gate_mixer timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_localizer_p95_ms",
+   "value": 17.67,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the localizer timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_perception_p95_ms",
+   "value": 48.21,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the perception timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_map_p95_ms",
+   "value": 3.46,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the map timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_costmap_p95_ms",
+   "value": 3.98,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the costmap timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_global_p95_ms",
+   "value": 13.21,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the global timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_supervisor_p95_ms",
+   "value": 0.06,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the supervisor timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_governor_p95_ms",
+   "value": 0.62,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the governor timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_mppi_p95_ms",
+   "value": 8.06,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the mppi timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_gate_mixer_p95_ms",
+   "value": 0.24,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; 95th percentile of the gate_mixer timer"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_ticks_over_200ms",
+   "value": "1 of 10454",
+   "unit": "ticks",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; compute_ms > 200"
+  },
+  {
+   "id": "deck_compute_eval_tier0_FULL_p95_headroom_ms",
+   "value": 111.3,
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/closed_loop_eval.json",
+   "note": "200 ms tick minus registered closed_loop_eval_tier0_FULL_compute_p95"
+  },
+  {
+   "id": "deck_telemetry_msg_build_eval_tier0_FULL_p50_p95_ms",
+   "value": "2.0 / 3.0",
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv",
+   "note": "EVAL closed loop, tier-0 (no images), FULL, seeds 0-59, n=10454 ticks; 4 vCPU cloud container, 4 episodes in parallel; telemetry column on the 3505 ticks that built a message (tick % 3 == 0)"
+  }
+ ]
+}

@@ -1,0 +1,705 @@
+{
+ "figure": "run_map_gallery",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images; held-out EVAL seeds)",
+ "generator": "deck_assets/final/src/runs_map.py",
+ "provenance_status": "numbers on the figure: per-family reached-B rates (registered rows closed_loop_eval_tier0_<CFG>_<FAMILY>_success) and lighting windows (scenario inputs). Per-seed times are deliberately not drawn (not registered).",
+ "text_on_figure": {
+  "note": "Hand-picked: one FULL success per family, not a success rate. Not shown: F4 sudden obstacle (reached B: FULL 2/10, TYPICAL 5/10), F6 water / mud (reached B: FULL 1/10, TYPICAL 0/10).",
+  "provenance": "Simulated \u00b7 tier-0 depth sensor, no images \u00b7 held-out EVAL seeds 24, 37, 2, 4 \u00b7 results/runs_eval_tier0, results/claims.csv"
+ },
+ "numbers": [
+  {
+   "what": "F1 Trail reached B, FULL",
+   "value": "9/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_FULL_F1_trail_success"
+  },
+  {
+   "what": "F1 Trail reached B, TYPICAL",
+   "value": "9/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_TYPICAL_F1_trail_success"
+  },
+  {
+   "what": "F2 Ditch field reached B, FULL",
+   "value": "5/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_FULL_F2_ditch_field_success"
+  },
+  {
+   "what": "F2 Ditch field reached B, TYPICAL",
+   "value": "4/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_success"
+  },
+  {
+   "what": "F3 Crest + hidden trench reached B, FULL",
+   "value": "6/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_success"
+  },
+  {
+   "what": "F3 Crest + hidden trench reached B, TYPICAL",
+   "value": "4/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_success"
+  },
+  {
+   "what": "F4 Sudden obstacle reached B, FULL",
+   "value": "2/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_success"
+  },
+  {
+   "what": "F4 Sudden obstacle reached B, TYPICAL",
+   "value": "5/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_success"
+  },
+  {
+   "what": "F5 Lighting reached B, FULL",
+   "value": "10/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_FULL_F5_lighting_success"
+  },
+  {
+   "what": "F5 Lighting reached B, TYPICAL",
+   "value": "9/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_success"
+  },
+  {
+   "what": "F6 Water / mud reached B, FULL",
+   "value": "1/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_FULL_F6_water_mud_success"
+  },
+  {
+   "what": "F6 Water / mud reached B, TYPICAL",
+   "value": "0/10",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_success"
+  },
+  {
+   "what": "seed 4 lighting window glare",
+   "value": "5.1-10.8 s",
+   "source": "data/scenarios/eval/4.json lighting.events (scenario input, not a result)",
+   "claim_id": null,
+   "drawn_as": "bracket along FULL's path from t0 to min(t1, arrival); label 'glare' (no number on the figure)"
+  },
+  {
+   "what": "seed 4 lighting window dim",
+   "value": "31.5-34.5 s",
+   "source": "data/scenarios/eval/4.json lighting.events (scenario input, not a result)",
+   "claim_id": null,
+   "drawn_as": "bracket along FULL's path from t0 to min(t1, arrival); label 'dimming' (no number on the figure)"
+  }
+ ],
+ "per_seed_outcomes_drawn": [
+  {
+   "seed": 24,
+   "family": "F1_trail",
+   "FULL": "success",
+   "TYPICAL": "success",
+   "source": "results/runs_eval_tier0/summary.csv rows FULL,24 and TYPICAL,24"
+  },
+  {
+   "seed": 37,
+   "family": "F2_ditch_field",
+   "FULL": "success",
+   "TYPICAL": "out_of_bounds",
+   "source": "results/runs_eval_tier0/summary.csv rows FULL,37 and TYPICAL,37"
+  },
+  {
+   "seed": 2,
+   "family": "F3_crest_ditch",
+   "FULL": "success",
+   "TYPICAL": "out_of_bounds",
+   "source": "results/runs_eval_tier0/summary.csv rows FULL,2 and TYPICAL,2"
+  },
+  {
+   "seed": 4,
+   "family": "F5_lighting",
+   "FULL": "success",
+   "TYPICAL": "success",
+   "source": "results/runs_eval_tier0/summary.csv rows FULL,4 and TYPICAL,4"
+  }
+ ],
+ "panels": [
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/024",
+   "outcome": "success",
+   "end_time_s": 40.92,
+   "end_event": {
+    "t": 40.92,
+    "type": "success"
+   },
+   "path_length_m": 55.753,
+   "mean_speed_mps": 1.3625,
+   "gt_speed_max_mps": 1.74823914215798,
+   "final_error_m": 1.998,
+   "spl": 0.9736,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    57.93,
+    23.88
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/024/result.json",
+    "results/runs_eval_tier0/FULL/024/gt/events.json",
+    "results/runs_eval_tier0/FULL/024/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,24)"
+   ],
+   "seed": 24,
+   "family": "F1_trail",
+   "scenario": "data/scenarios/eval/24.json",
+   "scenario_sha256": "7fe2dbaaced4e1091a4f8eb276d46e1b0f8b7bf5bf183eca24cca5a394ba43e4",
+   "hazards": [],
+   "typical_same_seed": {
+    "config": "TYPICAL",
+    "run_dir": "results/runs_eval_tier0/TYPICAL/024",
+    "outcome": "success",
+    "end_time_s": 42.66,
+    "end_event": {
+     "t": 42.66,
+     "type": "success"
+    },
+    "path_length_m": 54.775,
+    "mean_speed_mps": 1.284,
+    "gt_speed_max_mps": 1.3709677875137232,
+    "final_error_m": 1.983,
+    "spl": 0.991,
+    "ditch_entries": 0,
+    "collisions": 0,
+    "water_entries": 0,
+    "end_xy_m": [
+     58.43,
+     25.32
+    ],
+    "sources": [
+     "results/runs_eval_tier0/TYPICAL/024/result.json",
+     "results/runs_eval_tier0/TYPICAL/024/gt/events.json",
+     "results/runs_eval_tier0/TYPICAL/024/gt/states.npz",
+     "results/runs_eval_tier0/summary.csv (row TYPICAL,24)"
+    ]
+   },
+   "trench_crossings": {
+    "FULL": [],
+    "TYPICAL": []
+   },
+   "family_rates": {
+    "FULL": {
+     "k": 9,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_FULL_F1_trail_success",
+      "closed_loop_eval_tier0_FULL_F1_trail_n"
+     ]
+    },
+    "TYPICAL": {
+     "k": 9,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_TYPICAL_F1_trail_success",
+      "closed_loop_eval_tier0_TYPICAL_F1_trail_n"
+     ]
+    }
+   },
+   "lighting": {
+    "sun_elev_deg": 59.8831,
+    "fog_density": 0.0007,
+    "events": []
+   },
+   "lighting_events_drawn": [],
+   "label_placement": [
+    {
+     "name": "A",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    },
+    {
+     "name": "B",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    }
+   ]
+  },
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/037",
+   "outcome": "success",
+   "end_time_s": 50.22,
+   "end_event": {
+    "t": 50.22,
+    "type": "success"
+   },
+   "path_length_m": 64.817,
+   "mean_speed_mps": 1.2907,
+   "gt_speed_max_mps": 1.7176836184996171,
+   "final_error_m": 1.98,
+   "spl": 0.8776,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    49.11,
+    17.49
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/037/result.json",
+    "results/runs_eval_tier0/FULL/037/gt/events.json",
+    "results/runs_eval_tier0/FULL/037/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,37)"
+   ],
+   "seed": 37,
+   "family": "F2_ditch_field",
+   "scenario": "data/scenarios/eval/37.json",
+   "scenario_sha256": "e02a83d809f8c13ca25efddd8a3bed24a1825bbdb87bf98c07a80cd2723cabe8",
+   "hazards": [
+    {
+     "type": "ditch",
+     "depth_m": 0.6367,
+     "width_m": 0.5816,
+     "gaps_arc_m": [
+      [
+       6.7888,
+       9.2783
+      ]
+     ]
+    },
+    {
+     "type": "ditch",
+     "depth_m": 0.6153,
+     "width_m": 0.3792,
+     "gaps_arc_m": [
+      [
+       5.213,
+       6.8751
+      ]
+     ]
+    },
+    {
+     "type": "ditch",
+     "depth_m": 0.8454,
+     "width_m": 0.44,
+     "gaps_arc_m": [
+      [
+       24.435,
+       27.1837
+      ]
+     ]
+    }
+   ],
+   "typical_same_seed": {
+    "config": "TYPICAL",
+    "run_dir": "results/runs_eval_tier0/TYPICAL/037",
+    "outcome": "out_of_bounds",
+    "end_time_s": 56.26,
+    "end_event": {
+     "t": 56.26,
+     "type": "out_of_bounds"
+    },
+    "path_length_m": 52.619,
+    "mean_speed_mps": 0.9353,
+    "gt_speed_max_mps": 1.384492122741717,
+    "final_error_m": 31.211,
+    "spl": 0.0,
+    "ditch_entries": 0,
+    "collisions": 0,
+    "water_entries": 0,
+    "end_xy_m": [
+     29.82,
+     39.45
+    ],
+    "sources": [
+     "results/runs_eval_tier0/TYPICAL/037/result.json",
+     "results/runs_eval_tier0/TYPICAL/037/gt/events.json",
+     "results/runs_eval_tier0/TYPICAL/037/gt/states.npz",
+     "results/runs_eval_tier0/summary.csv (row TYPICAL,37)"
+    ]
+   },
+   "trench_crossings": {
+    "FULL": [
+     {
+      "trench": 0,
+      "t_s": 14.34,
+      "arc_m": 8.4,
+      "gaps_arc_m": [
+       [
+        6.7888,
+        9.2783
+       ]
+      ],
+      "in_gap": true
+     },
+     {
+      "trench": 1,
+      "t_s": 28.18,
+      "arc_m": 6.55,
+      "gaps_arc_m": [
+       [
+        5.213,
+        6.8751
+       ]
+      ],
+      "in_gap": true
+     },
+     {
+      "trench": 2,
+      "t_s": 44.61,
+      "arc_m": 25.78,
+      "gaps_arc_m": [
+       [
+        24.435,
+        27.1837
+       ]
+      ],
+      "in_gap": true
+     }
+    ],
+    "TYPICAL": []
+   },
+   "family_rates": {
+    "FULL": {
+     "k": 5,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_FULL_F2_ditch_field_success",
+      "closed_loop_eval_tier0_FULL_F2_ditch_field_n"
+     ]
+    },
+    "TYPICAL": {
+     "k": 4,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_success",
+      "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_n"
+     ]
+    }
+   },
+   "lighting": {
+    "sun_elev_deg": 46.2838,
+    "fog_density": 0.0023,
+    "events": []
+   },
+   "lighting_events_drawn": [],
+   "label_placement": [
+    {
+     "name": "A",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    },
+    {
+     "name": "B",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    }
+   ]
+  },
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/002",
+   "outcome": "success",
+   "end_time_s": 35.54,
+   "end_event": {
+    "t": 35.54,
+    "type": "success"
+   },
+   "path_length_m": 44.748,
+   "mean_speed_mps": 1.2591,
+   "gt_speed_max_mps": 1.777285098269144,
+   "final_error_m": 1.997,
+   "spl": 0.9664,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    43.51,
+    23.06
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/002/result.json",
+    "results/runs_eval_tier0/FULL/002/gt/events.json",
+    "results/runs_eval_tier0/FULL/002/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,2)"
+   ],
+   "seed": 2,
+   "family": "F3_crest_ditch",
+   "scenario": "data/scenarios/eval/2.json",
+   "scenario_sha256": "c478b3ac84d6daec78420765cb3b471c27a8eb8e1b23bd141cd81889d2fd091b",
+   "hazards": [
+    {
+     "type": "crest",
+     "drop_m": 0.8598
+    },
+    {
+     "type": "ditch",
+     "depth_m": 0.6617,
+     "width_m": 0.6215,
+     "gaps_arc_m": [
+      [
+       25.7897,
+       28.6722
+      ]
+     ]
+    }
+   ],
+   "typical_same_seed": {
+    "config": "TYPICAL",
+    "run_dir": "results/runs_eval_tier0/TYPICAL/002",
+    "outcome": "out_of_bounds",
+    "end_time_s": 32.42,
+    "end_event": {
+     "t": 32.42,
+     "type": "out_of_bounds"
+    },
+    "path_length_m": 41.374,
+    "mean_speed_mps": 1.2762,
+    "gt_speed_max_mps": 1.3782930325516076,
+    "final_error_m": 28.069,
+    "spl": 0.0,
+    "ditch_entries": 0,
+    "collisions": 0,
+    "water_entries": 0,
+    "end_xy_m": [
+     28.67,
+     0.51
+    ],
+    "sources": [
+     "results/runs_eval_tier0/TYPICAL/002/result.json",
+     "results/runs_eval_tier0/TYPICAL/002/gt/events.json",
+     "results/runs_eval_tier0/TYPICAL/002/gt/states.npz",
+     "results/runs_eval_tier0/summary.csv (row TYPICAL,2)"
+    ]
+   },
+   "trench_crossings": {
+    "FULL": [
+     {
+      "trench": 0,
+      "t_s": 22.45,
+      "arc_m": 26.45,
+      "gaps_arc_m": [
+       [
+        25.7897,
+        28.6722
+       ]
+      ],
+      "in_gap": true
+     }
+    ],
+    "TYPICAL": []
+   },
+   "family_rates": {
+    "FULL": {
+     "k": 6,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_FULL_F3_crest_ditch_success",
+      "closed_loop_eval_tier0_FULL_F3_crest_ditch_n"
+     ]
+    },
+    "TYPICAL": {
+     "k": 4,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_success",
+      "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_n"
+     ]
+    }
+   },
+   "lighting": {
+    "sun_elev_deg": 26.1591,
+    "fog_density": 0.0015,
+    "events": []
+   },
+   "lighting_events_drawn": [],
+   "label_placement": [
+    {
+     "name": "A",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    },
+    {
+     "name": "B",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    }
+   ]
+  },
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/004",
+   "outcome": "success",
+   "end_time_s": 34.18,
+   "end_event": {
+    "t": 34.18,
+    "type": "success"
+   },
+   "path_length_m": 48.946,
+   "mean_speed_mps": 1.432,
+   "gt_speed_max_mps": 1.7105725006192039,
+   "final_error_m": 1.989,
+   "spl": 0.9591,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    50.11,
+    10.49
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/004/result.json",
+    "results/runs_eval_tier0/FULL/004/gt/events.json",
+    "results/runs_eval_tier0/FULL/004/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,4)"
+   ],
+   "seed": 4,
+   "family": "F5_lighting",
+   "scenario": "data/scenarios/eval/4.json",
+   "scenario_sha256": "e88137590820d5c71441e3dc6d9067badc03270124021b3c0b2e03d8ec5cfe1f",
+   "hazards": [],
+   "typical_same_seed": {
+    "config": "TYPICAL",
+    "run_dir": "results/runs_eval_tier0/TYPICAL/004",
+    "outcome": "success",
+    "end_time_s": 34.8,
+    "end_event": {
+     "t": 34.8,
+     "type": "success"
+    },
+    "path_length_m": 45.556,
+    "mean_speed_mps": 1.3091,
+    "gt_speed_max_mps": 1.382317661172671,
+    "final_error_m": 1.984,
+    "spl": 1.0,
+    "ditch_entries": 0,
+    "collisions": 0,
+    "water_entries": 0,
+    "end_xy_m": [
+     50.07,
+     11.08
+    ],
+    "sources": [
+     "results/runs_eval_tier0/TYPICAL/004/result.json",
+     "results/runs_eval_tier0/TYPICAL/004/gt/events.json",
+     "results/runs_eval_tier0/TYPICAL/004/gt/states.npz",
+     "results/runs_eval_tier0/summary.csv (row TYPICAL,4)"
+    ]
+   },
+   "trench_crossings": {
+    "FULL": [],
+    "TYPICAL": []
+   },
+   "family_rates": {
+    "FULL": {
+     "k": 10,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_FULL_F5_lighting_success",
+      "closed_loop_eval_tier0_FULL_F5_lighting_n"
+     ]
+    },
+    "TYPICAL": {
+     "k": 9,
+     "n": 10,
+     "claim_ids": [
+      "closed_loop_eval_tier0_TYPICAL_F5_lighting_success",
+      "closed_loop_eval_tier0_TYPICAL_F5_lighting_n"
+     ]
+    }
+   },
+   "lighting": {
+    "sun_elev_deg": 6.6765,
+    "fog_density": 0.0168,
+    "events": [
+     {
+      "gain": 1.8281,
+      "t0": 5.0996,
+      "t1": 10.7796,
+      "type": "glare"
+     },
+     {
+      "gain": 0.4,
+      "t0": 31.529,
+      "t1": 34.529,
+      "type": "dim"
+     },
+     {
+      "gain": 0.1956,
+      "t0": 53.324,
+      "t1": 60.588,
+      "type": "dust"
+     }
+    ]
+   },
+   "lighting_events_drawn": [
+    {
+     "type": "glare",
+     "t0_s": 5.0996,
+     "t1_s": 10.7796,
+     "gain": 1.8281,
+     "drawn_until_s": 10.7796,
+     "bracket_side": 1.0,
+     "label_on_figure": "glare"
+    },
+    {
+     "type": "dim",
+     "t0_s": 31.529,
+     "t1_s": 34.529,
+     "gain": 0.4,
+     "drawn_until_s": 34.18,
+     "bracket_side": 1.0,
+     "label_on_figure": "dimming"
+    }
+   ],
+   "label_placement": [
+    {
+     "name": "A",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    },
+    {
+     "name": "B",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    },
+    {
+     "name": "light glare",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    },
+    {
+     "name": "light dim",
+     "placed": true,
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
+    }
+   ]
+  }
+ ],
+ "selection": "Hand-picked, one FULL success per family for F1, F2, F3, F5 (F4 sudden obstacle and F6 water / mud are not shown; FULL reached B on 2/10 and 1/10 of them). FULL reached B on F1 seeds 0, 6, 12, 18, 24, 30, 36, 48, 54; F2 seeds 1, 7, 19, 37, 43; F3 seeds 2, 8, 20, 32, 38, 44; F5 all 10. Seed 24's FULL path detours north of the trail rather than following it. TYPICAL also reached B on seeds 24 and 4; it left the map on seeds 37 and 2.",
+ "note_lighting": "In tier-0 there are no images: glare is a depth-dropout disc and halo around the sun direction, dimming inflates depth noise and dropout (metagross/sim/sensors.py).",
+ "how_drawn": "same basemap as run_map_pair; navy = FULL GT path, grey = TYPICAL GT path on the same world; ink brackets beside FULL's path = time windows of scenario lighting events while FULL drove"
+}

@@ -1,0 +1,388 @@
+{
+  "figure": "eval_by_family",
+  "size": {
+    "width_in": 10.4618,
+    "height_in": 7.2848,
+    "png_px": [
+      2092,
+      1456
+    ],
+    "svg_pt": [
+      753.2,
+      524.5
+    ]
+  },
+  "numbers": [
+    {
+      "what": "FULL reached B, F1_trail",
+      "value": 9,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_FULL_F1_trail_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=FULL, family=F1_trail, success=True (= results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F1_trail.n_success)"
+    },
+    {
+      "what": "TYPICAL reached B, F1_trail",
+      "value": 9,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F1_trail_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=TYPICAL, family=F1_trail, success=True (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F1_trail.n_success)"
+    },
+    {
+      "what": "FULL reached B, F2_ditch_field",
+      "value": 5,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_FULL_F2_ditch_field_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=FULL, family=F2_ditch_field, success=True (= results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F2_ditch_field.n_success)"
+    },
+    {
+      "what": "TYPICAL reached B, F2_ditch_field",
+      "value": 4,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=TYPICAL, family=F2_ditch_field, success=True (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F2_ditch_field.n_success)"
+    },
+    {
+      "what": "FULL reached B, F3_crest_ditch",
+      "value": 6,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_FULL_F3_crest_ditch_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=FULL, family=F3_crest_ditch, success=True (= results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F3_crest_ditch.n_success)"
+    },
+    {
+      "what": "TYPICAL reached B, F3_crest_ditch",
+      "value": 4,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=TYPICAL, family=F3_crest_ditch, success=True (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F3_crest_ditch.n_success)"
+    },
+    {
+      "what": "FULL reached B, F4_sudden_obstacle",
+      "value": 2,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=FULL, family=F4_sudden_obstacle, success=True (= results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F4_sudden_obstacle.n_success)"
+    },
+    {
+      "what": "TYPICAL reached B, F4_sudden_obstacle",
+      "value": 5,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=TYPICAL, family=F4_sudden_obstacle, success=True (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F4_sudden_obstacle.n_success)"
+    },
+    {
+      "what": "FULL reached B, F5_lighting",
+      "value": 10,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_FULL_F5_lighting_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=FULL, family=F5_lighting, success=True (= results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F5_lighting.n_success)"
+    },
+    {
+      "what": "TYPICAL reached B, F5_lighting",
+      "value": 9,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F5_lighting_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=TYPICAL, family=F5_lighting, success=True (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F5_lighting.n_success)"
+    },
+    {
+      "what": "FULL reached B, F6_water_mud",
+      "value": 1,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_FULL_F6_water_mud_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=FULL, family=F6_water_mud, success=True (= results/closed_loop_eval.json#tier0.aggregate.FULL.by_family.F6_water_mud.n_success)"
+    },
+    {
+      "what": "TYPICAL reached B, F6_water_mud",
+      "value": 0,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F6_water_mud_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of rows with config_name=TYPICAL, family=F6_water_mud, success=True (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.by_family.F6_water_mud.n_success)"
+    },
+    {
+      "what": "FULL reached B, all families (key)",
+      "value": 33,
+      "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of FULL rows with success=True"
+    },
+    {
+      "what": "TYPICAL reached B, all families (key)",
+      "value": 31,
+      "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of TYPICAL rows with success=True"
+    },
+    {
+      "what": "Overall gap FULL - TYPICAL (footnote)",
+      "value": 2,
+      "of": 60,
+      "claim_id": [
+        "closed_loop_eval_tier0_FULL_success",
+        "closed_loop_eval_tier0_TYPICAL_success"
+      ],
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "difference of the two registered totals; 'within batch noise' quoted from docs/EVAL_PREREGISTRATION.md 'Reading'"
+    },
+    {
+      "what": "FULL reached B in F2+F3 (mini table)",
+      "value": 11,
+      "of": 20,
+      "claim_id": "closed_loop_eval_tier0_FULL_F2F3_ditch_crest_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "sum of F2_ditch_field and F3_crest_ditch success counts"
+    },
+    {
+      "what": "FULL ditch entries in F2+F3 (mini table)",
+      "value": 2,
+      "claim_id": [
+        "closed_loop_eval_tier0_FULL_F2_ditch_field_ditch",
+        "closed_loop_eval_tier0_FULL_F3_crest_ditch_ditch",
+        "closed_loop_eval_tier0_FULL_ditch"
+      ],
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "sum of ditch_entries over F2 and F3 rows; equals the all-family total (no ditch entries elsewhere)"
+    },
+    {
+      "what": "FULL out-of-bounds runs in F2+F3 (mini table)",
+      "value": 0,
+      "of": 20,
+      "claim_id": [
+        "closed_loop_eval_tier0_FULL_F2_ditch_field_oob",
+        "closed_loop_eval_tier0_FULL_F3_crest_ditch_oob",
+        "closed_loop_eval_tier0_FULL_oob"
+      ],
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of F2+F3 rows with failure_type=out_of_bounds; equals the all-family total"
+    },
+    {
+      "what": "FULL F4 runs that ended in a collision (F4 note)",
+      "value": 7,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_FULL_F4_sudden_obstacle_fail_collision",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of F4 rows with failure_type=collision; every one is a GT collision with the moving object (dyn_*) per results/runs_eval_tier0/<cfg>/<seed>/gt/events.json: {3: 'dyn_box_0', 9: 'dyn_box_0', 15: 'dyn_walker_0', 27: 'dyn_walker_0', 33: 'dyn_walker_0', 45: 'dyn_boulder_0', 57: 'dyn_boulder_0'}; 'enters from outside the sensor's view' per docs/EVAL_PREREGISTRATION.md 'Known limits in tier-0'"
+    },
+    {
+      "what": "TYPICAL reached B in F2+F3 (mini table)",
+      "value": 8,
+      "of": 20,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F2F3_ditch_crest_success",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "sum of F2_ditch_field and F3_crest_ditch success counts"
+    },
+    {
+      "what": "TYPICAL ditch entries in F2+F3 (mini table)",
+      "value": 2,
+      "claim_id": [
+        "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_ditch",
+        "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_ditch",
+        "closed_loop_eval_tier0_TYPICAL_ditch"
+      ],
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "sum of ditch_entries over F2 and F3 rows; equals the all-family total (no ditch entries elsewhere)"
+    },
+    {
+      "what": "TYPICAL out-of-bounds runs in F2+F3 (mini table)",
+      "value": 7,
+      "of": 20,
+      "claim_id": [
+        "closed_loop_eval_tier0_TYPICAL_F2_ditch_field_oob",
+        "closed_loop_eval_tier0_TYPICAL_F3_crest_ditch_oob",
+        "closed_loop_eval_tier0_TYPICAL_oob"
+      ],
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of F2+F3 rows with failure_type=out_of_bounds; equals the all-family total"
+    },
+    {
+      "what": "TYPICAL F4 runs that ended in a collision (F4 note)",
+      "value": 5,
+      "of": 10,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_F4_sudden_obstacle_fail_collision",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of F4 rows with failure_type=collision; every one is a GT collision with the moving object (dyn_*) per results/runs_eval_tier0/<cfg>/<seed>/gt/events.json: {3: 'dyn_box_0', 9: 'dyn_box_0', 15: 'dyn_walker_0', 27: 'dyn_walker_0', 39: 'dyn_walker_0'}; 'enters from outside the sensor's view' per docs/EVAL_PREREGISTRATION.md 'Known limits in tier-0'"
+    },
+    {
+      "what": "F3 EVAL seeds with a hidden trench behind the crest (family descriptor)",
+      "value": 5,
+      "of": 10,
+      "seeds": [
+        2,
+        14,
+        26,
+        38,
+        50
+      ],
+      "claim_id": null,
+      "source": "metagross/sim/scenario.py (f3_has_trench) + results/runs_eval_tier0/summary.csv",
+      "how": "scenario design, not a result: F3 seeds with (seed // 6) even; odd ones are crest-only controls"
+    }
+  ],
+  "descriptors_source": "scenario design parameters, not results: metagross/sim/scenario.py (docstring, F2_*/F3_*/F4_TRIGGER_M constants, _f1_trail_objects, _f4_dynamic) and metagross/sim/sensors.py (tier-0 lighting = depth dropout, noise, dust phantom returns)",
+  "label": "Simulated",
+  "split": "eval seeds 0-59, run 2 (commit 45ec399). Run 2 is a disclosed protocol deviation: run 1 (superseded) scored 17/60 vs 15/60; see docs/EVAL_PREREGISTRATION.md",
+  "sensor": "tier-0 synthetic depth sensor (no images: no VO, no segmentation)",
+  "configs": {
+    "FULL": "default stack: seen ground only, missing-ground detector, seen-distance speed governor",
+    "TYPICAL": "unknown_is_free, no missing-ground detector, no governor, fixed 1.5 m/s"
+  },
+  "sources": [
+    "results/runs_eval_tier0/summary.csv",
+    "results/closed_loop_eval.json",
+    "results/claims.csv",
+    "results/closed_loop_dev.json"
+  ],
+  "cross_check": "per-run CSV counts equal the JSON aggregates and the registered claims (asserted here)",
+  "scope": "EVAL only. Do not generalise 'never out of bounds' beyond these 60 runs (see dev_split_not_drawn).",
+  "context_not_drawn": {
+    "TYPICAL_out_of_bounds_seeds": [
+      2,
+      13,
+      25,
+      31,
+      37,
+      49,
+      50
+    ],
+    "FULL_outcome_on_those_seeds": {
+      "success": 2,
+      "stuck": 4,
+      "arrived_short": 1
+    },
+    "FULL_ditch_entry_seeds": [
+      14,
+      26
+    ],
+    "FULL_ditch_entry_note": "both are F3 seeds with a hidden trench (seed // 6 even), i.e. the case the missing-ground detector targets",
+    "false_stops": {
+      "FULL": 5,
+      "TYPICAL": 2
+    },
+    "false_stops_claim_ids": [
+      "closed_loop_eval_tier0_FULL_false_stops",
+      "closed_loop_eval_tier0_TYPICAL_false_stops"
+    ],
+    "paired_F2_F3": {
+      "families": [
+        "F2_ditch_field",
+        "F3_crest_ditch"
+      ],
+      "seeds_only_FULL_reached_B": [
+        2,
+        7,
+        32,
+        37,
+        38,
+        44
+      ],
+      "seeds_only_TYPICAL_reached_B": [
+        26,
+        55,
+        56
+      ],
+      "exact_two_sided_sign_test_p": 0.508,
+      "how": "per-seed pairing of FULL and TYPICAL rows in results/runs_eval_tier0/summary.csv; exact McNemar (binomial) test on the discordant seeds. Computed here; NOT registered in results/claims.csv."
+    },
+    "paired_F4": {
+      "families": [
+        "F4_sudden_obstacle"
+      ],
+      "seeds_only_FULL_reached_B": [],
+      "seeds_only_TYPICAL_reached_B": [
+        33,
+        45,
+        57
+      ],
+      "exact_two_sided_sign_test_p": 0.25,
+      "how": "per-seed pairing of FULL and TYPICAL rows in results/runs_eval_tier0/summary.csv; exact McNemar (binomial) test on the discordant seeds. Computed here; NOT registered in results/claims.csv."
+    },
+    "how": "computed from results/runs_eval_tier0/summary.csv; only false_stops is registered in results/claims.csv"
+  },
+  "dev_split_not_drawn": {
+    "source": "results/closed_loop_dev.json",
+    "split": "dev",
+    "seeds": [
+      100,
+      129
+    ],
+    "note": "DEV seeds 100-129 were used for tuning; EVAL seeds 0-59 were not. Not drawn and NOT registered in results/claims.csv: register before quoting on a slide.",
+    "configs": {
+      "FULL": {
+        "n": 30,
+        "reached_B": 20,
+        "out_of_bounds": 1,
+        "outcomes": {
+          "success": 20,
+          "arrived_short": 1,
+          "collision": 1,
+          "out_of_bounds": 1,
+          "stuck": 3,
+          "water_entry": 4
+        },
+        "reached_B_by_family": {
+          "F1_trail": 5,
+          "F2_ditch_field": 2,
+          "F3_crest_ditch": 3,
+          "F4_sudden_obstacle": 4,
+          "F5_lighting": 5,
+          "F6_water_mud": 1
+        },
+        "n_by_family": {
+          "F1_trail": 5,
+          "F2_ditch_field": 5,
+          "F3_crest_ditch": 5,
+          "F4_sudden_obstacle": 5,
+          "F5_lighting": 5,
+          "F6_water_mud": 5
+        },
+        "spl_mean": 0.6395,
+        "mean_speed_mps": 1.3007,
+        "path": "results/closed_loop_dev.json#tier0.aggregate.FULL"
+      },
+      "TYPICAL": {
+        "n": 30,
+        "reached_B": 16,
+        "out_of_bounds": 6,
+        "outcomes": {
+          "success": 16,
+          "arrived_short": 1,
+          "collision": 2,
+          "out_of_bounds": 6,
+          "water_entry": 5
+        },
+        "reached_B_by_family": {
+          "F1_trail": 5,
+          "F2_ditch_field": 1,
+          "F3_crest_ditch": 2,
+          "F4_sudden_obstacle": 3,
+          "F5_lighting": 5,
+          "F6_water_mud": 0
+        },
+        "n_by_family": {
+          "F1_trail": 5,
+          "F2_ditch_field": 5,
+          "F3_crest_ditch": 5,
+          "F4_sudden_obstacle": 5,
+          "F5_lighting": 5,
+          "F6_water_mud": 5
+        },
+        "spl_mean": 0.526,
+        "mean_speed_mps": 1.2489,
+        "path": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL"
+      }
+    }
+  },
+  "generator": "deck_assets/final/src/closed_loop.py"
+}

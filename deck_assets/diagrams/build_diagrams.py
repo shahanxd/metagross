@@ -993,8 +993,7 @@ def slot_missing_ground() -> Svg:
     # ---------------------------------------------------------------- left: side view
     lx, ly, lw, lh = 2, 2, 724, 380
     s.card(lx, ly, lw, lh)
-    s.text(lx + 24, ly + 42, "A ditch is missing ground, not an object", size=24, weight=700, fill=T["navy"])
-    s.text(lx + lw - 22, ly + 40, "SCHEMATIC", size=14, weight=700, fill=T["text_muted"], anchor="end", ls=1.2)
+    s.text(lx + 24, ly + 44, "A ditch is missing ground, not an object", size=27, weight=700, fill=T["navy"])
     g_y = 280.0  # ground line
     cam = (150.0, 150.0)  # camera optical centre (mast top)
     lens = (cam[0] + 12, cam[1])
@@ -1041,47 +1040,46 @@ def slot_missing_ground() -> Svg:
     p2 = (lens[0] + r_arc * math.cos(a2), lens[1] + r_arc * math.sin(a2))
     s.path(f"M{p2[0]:.1f},{p2[1]:.1f} A{r_arc},{r_arc} 0 0 1 {p1[0]:.1f},{p1[1]:.1f}", stroke=T["accent"], sw=3)
     cap = "visible angle of the opening"
-    bw_ = measure(cap, 15) + 40
-    bx, by = 330.0, 64.0
-    s.rect(bx, by, bw_, 66, fill=T["bg"], stroke=T["accent"], sw=1.5, rx=12)
-    s.text(bx + 20, by + 32, "θ ≈ H·w / R²", size=24, weight=700, mono=True, fill=T["accent"])
-    s.text(bx + 20, by + 54, cap, size=15, fill=T["text_secondary"])
+    bw_ = measure(cap, 18) + 40
+    bx, by = 322.0, 66.0
+    s.rect(bx, by, bw_, 74, fill=T["bg"], stroke=T["accent"], sw=1.5, rx=12)
+    s.text(bx + 20, by + 35, "θ ≈ H·w / R²", size=27, weight=700, mono=True, fill=T["accent"])
+    s.text(bx + 20, by + 62, cap, size=18, fill=T["text_secondary"])
     mx_, my_ = (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2
-    s.line(mx_ + 2, by + 67, mx_, my_ - 6, stroke=T["accent"], sw=1.4)
+    s.line(mx_ + 2, by + 75, mx_, my_ - 6, stroke=T["accent"], sw=1.4)
 
     # dimensions: H (left of the vehicle), R (below ground), w (above the ditch)
     hx = 46.0
     s.line(hx, cam[1] + 2, hx, g_y - 2, stroke=T["text"], sw=1.4, arrow=True)
     s.line(hx, g_y - 2, hx, cam[1] + 2, stroke=T["text"], sw=1.4, arrow=True)
     s.line(hx - 8, cam[1], cam[0] - 27, cam[1], stroke=T["text_muted"], sw=1, dash="3 4")
-    s.text(hx - 12, (cam[1] + g_y) / 2 + 7, "H", size=20, weight=700, anchor="end")
+    s.text(hx - 10, (cam[1] + g_y) / 2 + 8, "H", size=23, weight=700, anchor="end")
     ry = 330.0
     s.line(cam[0], ry, lip - 2, ry, stroke=T["text"], sw=1.4, arrow=True)
     s.line(lip - 2, ry, cam[0] + 2, ry, stroke=T["text"], sw=1.4, arrow=True)
     s.rect((cam[0] + lip) / 2 - 18, ry - 15, 36, 28, fill=T["surface"])
-    s.text((cam[0] + lip) / 2, ry + 7, "R", size=20, weight=700, anchor="middle")
+    s.text((cam[0] + lip) / 2, ry + 8, "R", size=23, weight=700, anchor="middle")
     wy_ = g_y - 32
     s.line(lip + 2, wy_, far - 2, wy_, stroke=T["text"], sw=1.4, arrow=True)
     s.line(far - 2, wy_, lip + 2, wy_, stroke=T["text"], sw=1.4, arrow=True)
     s.rect((lip + far) / 2 - 13, wy_ - 30, 26, 24, fill=T["bg"])
-    s.text((lip + far) / 2, wy_ - 12, "w", size=20, weight=700, anchor="middle")
+    s.text((lip + far) / 2, wy_ - 11, "w", size=23, weight=700, anchor="middle")
 
     # callouts
-    s.text(lip - 10, g_y + 24, "near lip", size=15, weight=700, anchor="end")
-    s.text((lip + far) / 2, depth_y - 10, "never observed", size=15, weight=700, anchor="middle")
-    s.lines(far + 12, g_y + 28, ["far wall seen", "below the lip"], size=15, lh=19, fill=mag, weight=700)
+    s.text(lip - 10, g_y + 26, "near lip", size=18, weight=700, anchor="end")
+    s.text((lip + far) / 2, depth_y - 10, "never observed", size=18, weight=700, anchor="middle")
+    s.lines(far + 12, g_y + 30, ["far wall seen", "below the lip"], size=18, lh=22, fill=mag, weight=700)
 
     # ---------------------------------------------------------------- right: one image column
     ix, iw = 740, 438
     s.card(ix, ly, iw, lh)
-    s.text(ix + 22, ly + 36, "ONE IMAGE COLUMN", size=14, weight=700, fill=T["text_muted"], ls=1.2)
-    s.text(ix + 22, ly + 62, "Measured range per image row", size=18, weight=700)
-    px0, py0, pw_, ph_ = ix + 50, ly + 82, iw - 72, 150  # plot area
+    s.text(ix + 22, ly + 42, "Range along one image column", size=21, weight=700)
+    px0, py0, pw_, ph_ = ix + 50, ly + 66, iw - 72, 156  # plot area
     s.line(px0, py0 + ph_, px0 + pw_, py0 + ph_, stroke=T["border"], sw=1.4)
     s.line(px0, py0 + ph_, px0, py0, stroke=T["border"], sw=1.4)
-    s.text(px0 + pw_ / 2, py0 + ph_ + 24, "image row  (near → far)", size=14, anchor="middle", fill=T["text_secondary"])
-    s.raw(f'<text x="{px0 - 14}" y="{py0 + ph_ / 2}" font-family="{FONT}" font-size="14" fill="{T["text_secondary"]}" '
-          f'text-anchor="middle" transform="rotate(-90 {px0 - 14} {py0 + ph_ / 2})">range</text>')
+    s.text(px0 + pw_ / 2, py0 + ph_ + 26, "image row, near to far", size=17, anchor="middle", fill=T["text_secondary"])
+    s.raw(f'<text x="{px0 - 16}" y="{py0 + ph_ / 2}" font-family="{FONT}" font-size="17" fill="{T["text_secondary"]}" '
+          f'text-anchor="middle" transform="rotate(-90 {px0 - 16} {py0 + ph_ / 2})">range</text>')
     # Schematic profile (illustrative, not to scale): ground rows rise smoothly, the far wall is seen over
     # several rows at a constant range ~R + w, then far ground resumes.
     r_lip, w_d, n = 3.0, 1.4, 30
@@ -1105,17 +1103,18 @@ def slot_missing_ground() -> Svg:
     u_lip = next(u for u in us if ground_range(u) >= r_lip)
     ja, jb = to_px(u_lip, r_lip), to_px(u_lip, r_lip + w_d)
     s.line(ja[0] - 14, ja[1] + 2, ja[0] - 14, jb[1] + 4, stroke=T["text"], sw=1.6, arrow=True)
-    s.lines(ja[0] - 24, (ja[1] + jb[1]) / 2 - 2, ["range", "jump ≈ w"], size=15, lh=19, anchor="end", weight=700)
+    s.lines(ja[0] - 24, (ja[1] + jb[1]) / 2 - 2, ["range", "jump ≈ w"], size=18, lh=21, anchor="end", weight=700)
     u_last = max(u for u in us if r_lip <= ground_range(u) < r_lip + w_d)  # last far-wall row
-    s.text(to_px(u_last, 0)[0] - 2, jb[1] - 14, "far wall: flat range", size=14, fill=mag, weight=700, anchor="end")
-    legend = [(mag, "DITCH CANDIDATE", "reappears near lip height"),
-              (C[CellState.CREST_SHADOW], "CREST", "reappears well below"),
-              (grey, "UNSEEN", "never observed, never free")]
+    s.text(to_px(u_last, 0)[0] - 2, jb[1] - 14, "far wall: flat range", size=17, fill=mag, weight=700, anchor="end")
+    legend = [(mag, "Ditch", "far wall near lip height"),
+              (C[CellState.CREST_SHADOW], "Crest", "ground reappears far below"),
+              (grey, "Unseen", "never observed, never free")]
+    why_x = ix + 50 + max(measure(name, 18, 700) for _, name, _ in legend) + 12  # shared column
     for k, (col, name, why) in enumerate(legend):
-        yy = ly + 292 + k * 30
-        s.swatch(ix + 22, yy - 13, col, size=16)
-        s.text(ix + 48, yy, name, size=15, weight=700)
-        s.text(ix + 48 + measure(name, 15, 700) + 8, yy, why, size=15, fill=T["text_secondary"])
+        yy = ly + 290 + k * 32
+        s.swatch(ix + 22, yy - 15, col, size=18)
+        s.text(ix + 50, yy, name, size=18, weight=700)
+        s.text(why_x, yy, why, size=18, fill=T["text_secondary"])
     return s
 
 
