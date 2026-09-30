@@ -129,8 +129,9 @@ def check(s) -> dict:
 
 def ensure_bucket(s, name: str) -> None:
     s3 = s.client("s3")
-    try:
-        s3.head_bucket(Bucket=name)
+    account = s.client("sts").get_caller_identity()["Account"]
+    try:  # the name is predictable: a same-named bucket owned by another account must not count as ours
+        s3.head_bucket(Bucket=name, ExpectedBucketOwner=account)
         return
     except ClientError:
         pass
@@ -177,15 +178,20 @@ def ensure_sg(s) -> str:
 
 
 def code_tarball() -> bytes:
-    """``git archive HEAD`` of the repo (committed files only: no data, venvs or run folders)."""
+    """``git archive HEAD`` of the repo (committed files only: no data, venvs or run folders). Line endings are
+    taken as committed (LF), whatever the local ``core.autocrlf``: CRLF shell scripts do not run on Linux."""
     rel = REPO.relative_to(GIT_ROOT).as_posix() if REPO != GIT_ROOT else ""
     tree = f"HEAD:{rel}" if rel else "HEAD"
-    raw = subprocess.run(["git", "-C", str(GIT_ROOT), "archive", "--format=tar.gz", tree],
-                         check=True, capture_output=True).stdout
-    with tarfile.open(fileobj=io.BytesIO(raw), mode="r:gz") as tf:  # sanity: the job script must be in it
+    raw = subprocess.run(["git", "-C", str(GIT_ROOT), "-c", "core.autocrlf=false", "-c", "core.eol=lf", "archive",
+                          "--format=tar.gz", tree], check=True, capture_output=True).stdout
+    with tarfile.open(fileobj=io.BytesIO(raw), mode="r:gz") as tf:  # sanity: job scripts present, LF endings
         names = tf.getnames()
+        crlf = [m.name for m in tf.getmembers() if m.isfile() and m.name.endswith(".sh")
+                and b"\r\n" in tf.extractfile(m).read()]
     if not any(n.startswith("aws/jobs/") for n in names):
         sys.exit("aws/jobs/ is not committed: commit it first (the instance runs the committed tree)")
+    if crlf:
+        sys.exit(f"shell scripts committed with CRLF line endings (bash on the instance cannot run them): {crlf}")
     return raw
 
 
@@ -244,10 +250,14 @@ def launch_sagemaker(s, job: str, itype: str, max_hours: float, env: list[str], 
     """Same job as :func:`launch`, as a SageMaker training job (see ``aws/sagemaker_backend.py``)."""
     if job not in JOB_OUTPUTS:
         sys.exit(f"unknown job {job!r}; known: {sorted(JOB_OUTPUTS)}")
-    try:
+    try:  # validate everything (env, image, --max-hours, --resume-from) before any AWS resource is touched
         sm_env = smb.validate_env(env)
         image = image or smb.image_uri(s.region_name)
         smb.ecr_repository_arn(image)
+        smb.create_training_job_request(name="metagross-dry-run", job=job, role_arn="arn:aws:iam::0:role/dry-run",
+                                        bucket="dry-run", image=image, instance_type=itype, volume_gb=volume_gb,
+                                        max_hours=max_hours, env=sm_env, output_globs=JOB_OUTPUTS[job],
+                                        resume_from=resume_from)
     except ValueError as exc:
         sys.exit(str(exc))
     smb.preflight(s, job)  # exits on an SCP / IAM denial or a job already in progress
@@ -284,7 +294,11 @@ def fetch(s, job: str) -> list[Path]:
     got: list[Path] = []
     for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix=prefix):
         for obj in page.get("Contents", []):
-            dest = smb.output_dest(REPO, obj["Key"][len(prefix):])
+            rel = obj["Key"][len(prefix):]
+            if not smb.matches_globs(rel, JOB_OUTPUTS[job]):
+                LOG.warning("skipping undeclared output %s", obj["Key"])
+                continue
+            dest = smb.output_dest(REPO, rel)
             dest.parent.mkdir(parents=True, exist_ok=True)
             s3.download_file(bucket, obj["Key"], str(dest))
             got.append(dest)
@@ -361,6 +375,8 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> None:
     a = build_parser().parse_args(argv)
+    if getattr(a, "job", None) is not None and a.job not in JOB_OUTPUTS:
+        sys.exit(f"unknown job {a.job!r}; known: {sorted(JOB_OUTPUTS)}")
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     s = session()
     sm = getattr(a, "backend", "ec2") == "sagemaker"
@@ -375,7 +391,7 @@ def main(argv: list[str] | None = None) -> None:
     elif a.cmd == "status":
         smb.status(s, a.job, a.name) if sm else status(s, a.job)
     elif a.cmd == "fetch":
-        smb.fetch(s, a.job, REPO, a.name) if sm else fetch(s, a.job)
+        smb.fetch(s, a.job, REPO, JOB_OUTPUTS[a.job], a.name) if sm else fetch(s, a.job)
     elif a.cmd == "terminate":
         smb.stop(s, a.job, a.name) if sm else terminate(s, a.job)
     elif a.cmd == "cleanup":

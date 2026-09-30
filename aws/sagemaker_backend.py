@@ -26,6 +26,7 @@ take a ``boto3.session.Session`` and import botocore lazily, so the unit tests r
 from __future__ import annotations
 
 import datetime as _dt
+import fnmatch
 import json
 import logging
 import re
@@ -59,6 +60,7 @@ CODE_CHANNEL = "code"
 CODE_TARBALL = "metagross.tgz"
 REPO_IN_CONTAINER = f"{ML_ROOT}/code/metagross"
 ROLE_RETRIES, ROLE_RETRY_S = 6, 10.0  # a new execution role can take ~10-60 s to become assumable
+ENDED = ("Completed", "Failed", "Stopped")  # TrainingJobStatus values after which output/ is final
 
 # API limits from the botocore SageMaker service model (CreateTrainingJob).
 JOB_NAME_RE = re.compile(r"[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}")
@@ -66,8 +68,11 @@ ENV_KEY_RE = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]*")
 ENV_VALUE_MAX = 512
 ENV_MAX_ENTRIES = 100
 ENTRYPOINT_STR_MAX = 256
-# Environment values are visible to anyone who can DescribeTrainingJob: refuse anything that looks like a secret.
-SECRET_KEY_RE = re.compile(r"(SECRET|TOKEN|PASSW|CREDENTIAL|PRIVATE|_KEY$|^AWS_)", re.IGNORECASE)
+# Environment values are visible to anyone who can DescribeTrainingJob: refuse names that look like secrets. Whole
+# '_'-separated tokens are matched, so HF_TOKEN / WANDB_API_KEY are refused but TOKENIZERS_PARALLELISM passes.
+SECRET_NAME_TOKENS = frozenset({"TOKEN", "SECRET", "PASSWORD", "PASSWD", "PASS", "PAT", "APIKEY", "KEY", "CREDENTIAL",
+                                "CREDENTIALS", "PRIVATE", "AUTH"})
+SECRET_NAME_PREFIXES = ("AWS_",)
 RESERVED_ENV_PREFIX = "MG_"  # set by the launcher for aws/sagemaker_entry.sh
 
 # A job counts as failed (training job status Failed) when none of its required outputs exists.
@@ -110,6 +115,12 @@ def job_prefix(job: str, name: str) -> str:
     return f"jobs/{job}/sagemaker/{name}"
 
 
+def looks_secret(name: str) -> bool:
+    """True when an environment variable name looks like it carries a credential."""
+    upper = name.upper()
+    return upper.startswith(SECRET_NAME_PREFIXES) or any(tok in SECRET_NAME_TOKENS for tok in upper.split("_"))
+
+
 def validate_env(pairs: Iterable[str]) -> dict[str, str]:
     """``KEY=VALUE`` strings -> Environment map; raises ValueError on anything SageMaker or this backend refuses."""
     env: dict[str, str] = {}
@@ -119,7 +130,7 @@ def validate_env(pairs: Iterable[str]) -> dict[str, str]:
             raise ValueError(f"--env entries must be KEY=VALUE with KEY matching [A-Za-z_][A-Za-z0-9_]*: {pair!r}")
         if key.startswith(RESERVED_ENV_PREFIX):
             raise ValueError(f"{key}: the {RESERVED_ENV_PREFIX}* variables are set by the launcher")
-        if SECRET_KEY_RE.search(key):
+        if looks_secret(key):
             raise ValueError(f"{key}: looks like a secret; training-job environment variables are readable by "
                              "anyone with sagemaker:DescribeTrainingJob, so it is not passed")
         if len(value) > ENV_VALUE_MAX:
@@ -145,6 +156,10 @@ def create_training_job_request(*, name: str, job: str, role_arn: str, bucket: s
     max_s = int(round(max_hours * 3600))
     if not 0 < max_s <= MAX_RUNTIME_S:
         raise ValueError(f"--max-hours must be in (0, {MAX_RUNTIME_S // 3600}]")
+    if volume_gb < 1:
+        raise ValueError("--disk-gb must be >= 1")
+    if resume_from and not JOB_NAME_RE.fullmatch(resume_from):
+        raise ValueError(f"--resume-from {resume_from!r} is not a training job name")
     globs = " ".join(output_globs)
     launcher_env = {"MG_JOB": job, "MG_OUTPUT_GLOBS": globs, "MG_MAX_RUNTIME_S": str(max_s)}
     if job in JOB_REQUIRED:
@@ -184,16 +199,18 @@ def _s3_channel(channel: str, s3_uri: str) -> dict[str, Any]:
 
 
 def role_policies(*, bucket: str, region: str, account: str, image: str) -> tuple[dict, dict]:
-    """(trust policy, inline policy) of the SageMaker execution role: this bucket's ``jobs/`` prefix, the job's
-    CloudWatch log group and metrics, and pulls from the training image's ECR repository only."""
+    """(trust policy, inline policy) of the SageMaker execution role: this bucket's ``jobs/*/sagemaker/`` prefixes
+    (only when the bucket is owned by ``account``: bucket ARNs carry no account, so a same-named bucket elsewhere
+    must not match), the job's CloudWatch log group and metrics, and pulls from the training image's ECR repository."""
     trust = {"Version": "2012-10-17", "Statement": [{
         "Effect": "Allow", "Principal": {"Service": "sagemaker.amazonaws.com"}, "Action": "sts:AssumeRole"}]}
     partition = "aws-cn" if region.startswith("cn-") else "aws"
+    own_bucket = {"StringEquals": {"s3:ResourceAccount": account}}
     policy = {"Version": "2012-10-17", "Statement": [
         {"Sid": "Bucket", "Effect": "Allow", "Action": ["s3:ListBucket", "s3:GetBucketLocation"],
-         "Resource": f"arn:{partition}:s3:::{bucket}"},
+         "Resource": f"arn:{partition}:s3:::{bucket}", "Condition": own_bucket},
         {"Sid": "JobObjects", "Effect": "Allow", "Action": ["s3:GetObject", "s3:PutObject", "s3:AbortMultipartUpload"],
-         "Resource": f"arn:{partition}:s3:::{bucket}/jobs/*"},
+         "Resource": f"arn:{partition}:s3:::{bucket}/jobs/*/sagemaker/*", "Condition": own_bucket},
         {"Sid": "Logs", "Effect": "Allow",
          "Action": ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents", "logs:DescribeLogStreams"],
          "Resource": f"arn:{partition}:logs:{region}:{account}:log-group:/aws/sagemaker/TrainingJobs*"},
@@ -217,20 +234,36 @@ def split_s3(uri: str) -> tuple[str, str]:
 
 def output_dest(repo: Path, rel: str) -> Path:
     """Local destination of a job output given its repo-relative POSIX path. ``logs/`` goes to ``runs/aws/logs/``
-    (as on EC2) so remote logs never mix with local ones. Raises ValueError for absolute or escaping paths."""
-    if not rel or rel.startswith("/") or "\\" in rel:
+    (as on EC2) so remote logs never mix with local ones. Raises ValueError for absolute or escaping paths, including
+    a drive (``D:x``) in any component, which Windows would treat as a jump to another drive."""
+    if not rel or rel.startswith("/") or "\\" in rel or "\0" in rel:
         raise ValueError(f"unsafe output path {rel!r}")
     parts = PurePosixPath(rel).parts
-    if any(p in ("..", ".") for p in parts) or ":" in parts[0]:
+    if any(p in ("..", ".") or ":" in p for p in parts):
         raise ValueError(f"unsafe output path {rel!r}")
     if parts[0] == "logs":
         parts = ("runs", "aws") + parts
-    return repo.joinpath(*parts)
+    dest = repo.joinpath(*parts)
+    if dest.parts[:len(repo.parts)] != repo.parts:  # lexical, so a symlinked runs/ is still accepted
+        raise ValueError(f"unsafe output path {rel!r}")
+    return dest
 
 
-def extract_outputs(fileobj: IO[bytes], repo: Path) -> list[Path]:
-    """Extract the regular files of a ``model.tar.gz`` into the repo via :func:`output_dest`; links, devices and
-    unsafe paths are skipped (never extracted), so a crafted archive cannot write outside the repo."""
+def matches_globs(rel: str, globs: Iterable[str]) -> bool:
+    """True when the repo-relative path matches one of the job's output globs component by component (``*`` never
+    crosses ``/``), so ``fetch`` writes only declared outputs, never e.g. ``tests/conftest.py`` or ``.git/hooks``."""
+    parts = PurePosixPath(rel).parts
+    for glob in globs:
+        gparts = PurePosixPath(glob).parts
+        if len(gparts) == len(parts) and all(fnmatch.fnmatchcase(p, g) for p, g in zip(parts, gparts)):
+            return True
+    return False
+
+
+def extract_outputs(fileobj: IO[bytes], repo: Path, output_globs: Iterable[str]) -> list[Path]:
+    """Extract the regular files of a ``model.tar.gz`` that match the job's output globs into the repo via
+    :func:`output_dest`; links, devices, undeclared and unsafe paths are skipped (never extracted)."""
+    output_globs = list(output_globs)
     got: list[Path] = []
     with tarfile.open(fileobj=fileobj, mode="r:*") as tf:
         for member in tf.getmembers():
@@ -241,6 +274,9 @@ def extract_outputs(fileobj: IO[bytes], repo: Path) -> list[Path]:
                 dest = output_dest(repo, rel)
             except ValueError:
                 LOG.warning("skipping unsafe archive member %r", member.name)
+                continue
+            if not matches_globs(rel, output_globs):
+                LOG.warning("skipping undeclared archive member %r", member.name)
                 continue
             src = tf.extractfile(member)
             if src is None:
@@ -332,6 +368,18 @@ def ensure_role(s, bucket: str, image: str) -> str:
     return iam.get_role(RoleName=ROLE)["Role"]["Arn"]
 
 
+def check_resume(s, job: str, bucket: str, resume_from: str) -> None:
+    """Exit unless ``resume_from`` is a training job name with a ``last.pt`` under its ``checkpoints/runs/``: an
+    empty File-mode channel would only fail after the instance is provisioned and billed."""
+    if not JOB_NAME_RE.fullmatch(resume_from):
+        sys.exit(f"--resume-from {resume_from!r} is not a training job name")
+    prefix = f"{job_prefix(job, resume_from)}/checkpoints/runs/"
+    for page in s.client("s3").get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix=prefix):
+        if any(o["Key"].endswith("/last.pt") for o in page.get("Contents", [])):
+            return
+    sys.exit(f"--resume-from {resume_from}: no last.pt under s3://{bucket}/{prefix}")
+
+
 def launch(s, *, job: str, bucket: str, tarball: bytes, output_globs: list[str], instance_type: str, image: str,
            max_hours: float, volume_gb: int, env: dict[str, str], resume_from: Optional[str] = None,
            now: Optional[_dt.datetime] = None, sleep=time.sleep) -> str:
@@ -339,6 +387,8 @@ def launch(s, *, job: str, bucket: str, tarball: bytes, output_globs: list[str],
     ``preflight`` and the bucket must already be done by the caller."""
     ClientError = _client_error()
     name = training_job_name(job, now or _dt.datetime.now(_dt.timezone.utc))
+    if resume_from:
+        check_resume(s, job, bucket, resume_from)
     role_arn = ensure_role(s, bucket, image)
     req = create_training_job_request(name=name, job=job, role_arn=role_arn, bucket=bucket, image=image,
                                       instance_type=instance_type, volume_gb=volume_gb, max_hours=max_hours,
@@ -362,6 +412,11 @@ def launch(s, *, job: str, bucket: str, tarball: bytes, output_globs: list[str],
     return name
 
 
+def _utc(t: _dt.datetime) -> _dt.datetime:
+    """botocore returns JSON-protocol timestamps (SageMaker) in local time; everything printed here is UTC."""
+    return t.astimezone(_dt.timezone.utc)
+
+
 def resolve(s, job: str, name: Optional[str]) -> str:
     """``name`` or the newest training job for ``job``."""
     if name:
@@ -376,27 +431,29 @@ def status(s, job: str, name: Optional[str] = None, tail: int = 25) -> None:
     name = resolve(s, job, name)
     d = s.client("sagemaker").describe_training_job(TrainingJobName=name)
     print(f"training job {name} {d['TrainingJobStatus']} / {d.get('SecondaryStatus', '?')} "
-          f"({d['ResourceConfig']['InstanceType']}) created {d['CreationTime']:%Y-%m-%d %H:%M}Z "
+          f"({d['ResourceConfig']['InstanceType']}) created {_utc(d['CreationTime']):%Y-%m-%d %H:%M}Z "
           f"billable {d.get('BillableTimeInSeconds', 0) / 3600:.2f} h")
     if d.get("FailureReason"):
         print("failure:", d["FailureReason"])
     for t in d.get("SecondaryStatusTransitions", [])[-4:]:
-        print(f"  {t['StartTime']:%H:%M}Z {t['Status']}: {t.get('StatusMessage', '')[:160]}")
+        print(f"  {_utc(t['StartTime']):%H:%M}Z {t['Status']}: {t.get('StatusMessage', '')[:160]}")
     bucket, prefix = split_s3(d["CheckpointConfig"]["S3Uri"])
     s3 = s.client("s3")
     listing = s3.list_objects_v2(Bucket=bucket, Prefix=f"{prefix.rstrip('/')}/logs/").get("Contents", [])
     for obj in sorted(listing, key=lambda o: o["LastModified"])[-6:]:
         body = s3.get_object(Bucket=bucket, Key=obj["Key"])["Body"].read().decode(errors="replace").splitlines()
-        print(f"--- {obj['Key'].split('/logs/')[-1]} ({obj['LastModified']:%H:%M}Z, {len(body)} lines)")
+        print(f"--- {obj['Key'].split('/logs/')[-1]} ({_utc(obj['LastModified']):%H:%M}Z, {len(body)} lines)")
         for line in body[-tail:]:
             print("   ", line[:220])
     if not listing:
         print("(no logs on S3 yet; container stdout is in CloudWatch /aws/sagemaker/TrainingJobs)")
 
 
-def fetch(s, job: str, repo: Path, name: Optional[str] = None) -> list[Path]:
-    """Copy a training job's outputs into the repo: ``<checkpoints>/out/`` plus the live ``logs/``; falls back to
-    ``model.tar.gz`` when ``out/`` is empty (e.g. checkpoint sync did not finish)."""
+def fetch(s, job: str, repo: Path, output_globs: Iterable[str], name: Optional[str] = None) -> list[Path]:
+    """Copy a training job's declared outputs (``output_globs``) into the repo: ``<checkpoints>/out/`` plus the live
+    ``logs/``; once the job has ended, falls back to ``model.tar.gz`` when ``out/`` is empty."""
+    ClientError = _client_error()
+    output_globs = list(output_globs)
     name = resolve(s, job, name)
     d = s.client("sagemaker").describe_training_job(TrainingJobName=name)
     bucket, prefix = split_s3(d["CheckpointConfig"]["S3Uri"])
@@ -413,16 +470,24 @@ def fetch(s, job: str, repo: Path, name: Optional[str] = None) -> list[Path]:
                 except ValueError:
                     LOG.warning("skipping unsafe key %s", obj["Key"])
                     continue
+                if not matches_globs(rel, output_globs + ["logs/*"]):
+                    LOG.warning("skipping undeclared key %s", obj["Key"])
+                    continue
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 s3.download_file(bucket, obj["Key"], str(dest))
                 if sub == "out/":
                     got.append(dest)
-    if not got and d.get("ModelArtifacts", {}).get("S3ModelArtifacts"):
-        m_bucket, m_key = split_s3(d["ModelArtifacts"]["S3ModelArtifacts"])
+    model_uri = d.get("ModelArtifacts", {}).get("S3ModelArtifacts")
+    if not got and model_uri and d["TrainingJobStatus"] in ENDED:
+        m_bucket, m_key = split_s3(model_uri)
         with tempfile.TemporaryFile() as tmp:
-            s3.download_fileobj(m_bucket, m_key, tmp)
-            tmp.seek(0)
-            got = extract_outputs(tmp, repo)
+            try:
+                s3.download_fileobj(m_bucket, m_key, tmp)
+            except ClientError as exc:
+                LOG.info("no model.tar.gz for %s (%s)", name, describe_denial(exc))
+            else:
+                tmp.seek(0)
+                got = extract_outputs(tmp, repo, output_globs)
     LOG.info("training job %s is %s; fetched %d output files", name, d["TrainingJobStatus"], len(got))
     for p in got:
         print(" ", p.relative_to(repo))

@@ -28,8 +28,9 @@ python aws/ec2_run.py terminate --backend sagemaker --job seg   # StopTrainingJo
 
 How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
 
-- **Code** goes up as the same `git archive HEAD` tarball (commit first) and arrives as the `code` input channel. The
-  container entrypoint unpacks it and runs `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with
+- **Code** goes up as the same `git archive HEAD` tarball (commit first) and arrives as the `code` input channel. Shell
+  scripts are archived with LF endings whatever the local `core.autocrlf` (`.gitattributes` pins `*.sh` to LF), and the
+  launcher refuses a tarball with CRLF scripts. The container entrypoint unpacks it and runs `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with
   `SYSTEM_TORCH=1` (the container's CUDA torch is reused; no torch download) and the datasets and venv on the
   instance's local NVMe.
 - **GPUs**: with two or more GPUs, `run_pipeline.sh` puts the clean run on GPU 0 and the robust run on GPU 1. GPUs 2
@@ -41,13 +42,16 @@ How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
   `logs/pipeline.log` and the tagged `logs/train_*.log` also stream to CloudWatch (`/aws/sagemaker/TrainingJobs`),
   where SageMaker parses per-epoch val mIoU into the `clean:val_miou` / `robust:val_miou` metrics.
 - **Outputs**: the `JOB_OUTPUTS` globs are copied to `<checkpoints>/out/` (what `fetch` downloads) and to
-  `/opt/ml/model` (`model.tar.gz`, the fallback). A job that exits 0 without `models/lraspp_offroad5_*.onnx` is marked
+  `/opt/ml/model` (`model.tar.gz`, the fallback once the job has ended). `fetch` writes only paths that match those
+  globs (both backends), so a job cannot drop, say, `tests/conftest.py` into the local repo. A job that exits 0 without `models/lraspp_offroad5_*.onnx` is marked
   Failed (rc 4), and the failure reason carries the tail of the job log.
 - **Resume**: `runs/` lives on the checkpoint path, so `launch ... --resume-from <earlier job name>` continues both
-  runs from their `last.pt`.
+  runs from their `last.pt`. The launcher first checks that the earlier job left a `last.pt` on S3 (an empty channel
+  would fail only after the instance is provisioned).
 - **AWS resources**: bucket `metagross-<account>-<region>` (shared with EC2), prefix `jobs/seg/sagemaker/<job name>/`;
-  execution role `metagross-sagemaker-role` (S3 `jobs/*` in that bucket, the job's CloudWatch logs and metrics, pulls
-  from the image's ECR repository only). `--env` refuses secret-looking names, because training-job environment
+  execution role `metagross-sagemaker-role` (S3 `jobs/*/sagemaker/*` in that bucket and only while the bucket belongs
+  to this account, the job's CloudWatch logs and metrics, pulls from the image's ECR repository only). Because the
+  bucket name is predictable, both backends check its owner (`ExpectedBucketOwner`) before using it. `--env` refuses secret-looking names, because training-job environment
   variables are readable by anyone with `sagemaker:DescribeTrainingJob`. `cleanup` stops jobs and deletes the role.
 - **Permissions the account needs**, for the calling user and, at run time, the execution role: `sagemaker`
   training-job create/describe/list/stop, S3 create-bucket/put/get/list on the bucket, `iam` create/put/get/pass on

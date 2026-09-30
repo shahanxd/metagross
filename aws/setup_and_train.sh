@@ -97,7 +97,9 @@ if [ "$SYSTEM_TORCH" = "1" ] && python -c "import torch, torchvision; assert tor
   say "SYSTEM_TORCH=1: using the interpreter's torch $(python -c 'import torch; print(torch.__version__)'); installing dependencies"
 else
   say "Installing torch (CUDA wheels from $TORCH_INDEX) and dependencies"
-  python -m pip install torch torchvision --index-url "$TORCH_INDEX"
+  # With --system-site-packages pip would count the interpreter's (unusable) torch as installed: force the venv copy.
+  TORCH_PIP_ARGS=(); [ "$SYSTEM_TORCH" = "1" ] && TORCH_PIP_ARGS=(--ignore-installed)
+  python -m pip install ${TORCH_PIP_ARGS[@]+"${TORCH_PIP_ARGS[@]}"} torch torchvision --index-url "$TORCH_INDEX"
 fi
 python -m pip install -r aws/requirements-gpu.txt
 

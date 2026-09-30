@@ -122,8 +122,10 @@ def test_metric_regex_matches_tagged_train_log_line():
 def test_validate_env():
     assert smb.validate_env(["EPOCHS=2", "TRAIN_SUBSET=512", "IMG=320x416", "DEADLINE="]) == {
         "EPOCHS": "2", "TRAIN_SUBSET": "512", "IMG": "320x416", "DEADLINE": ""}
+    assert smb.validate_env(["TOKENIZERS_PARALLELISM=false", "HF_HUB_ENABLE_HF_TRANSFER=1", "TORCH_INDEX=x",
+                             "STRICT_TESTS=1", "KEYFRAME_STRIDE=2"])["TOKENIZERS_PARALLELISM"] == "false"
     for bad in ("EPOCHS", "1X=2", "MG_JOB=x", "HF_TOKEN=abc", "AWS_SECRET_ACCESS_KEY=x", "WANDB_API_KEY=x",
-                "X=" + "a" * 513):
+                "GH_PAT=x", "DB_PASS=x", "APIKEY=x", "HF_AUTH=x", "aws_region=x", "X=" + "a" * 513):
         with pytest.raises(ValueError):
             smb.validate_env([bad])
 
@@ -132,8 +134,10 @@ def test_role_policies_are_scoped():
     trust, policy = smb.role_policies(bucket=BUCKET, region="ap-south-1", account="123456789012", image=IMAGE)
     assert trust["Statement"][0]["Principal"] == {"Service": "sagemaker.amazonaws.com"}
     by_sid = {st["Sid"]: st for st in policy["Statement"]}
-    assert by_sid["JobObjects"]["Resource"] == f"arn:aws:s3:::{BUCKET}/jobs/*"
+    assert by_sid["JobObjects"]["Resource"] == f"arn:aws:s3:::{BUCKET}/jobs/*/sagemaker/*"
     assert by_sid["Bucket"]["Resource"] == f"arn:aws:s3:::{BUCKET}"
+    for sid in ("Bucket", "JobObjects"):  # a same-named bucket in another account must not match
+        assert by_sid[sid]["Condition"] == {"StringEquals": {"s3:ResourceAccount": "123456789012"}}
     assert by_sid["EcrPull"]["Resource"] == smb.ecr_repository_arn(IMAGE)
     assert by_sid["Logs"]["Resource"].startswith("arn:aws:logs:ap-south-1:123456789012:log-group:/aws/sagemaker/")
     wildcard = [st["Sid"] for st in policy["Statement"] if st["Resource"] == "*"]
@@ -145,9 +149,19 @@ def test_output_dest_maps_logs_and_rejects_escapes(tmp_path):
     assert smb.output_dest(tmp_path, "models/a.onnx") == tmp_path / "models" / "a.onnx"
     assert smb.output_dest(tmp_path, "logs/pipeline.log") == tmp_path / "runs" / "aws" / "logs" / "pipeline.log"
     assert smb.output_dest(tmp_path, "./models/a.onnx") == tmp_path / "models" / "a.onnx"  # "." parts collapse
-    for bad in ("", "/etc/passwd", "../x", "models/../../x", "a\\b", "C:/x"):
+    for bad in ("", "/etc/passwd", "../x", "models/../../x", "a\\b", "C:/x", "models/D:evil.onnx", "logs/Z:x.log",
+                "models/a\0.onnx"):
         with pytest.raises(ValueError):
             smb.output_dest(tmp_path, bad)
+
+
+def test_matches_globs_is_per_component():
+    globs = ["models/lraspp_offroad5_*.onnx", "logs/*.log", "runs/seg/lraspp_offroad5_*/metrics.json"]
+    assert smb.matches_globs("models/lraspp_offroad5_robust.onnx", globs)
+    assert smb.matches_globs("runs/seg/lraspp_offroad5_clean/metrics.json", globs)
+    for rel in ("tests/conftest.py", ".git/hooks/pre-commit", "aws/ec2_run.py", "logs/sub/x.log",
+                "runs/seg/lraspp_offroad5_x/y/metrics.json", "models/lraspp_offroad5_a.onnx.bak"):
+        assert not smb.matches_globs(rel, globs), rel
 
 
 def _tar(members: list[tuple[tarfile.TarInfo, bytes | None]]) -> io.BytesIO:
@@ -169,12 +183,14 @@ def test_extract_outputs_skips_links_and_escapes(tmp_path):
     link = tarfile.TarInfo("models/evil.onnx")
     link.type, link.linkname = tarfile.SYMTYPE, "/etc/passwd"
     buf = _tar([_file("models/a.onnx", b"onnx"), _file("./logs/pipeline.log", b"done"),
-                _file("../escape.txt", b"x"), _file("/abs.txt", b"x"), (link, None)])
-    got = smb.extract_outputs(buf, tmp_path / "repo")
+                _file("../escape.txt", b"x"), _file("/abs.txt", b"x"), (link, None),
+                _file("tests/conftest.py", b"import os")])
+    got = smb.extract_outputs(buf, tmp_path / "repo", ["models/*.onnx", "logs/*.log"])
     assert sorted(p.relative_to(tmp_path / "repo").as_posix() for p in got) == [
         "models/a.onnx", "runs/aws/logs/pipeline.log"]
     assert (tmp_path / "repo" / "models" / "a.onnx").read_bytes() == b"onnx"
     assert not (tmp_path / "escape.txt").exists() and not (tmp_path / "repo" / "models" / "evil.onnx").exists()
+    assert not (tmp_path / "repo" / "tests").exists()  # undeclared outputs are never written
 
 
 def test_describe_denial_flags_scp():
@@ -308,7 +324,7 @@ def test_fetch_downloads_out_and_logs(tmp_path):
     ck = f"jobs/seg/sagemaker/{name}/checkpoints"
     objects = {f"{ck}/out/models/lraspp_offroad5_robust.onnx": b"onnx", f"{ck}/out/logs/pipeline.log": b"done",
                f"{ck}/logs/train_x.log": b"epoch", f"{ck}/runs/seg/x/last.pt": b"ckpt",
-               f"{ck}/out/../../evil": b"x"}
+               f"{ck}/out/../../evil": b"x", f"{ck}/out/tests/conftest.py": b"import os"}
 
     def download_file(bucket, key, dest):
         Path(dest).write_bytes(objects[key])
@@ -319,11 +335,12 @@ def test_fetch_downloads_out_and_logs(tmp_path):
         ("s3", "get_paginator"): lambda op: _Paginator(objects),
         ("s3", "download_file"): download_file,
     })
-    got = smb.fetch(s, "seg", tmp_path, name=name)
+    got = smb.fetch(s, "seg", tmp_path, SEG_GLOBS, name=name)
     assert sorted(p.relative_to(tmp_path).as_posix() for p in got) == [
         "models/lraspp_offroad5_robust.onnx", "runs/aws/logs/pipeline.log"]
     assert (tmp_path / "runs" / "aws" / "logs" / "train_x.log").read_bytes() == b"epoch"
     assert not (tmp_path / "runs" / "seg").exists()  # checkpoints are not fetched
+    assert not (tmp_path / "tests").exists()  # undeclared keys are skipped
 
 
 def test_fetch_falls_back_to_model_tarball(tmp_path):
@@ -333,15 +350,57 @@ def test_fetch_falls_back_to_model_tarball(tmp_path):
         assert (bucket, key) == (BUCKET, "jobs/seg/sagemaker/n/output/model.tar.gz")
         f.write(tarball)
 
-    s = FakeSession({
+    s = _fallback_session("Completed", download_fileobj)
+    got = smb.fetch(s, "seg", tmp_path, SEG_GLOBS, name="n")
+    assert [p.relative_to(tmp_path).as_posix() for p in got] == ["models/lraspp_offroad5_clean.onnx"]
+
+
+def _fallback_session(status: str, download_fileobj) -> "FakeSession":
+    return FakeSession({
         ("sagemaker", "describe_training_job"): lambda **kw: {
-            "TrainingJobStatus": "Completed", "CheckpointConfig": {"S3Uri": f"s3://{BUCKET}/jobs/seg/sagemaker/n/checkpoints/"},
+            "TrainingJobStatus": status, "CheckpointConfig": {"S3Uri": f"s3://{BUCKET}/jobs/seg/sagemaker/n/checkpoints/"},
             "ModelArtifacts": {"S3ModelArtifacts": f"s3://{BUCKET}/jobs/seg/sagemaker/n/output/model.tar.gz"}},
         ("s3", "get_paginator"): lambda op: _Paginator({}),
         ("s3", "download_fileobj"): download_fileobj,
     })
-    got = smb.fetch(s, "seg", tmp_path, name="n")
-    assert [p.relative_to(tmp_path).as_posix() for p in got] == ["models/lraspp_offroad5_clean.onnx"]
+
+
+def test_fetch_fallback_only_for_ended_jobs_and_tolerates_missing_tarball(tmp_path):
+    exc_mod = pytest.importorskip("botocore.exceptions")
+    s = _fallback_session("InProgress", lambda *a: pytest.fail("no fallback while the job runs"))
+    assert smb.fetch(s, "seg", tmp_path, SEG_GLOBS, name="n") == []
+
+    def missing(bucket, key, f):
+        raise exc_mod.ClientError({"Error": {"Code": "404", "Message": "Not Found"}}, "HeadObject")
+
+    assert smb.fetch(_fallback_session("Failed", missing), "seg", tmp_path, SEG_GLOBS, name="n") == []
+
+
+def test_check_resume_requires_a_last_pt(tmp_path):
+    ck = "jobs/seg/sagemaker/metagross-seg-20260929-000000/checkpoints/runs"
+    ok = FakeSession({("s3", "get_paginator"): lambda op: _Paginator({f"{ck}/seg/lraspp_offroad5_clean/last.pt": b""})})
+    smb.check_resume(ok, "seg", BUCKET, "metagross-seg-20260929-000000")
+    empty = FakeSession({("s3", "get_paginator"): lambda op: _Paginator({f"{ck}/seg/x/train.log": b""})})
+    with pytest.raises(SystemExit, match="no last.pt"):
+        smb.check_resume(empty, "seg", BUCKET, "metagross-seg-20260929-000000")
+    with pytest.raises(SystemExit, match="not a training job name"):
+        smb.check_resume(ok, "seg", BUCKET, "../other")
+
+
+def test_status_prints_utc(capsys):
+    ist = dt.timezone(dt.timedelta(hours=5, minutes=30))
+    created = dt.datetime(2026, 9, 30, 17, 30, tzinfo=ist)  # 12:00 UTC, as botocore returns it on an IST laptop
+    s = FakeSession({
+        ("sagemaker", "describe_training_job"): lambda **kw: {
+            "TrainingJobStatus": "InProgress", "SecondaryStatus": "Training", "CreationTime": created,
+            "ResourceConfig": {"InstanceType": smb.DEFAULT_INSTANCE}, "BillableTimeInSeconds": 3600,
+            "SecondaryStatusTransitions": [{"StartTime": created, "Status": "Starting", "StatusMessage": "x"}],
+            "CheckpointConfig": {"S3Uri": f"s3://{BUCKET}/jobs/seg/sagemaker/n/checkpoints/"}},
+        ("s3", "list_objects_v2"): lambda **kw: {},
+    })
+    smb.status(s, "seg", name="n")
+    out = capsys.readouterr().out
+    assert "created 2026-09-30 12:00Z" in out and "12:00Z Starting" in out
 
 
 # ------------------------------------------------------------------------------------------------ entry script
@@ -426,3 +485,60 @@ def test_entry_rejects_unknown_job(tmp_path):
     repo = _fake_repo(tmp_path, "exit 0\n")
     r = _run_entry(tmp_path, repo, MG_JOB="nope")
     assert r.returncode == 3 and "no job script" in r.stdout
+
+
+# ------------------------------------------------------------------------------------------------ ec2_run.py glue
+def _ec2_run():
+    pytest.importorskip("boto3")
+    return _load("ec2_run", REPO / "aws" / "ec2_run.py")
+
+
+def _git(repo: Path, *args: str) -> None:
+    subprocess.run(["git", "-C", str(repo), "-c", "user.name=t", "-c", "user.email=t@t", *args], check=True,
+                   capture_output=True)
+
+
+@pytest.mark.skipif(shutil.which("git") is None, reason="needs git")
+def test_code_tarball_is_lf_under_autocrlf_and_refuses_crlf_commits(tmp_path, monkeypatch):
+    er = _ec2_run()
+    repo = tmp_path / "r"
+    (repo / "aws" / "jobs").mkdir(parents=True)
+    _git(repo, "init", "-q")
+    _git(repo, "config", "core.autocrlf", "true")  # Git for Windows default: archive would emit CRLF
+    (repo / "aws" / "jobs" / "seg.sh").write_bytes(b"#!/usr/bin/env bash\nset -uo pipefail\necho ok\n")
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-q", "-m", "lf")
+    monkeypatch.setattr(er, "REPO", repo)
+    monkeypatch.setattr(er, "GIT_ROOT", repo)
+    with tarfile.open(fileobj=io.BytesIO(er.code_tarball()), mode="r:gz") as tf:
+        assert b"\r" not in tf.extractfile("aws/jobs/seg.sh").read()
+    _git(repo, "config", "core.autocrlf", "false")
+    (repo / "aws" / "jobs" / "seg.sh").write_bytes(b"echo crlf\r\n")
+    _git(repo, "commit", "-q", "-am", "crlf")
+    with pytest.raises(SystemExit, match="CRLF"):
+        er.code_tarball()
+
+
+def test_ensure_bucket_requires_our_account_as_owner():
+    er = _ec2_run()
+    s = FakeSession({("sts", "get_caller_identity"): lambda: {"Account": "123456789012"}})
+    er.ensure_bucket(s, BUCKET)
+    head = [kw for c, op, kw in s.calls if (c, op) == ("s3", "head_bucket")]
+    assert head == [{"Bucket": BUCKET, "ExpectedBucketOwner": "123456789012"}]
+
+
+@pytest.mark.parametrize("kw, msg", [({"max_hours": 200.0}, "max-hours"), ({"max_hours": 0.0}, "max-hours"),
+                                     ({"resume_from": "../x"}, "not a training job name"),
+                                     ({"env": ["HF_TOKEN=x"]}, "secret"), ({"volume_gb": 0}, "disk-gb")])
+def test_launch_sagemaker_validates_before_touching_aws(kw, msg):
+    er = _ec2_run()
+
+    class NoAws(FakeSession):
+        def client(self, name):
+            pytest.fail(f"AWS client {name!r} used before validation")
+
+    args = dict(job="seg", itype=smb.DEFAULT_INSTANCE, max_hours=12.0, env=[], volume_gb=150, image=None,
+                resume_from=None)
+    args.update(kw)
+    with pytest.raises(SystemExit, match=msg):
+        er.launch_sagemaker(NoAws(), **args)
