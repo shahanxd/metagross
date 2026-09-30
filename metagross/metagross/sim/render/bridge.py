@@ -28,6 +28,8 @@ import json
 import logging
 import math
 import mimetypes
+import os
+import sys
 import time
 from pathlib import Path
 from typing import Any, Optional
@@ -44,8 +46,16 @@ log = logging.getLogger(__name__)
 
 WEB_ROOT = Path(__file__).resolve().parent / "web"
 ORIGIN = "http://metagross.local"
+# Environment overrides (Linux / headless GPU boxes; defaults keep the Windows behaviour):
+#   MG_ANGLE=<backend>       ANGLE backend (default d3d11 on Windows, Chrome's choice elsewhere; e.g. vulkan,
+#                            gl-egl on an NVIDIA Linux box, swiftshader for a CPU-only smoke test)
+#   MG_RENDER_HEADLESS=1     headless browser (Linux servers have no display)
+#   MG_BROWSER_PATH=<exe>    browser executable, used when no chrome/msedge channel is installed
+#                            (default: Playwright's bundled Chromium)
+#   MG_ALLOW_SOFTWARE_GL=1   accept a software WebGL renderer (slow, ~seconds per frame; smoke tests only)
+_ANGLE = os.environ.get("MG_ANGLE") or ("d3d11" if sys.platform == "win32" else "")
 CHROME_ARGS = (
-    "--use-angle=d3d11",
+    *((f"--use-angle={_ANGLE}",) if _ANGLE else ()),
     "--ignore-gpu-blocklist",
     "--enable-gpu-rasterization",
     "--disable-background-timer-throttling",
@@ -149,6 +159,7 @@ class ThreeRenderer:
         except ImportError as e:  # pragma: no cover - environment dependent
             raise RendererUnavailable(f"playwright not importable: {e}") from e
         self._pw = sync_playwright().start()
+        headless = headless or os.environ.get("MG_RENDER_HEADLESS") == "1"
         errors: list[str] = []
         for ch in dict.fromkeys((channel, "chrome", "msedge")):
             try:
@@ -157,6 +168,13 @@ class ThreeRenderer:
                 break
             except Exception as e:  # noqa: BLE001 - try the next channel
                 errors.append(f"{ch}: {e}")
+        if self._browser is None:  # no branded browser (e.g. Linux server): bundled / given Chromium
+            exe = os.environ.get("MG_BROWSER_PATH") or None
+            try:
+                self._browser = self._pw.chromium.launch(executable_path=exe, headless=headless, args=list(CHROME_ARGS))
+                self.channel = "chromium"
+            except Exception as e:  # noqa: BLE001
+                errors.append(f"chromium ({exe or 'bundled'}): {e}")
         if self._browser is None:
             self._pw.stop()
             raise RendererUnavailable("could not launch chrome/msedge: " + " | ".join(errors))
@@ -194,7 +212,10 @@ class ThreeRenderer:
         self.info: dict[str, Any] = page.evaluate("rendererInfo()")
         rs = str(self.info.get("renderer", "")).lower()
         if any(s in rs for s in SOFTWARE_RENDERERS):
-            raise RendererUnavailable(f"software WebGL renderer refused: {self.info.get('renderer')}")
+            if os.environ.get("MG_ALLOW_SOFTWARE_GL") != "1":
+                raise RendererUnavailable(f"software WebGL renderer refused: {self.info.get('renderer')}")
+            log.warning("ThreeRenderer: software WebGL (%s) accepted by MG_ALLOW_SOFTWARE_GL=1: expect seconds per frame",
+                        self.info.get("renderer"))
         if not self.info.get("colorBufferFloat"):
             raise RendererUnavailable("EXT_color_buffer_float missing: HDR render targets unsupported")
         log.info("ThreeRenderer: %s via %s (three r%s)", self.info.get("renderer"), self.channel, self.info.get("three"))
