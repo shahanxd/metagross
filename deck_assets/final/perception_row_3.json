@@ -1,0 +1,133 @@
+{
+ "figure": "perception_row_3",
+ "label": "Simulated (rendered camera, real stereo matching)",
+ "generator": "deck_assets/final/src/perception_gallery.py",
+ "files": [
+  "deck_assets/final/perception_row_3.png",
+  "deck_assets/final/perception_row_3.svg"
+ ],
+ "what": "one rendered stereo frame per DEV scenario -> SGBM disparity -> onboard Perception.process() (fresh node, single frame, no temporal fusion, no segmenter)",
+ "pipeline": {
+  "renderer": "metagross.sim.render.bridge.ThreeRenderer(defaults.stereo_calibration(), defaults.VEHICLE)",
+  "renderer_backend_this_run": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "world": "metagross.sim.world.World(scenario, sensor_mode='stereo', renderer)",
+  "placement": "world.vehicle.reset(x, y, yaw) on the straight start->goal line (simulator settles z, roll, pitch)",
+  "auto_exposure_preroll_t_s": [
+   -12.0,
+   -6.0
+  ],
+  "frame": "world.make_sensor_frame(world.t, 0)",
+  "perception": "metagross.autonomy.perception.pipeline.Perception(calib, VEHICLE).process(frame, (0, 0, 0))",
+  "segmenter": null
+ },
+ "drawn_numbers": {
+  "hazard_text_on_images": {
+   "crest": "Crest 5.5 m ahead, then a 1.1 m drop"
+  },
+  "bev_range_ticks_m": [
+   4,
+   8,
+   12
+  ],
+  "bev_window_body_m": {
+   "x_forward": [
+    -0.5,
+    12.0
+   ],
+   "y_left": [
+    -6.0,
+    6.0
+   ],
+   "px_per_m": 32.0
+  },
+  "disparity_colour_scale_px": [
+   0.0,
+   50.0
+  ],
+  "disparity_scale_how": "0 to the 99.5th percentile of valid disparity over all three frames, rounded up to 10 px",
+  "rover_footprint_m": {
+   "length": 0.8,
+   "width": 0.6
+  }
+ },
+ "colours": {
+  "cell_states": {
+   "GROUND": "#81C784",
+   "UNSEEN": "#DADADA",
+   "OCCLUDED": "#8F8F8F",
+   "DITCH_CANDIDATE": "#C828A0",
+   "POSITIVE": "#C62828",
+   "DEPRESSION": "#C62828",
+   "CREST_SHADOW": "#D98E04",
+   "WATER": "#1E88E5",
+   "DYNAMIC": "#C62828"
+  },
+  "note": "ground = light tint of deck green #2E7D32 for red/green CVD separation (validator: deutan dE 4.2 -> >= 10)",
+  "disparity_cmap": "magma",
+  "no_match": "#D6D6D6"
+ },
+ "caveats": [
+  "Simulated: procedurally generated Three.js worlds, not real imagery.",
+  "Rendered with software WebGL (SwiftShader) in a CPU container; same scene and shaders as the GPU path.",
+  "Single frame from a fresh Perception node: ditch persistence filtering does not apply to a node's first frame; the closed loop fuses frames in the rolling map.",
+  "No terrain segmenter (deploy model not trained), so there is no water / semantic cue.",
+  "Closed-loop results are tier-0 only; this gallery shows perception on rendered stereo, not a closed-loop run.",
+  "Perception timings were measured in this 4-vCPU container and are not a claim."
+ ],
+ "rows": [
+  {
+   "row_key": "crest",
+   "seed": 116,
+   "split": "dev",
+   "family": "F3_crest_ditch",
+   "scenario": "data/scenarios/dev/116.json",
+   "rover_s_along_start_goal_m": 17.3,
+   "rover_pose6_world": [
+    22.1375,
+    18.735,
+    0.1491,
+    0.0035,
+    -0.0571,
+    -0.3309
+   ],
+   "hazard_ground_truth": {
+    "type": "crest",
+    "distance_ahead_m": 5.54,
+    "how": "straight start->goal line intersected with the hazard centreline polyline; minus the rover's arc length",
+    "drop_m": 1.11,
+    "text": "Crest 5.5 m ahead, then a 1.1 m drop"
+   },
+   "perception_r_vis_m": 5.5,
+   "perception_timings_ms_this_container": {
+    "stereo": 26.9,
+    "geometry": 3.4,
+    "ground": 6.9,
+    "bev": 4.9,
+    "negobs": 14.9,
+    "cells": 3.1,
+    "semantics": 0.0,
+    "total": 61.2
+   },
+   "cell_counts_displayed_window_0p1m_cells": {
+    "UNSEEN": 6625,
+    "GROUND": 1955,
+    "POSITIVE": 22,
+    "CREST_SHADOW": 6374,
+    "OCCLUDED": 24
+   },
+   "cell_counts_full_grid": {
+    "UNSEEN": 10810,
+    "GROUND": 1970,
+    "POSITIVE": 22,
+    "CREST_SHADOW": 6374,
+    "OCCLUDED": 24
+   },
+   "disparity_valid_fraction": 0.639,
+   "disparity_px_p1_p99": [
+    0.81,
+    42.31
+   ],
+   "missing_ground_pixels": 17632
+  }
+ ]
+}

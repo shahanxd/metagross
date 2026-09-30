@@ -1,0 +1,155 @@
+{
+  "figure": "kitti_drift",
+  "label": "Tested",
+  "literature_lines": true,
+  "provenance": "Tested on KITTI odometry (real stereo, camera only, no GPS, no loop closure); 00 evaluated on frames 1101-4540",
+  "numbers": [
+    {
+      "what": "KITTI 00 top-view trajectory, GT and VO (drawn, not measured here)",
+      "value": "225 GT / 229 VO polyline points",
+      "source": "deck_assets/kitti_traj_panel.svg",
+      "how": "vector paths of the panel drawn by deck_assets/kitti_figures.py from results/raw/kitti_vo_00_poses.txt and data/kitti/poses/00.txt (absent here); converted to metres with its 100 m scale bar"
+    },
+    {
+      "what": "KITTI 05 top-view trajectory, GT and VO (drawn, not measured here)",
+      "value": "151 GT / 156 VO polyline points",
+      "source": "deck_assets/kitti_traj_panel.svg",
+      "how": "vector paths of the panel drawn by deck_assets/kitti_figures.py from results/raw/kitti_vo_05_poses.txt and data/kitti/poses/05.txt (absent here); converted to metres with its 100 m scale bar"
+    },
+    {
+      "what": "KITTI 07 top-view trajectory, GT and VO (drawn, not measured here)",
+      "value": "99 GT / 95 VO polyline points",
+      "source": "deck_assets/kitti_traj_panel.svg",
+      "how": "vector paths of the panel drawn by deck_assets/kitti_figures.py from results/raw/kitti_vo_07_poses.txt and data/kitti/poses/07.txt (absent here); converted to metres with its 100 m scale bar"
+    },
+    {
+      "what": "KITTI 00*: KITTI-protocol translational error t_err (bar)",
+      "value": 2.11,
+      "unit": "%",
+      "source": "results/kitti_vo_00.json#t_err_pct",
+      "how": "mean over 2402 segments of 100-800 m, KITTI devkit protocol"
+    },
+    {
+      "what": "KITTI 00*: label under the name",
+      "value": "2.91 km \u00b7 3,440 frames",
+      "source": "results/kitti_vo_00.json",
+      "how": "path_length_m (GT) and frames / n_segments; pooled km = sum of the three"
+    },
+    {
+      "what": "KITTI 00*: rotational error r_err (json only, not drawn)",
+      "value": 0.81,
+      "unit": "deg/100 m",
+      "source": "results/kitti_vo_00.json",
+      "how": "KITTI devkit protocol"
+    },
+    {
+      "what": "KITTI 05: KITTI-protocol translational error t_err (bar)",
+      "value": 1.53,
+      "unit": "%",
+      "source": "results/kitti_vo_05.json#t_err_pct",
+      "how": "mean over 1806 segments of 100-800 m, KITTI devkit protocol"
+    },
+    {
+      "what": "KITTI 05: label under the name",
+      "value": "2.21 km \u00b7 2,761 frames",
+      "source": "results/kitti_vo_05.json",
+      "how": "path_length_m (GT) and frames / n_segments; pooled km = sum of the three"
+    },
+    {
+      "what": "KITTI 05: rotational error r_err (json only, not drawn)",
+      "value": 0.68,
+      "unit": "deg/100 m",
+      "source": "results/kitti_vo_05.json",
+      "how": "KITTI devkit protocol"
+    },
+    {
+      "what": "KITTI 07: KITTI-protocol translational error t_err (bar)",
+      "value": 2.05,
+      "unit": "%",
+      "source": "results/kitti_vo_07.json#t_err_pct",
+      "how": "mean over 317 segments of 100-800 m, KITTI devkit protocol"
+    },
+    {
+      "what": "KITTI 07: label under the name",
+      "value": "695 m \u00b7 1,101 frames",
+      "source": "results/kitti_vo_07.json",
+      "how": "path_length_m (GT) and frames / n_segments; pooled km = sum of the three"
+    },
+    {
+      "what": "KITTI 07: rotational error r_err (json only, not drawn)",
+      "value": 1.28,
+      "unit": "deg/100 m",
+      "source": "results/kitti_vo_07.json",
+      "how": "KITTI devkit protocol"
+    },
+    {
+      "what": "All three, pooled: KITTI-protocol translational error t_err (bar)",
+      "value": 1.87,
+      "unit": "%",
+      "source": "results/kitti_summary.json#pooled",
+      "how": "segment-weighted mean over all 100-800 m segments of 00*, 05, 07"
+    },
+    {
+      "what": "All three, pooled: label under the name",
+      "value": "5.81 km \u00b7 4,525 segments",
+      "source": "results/kitti_summary.json#pooled",
+      "how": "path_length_m (GT) and frames / n_segments; pooled km = sum of the three"
+    },
+    {
+      "what": "All three, pooled: rotational error r_err (json only, not drawn)",
+      "value": 0.79,
+      "unit": "deg/100 m",
+      "source": "results/kitti_summary.json#pooled",
+      "how": "KITTI devkit protocol"
+    },
+    {
+      "what": "Literature reference line: ORB-SLAM2 (stereo)",
+      "value": 1.15,
+      "unit": "%",
+      "label": "Literature (NOT our measurement)",
+      "source": "results/kitti_summary.json#literature_context (KITTI leaderboard, https://www.cvlibs.net/datasets/kitti/eval_odometry.php, retrieved 2026-09-30)",
+      "how": "leaderboard value on held-out test sequences 11-21; ours are training sequences, so the comparison is indicative only"
+    },
+    {
+      "what": "Literature reference line: VISO2-S",
+      "value": 2.44,
+      "unit": "%",
+      "label": "Literature (NOT our measurement)",
+      "source": "results/kitti_summary.json#literature_context (KITTI leaderboard, https://www.cvlibs.net/datasets/kitti/eval_odometry.php, retrieved 2026-09-30)",
+      "how": "leaderboard value on held-out test sequences 11-21; ours are training sequences, so the comparison is indicative only"
+    }
+  ],
+  "trajectory_recovery_checks": [
+    {
+      "sequence": "00",
+      "points_gt": 225,
+      "points_vo": 229,
+      "svg_pt_per_m": 0.28781552000000005,
+      "recovered_gt_length_m": 2909.8,
+      "json_path_length_m": 2913.5,
+      "recovered_end_gap_m": 24.6,
+      "json_final_err_m": 27.4
+    },
+    {
+      "sequence": "05",
+      "points_gt": 151,
+      "points_vo": 156,
+      "svg_pt_per_m": 0.3250058100000001,
+      "recovered_gt_length_m": 2203.5,
+      "json_path_length_m": 2205.6,
+      "recovered_end_gap_m": 51.8,
+      "json_final_err_m": 52.3
+    },
+    {
+      "sequence": "07",
+      "points_gt": 99,
+      "points_vo": 95,
+      "svg_pt_per_m": 0.697606189999999,
+      "recovered_gt_length_m": 694.0,
+      "json_path_length_m": 694.7,
+      "recovered_end_gap_m": 11.4,
+      "json_final_err_m": 12.1
+    }
+  ],
+  "trajectory_source_note": "results/raw/kitti_vo_<seq>_poses.txt and data/kitti/poses/<seq>.txt are not present in this container; polylines recovered from deck_assets/kitti_traj_panel.svg (see this script's docstring). Metrics come only from the JSONs."
+}

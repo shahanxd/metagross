@@ -1,0 +1,125 @@
+{
+ "figure": "compute_budget",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images); compute measured on this machine",
+ "machine": "Linux cloud container, 4 vCPU, no GPU, Python 3.11, OMP_NUM_THREADS=1, 4 EVAL episodes in parallel (each episode = simulator process + autonomy process), per docs/BUILD_LOG.md 2026-09-30",
+ "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv (60 runs, 10454 ticks)",
+ "method": "Per module: numpy median and 95th percentile (linear interpolation) over every tick of all 60 FULL EVAL runs. 'Whole tick' is the timings.csv 'total' column: sense -> wheel command plus telemetry encoding and debug crops. Telemetry is summarised only over ticks where it ran (column > 0.05 ms); its per-tick median over all ticks is 0 because packets are built every 3rd tick.",
+ "not_included": "Tier-0 frames carry disparity, no images: SGBM stereo matching, visual odometry and the terrain segmenter do not run, so they are not in these timings. Separate stereo-mode measurements (shared 4-core laptop, other jobs running): results/perception_timing.json stereo median 59.5 ms; results/localizer_timing.json VO mean 25.8 ms.",
+ "tick_budget_ms": 200.0,
+ "modules": [
+  {
+   "key": "localizer",
+   "label": "Localisation (EKF + depth odometry)",
+   "n": 10454,
+   "p50_ms": 11.38,
+   "p95_ms": 17.67,
+   "max_ms": 63.57,
+   "over": "all ticks"
+  },
+  {
+   "key": "perception",
+   "label": "Perception (ground, hazards, ditches)",
+   "n": 10454,
+   "p50_ms": 32.99,
+   "p95_ms": 48.21,
+   "max_ms": 159.87,
+   "over": "all ticks"
+  },
+  {
+   "key": "map",
+   "label": "Rolling map",
+   "n": 10454,
+   "p50_ms": 2.25,
+   "p95_ms": 3.46,
+   "max_ms": 23.9,
+   "over": "all ticks"
+  },
+  {
+   "key": "costmap",
+   "label": "Costmap",
+   "n": 10454,
+   "p50_ms": 2.61,
+   "p95_ms": 3.98,
+   "max_ms": 22.8,
+   "over": "all ticks"
+  },
+  {
+   "key": "global",
+   "label": "Global planner",
+   "n": 10454,
+   "p50_ms": 5.86,
+   "p95_ms": 13.21,
+   "max_ms": 43.65,
+   "over": "all ticks"
+  },
+  {
+   "key": "supervisor",
+   "label": "Safety supervisor",
+   "n": 10454,
+   "p50_ms": 0.03,
+   "p95_ms": 0.06,
+   "max_ms": 5.0,
+   "over": "all ticks"
+  },
+  {
+   "key": "governor",
+   "label": "Speed governor",
+   "n": 10454,
+   "p50_ms": 0.4,
+   "p95_ms": 0.62,
+   "max_ms": 28.11,
+   "over": "all ticks"
+  },
+  {
+   "key": "mppi",
+   "label": "MPPI, 512 rollouts",
+   "n": 10454,
+   "p50_ms": 5.38,
+   "p95_ms": 8.06,
+   "max_ms": 35.57,
+   "over": "all ticks"
+  },
+  {
+   "key": "gate_mixer",
+   "label": "Safety gate + wheel mixer",
+   "n": 10454,
+   "p50_ms": 0.14,
+   "p95_ms": 0.24,
+   "max_ms": 8.31,
+   "over": "all ticks"
+  },
+  {
+   "key": "telemetry",
+   "label": "Telemetry packet *",
+   "n": 3507,
+   "p50_ms": 2.01,
+   "p95_ms": 2.97,
+   "max_ms": 15.36,
+   "over": "only the 3507 ticks that built a packet (every 3rd tick)"
+  }
+ ],
+ "whole_tick": {
+  "key": "total",
+  "label": "Whole tick",
+  "n": 10454,
+  "p50_ms": 63.33,
+  "p95_ms": 89.96,
+  "p99_ms": 104.9,
+  "max_ms": 205.88,
+  "ticks_over_budget": 1,
+  "over": "all ticks"
+ },
+ "sense_to_wheel_command_compute_ms": {
+  "p50_ms": 62.46,
+  "p95_ms": 88.72,
+  "max_ms": 205.73,
+  "ticks_over_budget": 1,
+  "source": "timings.csv compute_ms column",
+  "cross_check": "results/closed_loop_eval.json tier0.aggregate.FULL.all compute_ms_p50=62.5 p95=88.7 n_ticks=10454"
+ },
+ "derived": {
+  "median_tick_share_of_budget": 0.317,
+  "p95_headroom_ms": 110.0,
+  "frac_ticks_over_budget": 9.6e-05
+ }
+}

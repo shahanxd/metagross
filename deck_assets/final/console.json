@@ -1,0 +1,267 @@
+{
+ "generator": "deck_assets/final/src/console_shots.py",
+ "what": "Operator console (operator_ui/) replaying real logged EVAL closed-loop runs; replay only, not a live link.",
+ "caveats": [
+  "tier-0 synthetic depth sensor: no camera images, so VO cannot run (VO tile reads LOST; localisation is wheel + gyro, docs/SIMULATION.md)",
+  "the console is replay-only today (live link not built; docs/PIPELINE_STATUS.md)"
+ ],
+ "viewport": {
+  "width": 1920,
+  "height": 1080
+ },
+ "device_scale_factor": 1.5,
+ "figures": [
+  {
+   "file": "deck_assets/final/console_1.png",
+   "size_px": [
+    2880,
+    1684
+   ],
+   "label": "Simulated run, replayed",
+   "moment": "F3 crest + ditch: crest-shadow (unseen) cells ahead, ditch cells passed; the governor is limited by the visible range (GOV_RVIS R=3.0 m -> v_cap 1.98 m/s)",
+   "seed": 44,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sensor_mode": "tier0",
+   "seek_t_s": 22.8,
+   "map_extent_m": 16,
+   "provenance_line": "Simulated run, replayed (not live) \u00b7 tier-0, EVAL seed 44 (F3_crest_ditch), FULL, t = 22.8 s \u00b7 results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl",
+   "sources": {
+    "mission": "results/runs_eval_tier0/FULL/044/mission.json",
+    "telemetry": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl",
+    "result": "results/runs_eval_tier0/FULL/044/result.json"
+   },
+   "run_outcome": {
+    "success": true,
+    "failure_type": null,
+    "time": 44.56,
+    "path_length": 57.151,
+    "spl": 0.9542,
+    "final_error": 2.0,
+    "stops": [],
+    "min_clearance": 1.4987
+   },
+   "telemetry_packet_shown": {
+    "t": 22.8,
+    "seq": 38,
+    "mode": "NOMINAL",
+    "reason": "GOV_RVIS R=3.0m",
+    "pose": [
+     29.55,
+     -5.3,
+     -0.04
+    ],
+    "pos_sigma_m": 0.977,
+    "v_cap_mps": 1.98,
+    "r_cert_m": 3.0,
+    "speed_mps": 1.28,
+    "health.q": 1.0,
+    "health.r_vis_m": 3.0,
+    "health.vo_ok": 0.0,
+    "packet_bytes": 429,
+    "n_packets_applied": 39
+   },
+   "console_readout": {
+    "mission": "2622b2a5",
+    "mode": "NOMINAL",
+    "reason": "GOV_RVIS R=3.0m",
+    "in_mode": "22.8 s",
+    "dist_to_b": "24.9 m",
+    "clock": "T+00:22.8",
+    "speed_vcap": "1.28 / 1.98 m/s",
+    "r_cert": "3.0 m",
+    "q": "1.00",
+    "p_fail": "0.00",
+    "pos_sigma": "0.98 m",
+    "vo": "LOST",
+    "slip": "0.10",
+    "link_kbps": "5.99 kbps",
+    "link_loss": "loss 0%",
+    "packets": "39",
+    "pk_last": "429 B",
+    "pk_mean": "430 B",
+    "pk_lost": "0",
+    "replay_badge_visible": true,
+    "event_log": [
+     "T+00:00.0 | NOMINAL | GOV_PLATFORM",
+     "T+00:00.0 | HOLD | Mission loaded \u00b7 B at 54.2 m / -2.3\u00b0 (\u03c3 0.8 m)"
+    ]
+   },
+   "how": "Every value on screen is rendered by operator_ui/app.js from the telemetry packets with t <= seek_t (window.consoleSeek); link kbps/loss are computed by app.js over the replayed packets' packet_bytes/seq."
+  },
+  {
+   "file": "deck_assets/final/console_2.png",
+   "size_px": [
+    2880,
+    1684
+   ],
+   "label": "Simulated run, replayed",
+   "moment": "F1 trail: STOP_AND_LOOK 2/3 with lethal cells directly ahead, v_cap 0 (referee: stop justified, reason hazard_ahead)",
+   "seed": 48,
+   "family": "F1_trail",
+   "split": "eval",
+   "sensor_mode": "tier0",
+   "seek_t_s": 9.6,
+   "map_extent_m": 16,
+   "provenance_line": "Simulated run, replayed (not live) \u00b7 tier-0, EVAL seed 48 (F1_trail), FULL, t = 9.6 s \u00b7 results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
+   "sources": {
+    "mission": "results/runs_eval_tier0/FULL/048/mission.json",
+    "telemetry": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
+    "result": "results/runs_eval_tier0/FULL/048/result.json"
+   },
+   "run_outcome": {
+    "success": true,
+    "failure_type": null,
+    "time": 57.98,
+    "path_length": 61.312,
+    "spl": 0.8818,
+    "final_error": 1.992,
+    "stops": [
+     {
+      "t": 6.14,
+      "duration_s": 8.64,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ],
+    "min_clearance": 0.5244
+   },
+   "telemetry_packet_shown": {
+    "t": 9.6,
+    "seq": 16,
+    "mode": "STOP_AND_LOOK",
+    "reason": "STOP_AND_LOOK 2/3",
+    "pose": [
+     1.99,
+     1.15,
+     1.15
+    ],
+    "pos_sigma_m": 0.041,
+    "v_cap_mps": 0.0,
+    "r_cert_m": 2.8,
+    "speed_mps": 0.0,
+    "health.q": 1.0,
+    "health.r_vis_m": 6.5,
+    "health.vo_ok": 0.0,
+    "packet_bytes": 427,
+    "n_packets_applied": 17
+   },
+   "console_readout": {
+    "mission": "8e2c8c63",
+    "mode": "STOP AND LOOK",
+    "reason": "STOP_AND_LOOK 2/3",
+    "in_mode": "3.0 s",
+    "dist_to_b": "50.2 m",
+    "clock": "T+00:09.6",
+    "speed_vcap": "0.00 / 0.00 m/s",
+    "r_cert": "2.8 m",
+    "q": "1.00",
+    "p_fail": "0.00",
+    "pos_sigma": "0.04 m",
+    "vo": "LOST",
+    "slip": "0.00",
+    "link_kbps": "5.30 kbps",
+    "link_loss": "loss 0%",
+    "packets": "17",
+    "pk_last": "427 B",
+    "pk_mean": "394 B",
+    "pk_lost": "0",
+    "replay_badge_visible": true,
+    "event_log": [
+     "T+00:06.6 | NOMINAL \u2192 STOP AND LOOK | STOP_AND_LOOK 1/3",
+     "T+00:00.0 | NOMINAL | GOV_RCERT R=1.6m",
+     "T+00:00.0 | HOLD | Mission loaded \u00b7 B at 52.2 m / +4.3\u00b0 (\u03c3 0.7 m)"
+    ]
+   },
+   "how": "Every value on screen is rendered by operator_ui/app.js from the telemetry packets with t <= seek_t (window.consoleSeek); link kbps/loss are computed by app.js over the replayed packets' packet_bytes/seq."
+  },
+  {
+   "file": "deck_assets/final/console_3.png",
+   "size_px": [
+    2880,
+    1684
+   ],
+   "label": "Simulated run, replayed",
+   "moment": "F1 trail: after the look it detoured around the hazard and is back to NOMINAL; the event log shows NOMINAL -> STOP_AND_LOOK -> NOMINAL (RESUME after look 1)",
+   "seed": 48,
+   "family": "F1_trail",
+   "split": "eval",
+   "sensor_mode": "tier0",
+   "seek_t_s": 26.4,
+   "map_extent_m": 24,
+   "provenance_line": "Simulated run, replayed (not live) \u00b7 tier-0, EVAL seed 48 (F1_trail), FULL, t = 26.4 s \u00b7 results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
+   "sources": {
+    "mission": "results/runs_eval_tier0/FULL/048/mission.json",
+    "telemetry": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
+    "result": "results/runs_eval_tier0/FULL/048/result.json"
+   },
+   "run_outcome": {
+    "success": true,
+    "failure_type": null,
+    "time": 57.98,
+    "path_length": 61.312,
+    "spl": 0.8818,
+    "final_error": 1.992,
+    "stops": [
+     {
+      "t": 6.14,
+      "duration_s": 8.64,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ],
+    "min_clearance": 0.5244
+   },
+   "telemetry_packet_shown": {
+    "t": 26.4,
+    "seq": 44,
+    "mode": "NOMINAL",
+    "reason": "GOV_PLATFORM",
+    "pose": [
+     7.69,
+     -5.83,
+     -0.14
+    ],
+    "pos_sigma_m": 0.482,
+    "v_cap_mps": 2.0,
+    "r_cert_m": 5.2,
+    "speed_mps": 1.47,
+    "health.q": 1.0,
+    "health.r_vis_m": 9.0,
+    "health.vo_ok": 0.0,
+    "packet_bytes": 472,
+    "n_packets_applied": 45
+   },
+   "console_readout": {
+    "mission": "8e2c8c63",
+    "mode": "NOMINAL",
+    "reason": "GOV_PLATFORM",
+    "in_mode": "12.0 s",
+    "dist_to_b": "45.5 m",
+    "clock": "T+00:26.4",
+    "speed_vcap": "1.47 / 2.00 m/s",
+    "r_cert": "5.2 m",
+    "q": "1.00",
+    "p_fail": "0.00",
+    "pos_sigma": "0.48 m",
+    "vo": "LOST",
+    "slip": "0.12",
+    "link_kbps": "6.05 kbps",
+    "link_loss": "loss 0%",
+    "packets": "45",
+    "pk_last": "472 B",
+    "pk_mean": "420 B",
+    "pk_lost": "0",
+    "replay_badge_visible": true,
+    "event_log": [
+     "T+00:14.4 | STOP AND LOOK \u2192 NOMINAL | RESUME after look 1",
+     "T+00:06.6 | NOMINAL \u2192 STOP AND LOOK | STOP_AND_LOOK 1/3",
+     "T+00:00.0 | NOMINAL | GOV_RCERT R=1.6m",
+     "T+00:00.0 | HOLD | Mission loaded \u00b7 B at 52.2 m / +4.3\u00b0 (\u03c3 0.7 m)"
+    ]
+   },
+   "how": "Every value on screen is rendered by operator_ui/app.js from the telemetry packets with t <= seek_t (window.consoleSeek); link kbps/loss are computed by app.js over the replayed packets' packet_bytes/seq."
+  }
+ ],
+ "browser_errors": []
+}

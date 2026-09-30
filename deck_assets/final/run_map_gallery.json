@@ -1,6 +1,7 @@
 {
  "figure": "run_map_gallery",
  "label": "Simulated (tier-0 synthetic depth sensor, no images; held-out EVAL seeds)",
+ "generator": "deck_assets/final/src/runs_map.py",
  "panels": [
   {
    "config": "FULL",
@@ -34,15 +35,17 @@
    "scenario": "data/scenarios/eval/24.json",
    "scenario_sha256": "7fe2dbaaced4e1091a4f8eb276d46e1b0f8b7bf5bf183eca24cca5a394ba43e4",
    "hazards": [],
-   "typical_same_seed": "success",
-   "typical_same_seed_time_s": 42.66,
+   "typical_same_seed": {
+    "outcome": "success",
+    "end_time_s": 42.66
+   },
    "lighting": {
     "sun_elev_deg": 59.8831,
     "fog_density": 0.0007,
     "events": []
    },
    "lighting_events_drawn": [],
-   "note": "rocks on the trail, trees beside it"
+   "subtitle": "rocks on the trail, trees beside it"
   },
   {
    "config": "FULL",
@@ -110,15 +113,17 @@
      ]
     }
    ],
-   "typical_same_seed": "out_of_bounds",
-   "typical_same_seed_time_s": 56.26,
+   "typical_same_seed": {
+    "outcome": "out_of_bounds",
+    "end_time_s": 56.26
+   },
    "lighting": {
     "sun_elev_deg": 46.2838,
     "fog_density": 0.0023,
     "events": []
    },
    "lighting_events_drawn": [],
-   "note": "three trenches, one gap each"
+   "subtitle": "three trenches, one gap each"
   },
   {
    "config": "FULL",
@@ -168,15 +173,17 @@
      ]
     }
    ],
-   "typical_same_seed": "out_of_bounds",
-   "typical_same_seed_time_s": 32.42,
+   "typical_same_seed": {
+    "outcome": "out_of_bounds",
+    "end_time_s": 32.42
+   },
    "lighting": {
     "sun_elev_deg": 26.1591,
     "fog_density": 0.0015,
     "events": []
    },
    "lighting_events_drawn": [],
-   "note": "trench hidden behind a crest"
+   "subtitle": "trench hidden behind a crest"
   },
   {
    "config": "FULL",
@@ -210,8 +217,10 @@
    "scenario": "data/scenarios/eval/4.json",
    "scenario_sha256": "e88137590820d5c71441e3dc6d9067badc03270124021b3c0b2e03d8ec5cfe1f",
    "hazards": [],
-   "typical_same_seed": "success",
-   "typical_same_seed_time_s": 34.8,
+   "typical_same_seed": {
+    "outcome": "success",
+    "end_time_s": 34.8
+   },
    "lighting": {
     "sun_elev_deg": 6.6765,
     "fog_density": 0.0168,
@@ -239,29 +248,32 @@
    "lighting_events_drawn": [
     {
      "type": "glare",
-     "t0_s": 5.1,
-     "t1_s": 10.78,
+     "t0_s": 5.0996,
+     "t1_s": 10.7796,
      "gain": 1.8281,
-     "xy_mid_m": [
-      14.761525449092364,
-      21.77966194947005
+     "drawn_until_s": 10.7796,
+     "label_anchor_xy_m": [
+      14.76,
+      21.78
      ]
     },
     {
      "type": "dim",
-     "t0_s": 31.53,
-     "t1_s": 34.18,
+     "t0_s": 31.529,
+     "t1_s": 34.529,
      "gain": 0.4,
-     "xy_mid_m": [
-      48.572222898447976,
-      11.530245634802112
+     "drawn_until_s": 34.18,
+     "label_anchor_xy_m": [
+      48.57,
+      11.53
      ]
     }
    ],
-   "note": "sun 7\u00b0 above horizon, glare + dimming"
+   "subtitle": "low sun (7\u00b0), glare, dimming"
   }
  ],
- "selection": "One FULL success per family for F1, F2, F3, F5 (F4 and F6 excluded by the brief). F2 seed 37 has three trenches; F3 seed 2 is the only other F3 trench seed FULL completed (seed 38 is used in run_map_pair); F5 seed 4 has glare and dimming inside the run window; F1 seed 24 weaves through rocks on the trail.",
+ "numbers_drawn": "per panel: seed, sun elevation (scenario lighting.sun_elev_deg), lighting event windows (scenario lighting.events t0/t1), reached-B time (result.json time = summary.csv time)",
+ "selection": "One FULL success per family for F1, F2, F3, F5. F1 seed 24 weaves through rocks on the trail; F2 seed 37 has three trenches; F3 seed 2 is the only F3 trench seed FULL completed besides 38 (used in run_map_pair); F5 seed 4 has glare and dimming inside the run window.",
  "note_lighting": "In tier-0 there are no images: lighting events act on the synthetic depth sensor as dropout, noise and dust phantom returns (metagross/sim/sensors.py).",
- "how_drawn": "same basemap as run_map_pair; amber bands = path stretches while a lighting event was active"
+ "how_drawn": "same basemap as run_map_pair; amber bands = stretches of path while a lighting event was active"
 }

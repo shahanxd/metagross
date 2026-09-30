@@ -1,6 +1,7 @@
 {
  "figure": "run_map_pair_s007",
  "label": "Simulated (tier-0 synthetic depth sensor, no images; held-out EVAL seed)",
+ "generator": "deck_assets/final/src/runs_map.py",
  "seed": 7,
  "family": "F2_ditch_field",
  "split": "eval",
@@ -39,6 +40,10 @@
    ]
   }
  ],
+ "gap_used_by_full_xy_m": [
+  40.27214015261626,
+  4.2985984636804275
+ ],
  "runs": {
   "FULL": {
    "config": "FULL",
@@ -71,22 +76,26 @@
     {
      "t_s": 10.0,
      "x_m": 17.85,
-     "y_m": 12.24
+     "y_m": 12.24,
+     "labelled": true
     },
     {
      "t_s": 20.0,
      "x_m": 32.21,
-     "y_m": 15.83
+     "y_m": 15.83,
+     "labelled": true
     },
     {
      "t_s": 30.0,
      "x_m": 39.06,
-     "y_m": 4.49
+     "y_m": 4.49,
+     "labelled": true
     },
     {
      "t_s": 40.0,
      "x_m": 50.44,
-     "y_m": 12.88
+     "y_m": 12.88,
+     "labelled": true
     }
    ]
   },
@@ -124,43 +133,58 @@
     {
      "t_s": 10.0,
      "x_m": 17.19,
-     "y_m": 10.95
+     "y_m": 10.95,
+     "labelled": true
     },
     {
      "t_s": 20.0,
      "x_m": 30.1,
-     "y_m": 15.15
+     "y_m": 15.15,
+     "labelled": true
     },
     {
      "t_s": 30.0,
      "x_m": 36.12,
-     "y_m": 13.64
+     "y_m": 13.64,
+     "labelled": true
     },
     {
      "t_s": 40.0,
      "x_m": 36.27,
-     "y_m": 10.59
+     "y_m": 10.59,
+     "labelled": false
     }
    ]
   }
  },
- "full_first_trench_confirmation": {
-  "t": 0.2,
-  "x": 5.7165,
-  "y": 13.1622,
-  "n_cells": 30,
-  "dist_to_trench_m": 30.625795027884585,
-  "v_min_next3s": 0.0,
-  "v_at": 0.0,
-  "file": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000001.npz"
+ "full_trench_confirmation": {
+  "t": 17.400000000000002,
+  "x": 28.605111124710465,
+  "y": 15.058838417343617,
+  "n_confirmed_cells_in_crop": 53,
+  "n_on_gt_trench": 9,
+  "match_tolerance_m": 1.0,
+  "map_res_m": 0.2,
+  "dist_to_nearest_confirmed_cell_m": 8.590000612180974,
+  "dist_to_gt_trench_m": 7.858912138457843,
+  "v_at_mps": 1.495198858915967,
+  "v_min_next3s_mps": 1.275009718726174,
+  "file": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz"
  },
- "selection": "F2/F3 EVAL seeds where FULL reached B and TYPICAL failed (from summary.csv): 2 (F3, TYPICAL out_of_bounds), 7 (F2, ditch_entry), 37 (F2, out_of_bounds), 38 (F3, ditch_entry). Seed 38 is the headline pair: the trench is hidden behind the crest, which is exactly the 'unknown is never free' case.",
+ "numbers_drawn": {
+  "FULL end": "Reached B at 42.7 s (result.json time, summary.csv)",
+  "TYPICAL end": "Drove into the trench at 47.0 s (result.json time, gt/events.json)",
+  "crest drop / trench depth": null,
+  "trench confirmed": "full_trench_confirmation.t, .dist_to_nearest_confirmed_cell_m, .v_at_mps, .v_min_next3s_mps",
+  "time ticks": "GT position at t = 10, 20, ... s (gt/states.npz)"
+ },
+ "selection": "F2/F3 EVAL seeds where FULL reached B and TYPICAL failed (summary.csv): 2 (F3, TYPICAL out_of_bounds), 7 (F2, ditch_entry), 37 (F2, out_of_bounds), 38 (F3, ditch_entry). Seed 38 is the headline pair: the trench is hidden behind the crest, the 'unknown is never free' case; 7 and 37 are backups.",
  "how_drawn": {
-  "background": "hillshade of the scenario heightmap (az 315, alt 40, vert. exag. 4) tinted by material, 0.25 m contours of the landform (heightmap + trench excavation, lightly smoothed)",
+  "background": "hillshade (az 315, alt 40, vert. exag. 3.0) of the scenario heightmap smoothed by 0.15 m, tinted by material; 0.25 m contours of the landform (heightmap + trench excavation, smoothed)",
   "trench": "GT ditch mask from metagross.sim.hazards.gt_hazard_raster (cells excavated > 0.05 m)",
-  "objects": "static footprints from metagross.sim.objects.parse_static_objects; dark = protrudes above ground clearance (lethal), light = drive-over; drawn at true radius, min 0.30/0.18 m for visibility",
+  "crest": "scenario hazards[type=crest].polyline",
+  "objects": "static footprints from metagross.sim.objects.parse_static_objects; dark = protrudes above ground clearance (lethal), light = drive-over; true radius with a drawing floor of 0.3/0.18 m",
   "paths": "GT body-origin x, y from gt/states.npz (0.04 s physics steps)",
-  "time_ticks": "GT position every 10 s",
-  "trench_confirmation": "first debug tick with extras_json.map_confirmed_ditch > 0 (newly confirmed trench cells in the rolling map); distance = GT vehicle position to nearest GT ditch cell; speed = min GT speed over the next 3 s"
+  "end markers": "last GT state; green dot = reached B, red X = referee terminal event"
  }
 }

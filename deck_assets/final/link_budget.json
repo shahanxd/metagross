@@ -1,0 +1,50 @@
+{
+ "figure": "link_budget",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images)",
+ "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl (60 runs, 3505 packets)",
+ "method": "Histogram (8-byte bins) of packet_bytes as logged by each run: len(codec.encode_with_info(tel)) computed onboard in metagross/autonomy/process.py from the full-resolution costmap. Cross-check: every logged line was rebuilt with codec.telemetry_from_jsonable and re-encoded with codec.encode_with_info (as in tests/test_link_budget.py); the re-encoded sizes differ per packet because the log holds the already-pooled/decoded costmap, so the onboard sizes are plotted.",
+ "budget_bytes": 600,
+ "budget_derivation": "9.6 kbit/s / 8 / 2.0 Hz = 600 B (codec.PACKET_BUDGET_B)",
+ "encoder_target_bytes": 480,
+ "onboard_bytes": {
+  "n": 3505,
+  "p50": 423.0,
+  "p95": 472.0,
+  "max": 480,
+  "min": 244,
+  "mean": 416.1,
+  "n_over_budget": 0,
+  "n_over_target": 0
+ },
+ "reencoded_bytes_check": {
+  "n": 3505,
+  "p50": 435.0,
+  "p95": 475.0,
+  "max": 480,
+  "n_over_budget": 0,
+  "rungs": {
+   "0": 2348,
+   "1": 1018,
+   "2": 139
+  }
+ },
+ "onboard_rungs": {
+  "0": 378,
+  "1": 249,
+  "2": 2518,
+  "3": 360
+ },
+ "rung_meaning": {
+  "0": "64x64 at 0.25 m, 8 ground levels",
+  "1": "64x64 at 0.25 m, 4 levels",
+  "2": "32x32 at 0.5 m, 8 levels",
+  "3": "32x32 at 0.5 m, 4 levels"
+ },
+ "packets_with_costmap": 3505,
+ "share_costmap_0p25m": 0.1789,
+ "share_costmap_0p5m": 0.8211,
+ "telemetry_period_s_median": 0.6,
+ "note_period": "The 2 Hz telemetry timer runs on the 5 Hz tick, so packets go out every 0.6 s (1.67 Hz); the 600 B budget assumes 2 Hz, so it is conservative.",
+ "mean_bitrate_kbps_at_logged_period": 5.55,
+ "worst_bitrate_kbps_at_2hz": 7.68
+}

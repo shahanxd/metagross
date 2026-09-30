@@ -1,0 +1,268 @@
+{
+  "figure": "depth_odom",
+  "label": "Simulated",
+  "provenance": "tier-0 synthetic depth sensor; 30 recorded DEV drives (results/raw/odometry_dev/*.npz) replayed open loop; no EVAL seeds",
+  "command": "python -m metagross.eval.odometry_dev analyse --tune 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 --holdout 116 117 118 119 120 121 122 123 124 125 126 127 128 129 --out /tmp/claude-0/final/odometry_dev.json",
+  "numbers": [
+    {
+      "what": "Tuning drives: per-drive final position error, wheel + gyro (grey dots)",
+      "value": [
+        2.435,
+        3.495,
+        3.472,
+        2.567,
+        2.704,
+        5.021,
+        2.389,
+        3.308,
+        2.047,
+        2.844,
+        2.5,
+        3.523,
+        3.446,
+        1.502,
+        3.63,
+        1.946
+      ],
+      "unit": "m",
+      "seeds": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115
+      ],
+      "source": "deck_assets/final/odometry_dev.json#drives_tune[].wheel_gyro.final_err_m",
+      "how": "|estimated - GT| planar position at the last frame, launch (A) frame"
+    },
+    {
+      "what": "Tuning drives: per-drive final position error, + depth odometry (navy dots)",
+      "value": [
+        0.599,
+        1.405,
+        0.566,
+        0.819,
+        2.412,
+        3.988,
+        0.454,
+        1.545,
+        1.56,
+        0.601,
+        1.565,
+        2.046,
+        1.366,
+        0.562,
+        0.825,
+        1.446
+      ],
+      "unit": "m",
+      "seeds": [
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115
+      ],
+      "source": "deck_assets/final/odometry_dev.json#drives_tune[].wheel_gyro_depth.final_err_m",
+      "how": "same drive replayed with depth odometry on; everything else identical"
+    },
+    {
+      "what": "Tuning drives: median final error, wheel + gyro",
+      "value": 2.77,
+      "unit": "m",
+      "source": "deck_assets/final/odometry_dev.json#summary_tune.wheel_gyro.final_err_m_median",
+      "how": "median over the drives (checked against np.median of the per-drive values)"
+    },
+    {
+      "what": "Tuning drives: median final error, + depth odometry",
+      "value": 1.39,
+      "unit": "m",
+      "source": "deck_assets/final/odometry_dev.json#summary_tune.wheel_gyro_depth.final_err_m_median",
+      "how": "median over the drives (checked against np.median of the per-drive values)"
+    },
+    {
+      "what": "Tuning drives: drives whose final error went down",
+      "value": 16,
+      "of": 16,
+      "source": "deck_assets/final/odometry_dev.json",
+      "how": "count of drives with wheel_gyro_depth.final_err_m < wheel_gyro.final_err_m"
+    },
+    {
+      "what": "Tuning drives: median along-track distance over-count (scale error), before -> after",
+      "value": "6.5 -> 1.7",
+      "unit": "%",
+      "source": "deck_assets/final/odometry_dev.json#summary_tune.wheel_gyro(.._depth).scale_err_pct_median",
+      "how": "estimated planar path length / GT planar path length - 1, median over drives"
+    },
+    {
+      "what": "Tuning drives: median final error as % of path (json only, not drawn)",
+      "value": "5.9 -> 2.7",
+      "unit": "%",
+      "source": "deck_assets/final/odometry_dev.json#summary_tune.*.final_err_pct_median",
+      "how": "median over drives"
+    },
+    {
+      "what": "Holdout drives: per-drive final position error, wheel + gyro (grey dots)",
+      "value": [
+        1.84,
+        2.634,
+        3.05,
+        3.51,
+        3.644,
+        2.057,
+        1.626,
+        3.638,
+        2.903,
+        3.588,
+        1.713,
+        3.422,
+        3.899,
+        4.059
+      ],
+      "unit": "m",
+      "seeds": [
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129
+      ],
+      "source": "deck_assets/final/odometry_dev.json#drives_holdout[].wheel_gyro.final_err_m",
+      "how": "|estimated - GT| planar position at the last frame, launch (A) frame"
+    },
+    {
+      "what": "Holdout drives: per-drive final position error, + depth odometry (navy dots)",
+      "value": [
+        0.749,
+        0.598,
+        0.807,
+        0.83,
+        0.673,
+        0.819,
+        0.65,
+        2.019,
+        1.436,
+        1.06,
+        0.495,
+        0.414,
+        1.568,
+        1.771
+      ],
+      "unit": "m",
+      "seeds": [
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129
+      ],
+      "source": "deck_assets/final/odometry_dev.json#drives_holdout[].wheel_gyro_depth.final_err_m",
+      "how": "same drive replayed with depth odometry on; everything else identical"
+    },
+    {
+      "what": "Holdout drives: median final error, wheel + gyro",
+      "value": 3.24,
+      "unit": "m",
+      "source": "deck_assets/final/odometry_dev.json#summary_holdout.wheel_gyro.final_err_m_median",
+      "how": "median over the drives (checked against np.median of the per-drive values)"
+    },
+    {
+      "what": "Holdout drives: median final error, + depth odometry",
+      "value": 0.81,
+      "unit": "m",
+      "source": "deck_assets/final/odometry_dev.json#summary_holdout.wheel_gyro_depth.final_err_m_median",
+      "how": "median over the drives (checked against np.median of the per-drive values)"
+    },
+    {
+      "what": "Holdout drives: drives whose final error went down",
+      "value": 14,
+      "of": 14,
+      "source": "deck_assets/final/odometry_dev.json",
+      "how": "count of drives with wheel_gyro_depth.final_err_m < wheel_gyro.final_err_m"
+    },
+    {
+      "what": "Holdout drives: median along-track distance over-count (scale error), before -> after",
+      "value": "6.2 -> 1.2",
+      "unit": "%",
+      "source": "deck_assets/final/odometry_dev.json#summary_holdout.wheel_gyro(.._depth).scale_err_pct_median",
+      "how": "estimated planar path length / GT planar path length - 1, median over drives"
+    },
+    {
+      "what": "Holdout drives: median final error as % of path (json only, not drawn)",
+      "value": "6.5 -> 1.5",
+      "unit": "%",
+      "source": "deck_assets/final/odometry_dev.json#summary_holdout.*.final_err_pct_median",
+      "how": "median over drives"
+    },
+    {
+      "what": "drive length range and wheel-slip range (footnote)",
+      "value": "40.1-59.8 m; 3.0-8.0 %",
+      "source": "deck_assets/final/odometry_dev.json#drives_*[].wheel_gyro.gt_path_m, scenario_slip_long",
+      "how": "min / max over the 30 drives"
+    }
+  ],
+  "all_30_not_drawn": {
+    "median_final_err_m": [
+      2.98,
+      0.83
+    ],
+    "median_final_err_pct": [
+      6.21,
+      1.92
+    ],
+    "median_scale_err_pct": [
+      6.31,
+      1.47
+    ],
+    "max_final_err_m": [
+      5.02,
+      3.99
+    ],
+    "depth_odom_ms_median_of_drive_medians": 9.4,
+    "depth_odom_ms_max_of_drive_p95": 15.8,
+    "depth_odom_accepted_frac_median": 0.935,
+    "order": "[wheel + gyro, + depth odometry]",
+    "source": "deck_assets/final/odometry_dev.json#summary_all",
+    "timing_caveat": "ms measured in this Linux cloud container (4 vCPU, shared), not on the team laptop; the analysis JSON's timing_note text is a fixed string that says 'laptop'"
+  }
+}
