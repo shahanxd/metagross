@@ -1,7 +1,7 @@
 """SageMaker training-job backend for ``aws/ec2_run.py`` (``--backend sagemaker``).
 
 Runs the same job script as the EC2 path (``aws/jobs/<job>.sh``) as one SageMaker training job in an AWS PyTorch
-GPU Deep Learning Container (default instance ``ml.g6.24xlarge``: 4x NVIDIA L4, 96 vCPU):
+GPU Deep Learning Container (default instance ``ml.g6.16xlarge``: 1x NVIDIA L4 24 GB, 64 vCPU):
 
 * **code**: the ``git archive HEAD`` tarball goes to S3 and reaches the container as the ``code`` input channel
   (``/opt/ml/input/data/code/metagross.tgz``). The job's ``ContainerEntrypoint`` (:func:`bootstrap_command`) unpacks
@@ -44,9 +44,10 @@ TAG = {"Key": "project", "Value": "metagross"}
 ROLE = "metagross-sagemaker-role"
 ROLE_POLICY = "metagross-sagemaker-job"
 NAME_PREFIX = "metagross"
-# Approved quota (2026-09-30 handoff): "ml.g6.24xlarge for training job usage", 1 instance, ap-south-1.
-DEFAULT_INSTANCE = "ml.g6.24xlarge"
-# AWS PyTorch training DLC, SageMaker flavour. Registry 763104351884 serves ap-south-1 (sagemaker-python-sdk
+# Approved quota (seen in the Service Quotas console, 2026-10-01): "ml.g6.16xlarge for training job usage" = 1 in
+# us-east-1 (1x NVIDIA L4 24 GB, 64 vCPU, local NVMe). --type overrides it.
+DEFAULT_INSTANCE = "ml.g6.16xlarge"
+# AWS PyTorch training DLC, SageMaker flavour. Registry 763104351884 serves us-east-1 and ap-south-1 (sagemaker-python-sdk
 # image_uri_config/pytorch.json); tag from aws/deep-learning-containers docs/src/data/pytorch-training/
 # 2.10-gpu-sagemaker.yml (GA 2026-01-21, patched until 2027-01-21). Override with --image.
 DLC_ACCOUNT = "763104351884"

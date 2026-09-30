@@ -6,14 +6,14 @@ job's outputs and then powers off (shutdown behaviour = terminate). A hard wall-
 (``--max-hours``) powers it off even if the job hangs.
 
 ``--backend sagemaker`` runs the same job script as a SageMaker training job instead (default
-``ml.g6.24xlarge``, AWS PyTorch GPU container; see ``aws/sagemaker_backend.py``): same bucket,
+``ml.g6.16xlarge``, AWS PyTorch GPU container; see ``aws/sagemaker_backend.py``): same bucket,
 same outputs, same ``fetch`` destinations, with the hard cap as ``MaxRuntimeInSeconds``.
 
 Commands::
 
     python aws/ec2_run.py check [--backend sagemaker]  # credentials, region, GPU quota, AMI / API + image
     python aws/ec2_run.py launch --job seg [--type g5.2xlarge] [--max-hours 12] [--env EPOCHS=40 ...]
-    python aws/ec2_run.py launch --backend sagemaker --job seg [--type ml.g6.24xlarge] [--resume-from NAME]
+    python aws/ec2_run.py launch --backend sagemaker --job seg [--type ml.g6.16xlarge] [--resume-from NAME]
     python aws/ec2_run.py status --job seg [--backend sagemaker]   # state + tail of the remote logs
     python aws/ec2_run.py fetch --job seg [--backend sagemaker]    # copy the job outputs into the repo
     python aws/ec2_run.py terminate --job seg [--backend sagemaker]
@@ -99,7 +99,7 @@ shutdown -h now
 def session():
     region = os.environ.get("AWS_DEFAULT_REGION") or os.environ.get("AWS_REGION")
     if not region:
-        sys.exit("AWS_DEFAULT_REGION is not set (e.g. ap-south-1)")
+        sys.exit("AWS_DEFAULT_REGION is not set (e.g. us-east-1)")
     return boto3.session.Session(region_name=region)
 
 

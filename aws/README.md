@@ -11,9 +11,11 @@ manual SSH route below still works. `pip install -e ".[aws]"` installs boto3.
 
 ## SageMaker training job (`--backend sagemaker`)
 
-The approved GPU quota is a SageMaker one (`ml.g6.24xlarge` for training job usage, 1 instance, ap-south-1: 4x NVIDIA
-L4 24 GB, 96 vCPU). `--backend sagemaker` runs the same `aws/jobs/seg.sh` as a SageMaker training job in the AWS
-PyTorch GPU container (`pytorch-training:2.10.0-gpu-py313-cu130-ubuntu22.04-sagemaker`; `--image` overrides):
+The approved GPU quota is a SageMaker one: `ml.g6.16xlarge` for training job usage = 1 in **us-east-1** (1x NVIDIA L4
+24 GB, 64 vCPU; seen in the Service Quotas console on 2026-10-01), so set `AWS_DEFAULT_REGION=us-east-1`. The same
+account also has `ml.g6.24xlarge` for *notebook instance* usage, which training jobs cannot use. `--backend sagemaker`
+runs the same `aws/jobs/seg.sh` as a SageMaker training job in the AWS PyTorch GPU container
+(`pytorch-training:2.10.0-gpu-py313-cu130-ubuntu22.04-sagemaker`; `--image` and `--type` override):
 
 ```bash
 python aws/ec2_run.py check --backend sagemaker            # identity, SageMaker API reachable?, training quota
@@ -34,8 +36,9 @@ How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
   `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with `SYSTEM_TORCH=1` (the container's CUDA torch
   is reused when it sees the GPU, so normally no torch download) and the datasets and venv on the instance's local
   NVMe.
-- **GPUs**: with two or more GPUs, `run_pipeline.sh` puts the clean run on GPU 0 and the robust run on GPU 1. GPUs 2
-  and 3 stay idle, because `train_seg` has no multi-GPU mode.
+- **GPUs**: on `ml.g6.16xlarge` (one L4) the clean and robust runs share the GPU, as on any single-GPU box. With two
+  or more GPUs (e.g. `--type ml.g6.24xlarge`, 4x L4, if that training quota is granted), `run_pipeline.sh` puts the
+  clean run on GPU 0 and the robust run on GPU 1; `train_seg` has no multi-GPU mode, so further GPUs stay idle.
 - **Time cap**: `--max-hours` becomes `MaxRuntimeInSeconds`. Unless `DEADLINE` is passed, the entry script sets one
   at max-hours minus a margin (runtime/8, clamped to 15-60 min), so training checkpoints and stops in time for the
   ONNX export and evaluation.

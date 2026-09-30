@@ -60,7 +60,10 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 - AWS credentials are set in the environment settings (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
   `AWS_DEFAULT_REGION`), but they only reach a newly started session. Check them with
   `aws sts get-caller-identity` or `python aws/ec2_run.py check --backend sagemaker`.
-- Approved quota: **SageMaker training job, `ml.g6.24xlarge`, 1 instance, ap-south-1** (4x NVIDIA L4, 96 vCPU).
+- Approved quota, as seen in the Service Quotas console on 2026-10-01 (the team's main AWS account):
+  **`ml.g6.16xlarge` for training job usage = 1 in us-east-1** (1x NVIDIA L4 24 GB, 64 vCPU). The same account has
+  `ml.g6.24xlarge` for *notebook instance* usage = 1 in us-east-1; training jobs cannot use that one. The earlier
+  "`ml.g6.24xlarge` training job, ap-south-1" note was wrong. The launcher now defaults to `ml.g6.16xlarge`.
   - Done: `aws/ec2_run.py --backend sagemaker` runs `aws/jobs/seg.sh` as a training job in the AWS PyTorch GPU
     container, with the code tarball on S3 and outputs to S3 (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`,
     usage in `aws/README.md`). It is unit-tested with a fake AWS session and a local run of the entry script
@@ -76,6 +79,10 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
   EC2 fallback can start until the organisation's management account allows these actions. IAM changes inside this
   account cannot override an SCP. Nothing was launched and no AWS resources were created. The full list of actions
   needed is in `aws/README.md` ("Permissions the account needs").
+- **Resolution (2026-10-01):** the blocked keys belong to a separate, AWS-created "Proof of Concept" Free-plan account
+  (created 2026-09-30) inside an organization the team does not administer, so its SCP cannot be changed by us. The
+  quota is on the team's main account instead. Next: an IAM user and access key in that account, the environment's
+  `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` replaced and `AWS_DEFAULT_REGION=us-east-1`, then a new session.
 - Order, once allowed: (1) train the segmenter: `check --backend sagemaker`, then the 1.5 h dry run, then the full run
   (commands in `aws/README.md`); (2) fetch the ONNX files and wire them into the loop; (3) run the stereo-mode DEV/EVAL
   loop on the GPU; (4) connect the live console. After that, the video and slides.

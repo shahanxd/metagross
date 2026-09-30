@@ -66,7 +66,8 @@ def test_image_uri_and_ecr_arn():
 def test_request_shape_and_limits():
     req = _request()
     name = req["TrainingJobName"]
-    assert req["ResourceConfig"] == {"InstanceType": "ml.g6.24xlarge", "InstanceCount": 1, "VolumeSizeInGB": 150}
+    assert req["ResourceConfig"] == {"InstanceType": smb.DEFAULT_INSTANCE, "InstanceCount": 1, "VolumeSizeInGB": 150}
+    assert smb.DEFAULT_INSTANCE == "ml.g6.16xlarge"  # the approved training-job quota (us-east-1)
     assert req["StoppingCondition"] == {"MaxRuntimeInSeconds": 43200}
     algo = req["AlgorithmSpecification"]
     assert algo["TrainingImage"] == IMAGE and algo["TrainingInputMode"] == "File"
