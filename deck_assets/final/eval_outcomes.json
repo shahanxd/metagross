@@ -1,128 +1,162 @@
 {
   "figure": "eval_outcomes",
+  "size": {
+    "width_in": 10.69,
+    "height_in": 5.3123,
+    "png_px": [
+      2137,
+      1062
+    ],
+    "svg_pt": [
+      769.7,
+      382.5
+    ]
+  },
   "numbers": [
     {
       "what": "FULL outcome 'Reached B' (success)",
       "value": 33,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_success",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with success=True for config_name=FULL (matches results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
+      "how": "count of rows with success=True for config_name=FULL (= results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
     },
     {
       "what": "FULL outcome 'Stopped short of B' (arrived_short)",
       "value": 4,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_fail_arrived_short",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=arrived_short for config_name=FULL (matches results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
+      "how": "count of rows with failure_type=arrived_short for config_name=FULL (= results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
     },
     {
       "what": "FULL outcome 'Stuck' (stuck)",
       "value": 5,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_fail_stuck",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=stuck for config_name=FULL (matches results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
+      "how": "count of rows with failure_type=stuck for config_name=FULL (= results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
     },
     {
       "what": "FULL outcome 'Collision' (collision)",
       "value": 7,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_fail_collision",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=collision for config_name=FULL (matches results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
+      "how": "count of rows with failure_type=collision for config_name=FULL (= results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
     },
     {
       "what": "FULL outcome 'Water entry' (water_entry)",
       "value": 9,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_fail_water_entry",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=water_entry for config_name=FULL (matches results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
+      "how": "count of rows with failure_type=water_entry for config_name=FULL (= results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
     },
     {
       "what": "FULL outcome 'Ditch entry' (ditch_entry)",
       "value": 2,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_fail_ditch_entry",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=ditch_entry for config_name=FULL (matches results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
+      "how": "count of rows with failure_type=ditch_entry for config_name=FULL (= results/closed_loop_eval.json#tier0.aggregate.FULL.all.failure_types)"
     },
     {
       "what": "TYPICAL outcome 'Reached B' (success)",
       "value": 31,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_success",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with success=True for config_name=TYPICAL (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
+      "how": "count of rows with success=True for config_name=TYPICAL (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
     },
     {
       "what": "TYPICAL outcome 'Stopped short of B' (arrived_short)",
       "value": 4,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_fail_arrived_short",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=arrived_short for config_name=TYPICAL (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
+      "how": "count of rows with failure_type=arrived_short for config_name=TYPICAL (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
     },
     {
       "what": "TYPICAL outcome 'Stuck' (stuck)",
       "value": 1,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_fail_stuck",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=stuck for config_name=TYPICAL (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
+      "how": "count of rows with failure_type=stuck for config_name=TYPICAL (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
     },
     {
       "what": "TYPICAL outcome 'Collision' (collision)",
       "value": 5,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_fail_collision",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=collision for config_name=TYPICAL (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
+      "how": "count of rows with failure_type=collision for config_name=TYPICAL (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
     },
     {
       "what": "TYPICAL outcome 'Water entry' (water_entry)",
       "value": 10,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_fail_water_entry",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=water_entry for config_name=TYPICAL (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
+      "how": "count of rows with failure_type=water_entry for config_name=TYPICAL (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
     },
     {
       "what": "TYPICAL outcome 'Ditch entry' (ditch_entry)",
       "value": 2,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_fail_ditch_entry",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=ditch_entry for config_name=TYPICAL (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
+      "how": "count of rows with failure_type=ditch_entry for config_name=TYPICAL (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
     },
     {
-      "what": "TYPICAL outcome 'Left the map' (out_of_bounds)",
+      "what": "TYPICAL outcome 'Out of bounds' (out_of_bounds)",
       "value": 7,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_oob",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of rows with failure_type=out_of_bounds for config_name=TYPICAL (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
+      "how": "count of rows with failure_type=out_of_bounds for config_name=TYPICAL (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.failure_types)"
     },
     {
-      "what": "FULL runs that left the map (annotation right of bar)",
+      "what": "FULL runs out of bounds (annotation right of bar)",
       "value": 0,
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_oob",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of FULL rows with failure_type=out_of_bounds (matches results/closed_loop_eval.json#tier0.aggregate.FULL.all.out_of_bounds)"
-    },
-    {
-      "what": "TYPICAL runs that left the map (annotation right of bar)",
-      "value": 7,
-      "of": 60,
-      "source": "results/runs_eval_tier0/summary.csv",
-      "how": "count of TYPICAL rows with failure_type=out_of_bounds (matches results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.out_of_bounds)"
+      "how": "count of FULL rows with failure_type=out_of_bounds (= results/closed_loop_eval.json#tier0.aggregate.FULL.all.out_of_bounds)"
     },
     {
       "what": "FULL reached-B share printed in the green segment",
       "value": "55%",
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_FULL_success_rate",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "33/60, rounded to whole percent"
+      "how": "33/60 = 0.550, rounded to whole percent"
+    },
+    {
+      "what": "TYPICAL runs out of bounds (annotation right of bar)",
+      "value": 7,
+      "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_oob",
+      "source": "results/runs_eval_tier0/summary.csv",
+      "how": "count of TYPICAL rows with failure_type=out_of_bounds (= results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.out_of_bounds)"
     },
     {
       "what": "TYPICAL reached-B share printed in the green segment",
       "value": "52%",
       "of": 60,
+      "claim_id": "closed_loop_eval_tier0_TYPICAL_success_rate",
       "source": "results/runs_eval_tier0/summary.csv",
-      "how": "31/60, rounded to whole percent"
+      "how": "31/60 = 0.517, rounded to whole percent"
     }
   ],
+  "term_definitions": {
+    "Stopped short of B": "referee arrived_short: the stack declared ARRIVED on its own pose estimate but the body ended outside the 2 m success radius",
+    "Stuck": "referee stuck: < 0.5 m progress in 20 s",
+    "Out of bounds": "referee out_of_bounds: body origin left the simulated terrain raster (0.5 m margin, metagross/sim/referee.py); not the robot's own rolling map"
+  },
   "label": "Simulated",
-  "split": "eval (pre-registered, docs/EVAL_PREREGISTRATION.md, run 2, commit 45ec399)",
+  "split": "eval seeds 0-59, run 2 (commit 45ec399). Run 2 is a disclosed protocol deviation: run 1 (superseded) scored 17/60 vs 15/60; see docs/EVAL_PREREGISTRATION.md",
   "sensor": "tier-0 synthetic depth sensor (no images: no VO, no segmentation)",
   "configs": {
     "FULL": "default stack: seen ground only, missing-ground detector, seen-distance speed governor",
@@ -131,9 +165,75 @@
   "sources": [
     "results/runs_eval_tier0/summary.csv",
     "results/closed_loop_eval.json",
+    "results/claims.csv",
     "results/closed_loop_dev.json"
   ],
-  "cross_check": "per-run CSV counts equal the JSON aggregates (asserted in this script)",
+  "cross_check": "per-run CSV counts equal the JSON aggregates and the registered claims (asserted here)",
+  "scope": "EVAL only. Do not generalise 'never out of bounds' beyond these 60 runs (see dev_split_not_drawn).",
+  "context_not_drawn": {
+    "TYPICAL_out_of_bounds_seeds": [
+      2,
+      13,
+      25,
+      31,
+      37,
+      49,
+      50
+    ],
+    "FULL_outcome_on_those_seeds": {
+      "success": 2,
+      "stuck": 4,
+      "arrived_short": 1
+    },
+    "FULL_ditch_entry_seeds": [
+      14,
+      26
+    ],
+    "FULL_ditch_entry_note": "both are F3 seeds with a hidden trench (seed // 6 even), i.e. the case the missing-ground detector targets",
+    "false_stops": {
+      "FULL": 5,
+      "TYPICAL": 2
+    },
+    "false_stops_claim_ids": [
+      "closed_loop_eval_tier0_FULL_false_stops",
+      "closed_loop_eval_tier0_TYPICAL_false_stops"
+    ],
+    "paired_F2_F3": {
+      "families": [
+        "F2_ditch_field",
+        "F3_crest_ditch"
+      ],
+      "seeds_only_FULL_reached_B": [
+        2,
+        7,
+        32,
+        37,
+        38,
+        44
+      ],
+      "seeds_only_TYPICAL_reached_B": [
+        26,
+        55,
+        56
+      ],
+      "exact_two_sided_sign_test_p": 0.508,
+      "how": "per-seed pairing of FULL and TYPICAL rows in results/runs_eval_tier0/summary.csv; exact McNemar (binomial) test on the discordant seeds. Computed here; NOT registered in results/claims.csv."
+    },
+    "paired_F4": {
+      "families": [
+        "F4_sudden_obstacle"
+      ],
+      "seeds_only_FULL_reached_B": [],
+      "seeds_only_TYPICAL_reached_B": [
+        33,
+        45,
+        57
+      ],
+      "exact_two_sided_sign_test_p": 0.25,
+      "how": "per-seed pairing of FULL and TYPICAL rows in results/runs_eval_tier0/summary.csv; exact McNemar (binomial) test on the discordant seeds. Computed here; NOT registered in results/claims.csv."
+    },
+    "how": "computed from results/runs_eval_tier0/summary.csv; only false_stops is registered in results/claims.csv"
+  },
   "dev_split_not_drawn": {
     "source": "results/closed_loop_dev.json",
     "split": "dev",
@@ -141,7 +241,7 @@
       100,
       129
     ],
-    "note": "DEV seeds 100-129 were used for tuning; EVAL seeds 0-59 were not. Not drawn.",
+    "note": "DEV seeds 100-129 were used for tuning; EVAL seeds 0-59 were not. Not drawn and NOT registered in results/claims.csv: register before quoting on a slide.",
     "configs": {
       "FULL": {
         "n": 30,

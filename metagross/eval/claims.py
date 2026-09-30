@@ -113,6 +113,10 @@ EVAL_METRICS: tuple[EvalMetric, ...] = (
     EvalMetric("final_err_p50", "final_error_median_m", "m", "{:.2f}", "median GT distance to B at episode end"),
     EvalMetric("mean_speed", "mean_speed_mps", "m/s", "{:.2f}", "mean over runs of referee path length / episode time"),
     EvalMetric("false_stops", "false_stops", "count", "{:d}", "stops that ground truth does not justify (referee)"),
+    EvalMetric("compute_p50", "compute_ms_p50", "ms", "{:.1f}",
+               "median autonomy compute per 5 Hz tick (200 ms budget), 4 vCPU container, 4 episodes in parallel"),
+    EvalMetric("compute_p95", "compute_ms_p95", "ms", "{:.1f}",
+               "95th-percentile autonomy compute per 5 Hz tick (200 ms budget), 4 vCPU container, 4 episodes in parallel"),
 )
 
 #: Per-family rows ``closed_loop_eval_<mode>_<config>_<family>_<suffix>`` (subset of :data:`EVAL_METRICS`).

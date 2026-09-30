@@ -519,6 +519,22 @@
   "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.collisions",
   "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; collisions (referee, GT)"
  },
+ "closed_loop_eval_tier0_FULL_compute_p50": {
+  "id": "closed_loop_eval_tier0_FULL_compute_p50",
+  "value": "62.5",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.compute_ms_p50",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; median autonomy compute per 5 Hz tick (200 ms budget), 4 vCPU container, 4 episodes in parallel"
+ },
+ "closed_loop_eval_tier0_FULL_compute_p95": {
+  "id": "closed_loop_eval_tier0_FULL_compute_p95",
+  "value": "88.7",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.compute_ms_p95",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; 95th-percentile autonomy compute per 5 Hz tick (200 ms budget), 4 vCPU container, 4 episodes in parallel"
+ },
  "closed_loop_eval_tier0_FULL_ditch": {
   "id": "closed_loop_eval_tier0_FULL_ditch",
   "value": "2",
@@ -1127,6 +1143,22 @@
   "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.collisions",
   "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; collisions (referee, GT)"
  },
+ "closed_loop_eval_tier0_TYPICAL_compute_p50": {
+  "id": "closed_loop_eval_tier0_TYPICAL_compute_p50",
+  "value": "56.2",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.compute_ms_p50",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; median autonomy compute per 5 Hz tick (200 ms budget), 4 vCPU container, 4 episodes in parallel"
+ },
+ "closed_loop_eval_tier0_TYPICAL_compute_p95": {
+  "id": "closed_loop_eval_tier0_TYPICAL_compute_p95",
+  "value": "86.6",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.compute_ms_p95",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; 95th-percentile autonomy compute per 5 Hz tick (200 ms budget), 4 vCPU container, 4 episodes in parallel"
+ },
  "closed_loop_eval_tier0_TYPICAL_ditch": {
   "id": "closed_loop_eval_tier0_TYPICAL_ditch",
   "value": "2",
@@ -1358,6 +1390,78 @@
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.success_rate",
   "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; success = true goal within the mission success radius"
+ },
+ "example_eval_ditch_entry_seeds_FULL": {
+  "id": "example_eval_ditch_entry_seeds_FULL",
+  "value": "14, 26",
+  "unit": "seeds",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#ditch_entry_seeds.FULL",
+  "note": "EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry"
+ },
+ "example_eval_ditch_entry_seeds_TYPICAL": {
+  "id": "example_eval_ditch_entry_seeds_TYPICAL",
+  "value": "7, 38",
+  "unit": "seeds",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#ditch_entry_seeds.TYPICAL",
+  "note": "EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry"
+ },
+ "example_eval_s038_full_cmd_w_max_after_confirm": {
+  "id": "example_eval_s038_full_cmd_w_max_after_confirm",
+  "value": "1.20",
+  "unit": "rad/s",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.full_confirmation.max_abs_cmd_w_rad_s",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; peak commanded |yaw rate| in the 3 s after confirmation (turn toward the gap)"
+ },
+ "example_eval_s038_full_reached_b_s": {
+  "id": "example_eval_s038_full_reached_b_s",
+  "value": "33.0",
+  "unit": "s",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.end_time_s.FULL",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; FULL reached B at this time"
+ },
+ "example_eval_s038_full_speed_min_after_confirm_mps": {
+  "id": "example_eval_s038_full_speed_min_after_confirm_mps",
+  "value": "0.7",
+  "unit": "m/s",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.full_confirmation.gt_speed_min_next3s_mps",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; lowest GT speed in the 3 s after confirmation; governor binding in that window: {'platform': 15, 'r_cert': 1} (ticks), so the slowdown is the turn, not the seen-ground speed cap"
+ },
+ "example_eval_s038_full_trench_cells_on_gt": {
+  "id": "example_eval_s038_full_trench_cells_on_gt",
+  "value": "44/44",
+  "unit": "cells",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.full_confirmation.n_on_gt_trench",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; confirmed ditch cells within 1.0 m of the GT trench / all confirmed cells in the map crop"
+ },
+ "example_eval_s038_full_trench_confirmed_range_m": {
+  "id": "example_eval_s038_full_trench_confirmed_range_m",
+  "value": "3.2",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.full_confirmation.range_to_nearest_cell_m",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; GT distance from the vehicle to the nearest confirmed trench cell at confirmation"
+ },
+ "example_eval_s038_full_trench_confirmed_s": {
+  "id": "example_eval_s038_full_trench_confirmed_s",
+  "value": "18.2",
+  "unit": "s",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.full_confirmation.t_s",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; first tick whose rolling map held >= 3 confirmed ditch cells on the GT trench"
+ },
+ "example_eval_s038_typical_end_s": {
+  "id": "example_eval_s038_typical_end_s",
+  "value": "22.3",
+  "unit": "s",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.end_time_s.TYPICAL",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; TYPICAL run ended (ditch_entry) at this time"
  },
  "integrity_auroc_07to05": {
   "id": "integrity_auroc_07to05",

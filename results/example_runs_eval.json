@@ -1,0 +1,117 @@
+{
+ "what": "Worked example from the EVAL closed loop: FULL vs TYPICAL on one held-out world.",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images)",
+ "inputs": "results/runs_eval_tier0",
+ "pair": {
+  "seed": 38,
+  "family": "F3_crest_ditch",
+  "split": "eval",
+  "outcome": {
+   "FULL": "success",
+   "TYPICAL": "ditch_entry"
+  },
+  "end_time_s": {
+   "FULL": 33.02,
+   "TYPICAL": 22.26
+  },
+  "full_confirmation": {
+   "t_s": 18.2,
+   "n_confirmed_cells": 44,
+   "n_on_gt_trench": 44,
+   "range_to_nearest_cell_m": 3.171377501337853,
+   "gt_speed_at_mps": 1.5057875622740775,
+   "gt_speed_min_next3s_mps": 0.6652298084394181,
+   "gt_yaw_rate_max_abs_next3s_rad_s": 1.05672745962239,
+   "n_ticks": 16,
+   "gov_binding_counts": {
+    "platform": 15,
+    "r_cert": 1
+   },
+   "max_abs_cmd_w_rad_s": 1.1991708496660198
+  }
+ },
+ "ditch_entry_seeds": {
+  "FULL": [
+   14,
+   26
+  ],
+  "TYPICAL": [
+   7,
+   38
+  ]
+ },
+ "claims": [
+  {
+   "id": "example_eval_s038_full_reached_b_s",
+   "value": "33.0",
+   "unit": "s",
+   "source": "results/example_runs_eval.json#pair.end_time_s.FULL",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; FULL reached B at this time",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_typical_end_s",
+   "value": "22.3",
+   "unit": "s",
+   "source": "results/example_runs_eval.json#pair.end_time_s.TYPICAL",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; TYPICAL run ended (ditch_entry) at this time",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_full_trench_confirmed_s",
+   "value": "18.2",
+   "unit": "s",
+   "source": "results/example_runs_eval.json#pair.full_confirmation.t_s",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; first tick whose rolling map held >= 3 confirmed ditch cells on the GT trench",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_full_trench_confirmed_range_m",
+   "value": "3.2",
+   "unit": "m",
+   "source": "results/example_runs_eval.json#pair.full_confirmation.range_to_nearest_cell_m",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; GT distance from the vehicle to the nearest confirmed trench cell at confirmation",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_full_trench_cells_on_gt",
+   "value": "44/44",
+   "unit": "cells",
+   "source": "results/example_runs_eval.json#pair.full_confirmation.n_on_gt_trench",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; confirmed ditch cells within 1.0 m of the GT trench / all confirmed cells in the map crop",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_full_speed_min_after_confirm_mps",
+   "value": "0.7",
+   "unit": "m/s",
+   "source": "results/example_runs_eval.json#pair.full_confirmation.gt_speed_min_next3s_mps",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; lowest GT speed in the 3 s after confirmation; governor binding in that window: {'platform': 15, 'r_cert': 1} (ticks), so the slowdown is the turn, not the seen-ground speed cap",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_full_cmd_w_max_after_confirm",
+   "value": "1.20",
+   "unit": "rad/s",
+   "source": "results/example_runs_eval.json#pair.full_confirmation.max_abs_cmd_w_rad_s",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; peak commanded |yaw rate| in the 3 s after confirmation (turn toward the gap)",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_ditch_entry_seeds_FULL",
+   "value": "14, 26",
+   "unit": "seeds",
+   "source": "results/example_runs_eval.json#ditch_entry_seeds.FULL",
+   "note": "EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_ditch_entry_seeds_TYPICAL",
+   "value": "7, 38",
+   "unit": "seeds",
+   "source": "results/example_runs_eval.json#ditch_entry_seeds.TYPICAL",
+   "note": "EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry",
+   "label": "Simulated"
+  }
+ ]
+}
