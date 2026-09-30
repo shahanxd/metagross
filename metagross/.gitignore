@@ -22,3 +22,4 @@ results/**/gt/
 results/**/*.npz
 results/**/debug/
 runs/
+*.egg-info/

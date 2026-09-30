@@ -26,8 +26,11 @@ TIER0_GLOB = "results/runs_dev_tier0/FULL/*/autonomy/telemetry.jsonl"
 N_TIER0_LOGS = 4  # keep the test fast: a few full-length tier0 logs besides the stereo one
 
 
+VENDORED_TIER0 = REPO / "results" / "link_replay" / "tier0_FULL_102.telemetry.jsonl"  # tier0 DEV 102, current stack
+
+
 def _real_logs() -> list[Path]:
-    logs = [VENDORED] if VENDORED.exists() else []
+    logs = [p for p in (VENDORED, VENDORED_TIER0) if p.exists()]
     logs += sorted(REPO.glob(TIER0_GLOB))[:N_TIER0_LOGS]
     return logs
 

@@ -44,6 +44,7 @@ from __future__ import annotations
 import csv
 import json
 import logging
+import site
 import multiprocessing as mp
 import os
 import sys
@@ -75,9 +76,22 @@ DENIED_EVENTS = frozenset({
 })
 
 
+def _site_package_dirs() -> set[str]:
+    """Installed-package directories outside ``sys.prefix`` (e.g. a per-user ``~/.local`` site dir)."""
+    out: set[str] = set()
+    try:
+        out.update(site.getsitepackages())
+    except AttributeError:  # some embedded/virtualenv builds lack it
+        pass
+    user = site.getusersitepackages()
+    if isinstance(user, str) and os.path.isdir(user):
+        out.add(user)
+    return out
+
+
 def allowed_roots(run_dir: Path) -> tuple[list[str], list[str]]:
     """(allowed directory prefixes, allowed individual files), normalised."""
-    dirs = {sys.prefix, sys.base_prefix, sys.exec_prefix, sys.base_exec_prefix,
+    dirs = {sys.prefix, sys.base_prefix, sys.exec_prefix, sys.base_exec_prefix, *_site_package_dirs(),
             *(str(_PKG / p) for p in _PKG_DIRS), str(_REPO / "models"), str(Path(run_dir) / "autonomy")}
     files = [str(_PKG / "__init__.py")]
     pyc = _PKG / "__pycache__"

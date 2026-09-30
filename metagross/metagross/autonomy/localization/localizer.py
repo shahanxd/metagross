@@ -68,7 +68,14 @@ class LocalizerConfig:
     use_health: bool = True  # integrity monitor gates VO
     use_chi_hat: bool = True  # use the online chi estimate in the wheel model
     q_reject: float = 0.4  # reject VO when q_gate is below this
-    gyro_bias_alpha: float = 0.05  # EMA gain of the gyro bias while stationary
+    # gyro-bias Kalman filter (scalar). Datasheet-class MEMS numbers, not simulator internals:
+    gyro_density_rps_rthz: float = 2.0e-3  # white-noise density (rad/s/sqrt(Hz))
+    gyro_bias_init_sigma_rps: float = 1.0e-2  # turn-on bias 1-sigma (rad/s); consumer MEMS specs quote up to ~1 deg/s
+    gyro_bias_rw_rps_rts: float = 1.0e-4  # bias random walk (rad/s/sqrt(s))
+    # Depth-odometry yaw is not a reliable bias reference (DEV replay, seeds 100-129: median final error 1.05 -> 1.55 m
+    # when it feeds the bias), so by default the bias is learned standing still (launch hold) and from VO only.
+    gyro_bias_do_yaw_sigma_max_rad: float = 0.0
+    gyro_bias_gate: float = 4.0  # reject a bias observation beyond this many sigma
     stationary_wheel_rad: float = 1e-3  # per-tick wheel increment below which the UGV is still
     slip_noise_per_unit: float = 10.0  # wheel-noise inflation = 1 + this * slip (slip 0.1 -> x2)
     slip_noise_max: float = 20.0
@@ -80,6 +87,9 @@ class LocalizerConfig:
     depth_odom_yaw_gate_floor_rad: float = math.radians(0.3)  # ... + this floor
     depth_odom_fwd_over_frac: float = 0.5  # forward travel may not exceed wheel travel x (1 + this) + margin
     depth_odom_fwd_margin_m: float = 0.05
+    # Depth-odometry yaw is biased on some terrain (DEV replay: -1.4 -> -3.2 deg on seed 124), so heading comes
+    # mainly from the gyro: floor its yaw sigma. Chosen on DEV seeds 100-129 (tail of final error).
+    depth_odom_yaw_sigma_floor_rad: float = math.radians(3.0)
     depth_odom_slip_sigma_m: float = 0.02  # increments this well constrained (forward 1-sigma) feed the slip monitor
     depth_odom: DepthOdomConfig = field(default_factory=DepthOdomConfig)
     vo: VOConfig = field(default_factory=VOConfig)
@@ -132,6 +142,8 @@ class Localizer:
         self._prev_t: Optional[float] = None
         self._prev_wheels: Optional[tuple[float, float]] = None
         self.gyro_bias = 0.0
+        self.gyro_bias_var = self.cfg.gyro_bias_init_sigma_rps ** 2
+        self.n_bias_updates = 0
         self.n_frames = 0
         self.n_vo_accepted = 0
         self.n_vo_rejected_health = 0
@@ -225,8 +237,7 @@ class Localizer:
             dyaw_wd = r * (dphi_r - dphi_l) / B
             slip_out = self.slip.update(frame.t, d_wheel, dyaw_wd, dt, d_vo, dyaw_vo)
             still = abs(dphi_l) < cfg.stationary_wheel_rad and abs(dphi_r) < cfg.stationary_wheel_rad
-            if still and (dyaw_vo is None or abs(dyaw_vo) < math.radians(0.05)):
-                self.gyro_bias += cfg.gyro_bias_alpha * (frame.gyro_z_rps - self.gyro_bias)
+            self._update_gyro_bias(frame.gyro_z_rps, dt, still, dyaw_vo, do_info)
 
         self._prev_t, self._prev_wheels = frame.t, wheels
         self.n_frames += 1
@@ -246,6 +257,37 @@ class Localizer:
             "timings_ms": timings,
             "depth_odom": {k: v for k, v in do_info.items() if k != "feed_slip"},
         }
+
+    def _update_gyro_bias(self, gyro_rps: float, dt: float, still: bool, dyaw_vo: Optional[float],
+                          do_info: Mapping[str, Any]) -> None:
+        """Scalar Kalman filter on the gyro bias (rad/s).
+
+        Observations: (a) standing still, the gyro reads the bias (yaw rate is zero; VO, if any, must
+        agree); (b) moving, an accepted increment whose yaw is well constrained on its own (VO, or
+        depth odometry with small yaw covariance) gives ``bias = gyro - dyaw/dt``. Without (b) a
+        turn-on bias of 0.06 deg/s alone turns into ~2 m of cross-track error over a 45 m mission."""
+        cfg = self.cfg
+        self.gyro_bias_var += cfg.gyro_bias_rw_rps_rts ** 2 * dt
+        white_var = cfg.gyro_density_rps_rthz ** 2 / dt  # variance of the interval-mean rate
+        z = R = None
+        if still and (dyaw_vo is None or abs(dyaw_vo) < math.radians(0.05)):
+            z, R = gyro_rps, white_var
+        elif dyaw_vo is not None:
+            z, R = gyro_rps - dyaw_vo / dt, white_var + (self.ekf.cfg.vo_yaw_floor_rad / dt) ** 2
+        elif do_info.get("accepted") and self.last_do is not None:
+            var_do = float(self.last_do.cov[2, 2])
+            if var_do <= cfg.gyro_bias_do_yaw_sigma_max_rad ** 2:
+                z, R = gyro_rps - self.last_do.dyaw / dt, white_var + var_do / dt ** 2
+        if z is None:
+            return
+        S = self.gyro_bias_var + R
+        innov = z - self.gyro_bias
+        if not still and innov * innov > cfg.gyro_bias_gate ** 2 * S:  # standing still the gyro reads the bias: never gated
+            return
+        k = self.gyro_bias_var / S
+        self.gyro_bias += k * innov
+        self.gyro_bias_var *= (1.0 - k)
+        self.n_bias_updates += 1
 
     def _depth_odometry(self, disp: Optional[np.ndarray], no_images: bool, vo_accepted: bool, first: bool,
                         prior: tuple[float, float, float], dt: float) -> dict[str, Any]:
@@ -279,13 +321,25 @@ class Localizer:
             info["reason"] = "yaw gate"
         elif not (-cfg.depth_odom_fwd_margin_m <= res.dx * (1.0 if prior[0] >= 0.0 else -1.0) <= fwd_hi):
             info["reason"] = "forward gate"
-        elif self.ekf.update_relative(res.dx, res.dy, res.dyaw, res.cov, dt=dt):
+        elif self.ekf.update_relative(res.dx, res.dy, res.dyaw, self._depth_odom_cov(res.cov), dt=dt):
             self.n_do_accepted += 1
             info["accepted"] = True
             info["feed_slip"] = info["sigma_fwd_m"] <= cfg.depth_odom_slip_sigma_m
             return info
         self.n_do_rejected_gate += 1
         return info
+
+    def _depth_odom_cov(self, cov: np.ndarray) -> np.ndarray:
+        """Depth-odometry covariance with the yaw sigma floored (cross terms scaled to keep it PSD)."""
+        floor = self.cfg.depth_odom_yaw_sigma_floor_rad
+        if floor <= 0.0 or cov[2, 2] >= floor ** 2:
+            return cov
+        c = np.array(cov, float, copy=True)
+        k = floor / math.sqrt(max(float(c[2, 2]), 1e-18))
+        c[2, :2] *= k
+        c[:2, 2] *= k
+        c[2, 2] = floor ** 2
+        return c
 
     @staticmethod
     def _gray(frame: SensorFrame) -> Optional[np.ndarray]:

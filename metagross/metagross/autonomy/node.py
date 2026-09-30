@@ -67,7 +67,7 @@ from metagross.autonomy.planning.global_planner import GlobalPlan, GlobalPlanner
 from metagross.autonomy.planning.governor import Q_NOMINAL, GovernorParams, LatencyEstimator, SpeedGovernor
 from metagross.autonomy.planning.mppi import ESCAPE_REVERSE_MPS, MppiParams, MppiPlanner
 from metagross.autonomy.planning.rolling_map import LAUNCH_APRON_M, BevGeometry, RollingMap
-from metagross.autonomy.safety.supervisor import Supervisor
+from metagross.autonomy.safety.supervisor import Supervisor, SupervisorParams
 from metagross.config.defaults import CAM_MAX_RANGE_M, CAMERA_HZ_BATCH, CHI_NOMINAL, TELEMETRY_HZ, VEHICLE
 from metagross.contracts.interfaces import DebugBundle, LocalizerProto, PerceptionProto
 from metagross.contracts.ipc import DEFAULT_AUTONOMY_CONFIG
@@ -88,6 +88,12 @@ PERCEPTION_MODULE = "metagross.autonomy.perception.pipeline"
 LOCALIZER_MODULE = "metagross.autonomy.localization.localizer"
 SEGMENTER_MODULE = "metagross.autonomy.perception.semantics"
 EMA_ALPHA = 0.2  # smoothing of the measured frame period
+BLIND_VCAP_MPS = 0.05  # governor cap below this = "cannot see ahead" (feeds the supervisor stall rule)
+ALIGN_ROTATE_RAD = 0.5  # blocked ahead and the route is more than this off the heading: turn in place onto it [rad]
+ALIGN_RATE_FRAC = 0.7  # of the vehicle's max yaw rate
+LAUNCH_HOLD_S = 0.0  # stand still this long at A so the localiser learns the gyro turn-on bias (config "launch_hold_s").
+# Off by default: with the simulated MEMS noise (2e-3 rad/s/sqrt(Hz)) 3 s only pins the bias to ~1e-3 rad/s, no
+# better than the turn-on spread; on hardware a 10-30 s hold at A is worth it.
 N_WAYPOINTS = 5
 WAYPOINT_SPACING_M = 2.0
 MAP_CROP_HALF_M = 10.0  # debug map crop around the vehicle
@@ -244,7 +250,8 @@ class AutonomyStack:
             seed=int(cfg.get("seed", 0)),
         )
         self.dead_ends: Optional[DeadEndMemory] = DeadEndMemory() if bool(cfg.get("dead_end_memory", True)) else None
-        self.supervisor = Supervisor(dead_end_enabled=self.dead_ends is not None)
+        self.supervisor = Supervisor(SupervisorParams(launch_hold_s=float(cfg.get("launch_hold_s", LAUNCH_HOLD_S))),
+                                     dead_end_enabled=self.dead_ends is not None)
         self.supervisor.reset(mission.goal_xy_a, mission.success_radius_m)
         self.mixer = SkidSteerMixer(MixerParams.from_vehicle(vehicle))
         self._t_prev: Optional[float] = None
@@ -252,6 +259,7 @@ class AutonomyStack:
         self._frame_period = 1.0 / CAMERA_HZ_BATCH
         self.latency = LatencyEstimator()  # measured compute latency -> governor reaction time
         self._speed_meas = 0.0
+        self._blind_since: Optional[float] = None  # governor has held v_cap ~0 (nothing certified / visible ahead) since
         self._nominal_xy = np.zeros((0, 2))
         self._t_telemetry = -math.inf
         self._tel_seq = 0
@@ -363,15 +371,18 @@ class AutonomyStack:
         # 6. supervisor (mode, speed factor, overrides); progress = cost-to-go when a route exists
         t0 = time.perf_counter()
         herr = None
+        herr_signed = None  # CCW-positive heading error to the route's lookahead point [rad]
         if gplan.route_ok and gplan.lookahead_xy is not None:
             lx, ly = gplan.lookahead_xy
             if math.hypot(lx - pose[0], ly - pose[1]) > HEADING_ERR_MIN_DIST_M:
                 e = math.atan2(ly - pose[1], lx - pose[0]) - pose[2]
-                herr = abs(math.atan2(math.sin(e), math.cos(e)))
+                herr_signed = math.atan2(math.sin(e), math.cos(e))
+                herr = abs(herr_signed)
         dec = self.supervisor.update(t, q, pose, self.mixer.v, self._speed_meas, gap, immobilised,
                                      progress_metric=gplan.ctg_vehicle if gplan.route_ok else None, metric_kind="ctg",
                                      metric_shift=max(gplan.ctg_jump, 0.0) if gplan.t_computed == t else 0.0,
-                                     heading_err=herr)
+                                     heading_err=herr,
+                                     blind_s=0.0 if self._blind_since is None else t - self._blind_since)
         self._inflate_scale = dec.inflate_scale
         if dec.dead_end and self.dead_ends is not None:
             self._mark_dead_end(t, pose, gplan, maps, goal)  # the planner routes round it from the next tick
@@ -385,6 +396,10 @@ class AutonomyStack:
                                     enabled=bool(cfg["use_governor"]), use_health=bool(cfg["use_health"]),
                                     r_det_m=float(r_det) if isinstance(r_det, (int, float, np.floating)) else None)
         v_cap, gov_reason = gov.v_cap_mps, gov.reason
+        if gov.v_cap_mps < BLIND_VCAP_MPS and bool(cfg["use_governor"]):
+            self._blind_since = t if self._blind_since is None else self._blind_since
+        else:
+            self._blind_since = None
         fixed = cfg.get("fixed_speed_mps")
         v_ref = None
         if fixed is not None:  # constant cruise speed (typical stack); the governor, if on, may still lower it
@@ -416,11 +431,19 @@ class AutonomyStack:
                              brake_decel=gov.a_mps2, chi=chi, guide_path_xy=guide, hold_s=self._frame_period,
                              allow_reverse=allow_reverse)
         self._nominal_xy = res.traj[:, :2]
+        u0 = (float(res.u0[0]), float(res.u0[1]))
+        if (v_cap_eff < BLIND_VCAP_MPS and herr_signed is not None and abs(herr_signed) > ALIGN_ROTATE_RAD
+                and dec.override is None):
+            # Forward motion is capped to ~0 (nothing certified / visible ahead) and the route leaves to the
+            # side: every MPPI rollout then scores alike and their average barely turns (DEV 109: 0.1 rad/s
+            # facing a ditch with the replanned route behind). Turn in place onto the route; the gate still
+            # checks the swept body.
+            u0 = (0.0, math.copysign(ALIGN_RATE_FRAC * self.vehicle.max_yaw_rate_rps, herr_signed))
         tm["mppi"] = (time.perf_counter() - t0) * 1e3
 
         # 9. safety gate + 10. mixer
         t0 = time.perf_counter()
-        v, w, emergency, brake_reason = self.supervisor.gate(dec, res.u0[0], res.u0[1], pose, maps)
+        v, w, emergency, brake_reason = self.supervisor.gate(dec, u0[0], u0[1], pose, maps)
         wl, wr = self.mixer.mix(t, v, w, chi, emergency)
         tm["gate_mixer"] = (time.perf_counter() - t0) * 1e3
         compute_ms = (time.perf_counter() - t_start) * 1e3
@@ -430,6 +453,8 @@ class AutonomyStack:
 
         if brake_reason:
             reason = brake_reason
+        elif dec.dead_end:  # one-tick event: report it even with no route (the operator must see it)
+            reason = dec.reason
         elif mode in (DriveMode.NOMINAL, DriveMode.CAUTION, DriveMode.DEGRADED) and not gplan.route_ok:
             reason = "NO_ROUTE"
         elif mode == DriveMode.NOMINAL and dec.reason == "OK":

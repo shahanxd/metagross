@@ -3,6 +3,30 @@ name = "metagross"
 version = "0.1.0"
 description = "Seen-ground autonomy for GNSS-denied UGVs (SIH26126)"
 requires-python = ">=3.10"
+# Onboard stack + simulator + evaluation (CPU). Extras below for training, rendering and media.
+dependencies = [
+    "numpy",
+    "scipy",
+    "opencv-python-headless",
+    "scikit-image",   # global planner cost-to-go (MCP_Geometric)
+    "scikit-learn",   # integrity-monitor fitting
+    "onnxruntime",    # terrain segmenter inference
+    "matplotlib",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+train = ["torch", "torchvision", "onnx", "transformers", "huggingface_hub", "requests", "Pillow"]
+render = ["playwright"]
+media = ["imageio", "imageio-ffmpeg", "edge-tts", "Pillow"]
+dev = ["pytest"]
+
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["metagross*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

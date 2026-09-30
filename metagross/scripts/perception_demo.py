@@ -18,10 +18,12 @@ import json
 import logging
 import math
 import os
+import sys
 import time
 from pathlib import Path
 
 os.environ.setdefault("OMP_NUM_THREADS", "2")
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # run from anywhere, like the other scripts
 
 import cv2  # noqa: E402
 import numpy as np  # noqa: E402

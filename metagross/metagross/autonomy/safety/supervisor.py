@@ -76,7 +76,10 @@ class SupervisorParams:
     no_progress_s: float = 3.0
     progress_min_m: float = 0.3
     heading_progress_rad: float = 0.15  # shrinking the heading error to the route by this much counts as progress
-    align_max_s: float = 9.0  # heading progress restarts the clock only this long after the last distance progress
+    launch_hold_s: float = 0.0  # stand still this long at launch (gyro-bias calibration); the node sets LAUNCH_HOLD_S
+    stall_escape_m: float = 1.5  # look / dead-end counts reset only once the vehicle got this far from where it first stalled
+    blind_stall_s: float = 2.0  # speed held at zero by "cannot see ahead" this long = stall (skip the align window)
+    align_max_s: float = 5.0  # heading progress restarts the clock only this long after the last distance progress
     look_angle_rad: float = math.radians(45.0)
     look_yaw_rate: float = 0.6
     look_tol_rad: float = 0.08
@@ -88,7 +91,7 @@ class SupervisorParams:
     immobile_cmd_v: float = 0.2
     immobile_meas_v: float = 0.05
     immobile_s: float = 3.0
-    arrive_fraction: float = 0.5  # stop at this fraction of the mission success radius (pose-error margin)
+    arrive_fraction: float = 0.25  # stop at this fraction of the mission success radius (pose-error margin: DEV odometry drift ~1 m)
     fwd_horizon_s: float = 1.0
     fwd_dt_s: float = 0.1
     footprint_offsets_m: tuple[float, ...] = (-0.27, 0.0, 0.27)
@@ -138,6 +141,10 @@ class Supervisor:
         self._t_dist_anchor = 0.0  # time of the last distance progress (bounds heading-progress credit) [s]
         self._look: Optional[dict] = None
         self._look_cycles = 0
+        self._t_start: Optional[float] = None
+        self._stall_xy: Optional[tuple[float, float]] = None  # where the current stall sequence began
+        self._progress_xy: Optional[tuple[float, float]] = None  # vehicle position at the last real progress
+        self._look_home: Optional[float] = None  # heading every look returns to (set at the first look since progress)
         self._dead_ends_since_progress = 0
         self.n_dead_ends = 0
         self._degraded_since: Optional[float] = None
@@ -206,6 +213,7 @@ class Supervisor:
         metric_kind: str = "dist",
         metric_shift: float = 0.0,
         heading_err: Optional[float] = None,
+        blind_s: float = 0.0,
     ) -> SupervisorDecision:
         """Advance the state machine. ``q`` in [0,1]; pose A-frame; speeds [m/s]; gap [s];
         ``immobilised_hint``: the localiser's wheel-vs-VO immobilisation flag;
@@ -216,7 +224,10 @@ class Supervisor:
         ``heading_err``: |angle| between the vehicle heading and the direction to the route's
         lookahead point [rad]; turning onto the route (the error shrinking by
         ``heading_progress_rad``) counts as progress, so the no-progress clock effectively starts
-        after alignment (None: distance progress only)."""
+        after alignment (None: distance progress only).
+        ``blind_s``: how long the governor has held the speed cap at ~0 because nothing ahead is
+        certified or visible [s]; from ``blind_stall_s`` on, turning is no longer progress and the
+        stall is declared after ``blind_stall_s`` (not ``no_progress_s``)."""
         p = self.p
         if self._estop:
             return self._stop(t, DriveMode.SAFE_STOP, "ESTOP operator")
@@ -224,6 +235,13 @@ class Supervisor:
             return self._stop(t, DriveMode.HOLD, "HOLD operator")
         if self._latched is not None:
             return self._stop(t, DriveMode.SAFE_STOP, self._latched)
+        if self._t_start is None:
+            self._t_start = t
+        if t - self._t_start < p.launch_hold_s:
+            # Gyro calibration at A: a 0.06 deg/s turn-on bias alone is ~2 m cross-track after 45 m
+            self._anchor = None
+            self._set(t, DriveMode.NOMINAL, "START gyro cal")
+            return SupervisorDecision(DriveMode.NOMINAL, "START gyro cal", 0.0, 1.0, (0.0, 0.0))
         d_goal = math.hypot(self.goal_xy[0] - pose[0], self.goal_xy[1] - pose[1])
         if self._arrived or d_goal <= self.arrive_radius_m:
             self._arrived = True
@@ -267,23 +285,40 @@ class Supervisor:
         herr = abs(float(heading_err)) if heading_err is not None and math.isfinite(heading_err) else None
         if self._anchor is not None and self._anchor[2] == kind and metric_shift > 0.0:
             self._anchor = (self._anchor[0], self._anchor[1] + metric_shift, kind)  # route got longer: same clock
+        moved = (math.inf if self._progress_xy is None
+                 else math.hypot(pose[0] - self._progress_xy[0], pose[1] - self._progress_xy[1]))
         if self._anchor is None or self._anchor[2] != kind:
             self._anchor = (t, metric, kind)
             self._anchor_herr, self._t_dist_anchor = herr, t
+            self._progress_xy = (pose[0], pose[1])
+        elif metric <= self._anchor[1] - p.progress_min_m and moved < p.progress_min_m:
+            # the goal got "closer" only because the map changed (a look revealed a shorter route):
+            # lower the baseline, keep the clock and the look / dead-end counts
+            self._anchor = (self._anchor[0], metric, kind)
         elif metric <= self._anchor[1] - p.progress_min_m:
             self._anchor = (t, metric, kind)
             self._anchor_herr, self._t_dist_anchor = herr, t
-            self._look_cycles = 0
-            self._dead_ends_since_progress = 0
-        elif (herr is not None and t - self._t_dist_anchor < p.align_max_s
+            self._progress_xy = (pose[0], pose[1])
+            escaped = (self._stall_xy is None
+                       or math.hypot(pose[0] - self._stall_xy[0], pose[1] - self._stall_xy[1]) >= p.stall_escape_m)
+            if escaped:  # creeping a few decimetres after each look is not getting out of the corner
+                self._look_cycles = 0
+                self._dead_ends_since_progress = 0
+                self._look_home = None
+                self._stall_xy = None
+        elif (herr is not None and t - self._t_dist_anchor < p.align_max_s and blind_s < p.blind_stall_s
               and (self._anchor_herr is None or herr <= self._anchor_herr - p.heading_progress_rad)):
             # turning onto the route is progress: restart the clock, keep the distance baseline
             # (bounded by align_max_s since the last distance progress, so oscillation cannot hide a stall)
             self._anchor = (t, self._anchor[1], kind)
             self._anchor_herr = herr
-        elif herr is not None and self._anchor_herr is not None and herr > self._anchor_herr:
-            self._anchor_herr = herr  # route swung (replan): measure turning progress from the new error
-        elif t - self._anchor[0] >= p.no_progress_s:
+        elif (herr is not None and self._anchor_herr is not None and herr > self._anchor_herr
+              and metric_shift > 0.0):
+            # route swung (replan: the route got longer): measure turning progress from the new error.
+            # Without a replan a growing error is the vehicle wiggling; raising the baseline then let the
+            # next swing back count as progress and hid a stall facing an unseeable ditch (DEV 109/121/127).
+            self._anchor_herr = herr
+        elif t - self._anchor[0] >= (p.blind_stall_s if blind_s >= p.blind_stall_s else p.no_progress_s):
             if self.dead_end_enabled and self._look_cycles >= p.looks_before_dead_end:
                 if self._dead_ends_since_progress >= p.max_dead_ends:
                     self._latched = "NO_CERTIFIED_PROGRESS"
@@ -302,7 +337,12 @@ class Supervisor:
             if not self.dead_end_enabled and self._look_cycles >= p.max_look_cycles:
                 self._latched = "NO_CERTIFIED_PROGRESS"
                 return self._stop(t, DriveMode.SAFE_STOP, self._latched)
-            y0 = pose[2]
+            # Return to one fixed heading across repeated looks: each look ends within look_tol_rad of
+            # its target, and restarting from the reached heading let that error accumulate.
+            if self._stall_xy is None:
+                self._stall_xy = (pose[0], pose[1])
+            y0 = pose[2] if self._look_home is None else self._look_home
+            self._look_home = y0
             self._look = {"targets": [y0 + p.look_angle_rad, y0 - p.look_angle_rad, y0], "k": 0, "t0": t}
             self._set(t, DriveMode.STOP_AND_LOOK, "NO_PROGRESS look")
             return self._look_step(t, pose, inflate)
@@ -388,12 +428,14 @@ class Supervisor:
             return 0.0, 0.0, dec.emergency, None
         now, fut = self.forward_clearance(v, w, pose, maps)
         r = self.p.footprint_radius_m
+        if v == 0.0 and fut < r:
+            # In-place rotation near a lethal core: the circles barely move (and on the map grid often
+            # show no decrease), but the body corners sweep; judge by the swept rectangle alone.
+            if self.rotation_clear(w, pose, maps):
+                return 0.0, w, dec.emergency, None
+            return 0.0, 0.0, True, f"FWD_CHECK rot clr={max(fut, 0.0):.2f}m"
         if fut < r and fut < now - 1e-3:
             reason = f"FWD_CHECK clr={max(fut, 0.0):.2f}m"
-            if v == 0.0:
-                if self.rotation_clear(w, pose, maps):
-                    return 0.0, w, dec.emergency, None
-                return 0.0, 0.0, True, reason
             now_r, fut_r = self.forward_clearance(0.0, w, pose, maps)
             if not (fut_r < r and fut_r < now_r - 1e-3) or self.rotation_clear(w, pose, maps):
                 return 0.0, w, True, reason

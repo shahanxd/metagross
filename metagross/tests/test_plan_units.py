@@ -390,7 +390,7 @@ def test_supervisor_dead_end_count_resets_on_progress():
 
 def test_supervisor_operator_arrival_watchdog():
     s = _sup(goal=(1.0, 0.0))
-    assert s.update(0.0, 0.9, (0.2, 0.0, 0.0), 0.0, 0.0).mode == DriveMode.ARRIVED
+    assert s.update(0.0, 0.9, (0.6, 0.0, 0.0), 0.0, 0.0).mode == DriveMode.ARRIVED
     s = _sup()
     s.operator(OperatorCmd(0.0, OperatorAction.HOLD))
     assert s.update(0.1, 0.9, (0, 0, 0), 0.0, 0.0).mode == DriveMode.HOLD
@@ -426,7 +426,7 @@ def test_supervisor_gate_allows_clear_rotation_when_forward_blocked():
     s = _sup()
     look = SupervisorDecision(DriveMode.STOP_AND_LOOK, "STOP_AND_LOOK 1/3", 0.0, 1.0, (0.0, 0.6))
     now, fut = s.forward_clearance(0.0, 0.6, (0.0, 0.0, 0.0), maps)
-    assert fut < s.p.footprint_radius_m and fut < now - 1e-3  # the old circle check would block
+    assert fut < s.p.footprint_radius_m and fut <= now  # the old circle check would block (in-place turn never gains clearance on the 0.2 m grid)
     assert s.rotation_clear(0.6, (0.0, 0.0, 0.0), maps)
     v, w, emergency, reason = s.gate(look, 0.0, 0.0, (0.0, 0.0, 0.0), maps)
     assert v == 0.0 and w == 0.6 and not emergency and reason is None
