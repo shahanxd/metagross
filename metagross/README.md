@@ -40,7 +40,7 @@ results file next to every number they quote.
 | Onboard compute timings | **Tested** on the development laptop (Intel i5-1135G7, 4 cores, shared with other jobs) | `results/localizer_timing.json`, `results/perception_timing.json` |
 | Missing-ground detection range | **Simulated** (analytic synthetic scenes) | `results/perception_ditch_range.csv` |
 | Stereo renderer realism (SGBM on rendered images) | **Simulated** | `results/renderer_bench.json` |
-| Closed-loop A to B driving | **Simulated**, in progress; results are not final and are not quoted here | `docs/BUILD_LOG.md` (engineering log) |
+| Closed-loop A to B driving | **Simulated** (tier-0 depth sensor, no images): held-out EVAL seeds 0-59, FULL 33/60 reached B, TYPICAL baseline 31/60; DEV 100-129 FULL 20/30. A first EVAL run on a regressed commit (17/60) is kept and disclosed | `docs/EVAL_PREREGISTRATION.md`, `results/closed_loop_eval.json`, `results/closed_loop_dev.json` |
 | Detectability and safe-speed envelope | **Estimated** (closed-form geometry) | `results/theory.json` |
 | Trained off-road deploy segmenter (OFFROAD5, GPU) | **Proposed**: training scripts exist (`aws/`); no trained model is in `models/` yet | `aws/README.md` |
 | Operator console and narrow-band link | Implemented and unit-tested (codec, link emulator, replay console); not tested over a real radio | `tests/test_plan_link.py`, `operator_ui/` |

@@ -1,0 +1,14 @@
+{
+ "mission_id": "dedead65",
+ "goal_xy_a": [
+  49.1885,
+  -3.104
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 183.2,
+ "goal_sigma_m": 0.7013,
+ "goal_entry": {
+  "range_m": 49.2864,
+  "bearing_deg": -3.6108
+ }
+}

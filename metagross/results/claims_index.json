@@ -31,57 +31,185 @@
   "source": "results/theory.json#stopping",
   "note": ""
  },
- "closed_loop_stereo_FULL_arrived_est": {
-  "id": "closed_loop_stereo_FULL_arrived_est",
-  "value": "0.00",
-  "unit": "",
+ "closed_loop_eval_tier0_FULL_arrived_short": {
+  "id": "closed_loop_eval_tier0_FULL_arrived_short",
+  "value": "4",
+  "unit": "runs",
   "label": "Simulated",
-  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.arrived_est_rate",
-  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; share of runs that reached the goal in their own pose estimate"
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; declared ARRIVED in its own pose estimate but ended outside the success radius"
  },
- "closed_loop_stereo_FULL_compute_p50_p95": {
-  "id": "closed_loop_stereo_FULL_compute_p50_p95",
-  "value": "232.3 / 420.0 ms",
-  "unit": "",
+ "closed_loop_eval_tier0_FULL_collision": {
+  "id": "closed_loop_eval_tier0_FULL_collision",
+  "value": "7",
+  "unit": "count",
   "label": "Simulated",
-  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.compute_ms_p50",
-  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; autonomy wall time per 5 Hz tick on the shared 4-core laptop (other jobs running)"
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; collisions (referee, GT)"
  },
- "closed_loop_stereo_FULL_ditch_collisions": {
-  "id": "closed_loop_stereo_FULL_ditch_collisions",
-  "value": "0 ditch / 0 coll",
-  "unit": "",
+ "closed_loop_eval_tier0_FULL_ditch": {
+  "id": "closed_loop_eval_tier0_FULL_ditch",
+  "value": "2",
+  "unit": "count",
   "label": "Simulated",
-  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.ditch_entries",
-  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT"
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; ditch entries (referee, GT)"
  },
- "closed_loop_stereo_FULL_drive_speed": {
-  "id": "closed_loop_stereo_FULL_drive_speed",
-  "value": "0.08 m/s",
-  "unit": "",
+ "closed_loop_eval_tier0_FULL_final_err_p50": {
+  "id": "closed_loop_eval_tier0_FULL_final_err_p50",
+  "value": "2.00",
+  "unit": "m",
   "label": "Simulated",
-  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.drive_speed_mps",
-  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; GT path / time until estimated arrival or episode end"
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.final_error_median_m",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; median GT distance to B at episode end"
  },
- "closed_loop_stereo_FULL_success": {
-  "id": "closed_loop_stereo_FULL_success",
-  "value": "0/3",
-  "unit": "",
+ "closed_loop_eval_tier0_FULL_mean_speed": {
+  "id": "closed_loop_eval_tier0_FULL_mean_speed",
+  "value": "1.29",
+  "unit": "m/s",
   "label": "Simulated",
-  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.success_rate",
-  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; success = true goal within the mission success radius"
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.mean_speed_mps",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; mean over runs of referee path length / episode time"
+ },
+ "closed_loop_eval_tier0_FULL_n": {
+  "id": "closed_loop_eval_tier0_FULL_n",
+  "value": "60",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_FULL_oob": {
+  "id": "closed_loop_eval_tier0_FULL_oob",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_FULL_success": {
+  "id": "closed_loop_eval_tier0_FULL_success",
+  "value": "33",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_FULL_success_rate": {
+  "id": "closed_loop_eval_tier0_FULL_success_rate",
+  "value": "0.550",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.success_rate",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; success / n"
+ },
+ "closed_loop_eval_tier0_FULL_water": {
+  "id": "closed_loop_eval_tier0_FULL_water",
+  "value": "9",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; water entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_arrived_short": {
+  "id": "closed_loop_eval_tier0_TYPICAL_arrived_short",
+  "value": "4",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.arrived_short",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; declared ARRIVED in its own pose estimate but ended outside the success radius"
+ },
+ "closed_loop_eval_tier0_TYPICAL_collision": {
+  "id": "closed_loop_eval_tier0_TYPICAL_collision",
+  "value": "5",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.collisions",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; collisions (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_ditch": {
+  "id": "closed_loop_eval_tier0_TYPICAL_ditch",
+  "value": "2",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.ditch_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; ditch entries (referee, GT)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_final_err_p50": {
+  "id": "closed_loop_eval_tier0_TYPICAL_final_err_p50",
+  "value": "2.00",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.final_error_median_m",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; median GT distance to B at episode end"
+ },
+ "closed_loop_eval_tier0_TYPICAL_mean_speed": {
+  "id": "closed_loop_eval_tier0_TYPICAL_mean_speed",
+  "value": "1.22",
+  "unit": "m/s",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.mean_speed_mps",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; mean over runs of referee path length / episode time"
+ },
+ "closed_loop_eval_tier0_TYPICAL_n": {
+  "id": "closed_loop_eval_tier0_TYPICAL_n",
+  "value": "60",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.n",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; number of EVAL runs"
+ },
+ "closed_loop_eval_tier0_TYPICAL_oob": {
+  "id": "closed_loop_eval_tier0_TYPICAL_oob",
+  "value": "7",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.out_of_bounds",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs ended out of bounds"
+ },
+ "closed_loop_eval_tier0_TYPICAL_success": {
+  "id": "closed_loop_eval_tier0_TYPICAL_success",
+  "value": "31",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.n_success",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; runs with the true goal within the mission success radius (referee)"
+ },
+ "closed_loop_eval_tier0_TYPICAL_success_rate": {
+  "id": "closed_loop_eval_tier0_TYPICAL_success_rate",
+  "value": "0.517",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.success_rate",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; success / n"
+ },
+ "closed_loop_eval_tier0_TYPICAL_water": {
+  "id": "closed_loop_eval_tier0_TYPICAL_water",
+  "value": "10",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.water_entries",
+  "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; water entries (referee, GT)"
  },
  "closed_loop_tier0_FULL_arrived_est": {
   "id": "closed_loop_tier0_FULL_arrived_est",
-  "value": "0.53",
+  "value": "0.07",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.arrived_est_rate",
   "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; share of runs that reached the goal in their own pose estimate"
  },
+ "closed_loop_tier0_FULL_arrived_short": {
+  "id": "closed_loop_tier0_FULL_arrived_short",
+  "value": "1/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.arrived_short",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; declared ARRIVED in its own estimate but ended outside the success radius (odometry error)"
+ },
  "closed_loop_tier0_FULL_compute_p50_p95": {
   "id": "closed_loop_tier0_FULL_compute_p50_p95",
-  "value": "150.8 / 237.7 ms",
+  "value": "58.5 / 81.4 ms",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.compute_ms_p50",
@@ -97,15 +225,23 @@
  },
  "closed_loop_tier0_FULL_drive_speed": {
   "id": "closed_loop_tier0_FULL_drive_speed",
-  "value": "1.21 m/s",
+  "value": "1.30 m/s",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.drive_speed_mps",
   "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT path / time until estimated arrival or episode end"
  },
+ "closed_loop_tier0_FULL_final_error_p50_p90": {
+  "id": "closed_loop_tier0_FULL_final_error_p50_p90",
+  "value": "1.997 / 32.849 m",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.final_error_median_m",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT distance to B at episode end"
+ },
  "closed_loop_tier0_FULL_success": {
   "id": "closed_loop_tier0_FULL_success",
-  "value": "3/30",
+  "value": "20/30",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.success_rate",
@@ -113,15 +249,23 @@
  },
  "closed_loop_tier0_TYPICAL_arrived_est": {
   "id": "closed_loop_tier0_TYPICAL_arrived_est",
-  "value": "0.53",
+  "value": "0.07",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.arrived_est_rate",
   "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; share of runs that reached the goal in their own pose estimate"
  },
+ "closed_loop_tier0_TYPICAL_arrived_short": {
+  "id": "closed_loop_tier0_TYPICAL_arrived_short",
+  "value": "1/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.arrived_short",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; declared ARRIVED in its own estimate but ended outside the success radius (odometry error)"
+ },
  "closed_loop_tier0_TYPICAL_compute_p50_p95": {
   "id": "closed_loop_tier0_TYPICAL_compute_p50_p95",
-  "value": "130.7 / 232.3 ms",
+  "value": "51.3 / 71.0 ms",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.compute_ms_p50",
@@ -129,7 +273,7 @@
  },
  "closed_loop_tier0_TYPICAL_ditch_collisions": {
   "id": "closed_loop_tier0_TYPICAL_ditch_collisions",
-  "value": "0 ditch / 1 coll",
+  "value": "0 ditch / 2 coll",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.ditch_entries",
@@ -137,15 +281,23 @@
  },
  "closed_loop_tier0_TYPICAL_drive_speed": {
   "id": "closed_loop_tier0_TYPICAL_drive_speed",
-  "value": "1.21 m/s",
+  "value": "1.25 m/s",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.drive_speed_mps",
   "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT path / time until estimated arrival or episode end"
  },
+ "closed_loop_tier0_TYPICAL_final_error_p50_p90": {
+  "id": "closed_loop_tier0_TYPICAL_final_error_p50_p90",
+  "value": "1.998 / 31.747 m",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.final_error_median_m",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT distance to B at episode end"
+ },
  "closed_loop_tier0_TYPICAL_success": {
   "id": "closed_loop_tier0_TYPICAL_success",
-  "value": "4/30",
+  "value": "16/30",
   "unit": "",
   "label": "Simulated",
   "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.success_rate",
@@ -1005,7 +1157,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
  },
  "seg_cpu_latency_threads_4_ms": {
   "id": "seg_cpu_latency_threads_4_ms",
@@ -1013,7 +1165,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
  },
  "seg_cpu_test_false_hazard_rate": {
   "id": "seg_cpu_test_false_hazard_rate",
@@ -1021,7 +1173,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_false_safe_obstacle": {
   "id": "seg_cpu_test_false_safe_obstacle",
@@ -1029,7 +1181,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_false_safe_rate": {
   "id": "seg_cpu_test_false_safe_rate",
@@ -1037,7 +1189,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
  },
  "seg_cpu_test_false_safe_rate_delta_vs_smoke": {
   "id": "seg_cpu_test_false_safe_rate_delta_vs_smoke",
@@ -1045,7 +1197,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
  },
  "seg_cpu_test_false_safe_rate_delta_vs_zeroshot": {
   "id": "seg_cpu_test_false_safe_rate_delta_vs_zeroshot",
@@ -1053,7 +1205,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
  },
  "seg_cpu_test_false_safe_water": {
   "id": "seg_cpu_test_false_safe_water",
@@ -1061,7 +1213,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_false_safe_water_delta_vs_smoke": {
   "id": "seg_cpu_test_false_safe_water_delta_vs_smoke",
@@ -1069,7 +1221,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
  },
  "seg_cpu_test_false_safe_water_delta_vs_zeroshot": {
   "id": "seg_cpu_test_false_safe_water_delta_vs_zeroshot",
@@ -1077,7 +1229,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
  },
  "seg_cpu_test_hazard_to_stable_rate": {
   "id": "seg_cpu_test_hazard_to_stable_rate",
@@ -1085,7 +1237,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_hazard_to_stable_rate_delta_vs_smoke": {
   "id": "seg_cpu_test_hazard_to_stable_rate_delta_vs_smoke",
@@ -1093,7 +1245,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
  },
  "seg_cpu_test_hazard_to_stable_rate_delta_vs_zeroshot": {
   "id": "seg_cpu_test_hazard_to_stable_rate_delta_vs_zeroshot",
@@ -1101,7 +1253,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
  },
  "seg_cpu_test_iou_obstacle": {
   "id": "seg_cpu_test_iou_obstacle",
@@ -1109,7 +1261,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_iou_sky": {
   "id": "seg_cpu_test_iou_sky",
@@ -1117,7 +1269,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_iou_stable": {
   "id": "seg_cpu_test_iou_stable",
@@ -1125,7 +1277,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_iou_unstable": {
   "id": "seg_cpu_test_iou_unstable",
@@ -1133,7 +1285,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_iou_water": {
   "id": "seg_cpu_test_iou_water",
@@ -1141,7 +1293,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_miou": {
   "id": "seg_cpu_test_miou",
@@ -1149,7 +1301,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
  },
  "seg_cpu_test_miou_delta_vs_smoke": {
   "id": "seg_cpu_test_miou_delta_vs_smoke",
@@ -1157,7 +1309,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
  },
  "seg_cpu_test_miou_delta_vs_zeroshot": {
   "id": "seg_cpu_test_miou_delta_vs_zeroshot",
@@ -1165,7 +1317,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
  },
  "seg_cpu_test_obstacle_to_stable_rate": {
   "id": "seg_cpu_test_obstacle_to_stable_rate",
@@ -1173,7 +1325,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_test_pixel_acc": {
   "id": "seg_cpu_test_pixel_acc",
@@ -1181,7 +1333,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
  },
  "seg_cpu_test_water_to_stable_rate": {
   "id": "seg_cpu_test_water_to_stable_rate",
@@ -1189,7 +1341,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
  },
  "seg_cpu_train_iters_at_best": {
   "id": "seg_cpu_train_iters_at_best",
@@ -1197,7 +1349,7 @@
   "unit": "iterations",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; batch 8, [256, 320] crops, laptop CPU (2 threads)"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; batch 8, [256, 320] crops, laptop CPU (2 threads)"
  },
  "seg_cpu_val_false_hazard_rate": {
   "id": "seg_cpu_val_false_hazard_rate",
@@ -1205,7 +1357,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_false_safe_obstacle": {
   "id": "seg_cpu_val_false_safe_obstacle",
@@ -1213,7 +1365,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_false_safe_rate": {
   "id": "seg_cpu_val_false_safe_rate",
@@ -1221,7 +1373,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
  },
  "seg_cpu_val_false_safe_rate_delta_vs_smoke": {
   "id": "seg_cpu_val_false_safe_rate_delta_vs_smoke",
@@ -1229,7 +1381,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
  },
  "seg_cpu_val_false_safe_rate_delta_vs_zeroshot": {
   "id": "seg_cpu_val_false_safe_rate_delta_vs_zeroshot",
@@ -1237,7 +1389,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
  },
  "seg_cpu_val_false_safe_water": {
   "id": "seg_cpu_val_false_safe_water",
@@ -1245,7 +1397,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_false_safe_water_delta_vs_smoke": {
   "id": "seg_cpu_val_false_safe_water_delta_vs_smoke",
@@ -1253,7 +1405,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
  },
  "seg_cpu_val_false_safe_water_delta_vs_zeroshot": {
   "id": "seg_cpu_val_false_safe_water_delta_vs_zeroshot",
@@ -1261,7 +1413,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
  },
  "seg_cpu_val_hazard_to_stable_rate": {
   "id": "seg_cpu_val_hazard_to_stable_rate",
@@ -1269,7 +1421,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_hazard_to_stable_rate_delta_vs_smoke": {
   "id": "seg_cpu_val_hazard_to_stable_rate_delta_vs_smoke",
@@ -1277,7 +1429,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
  },
  "seg_cpu_val_hazard_to_stable_rate_delta_vs_zeroshot": {
   "id": "seg_cpu_val_hazard_to_stable_rate_delta_vs_zeroshot",
@@ -1285,7 +1437,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
  },
  "seg_cpu_val_iou_obstacle": {
   "id": "seg_cpu_val_iou_obstacle",
@@ -1293,7 +1445,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_iou_sky": {
   "id": "seg_cpu_val_iou_sky",
@@ -1301,7 +1453,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_iou_stable": {
   "id": "seg_cpu_val_iou_stable",
@@ -1309,7 +1461,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_iou_unstable": {
   "id": "seg_cpu_val_iou_unstable",
@@ -1317,7 +1469,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_iou_water": {
   "id": "seg_cpu_val_iou_water",
@@ -1325,7 +1477,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_miou": {
   "id": "seg_cpu_val_miou",
@@ -1333,7 +1485,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
  },
  "seg_cpu_val_miou_delta_vs_smoke": {
   "id": "seg_cpu_val_miou_delta_vs_smoke",
@@ -1341,7 +1493,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
  },
  "seg_cpu_val_miou_delta_vs_zeroshot": {
   "id": "seg_cpu_val_miou_delta_vs_zeroshot",
@@ -1349,7 +1501,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
  },
  "seg_cpu_val_obstacle_to_stable_rate": {
   "id": "seg_cpu_val_obstacle_to_stable_rate",
@@ -1357,7 +1509,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_cpu_val_pixel_acc": {
   "id": "seg_cpu_val_pixel_acc",
@@ -1365,7 +1517,7 @@
   "unit": "",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
  },
  "seg_cpu_val_water_to_stable_rate": {
   "id": "seg_cpu_val_water_to_stable_rate",
@@ -1373,7 +1525,7 @@
   "unit": "fraction",
   "label": "Tested",
   "source": "results/seg_cpu.json",
-  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
  },
  "seg_smoke_latency_threads_2_ms": {
   "id": "seg_smoke_latency_threads_2_ms",

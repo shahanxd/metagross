@@ -177,3 +177,9 @@ Cause (then confirmed on DEV only): after the last DEV closed-loop check the gyr
 1e-3 to 1e-2 rad/s to pass a unit test; one brief mid-mission stop then set the bias to a single +-4.5e-3 rad/s noise
 sample. That commit scores **6/30 on DEV**. Lesson recorded: always re-run DEV closed loop after any change before
 freezing. Run 1 is in `results/closed_loop_eval_v1.json` / `results/runs_eval_tier0_v1/`.
+
+### EVAL run 2 (commit 45ec399, fixed stack)
+**FULL 33/60, TYPICAL 31/60** (`results/closed_loop_eval.json`, protocol and per-family table in
+`docs/EVAL_PREREGISTRATION.md`). FULL failures: water 9, collision 7 (F4 side approaches), stuck 5, arrived_short 4,
+ditch entry 2. FULL never left the map (TYPICAL 7). Compute per 5 Hz tick: p50 62.5 ms, p95 88.7 ms.
+Tests: 418 passed, 16 skipped (Chrome-dependent).

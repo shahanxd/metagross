@@ -1,0 +1,14 @@
+{
+ "mission_id": "535377bd",
+ "goal_xy_a": [
+  42.0622,
+  -5.6816
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 166.1,
+ "goal_sigma_m": 1.2408,
+ "goal_entry": {
+  "range_m": 42.4442,
+  "bearing_deg": -7.6927
+ }
+}
