@@ -43,18 +43,18 @@
   }
  ],
  "text_on_figure": {
-  "full_below": "17.4 s: first confirmed ditch cells on the trench, 8.6 m ahead (9 of 53 confirmed cells lie on it, 44 are not on any trench), turns hard toward the gap (slowing to 1.3 m/s) and goes through the gap. Reached B at 42.7 s.",
-  "typical_below": "Treats unseen ground as free, 1.5 m/s set-point: drove into the trench at 47.0 s (rear-left wheel first).",
+  "full_below": "17.4\u00a0s: trench cells confirmed 8.6\u00a0m ahead (only 9 of 53 confirmed cells are on a trench). FULL goes through the gap and reaches B at 42.7\u00a0s.",
+  "typical_below": "Treats unseen ground as free (1.5\u00a0m/s set-point): drove into the trench at 47.0\u00a0s, rear-left wheel first.",
   "note": "Backup example, one selected seed. Over all 60 EVAL runs each stack drove into a trench twice (FULL: F3 seeds 14 and 26; TYPICAL: seeds 7 and 38). Ditch-field and crest worlds reached B: FULL 11/20, TYPICAL 8/20.",
   "provenance": "Simulated \u00b7 tier-0 synthetic depth sensor, no images \u00b7 held-out EVAL seed 7 (F2 ditch field) \u00b7 results/runs_eval_tier0/{FULL,TYPICAL}/007, results/claims.csv",
   "headers": {
    "FULL": [
     "FULL stack",
-    "unseen ground is not free, ditch detector"
+    "unseen ground is not free \u00b7 ditch detector"
    ],
    "TYPICAL": [
     "TYPICAL baseline",
-    "unseen ground = free, no ditch detector"
+    "unseen ground is free \u00b7 no ditch detector"
    ]
   }
  },
@@ -91,13 +91,6 @@
    "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
    "claim_id": null,
    "drawn": true
-  },
-  {
-   "what": "speed clause",
-   "value": "turns hard toward the gap (slowing to 1.3 m/s)",
-   "source": "results/runs_eval_tier0/FULL/007/gt/states.npz v; debug ticks gov_binding / cmd_w",
-   "how": "GT speed at the tick 1.495 m/s, min over the next 3 s 1.275 m/s; governor binding {'platform': 16}; peak |cmd_w| 1.16 rad/s",
-   "claim_id": null
   },
   {
    "what": "trench depth",
@@ -157,13 +150,6 @@
    "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
    "claim_id": null,
    "drawn": true
-  },
-  {
-   "what": "speed clause",
-   "value": "turns hard toward the gap (slowing to 1.3 m/s)",
-   "source": "results/runs_eval_tier0/FULL/007/gt/states.npz v; debug ticks gov_binding / cmd_w",
-   "how": "GT speed at the tick 1.495 m/s, min over the next 3 s 1.275 m/s; governor binding {'platform': 16}; peak |cmd_w| 1.16 rad/s",
-   "claim_id": null
   }
  ],
  "claims_to_register": [
@@ -325,7 +311,7 @@
      "t_s": 30.0,
      "x_m": 36.12,
      "y_m": 13.64,
-     "labelled": true
+     "labelled": false
     },
     {
      "t_s": 40.0,
@@ -442,37 +428,43 @@
    {
     "name": "FULL end",
     "placed": true,
-    "covered_cells": 18,
+    "covered_cells": 0,
+    "covered_driveover_cells": 5,
     "leader_cost": 3.0
    },
    {
     "name": "confirm label",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
-   },
-   {
-    "name": "gap",
-    "placed": true,
-    "covered_cells": 0,
-    "leader_cost": 28.0
    },
    {
     "name": "A",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "B",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "gap",
+    "placed": true,
+    "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "FULL tick 10",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
@@ -489,64 +481,70 @@
     "name": "FULL tick 40",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
-   },
-   {
-    "name": "scale bar",
-    "x0_m": 1.98,
-    "y0_m": 32.98,
-    "covered_cells": 0.0
    }
   ],
   "TYPICAL": [
    {
+    "name": "trench",
+    "placed": true,
+    "covered_cells": 0,
+    "covered_driveover_cells": 7,
+    "leader_cost": 0.0
+   },
+   {
     "name": "TYPICAL end",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 7.5
-   },
-   {
-    "name": "trench",
-    "placed": true,
-    "covered_cells": 7,
-    "leader_cost": 0.0
    },
    {
     "name": "A",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "B",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "TYPICAL tick 10",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "TYPICAL tick 20",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "TYPICAL tick 30",
-    "placed": true,
-    "covered_cells": 0,
-    "leader_cost": 0.0
+    "placed": false,
+    "reason": "no clear candidate"
    },
    {
     "name": "TYPICAL tick 40",
     "placed": false,
     "reason": "no clear candidate"
    }
-  ]
+  ],
+  "header_scale_bar": {
+   "x_right_in": 8.94,
+   "y_mid_in": 5.318,
+   "width_in": 1.512,
+   "scale": "10 m = 0.688 in, same as the map panels"
+  }
  },
  "how_drawn": {
   "background": "hillshade (az 315, alt 40, vert. exag. 3.0) of the scenario heightmap smoothed by 0.15 m, tinted by material (gravel trail = beige band); 0.25 m contours of the landform (heightmap + trench excavation, smoothed)",

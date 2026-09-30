@@ -47,18 +47,18 @@
   }
  ],
  "text_on_figure": {
-  "full_below": "18.2 s: at the crest, FULL confirms the trench 3.2 m ahead, turns hard toward the gap (slowing to 0.7 m/s) and goes through the gap. Reached B at 33.0 s.",
-  "typical_below": "Treats unseen ground as free, 1.5 m/s set-point: drove into the trench at 22.3 s (front-left wheel first).",
+  "full_below": "18.2\u00a0s, at the crest: trench confirmed 3.2\u00a0m ahead. FULL turns hard toward the gap (slowing to 0.7\u00a0m/s), goes through it and reaches B at 33.0\u00a0s.",
+  "typical_below": "Treats unseen ground as free (1.5\u00a0m/s set-point): drove into the trench at 22.3\u00a0s, front-left wheel first.",
   "note": "One selected seed. Over all 60 EVAL runs each stack drove into a trench twice (FULL: F3 seeds 14 and 26; TYPICAL: seeds 7 and 38). Ditch-field and crest worlds reached B: FULL 11/20, TYPICAL 8/20.",
   "provenance": "Simulated \u00b7 tier-0 synthetic depth sensor, no images \u00b7 held-out EVAL seed 38 (F3 crest + hidden trench) \u00b7 results/runs_eval_tier0/{FULL,TYPICAL}/038, results/example_runs_eval.json, results/claims.csv",
   "headers": {
    "FULL": [
     "FULL stack",
-    "unseen ground is not free, ditch detector"
+    "unseen ground is not free \u00b7 ditch detector"
    ],
    "TYPICAL": [
     "TYPICAL baseline",
-    "unseen ground = free, no ditch detector"
+    "unseen ground is free \u00b7 no ditch detector"
    ]
   }
  },
@@ -98,7 +98,7 @@
   },
   {
    "what": "speed clause",
-   "value": "turns hard toward the gap (slowing to 0.7 m/s)",
+   "value": "turns hard toward the gap (slowing to 0.7\u00a0m/s)",
    "source": "results/runs_eval_tier0/FULL/038/gt/states.npz v; debug ticks gov_binding / cmd_w",
    "how": "GT speed at the tick 1.506 m/s, min over the next 3 s 0.665 m/s; governor binding {'platform': 15, 'r_cert': 1}; peak |cmd_w| 1.20 rad/s",
    "claim_id": "example_eval_s038_full_speed_min_after_confirm_mps + example_eval_s038_full_cmd_w_max_after_confirm"
@@ -184,7 +184,8 @@
      "t_s": 20.0,
      "x_m": 29.59,
      "y_m": 21.0,
-     "labelled": true
+     "labelled": false,
+     "why_unlabelled": "next to the confirmation label"
     },
     {
      "t_s": 30.0,
@@ -249,7 +250,7 @@
      "t_s": 20.0,
      "x_m": 29.06,
      "y_m": 20.38,
-     "labelled": false
+     "labelled": true
     }
    ],
    "trench_crossings": []
@@ -362,86 +363,86 @@
     "name": "FULL end",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "confirm label",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "A",
+    "placed": true,
+    "covered_cells": 0,
+    "covered_driveover_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "B",
+    "placed": true,
+    "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "gap",
     "placed": true,
     "covered_cells": 0,
-    "leader_cost": 0.0
-   },
-   {
-    "name": "A",
-    "placed": true,
-    "covered_cells": 0,
-    "leader_cost": 0.0
-   },
-   {
-    "name": "B",
-    "placed": true,
-    "covered_cells": 0,
-    "leader_cost": 0.0
+    "covered_driveover_cells": 0,
+    "leader_cost": 1.5
    },
    {
     "name": "FULL tick 10",
     "placed": true,
     "covered_cells": 0,
-    "leader_cost": 0.0
-   },
-   {
-    "name": "FULL tick 20",
-    "placed": true,
-    "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "FULL tick 30",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
-   },
-   {
-    "name": "scale bar",
-    "x0_m": 1.98,
-    "y0_m": 1.58,
-    "covered_cells": 0.0
    }
   ],
   "TYPICAL": [
    {
-    "name": "TYPICAL end",
-    "placed": true,
-    "covered_cells": 0,
-    "leader_cost": 22.5
-   },
-   {
     "name": "crest",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "trench",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
+   },
+   {
+    "name": "TYPICAL end",
+    "placed": true,
+    "covered_cells": 0,
+    "covered_driveover_cells": 0,
+    "leader_cost": 22.5
    },
    {
     "name": "A",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
     "name": "B",
     "placed": true,
     "covered_cells": 0,
+    "covered_driveover_cells": 0,
     "leader_cost": 0.0
    },
    {
@@ -451,10 +452,18 @@
    },
    {
     "name": "TYPICAL tick 20",
-    "placed": false,
-    "reason": "no clear candidate"
+    "placed": true,
+    "covered_cells": 0,
+    "covered_driveover_cells": 0,
+    "leader_cost": 0.0
    }
-  ]
+  ],
+  "header_scale_bar": {
+   "x_right_in": 8.94,
+   "y_mid_in": 5.318,
+   "width_in": 1.512,
+   "scale": "10 m = 0.688 in, same as the map panels"
+  }
  },
  "how_drawn": {
   "background": "hillshade (az 315, alt 40, vert. exag. 3.0) of the scenario heightmap smoothed by 0.15 m, tinted by material (gravel trail = beige band); 0.25 m contours of the landform (heightmap + trench excavation, smoothed)",

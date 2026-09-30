@@ -132,8 +132,8 @@ TURN_CMD_W = 0.8           # rad/s: "turns hard" only when the peak commanded |y
 AT_CREST_M = 2.0           # m: "at the crest" only when the vehicle is this close to the crest polyline
 
 CONFIG_TXT = {
-    "FULL": ("FULL stack", "unseen ground is not free, ditch detector"),
-    "TYPICAL": ("TYPICAL baseline", "unseen ground = free, no ditch detector"),
+    "FULL": ("FULL stack", "unseen ground is not free · ditch detector"),
+    "TYPICAL": ("TYPICAL baseline", "unseen ground is free · no ditch detector"),
 }
 FAMILY_TXT = {
     "F1_trail": "F1 Trail",
@@ -402,7 +402,7 @@ OCC_RES = 0.2  # m
 class Occ:
     """Boolean layers over one map panel (world metres) that labels must not cover."""
 
-    LAYERS = ("obj", "path", "haz", "mark", "label")
+    LAYERS = ("obj", "small", "path", "haz", "mark", "label")
 
     def __init__(self, ext: tuple[float, float, float, float]):
         self.ext = ext
@@ -500,19 +500,23 @@ def ring(dists, angles_deg=range(0, 360, 30)) -> list[tuple]:
     return out
 
 
-TEXT_LAYERS = ("obj", "path", "haz", "mark", "label")
+TEXT_LAYERS = ("obj", "path", "haz", "mark", "label")   # a label must not cover any cell of these
+SOFT_LAYERS = ("small",)                                # drive-over rocks: tolerated, but avoided when possible
+END_PAD_M = 0.8                                         # extra clearance (m) left and right of a label
 PLACEMENT_LOG: list[dict] = []
 
 
 def place_text(ax, occ: Occ, texts, anchor, cands, *, fs: float, colour: str = INK, weight: str = "normal",
                leader: bool = True, required: bool = True, name: str = "", pad: float = 0.35,
-               shrink: float = 0.8, text_layers=TEXT_LAYERS, ha_multi: str | None = None) -> dict | None:
+               shrink: float = 0.8, ha_multi: str | None = None, max_soft: int = 3, reject=None,
+               end_pad: float = END_PAD_M) -> dict | None:
     """Place one label at the cheapest collision-free candidate; draw it (and a leader) and mark it occupied.
 
     ``texts`` is a string or a list of variants (later variants are slightly penalised). ``cands`` are
-    (dx, dy, ha, va) offsets from ``anchor``. Cost = 60 x covered cells + 4 x leader cells over objects/labels
-    + 1.5 x leader cells over paths/hazards + 0.25 x distance + small order penalties. Candidates that leave the
-    map frame are skipped. Optional labels are dropped when every candidate covers something.
+    (dx, dy, ha, va) offsets from ``anchor``. Cost = 60 x covered hard cells + 6 x covered drive-over-rock cells
+    + 4 x leader cells over objects/labels/markers + 1.5 x leader cells over paths/hazards + 0.25 x distance
+    + small order penalties. Candidates that leave the map frame are skipped. Optional labels are dropped unless
+    some candidate covers no hard cell and at most ``max_soft`` drive-over-rock cells.
     """
     if isinstance(texts, str):
         texts = [texts]
@@ -524,10 +528,12 @@ def place_text(ax, occ: Occ, texts, anchor, cands, *, fs: float, colour: str = I
                         path_effects=HALO, linespacing=1.15, multialignment=ha_multi or ha)
             rect_raw = data_rect(ax, t)
             t.remove()
-            rect = (rect_raw[0] - pad, rect_raw[1] - pad, rect_raw[2] + pad, rect_raw[3] + pad)
-            if not occ.inside(rect_raw, margin=0.4):
+            # wider pad at the line ends: a rock just before or after a word reads as a bullet or a comma
+            rect = (rect_raw[0] - pad - end_pad, rect_raw[1] - pad, rect_raw[2] + pad + end_pad, rect_raw[3] + pad)
+            if not occ.inside(rect_raw, margin=0.4) or (reject is not None and reject(rect_raw)):
                 continue
-            c_text = occ.count_rect(rect, text_layers)
+            c_text = occ.count_rect(rect, TEXT_LAYERS)
+            c_soft = occ.count_rect(rect, SOFT_LAYERS)
             seg, c_lead = None, 0.0
             if leader:
                 seg = leader_segment(rect_raw, anchor, shrink)
@@ -536,15 +542,18 @@ def place_text(ax, occ: Occ, texts, anchor, cands, *, fs: float, colour: str = I
                     far = np.hypot(xs - anchor[0], ys - anchor[1]) > 1.3
                     c_lead = (4.0 * occ.count_points(xs[far], ys[far], ("obj", "label", "mark"))
                               + 1.5 * occ.count_points(xs[far], ys[far], ("path", "haz")))
-            cost = 60.0 * c_text + c_lead + 0.25 * math.hypot(dx, dy) + 0.15 * ci + 3.0 * vi
+            cost = 60.0 * c_text + 6.0 * c_soft + c_lead + 0.25 * math.hypot(dx, dy) + 0.15 * ci + 3.0 * vi
+            if not required and (c_text > 0 or c_soft > max_soft):
+                continue
             if best is None or cost < best["cost"]:
-                best = {"cost": cost, "c_text": c_text, "c_lead": c_lead, "txt": txt, "x": x, "y": y, "ha": ha,
-                        "va": va, "rect": rect, "rect_raw": rect_raw, "seg": seg}
-    if best is None or (not required and best["c_text"] > 0):
+                best = {"cost": cost, "c_text": c_text, "c_soft": c_soft, "c_lead": c_lead, "txt": txt, "x": x,
+                        "y": y, "ha": ha, "va": va, "rect": rect, "rect_raw": rect_raw, "seg": seg}
+    if best is None:
         PLACEMENT_LOG.append({"name": name, "placed": False, "reason": "no clear candidate"})
         return None
     if best["c_text"] > 0 or best["c_lead"] > 0:
-        print(f"  [place] {name!r}: covered cells {best['c_text']}, leader cost {best['c_lead']:.1f}")
+        per = {k: occ.count_rect(best["rect"], (k,)) for k in TEXT_LAYERS if occ.count_rect(best["rect"], (k,))}
+        print(f"  [place] {name!r}: covered cells {best['c_text']} {per}, leader cost {best['c_lead']:.1f}")
     ax.text(best["x"], best["y"], best["txt"], fontsize=fs, color=colour, fontweight=weight, ha=best["ha"],
             va=best["va"], zorder=12, path_effects=HALO, linespacing=1.15, multialignment=ha_multi or best["ha"])
     occ.add_rect("label", best["rect"])
@@ -553,8 +562,11 @@ def place_text(ax, occ: Occ, texts, anchor, cands, *, fs: float, colour: str = I
         ax.plot([x0, x1], [y0, y1], color=MUTED, lw=1.0, zorder=11, solid_capstyle="butt")
         occ.add_polyline("label", [x0, x1], [y0, y1], 0.15)
     PLACEMENT_LOG.append({"name": name, "placed": True, "covered_cells": best["c_text"],
-                          "leader_cost": round(best["c_lead"], 1)})
+                          "covered_driveover_cells": best["c_soft"], "leader_cost": round(best["c_lead"], 1)})
     return best
+
+
+LEADER_MIN_M = 2.5  # shorter leaders read as a dash after the text, so the label just sits next to its anchor
 
 
 def leader_segment(rect, anchor, shrink: float):
@@ -565,7 +577,7 @@ def leader_segment(rect, anchor, shrink: float):
     if x0 < ax_ < x1 and y0 < ay_ < y1:
         return (px, py), (ax_, ay_)  # anchor inside the text: heavily penalised through the cells
     L = math.hypot(ax_ - px, ay_ - py)
-    if L < shrink + 1.0:
+    if L < shrink + LEADER_MIN_M:
         return None
     ux, uy = (ax_ - px) / L, (ay_ - py) / L
     return (px + 0.25 * ux, py + 0.25 * uy), (ax_ - shrink * ux, ay_ - shrink * uy)
@@ -630,13 +642,14 @@ def draw_world(ax, world: dict) -> Occ:
     # static objects: dark if taller than ground clearance (lethal), light grey if drive-over
     for fp in world["feet"]:
         col = OBJ_LETHAL if fp.lethal else OBJ_SMALL
+        layer, margin = ("obj", 0.3) if fp.lethal else ("small", 0.1)
         if fp.kind == "circle":
             r = max(fp.r, OBJ_MIN_R_LETHAL if fp.lethal else OBJ_MIN_R_SMALL)
             ax.add_patch(Circle((fp.cx, fp.cy), r, facecolor=col, edgecolor="none", zorder=4))
-            occ.add_disc("obj", fp.cx, fp.cy, r + 0.3)
+            occ.add_disc(layer, fp.cx, fp.cy, r + margin)
         else:
             ax.add_patch(Polygon(rect_corners(fp), closed=True, facecolor=col, edgecolor="none", zorder=4))
-            occ.add_orect("obj", fp.cx, fp.cy, fp.hl + 0.3, fp.hw + 0.3, fp.yaw)
+            occ.add_orect(layer, fp.cx, fp.cy, fp.hl + margin, fp.hw + margin, fp.yaw)
     ax.set_xlim(ext[0], ext[1])
     ax.set_ylim(ext[2], ext[3])
     ax.set_aspect("equal")
@@ -668,10 +681,17 @@ def draw_tick_dots(ax, occ: Occ, run: dict, colour: str, every: float = 10.0) ->
     return ticks
 
 
-def label_ticks(ax, occ: Occ, run: dict, ticks: list[dict]) -> None:
-    """'10 s' labels beside the tick dots; each label is dropped (dot kept) when it would cover anything."""
+def label_ticks(ax, occ: Occ, run: dict, ticks: list[dict], skip_near_s: float | None = None) -> None:
+    """'10 s' labels beside the tick dots; each label is dropped (dot kept) when it would cover anything.
+
+    Ticks within 2.5 s of ``skip_near_s`` (the confirmation time, which carries its own label) stay unlabelled.
+    """
     x, y = run["x"], run["y"]
     for tk in ticks:
+        if skip_near_s is not None and abs(tk["t_s"] - skip_near_s) < 2.5:
+            tk["labelled"] = False
+            tk["why_unlabelled"] = "next to the confirmation label"
+            continue
         i = int(np.searchsorted(run["t"], tk["t_s"]))
         j0, j1 = max(i - 12, 0), min(i + 12, len(x) - 1)
         hx, hy = x[j1] - x[j0], y[j1] - y[j0]
@@ -679,9 +699,33 @@ def label_ticks(ax, occ: Occ, run: dict, ticks: list[dict]) -> None:
         base = math.degrees(math.atan2(hx / n, -hy / n))  # left normal of travel
         angles = [base, base + 180, base + 40, base - 40, base + 140, base + 220]
         cands = ring([2.0, 2.6], angles)
-        res = place_text(ax, occ, f"{tk['t_s']:.0f} s", (tk["x_m"], tk["y_m"]), cands, fs=FS_TICK, colour=MUTED,
-                         leader=False, required=False, name=f"{run['cfg']} tick {tk['t_s']:.0f}", pad=0.25)
+        own = (tk["x_m"], tk["y_m"])
+        others = [(o["x_m"], o["y_m"]) for o in ticks if o is not tk]
+
+        def ambiguous(rect, own=own, others=others) -> bool:
+            # a label must sit clearly closer to its own dot than to any other tick dot
+            d_own = rect_point_dist(rect, *own)
+            return any(rect_point_dist(rect, ox, oy) < d_own + 1.5 for ox, oy in others)
+        res = place_text(ax, occ, f"{tk['t_s']:.0f} s", own, cands, fs=FS_TICK, colour=MUTED, leader=False,
+                         required=False, name=f"{run['cfg']} tick {tk['t_s']:.0f}", pad=0.25, reject=ambiguous,
+                         end_pad=0.35)
         tk["labelled"] = res is not None
+
+
+def rect_point_dist(rect, px: float, py: float) -> float:
+    x0, y0, x1, y1 = rect
+    return math.hypot(max(x0 - px, 0.0, px - x1), max(y0 - py, 0.0, py - y1))
+
+
+def label_line(ax, occ: Occ, texts, q: np.ndarray, side_angles, name: str) -> dict | None:
+    """Label a hazard polyline with text right beside it (no leader), trying several points along the line."""
+    base = point_on_polyline(q, 0.8)
+    cands = []
+    for f in (0.8, 0.88, 0.72, 0.64, 0.94, 0.56, 0.48):
+        px, py = point_on_polyline(q, f)
+        for c in ring([1.0, 1.6, 2.3], side_angles):
+            cands.append((px - base[0] + c[0], py - base[1] + c[1], c[2], c[3]))
+    return place_text(ax, occ, texts, base, cands, fs=FS_MAPLAB, leader=False, name=name, pad=0.3)
 
 
 def draw_start_goal(ax, occ: Occ, world: dict) -> None:
@@ -699,11 +743,14 @@ def draw_start_goal(ax, occ: Occ, world: dict) -> None:
 def label_start_goal(ax, occ: Occ, world: dict) -> None:
     scn = world["scn"]
     r = float(scn["mission"]["success_radius_m"])
-    for (px, py), lab, d in ((scn["start"]["xy"], "A", 1.6), (scn["goal"]["xy"], "B", r + 1.0)):
-        cands = [(-d, 0, "right", "center"), (d, 0, "left", "center"), (0, d, "center", "bottom"),
-                 (0, -d, "center", "top"), (-d * .75, d * .75, "right", "bottom"), (d * .75, d * .75, "left", "bottom"),
-                 (-d * .75, -d * .75, "right", "top"), (d * .75, -d * .75, "left", "top")]
-        place_text(ax, occ, lab, (px, py), cands, fs=FS_LETTER, weight="bold", leader=False, name=lab, pad=0.2)
+    for (px, py), lab, d in ((scn["start"]["xy"], "A", 1.6), (scn["goal"]["xy"], "B", r + 0.9)):
+        left, right = (-d, 0, "right", "center"), (d, 0, "left", "center")
+        up, down = (0, d, "center", "bottom"), (0, -d, "center", "top")
+        diag = [(-d * .75, d * .75, "right", "bottom"), (d * .75, d * .75, "left", "bottom"),
+                (-d * .75, -d * .75, "right", "top"), (d * .75, -d * .75, "left", "top")]
+        cands = ([left, up, down, right] if lab == "A" else [right, up, down, left]) + diag
+        place_text(ax, occ, lab, (px, py), cands, fs=FS_LETTER, weight="bold", leader=False, name=lab, pad=0.2,
+                   end_pad=0.2)
 
 
 def end_marker(ax, occ: Occ, run: dict, small: bool = False) -> tuple[float, float]:
@@ -716,51 +763,40 @@ def end_marker(ax, occ: Occ, run: dict, small: bool = False) -> tuple[float, flo
     return ex, ey
 
 
-def draw_scale_bar(ax, x0: float, y0: float, length: float = 10.0) -> list:
-    """10 m bar (half black, half white) with a north arrow to its right. Returns the artists."""
-    h = 0.6
-    arts = []
+SB_LEN_M = 10.0
+SB_W_IN = 1.55  # footer scale bar + north arrow block width
+SB_H_IN = 0.30
+
+
+def scale_bar_width_in() -> float:
+    m_per_in = 64.0 / PANEL_W_IN
+    lab = f"{SB_LEN_M:.0f} m"
+    return (0.3 + SB_LEN_M + 0.9 + 2.6 + 0.7) / m_per_in + text_w_in(lab, FS_LEGEND) + text_w_in("N", FS_LEGEND, "bold") + 0.03
+
+
+def header_scale_bar(fig, x_right_in: float, y_mid_in: float, W: float, H: float) -> dict:
+    """10 m scale bar + north arrow, right-aligned at ``x_right_in`` in the header row above the right-hand panel,
+    drawn at exactly the map panels' scale (all panels share one scale and are north-up)."""
+    m_per_in = 64.0 / PANEL_W_IN
+    w_in = scale_bar_width_in()
+    ax = fig.add_axes([(x_right_in - w_in) / W, (y_mid_in - SB_H_IN / 2) / H, w_in / W, SB_H_IN / H])
+    ax.set_xlim(0, w_in * m_per_in)
+    ax.set_ylim(-SB_H_IN / 2 * m_per_in, SB_H_IN / 2 * m_per_in)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    h = 0.75
     for k in range(2):
-        arts.append(ax.add_patch(plt.Rectangle((x0 + k * length / 2, y0), length / 2, h,
-                                               facecolor=(INK if k == 0 else "white"), edgecolor=INK, lw=0.8,
-                                               zorder=11)))
-    for xx, lab in ((x0, "0"), (x0 + length, f"{length:.0f} m")):
-        arts.append(ax.text(xx, y0 + h + 0.7, lab, fontsize=FS_TICK, color=INK, ha="center", va="bottom", zorder=11,
-                            path_effects=HALO))
-    nx_ = x0 + length + 4.6
-    arts.append(ax.add_patch(FancyArrowPatch((nx_, y0 - 0.1), (nx_, y0 + 3.6),
-                                             arrowstyle="-|>,head_length=4,head_width=2.4", color=INK, lw=1.2,
-                                             zorder=11)))
-    arts.append(ax.text(nx_, y0 + 4.2, "N", fontsize=FS_TICK, color=INK, ha="center", va="bottom", fontweight="bold",
-                        zorder=11, path_effects=HALO))
-    return arts
+        ax.add_patch(plt.Rectangle((0.3 + k * SB_LEN_M / 2, -h / 2), SB_LEN_M / 2, h,
+                                   facecolor=(INK if k == 0 else "white"), edgecolor=INK, lw=0.8))
+    ax.text(0.3 + SB_LEN_M + 0.9, 0.0, f"{SB_LEN_M:.0f} m", fontsize=FS_LEGEND, color=INK, ha="left", va="center")
+    nx_ = 0.3 + SB_LEN_M + 0.9 + text_w_in(f"{SB_LEN_M:.0f} m", FS_LEGEND) * m_per_in + 2.6
+    ax.add_patch(FancyArrowPatch((nx_, -1.7), (nx_, 1.8), arrowstyle="-|>,head_length=4,head_width=2.4", color=INK,
+                                 lw=1.2))
+    ax.text(nx_ + 0.7, 0.0, "N", fontsize=FS_LEGEND, color=INK, ha="left", va="center", fontweight="bold")
+    return {"x_right_in": round(x_right_in, 3), "y_mid_in": round(y_mid_in, 3), "width_in": round(w_in, 3),
+            "scale": f"{SB_LEN_M:.0f} m = {SB_LEN_M / m_per_in:.3f} in, same as the map panels"}
 
 
-def place_scale_bar(ax, occ: Occ) -> dict:
-    """Scale bar + north arrow in the emptiest corner region of the panel."""
-    e = occ.ext
-    xs = [e[0] + 2.0, e[0] + 8.0, e[1] - 20.5, e[1] - 26.5]
-    ys = [e[2] + 1.6, e[2] + 5.0, e[3] - 7.0, e[3] - 10.0]
-    best = None
-    for yi, y0 in enumerate(ys):
-        for xi, x0 in enumerate(xs):
-            arts = draw_scale_bar(ax, x0, y0)
-            rects = [data_rect(ax, a) for a in arts]
-            for a in arts:
-                a.remove()
-            rect = (min(r[0] for r in rects) - 0.5, min(r[1] for r in rects) - 0.5,
-                    max(r[2] for r in rects) + 0.5, max(r[3] for r in rects) + 0.5)
-            if not occ.inside(rect, margin=0.2):
-                continue
-            c = occ.count_rect(rect, TEXT_LAYERS) + 0.5 * (xi % 2 + yi % 2)
-            if best is None or c < best[0]:
-                best = (c, x0, y0, rect)
-    c, x0, y0, rect = best
-    if c >= 1:
-        print(f"  [place] scale bar: covered cells {c}")
-    draw_scale_bar(ax, x0, y0)
-    occ.add_rect("label", rect)
-    return {"x0_m": round(x0, 2), "y0_m": round(y0, 2), "covered_cells": c}
 
 
 def gap_midpoints(world: dict) -> list[tuple[float, float]]:
@@ -828,15 +864,15 @@ def legend_items(keys: list[str]) -> tuple[list, list]:
         "ticks": (Line2D([], [], marker="o", ls="none", ms=5.2, mfc="white", mec=MUTED, mew=1.5), "every 10 s"),
         "confirm": (Line2D([], [], marker="D", ls="none", ms=7.5, mfc=NAVY, mec="white", mew=1.2),
                     "FULL confirms the trench"),
-        "light": (_Bracket(), "lighting event (on FULL's path)"),
+        "light": (_Bracket(), "lighting event (depth dropout)"),
     }
     hs = [lab[k] for k in keys]
     return [h for h, _ in hs], [t for _, t in hs]
 
 
-def put_legend(fig, x: float, y_top: float, keys: list[str], ncol: int) -> None:
+def put_legend(fig, x: float, y_top: float, keys: list[str], ncol: int):
     handles, labels = legend_items(keys)
-    fig.legend(handles, labels, loc="upper left", bbox_to_anchor=(x, y_top), ncol=ncol, frameon=False,
+    return fig.legend(handles, labels, loc="upper left", bbox_to_anchor=(x, y_top), ncol=ncol, frameon=False,
                fontsize=FS_LEGEND, handlelength=1.7, columnspacing=1.5, handletextpad=0.5, labelspacing=0.45,
                borderaxespad=0.0, borderpad=0.0, handler_map={_Bracket: BracketHandler()})
 
@@ -875,6 +911,17 @@ def run_record(run: dict) -> dict:
 # figure: FULL vs TYPICAL pair
 # =============================================================================================
 PAIR_ROLE = {38: "headline", 7: "backup", 37: "backup"}
+# What the below-panel sentence may say about FULL's speed after confirmation, chosen per seed from the logs and
+# asserted in pair_texts():
+#   "turn": peak commanded |yaw rate| >= TURN_CMD_W, speed dropped by > HOLD_SPEED_TOL and the seen-distance
+#           governor was not the binding term on >= 80 % of ticks -> the slowdown is the turn, not the speed cap
+#           (seed 38: registered as example_eval_s038_full_speed_min_after_confirm_mps / _cmd_w_max_after_confirm).
+#   "hold": speed changed by <= HOLD_SPEED_TOL over the next 3 s.
+#   None:   say nothing (seed 7: the 0.22 m/s dip comes 3 s later in an unrelated sharp turn; FULL was already at
+#           1.3 m/s at 6-8 s, so it is not a reaction to the trench).
+SPEED_CLAUSE = {38: "turn", 7: None, 37: "hold"}
+NB = " "  # non-breaking space between a number and its unit
+NUM_WORD = {2: "two", 3: "three", 4: "four"}
 
 
 def pair_texts(seed: int, world: dict, full: dict, typ: dict, det: dict | None, cross: dict) -> dict:
@@ -886,50 +933,46 @@ def pair_texts(seed: int, world: dict, full: dict, typ: dict, det: dict | None, 
         n_on, n_all = det["n_on_gt_trench"], det["n_confirmed_cells"]
         gov = det["gov_binding_counts_next3s"]
         platform_dominant = gov.get("platform", 0) >= 0.8 * det["n_ticks_next3s"]
-        where = ("at the crest, " if det["vehicle_dist_to_crest_m"] is not None
+        where = (", at the crest" if det["vehicle_dist_to_crest_m"] is not None
                  and det["vehicle_dist_to_crest_m"] <= AT_CREST_M else "")
-        one = n_trenches(world) == 1
         if n_on == n_all:
-            first = f"{t:.1f} s: {where}FULL confirms the trench {rng:.1f} m ahead"
+            first = f"{t:.1f}{NB}s{where}: trench confirmed {rng:.1f}{NB}m ahead."
         else:
-            first = (f"{t:.1f} s: first confirmed ditch cells on {'the' if one else 'a'} trench, {rng:.1f} m ahead "
-                     f"({n_on} of {n_all} confirmed cells lie on {'it' if one else 'a trench'}, "
-                     f"{n_all - n_on} {'are' if n_all - n_on != 1 else 'is'} not on any trench)")
-        if det["max_abs_cmd_w_next3s_rad_s"] >= TURN_CMD_W and v0 - vmin > HOLD_SPEED_TOL and platform_dominant:
-            # the slowdown coincides with a hard commanded turn while the seen-distance governor was not binding
-            speed = f"turns hard toward the gap (slowing to {vmin:.1f} m/s)"
-        elif v0 - vmin <= HOLD_SPEED_TOL:
-            speed = f"holds {v0:.1f} m/s"
+            only = "only " if n_on < 0.5 * n_all else ""
+            first = (f"{t:.1f}{NB}s{where}: trench cells confirmed {rng:.1f}{NB}m ahead ({only}{n_on} of {n_all} "
+                     f"confirmed cells are on a trench).")
+        mode = SPEED_CLAUSE[seed]
+        if mode == "turn":
+            assert det["max_abs_cmd_w_next3s_rad_s"] >= TURN_CMD_W and v0 - vmin > HOLD_SPEED_TOL and platform_dominant
+            speed = f"turns hard toward the gap (slowing to {vmin:.1f}{NB}m/s)"
+        elif mode == "hold":
+            assert v0 - vmin <= HOLD_SPEED_TOL, (seed, v0, vmin)
+            speed = f"holds {v0:.1f}{NB}m/s"
         else:
-            speed = None  # a dip that the logs do not tie to the trench: say nothing about speed
+            speed = None
         out["speed_clause"] = speed
         out["confirm_label"] = f"{t:.1f} s"
-        in_gap = [c for c in cross["FULL"]]
-        all_gaps = bool(in_gap) and all(c["in_gap"] for c in in_gap)
-        ntr = len({c["trench"] for c in in_gap})
-        thru = ("goes through the gap" if ntr == 1 else f"crosses all {ntr} trenches at their gaps") if all_gaps else None
-        parts = [first]
-        if speed:
-            parts.append(speed)
-        if thru:
-            parts.append(thru)
-        s = parts[0]
-        if len(parts) == 3:
-            s += f", {parts[1]} and {parts[2]}"
-        elif len(parts) == 2:
-            s += f"; {parts[1]}"
-        out["full_below"] = s + f". Reached B at {full['time']:.1f} s."
+        crossings = cross["FULL"]
+        all_gaps = bool(crossings) and all(c["in_gap"] for c in crossings)
+        ntr = len({c["trench"] for c in crossings})
+        assert all_gaps, (seed, crossings)  # the sentences below say FULL used the gaps
+        if ntr == 1:
+            thru = "goes through it" if mode == "turn" else "goes through the gap"
+        else:
+            thru = f"crosses all {NUM_WORD.get(ntr, ntr)} trenches at their gaps"
+        verbs = [v for v in (speed, thru) if v] + [f"reaches B at {full['time']:.1f}{NB}s"]
+        body = ", ".join(verbs[:-1]) + " and " + verbs[-1]
+        out["full_below"] = f"{first} FULL {body}."
     ev = typ["event"]
     wheel = WHEEL_TXT.get(ev.get("wheel", ""), "")
-    n_typ_cross = len(cross["TYPICAL"])
-    lead = "Treats unseen ground as free, 1.5 m/s set-point"
+    lead = f"Treats unseen ground as free (1.5{NB}m/s set-point)"
     if typ["outcome"] == "ditch_entry":
-        out["typ_below"] = f"{lead}: drove into the trench at {typ['time']:.1f} s ({wheel} wheel first)."
+        out["typ_below"] = f"{lead}: drove into the trench at {typ['time']:.1f}{NB}s, {wheel} wheel first."
     elif typ["outcome"] == "out_of_bounds":
-        tail = "; crossed no trench" if n_typ_cross == 0 else ""
-        out["typ_below"] = f"{lead}: drove off the map at {typ['time']:.1f} s{tail}."
+        tail = ", having crossed no trench" if not cross["TYPICAL"] else ""
+        out["typ_below"] = f"{lead}: drove off the map at {typ['time']:.1f}{NB}s{tail}."
     else:
-        out["typ_below"] = f"{lead}: {END_TXT[typ['outcome']].lower()} at {typ['time']:.1f} s."
+        out["typ_below"] = f"{lead}: {END_TXT[typ['outcome']].lower()} at {typ['time']:.1f}{NB}s."
     return out
 
 
@@ -1019,37 +1062,38 @@ def fig_pair(seed: int, name: str) -> dict:
             dx_, dy_ = det["vehicle_xy_m"]
             ax.plot(dx_, dy_, "D", ms=8.5, mfc=NAVY, mec="white", mew=1.4, zorder=10)
             occ.add_disc("mark", dx_, dy_, 0.9)
-        sb = place_scale_bar(ax, occ) if k == 0 else None
+        if run["cfg"] != "FULL":
+            q_d = np.asarray(ditch[0]["polyline"], float) if len(ditch) == 1 else None
+            q_c = np.asarray(crest[0]["polyline"], float) if crest else None
+            crest_west = q_c is not None and q_d is not None and q_c[:, 0].mean() < q_d[:, 0].mean()
+            if q_c is not None:
+                label_line(ax, occ, [f"crest, {crest[0]['drop']:.1f} m drop", f"crest,\n{crest[0]['drop']:.1f} m drop"],
+                           q_c, [180, 165, 195] if crest_west else [0, 15, 345], name="crest")
+            if q_d is not None:
+                sides = ([0, 15, 345] if crest_west else [180, 165, 195]) if q_c is not None else [0, 180, 15, 165]
+                label_line(ax, occ, [f"trench, {ditch[0]['depth']:.2f} m deep",
+                                     f"trench,\n{ditch[0]['depth']:.2f} m deep"], q_d, sides, name="trench")
         ok = run["outcome"] == "success"
-        place_text(ax, occ, [f"{END_TXT[run['outcome']]}\nat {run['time']:.1f} s", f"{END_TXT[run['outcome']]} at {run['time']:.1f} s"],
-                   (ex, ey), ring([3.5, 5.0, 7.0, 9.0]), fs=FS_END, weight="bold", colour=(INK if ok else RED),
-                   name=f"{run['cfg']} end", shrink=1.1)
+        place_text(ax, occ, [f"{END_TXT[run['outcome']]}\nat {run['time']:.1f} s",
+                             f"{END_TXT[run['outcome']]} at {run['time']:.1f} s"],
+                   (ex, ey), ring([2.4, 3.5, 5.0, 7.0, 9.0, 11.0, 13.0, 15.5, 18.0, 21.0], range(0, 360, 15)),
+                   fs=FS_END, weight="bold",
+                   colour=(INK if ok else RED), name=f"{run['cfg']} end", shrink=1.1)
         if run["cfg"] == "FULL" and det is not None:
-            place_text(ax, occ, txt["confirm_label"], tuple(det["vehicle_xy_m"]), ring([2.2, 3.2, 4.5, 6.0]),
-                       fs=FS_MAPLAB, weight="bold", colour=NAVY, name="confirm label", shrink=0.9)
+            place_text(ax, occ, txt["confirm_label"], tuple(det["vehicle_xy_m"]),
+                       ring([1.6, 2.2, 3.2, 4.5, 6.0], range(0, 360, 30)), fs=FS_MAPLAB, weight="bold", colour=NAVY,
+                       name="confirm label", shrink=0.9)
+        label_start_goal(ax, occ, world)
         if run["cfg"] == "FULL":
             gaps = gap_midpoints(world)
             if gaps and len(ditch) == 1:
                 dmin = [float(np.min(np.hypot(full["x"] - gx, full["y"] - gy))) for gx, gy in gaps]
                 gx, gy = gaps[int(np.argmin(dmin))]
-                place_text(ax, occ, ["gap in the trench", "gap"], (gx, gy), ring([3.0, 4.5, 6.0, 8.0]), fs=FS_MAPLAB,
-                           name="gap", shrink=0.6)
-        else:
-            if crest:
-                q = np.asarray(crest[0]["polyline"], float)
-                anc = point_on_polyline(q, 0.82)
-                place_text(ax, occ, [f"crest, {crest[0]['drop']:.1f} m drop", f"crest,\n{crest[0]['drop']:.1f} m drop"],
-                           anc, ring([2.5, 4.0, 6.0], [180, 150, 210, 120, 240, 0, 30, 330]), fs=FS_MAPLAB,
-                           name="crest", shrink=0.4)
-            if ditch and len(ditch) == 1:
-                q = np.asarray(ditch[0]["polyline"], float)
-                anc = point_on_polyline(q, 0.82)
-                place_text(ax, occ, [f"trench, {ditch[0]['depth']:.2f} m deep", f"trench,\n{ditch[0]['depth']:.2f} m deep"],
-                           anc, ring([2.5, 4.0, 6.0], [0, 30, 330, 60, 300, 180]), fs=FS_MAPLAB, name="trench",
-                           shrink=0.4)
-        label_start_goal(ax, occ, world)
-        label_ticks(ax, occ, run, ticks)
-        placements[run["cfg"]] = list(PLACEMENT_LOG) + ([{"name": "scale bar", **sb}] if sb else [])
+                place_text(ax, occ, ["gap", "gap in the trench"], (gx, gy),
+                           ring([3.0, 4.0, 5.0, 6.5], range(0, 360, 20)), fs=FS_MAPLAB, name="gap", shrink=0.5)
+        label_ticks(ax, occ, run, ticks,
+                    skip_near_s=(det["t_s"] if (run["cfg"] == "FULL" and det is not None) else None))
+        placements[run["cfg"]] = list(PLACEMENT_LOG)
         cfg_name, cfg_desc = CONFIG_TXT[run["cfg"]]
         x_in = xs_in[k]
         fig.text((x_in + 0.01) / W, (y_panel + PANEL_H_IN + 0.34) / H, cfg_name, fontsize=FS_TITLE, fontweight="bold",
@@ -1069,6 +1113,10 @@ def fig_pair(seed: int, name: str) -> dict:
     put_lines(fig, 0.01 + (0.22 if det is not None else 0.0), y_top, full_lines, FS_SUB, W, H)
     put_lines(fig, xs_in[1] + 0.01, y_top, typ_lines, FS_SUB, W, H)
     put_legend(fig, 0.004, y_leg / H, keys, ncol)
+    title_w = text_w_in(CONFIG_TXT["TYPICAL"][0], FS_TITLE, "bold")
+    assert title_w + 0.3 + scale_bar_width_in() < PANEL_W_IN, "scale bar would touch the TYPICAL title"
+    placements["header_scale_bar"] = header_scale_bar(fig, xs_in[1] + PANEL_W_IN - 0.02,
+                                                      y_panel + PANEL_H_IN + 0.34 + FS_TITLE * 0.36 / 72, W, H)
     put_lines(fig, 0.01, y_note, note_lines, FS_NOTE, W, H, colour=INK)
     put_lines(fig, 0.01, y_prov, prov_lines, FS_PROV, W, H, colour=MUTED)
     save(fig, name)
@@ -1224,7 +1272,8 @@ def lighting_bracket(ax, occ: Occ, run: dict, t0: float, t1: float, off: float =
     best = None
     for side in (1.0, -1.0):
         bx, by = xs + side * off * nx, ys + side * off * ny
-        c = occ.count_points(bx, by, ("obj", "mark", "haz", "label"))
+        c = (occ.count_points(bx, by, ("obj", "haz", "label")) + 5 * occ.count_points(bx, by, ("path",))
+             + 0.3 * occ.count_points(bx, by, ("mark",)))
         if best is None or c < best[0]:
             best = (c, side, bx, by)
     c, side, bx, by = best
@@ -1284,7 +1333,7 @@ def fig_gallery(name: str) -> dict:
         draw_start_goal(ax, occ, world)
         end_marker(ax, occ, typ, small=True)
         end_marker(ax, occ, full)
-        sb = place_scale_bar(ax, occ) if k == 0 else None
+        label_start_goal(ax, occ, world)
         light_marks = []
         for ev in world["scn"]["lighting"]["events"]:
             t0, t1 = float(ev["t0"]), float(ev["t1"])
@@ -1294,11 +1343,11 @@ def fig_gallery(name: str) -> dict:
             ang = math.degrees(math.atan2(nrm[1], nrm[0]))
             place_text(ax, occ, [f"{EVENT_WORD[ev['type']]} {t0:.1f}-{t1:.1f} s",
                                  f"{EVENT_WORD[ev['type']]}\n{t0:.1f}-{t1:.1f} s"], anc,
-                       ring([1.8, 3.0, 4.5, 6.0], [ang, ang + 30, ang - 30, ang + 60, ang - 60, ang + 90, ang - 90]),
+                       ring([1.8, 3.0, 4.5, 6.0, 8.0],
+                            [ang + d for d in (0, 30, -30, 60, -60, 90, -90, 120, -120, 150, -150, 180)]),
                        fs=FS_MAPLAB, name=f"light {ev['type']}", shrink=0.3)
             light_marks.append({"type": ev["type"], "t0_s": t0, "t1_s": t1, "gain": ev["gain"],
                                 "drawn_until_s": min(t1, full["time"]), "bracket_side": side})
-        label_start_goal(ax, occ, world)
         r = rates[fam]
         t_title = FAMILY_TXT[fam]
         fig.text((x_in + 0.01) / W, (y_in + PANEL_H_IN + 0.31) / H, t_title, fontsize=13, fontweight="bold",
@@ -1317,9 +1366,14 @@ def fig_gallery(name: str) -> dict:
                     "family_rates": r,
                     "lighting": {k2: world["scn"]["lighting"][k2] for k2 in ("sun_elev_deg", "fog_density", "events")},
                     "lighting_events_drawn": light_marks,
-                    "label_placement": list(PLACEMENT_LOG) + ([{"name": "scale bar", **sb}] if sb else [])})
+                    "label_placement": list(PLACEMENT_LOG)})
         panels.append(rec)
     put_legend(fig, 0.004, y_leg / H, keys, ncol)
+    tr_title = FAMILY_TXT[GALLERY[1][1]]
+    tr_w = text_w_in(tr_title, 13, "bold") + text_w_in(f"  ·  seed {GALLERY[1][0]}", FS_SUB)
+    assert tr_w + 0.3 + scale_bar_width_in() < PANEL_W_IN, "scale bar would touch the panel title"
+    header_scale_bar(fig, (PANEL_W_IN + PANEL_GAP_IN) + PANEL_W_IN - 0.02, y_row0 + PANEL_H_IN + 0.31 + 13 * 0.36 / 72,
+                     W, H)
     put_lines(fig, 0.01, y_note, note_lines, FS_NOTE, W, H, colour=INK)
     put_lines(fig, 0.01, y_prov, prov_lines, FS_PROV, W, H, colour=MUTED)
     save(fig, name)
