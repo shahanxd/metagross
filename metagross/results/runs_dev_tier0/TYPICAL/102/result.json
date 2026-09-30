@@ -1,25 +1,18 @@
 {
- "success": false,
- "failure_type": "stuck",
- "time": 60.02,
- "path_length": 48.32,
- "spl": 0.0,
+ "success": true,
+ "failure_type": null,
+ "time": 34.74,
+ "path_length": 44.769,
+ "spl": 1.0,
  "optimal_path_length": 45.724,
- "min_clearance": 0.4508,
- "final_error": 2.883,
+ "min_clearance": 0.9752,
+ "final_error": 1.999,
  "ditch_entries": 0,
  "collisions": 0,
  "water_entries": 0,
- "mean_speed": 0.8051,
+ "mean_speed": 1.2887,
  "false_stops": 0,
- "stops": [
-  {
-   "t": 41.1,
-   "duration_s": 18.9,
-   "justified": true,
-   "reason": "hazard_ahead"
-  }
- ],
+ "stops": [],
  "config": {
   "name": "TYPICAL",
   "unknown_is_free": true,
@@ -30,7 +23,7 @@
   "use_wheel_odom": true,
   "fixed_speed_mps": 1.5,
   "speed_cap_mps": null,
-  "debug_every_n": 5,
+  "debug_every_n": 1,
   "seg_model_path": null,
   "seg_threads": 2,
   "launch_apron_m": 2.0,
@@ -47,27 +40,27 @@
  "sensor_mode": "tier0",
  "camera_hz": 5.0,
  "noise_seed": 0,
- "n_frames": 301,
- "n_telemetry": 101,
+ "n_frames": 174,
+ "n_telemetry": 58,
  "n_cmd_timeouts": 0,
- "compute_ms_mean": 106.2571,
- "compute_ms_p95": 149.702,
- "sensor_ms_mean": 88.3722,
- "physics_ms_per_step": 0.5379,
+ "compute_ms_mean": 55.2773,
+ "compute_ms_p95": 73.4755,
+ "sensor_ms_mean": 49.5596,
+ "physics_ms_per_step": 0.2818,
  "sensor_breakdown_ms": {
-  "terrain": 29.6411,
-  "objects": 44.5385,
-  "post": 12.0996,
-  "output": 1.9126,
-  "total": 88.1918
+  "terrain": 23.3542,
+  "objects": 20.6175,
+  "post": 5.3021,
+  "output": 0.1828,
+  "total": 49.4566
  },
- "wall_time_s": 70.874,
+ "wall_time_s": 21.095,
  "error": null,
  "machine": {
-  "platform": "Windows-10-10.0.26200-SP0",
-  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
-  "cpu_count": 8,
-  "python": "3.10.0",
-  "numpy": "2.2.6"
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "cpu_count": 4,
+  "python": "3.11.15",
+  "numpy": "2.4.6"
  }
 }

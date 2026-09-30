@@ -1,0 +1,73 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 52.02,
+ "path_length": 40.578,
+ "spl": 0.0,
+ "optimal_path_length": 42.8782,
+ "min_clearance": 1.7938,
+ "final_error": 3.08,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.78,
+ "false_stops": 1,
+ "stops": [
+  {
+   "t": 32.88,
+   "duration_s": 19.12,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "TYPICAL",
+  "unknown_is_free": true,
+  "use_negobs": false,
+  "use_governor": false,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": 1.5,
+  "speed_cap_mps": null,
+  "debug_every_n": 5,
+  "seg_model_path": null,
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 125,
+ "family": "F6_water_mud",
+ "split": "dev",
+ "sha256": "a8447619e83e8c5e1f3167b6fddbc5167df954c66047cefd26152cb3b3f120f3",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 261,
+ "n_telemetry": 87,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 124.7802,
+ "compute_ms_p95": 188.2102,
+ "sensor_ms_mean": 58.2161,
+ "physics_ms_per_step": 0.5441,
+ "sensor_breakdown_ms": {
+  "terrain": 31.195,
+  "objects": 13.0736,
+  "post": 12.033,
+  "output": 1.7461,
+  "total": 58.0477
+ },
+ "wall_time_s": 61.149,
+ "error": null,
+ "machine": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.10.0",
+  "numpy": "2.2.6"
+ }
+}

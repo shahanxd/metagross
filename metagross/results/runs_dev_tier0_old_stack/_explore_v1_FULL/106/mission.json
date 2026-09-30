@@ -1,0 +1,14 @@
+{
+ "mission_id": "F5_lighting-106",
+ "goal_xy_a": [
+  41.0162,
+  1.0511
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 162.6,
+ "goal_sigma_m": 0.7671,
+ "goal_entry": {
+  "range_m": 41.0296,
+  "bearing_deg": 1.468
+ }
+}

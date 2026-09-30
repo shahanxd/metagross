@@ -1,0 +1,79 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 52.02,
+ "path_length": 41.617,
+ "spl": 0.0,
+ "optimal_path_length": 46.9857,
+ "min_clearance": 1.2246,
+ "final_error": 12.088,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.8,
+ "false_stops": 1,
+ "stops": [
+  {
+   "t": 33.88,
+   "duration_s": 12.72,
+   "justified": true,
+   "reason": "hazard_ahead"
+  },
+  {
+   "t": 46.78,
+   "duration_s": 5.22,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "TYPICAL",
+  "unknown_is_free": true,
+  "use_negobs": false,
+  "use_governor": false,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": 1.5,
+  "speed_cap_mps": null,
+  "debug_every_n": 5,
+  "seg_model_path": null,
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 103,
+ "family": "F2_ditch_field",
+ "split": "dev",
+ "sha256": "ff05273200b4066998a5f133829cc84a5394deee2a49454b846e365e71c24828",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 261,
+ "n_telemetry": 87,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 114.2163,
+ "compute_ms_p95": 165.276,
+ "sensor_ms_mean": 77.2913,
+ "physics_ms_per_step": 0.6194,
+ "sensor_breakdown_ms": {
+  "terrain": 34.2177,
+  "objects": 29.4682,
+  "post": 11.7408,
+  "output": 1.6742,
+  "total": 77.1007
+ },
+ "wall_time_s": 65.699,
+ "error": null,
+ "machine": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.10.0",
+  "numpy": "2.2.6"
+ }
+}

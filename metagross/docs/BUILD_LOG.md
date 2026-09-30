@@ -134,3 +134,46 @@ Found while running every documented command:
   by the offline video tools, never onboard.
 * The first quickstart episode (04:33, DEV seed 102) ended `autonomy_error` with `NameError: certified_local` while
   `rolling_map.py` was being edited in the shared tree; the re-run at 04:45 ran to the 20 s cap without error.
+
+## 2026-09-30 — Closed-loop fixes, EVAL runs (appended)
+
+Environment for every number below: Linux cloud container, 4 vCPU, Python 3.11, `OMP_NUM_THREADS=1`, 4 batch
+workers, tier-0 synthetic depth sensor (no images: no VO, no semantics). Latency is modelled from measured compute,
+so repeated batches differ by about +-2 successes out of 30.
+
+### Starting point
+The committed stack reached B on **14/30** DEV seeds (FULL, tier0). Failures: water 5, stuck 5 (ditch fields),
+arrived_short 6 (stack believed it was at B), collision 1. In this container the autonomy process could not even
+import scipy until the file guard allowed per-user site-packages.
+
+### What was wrong and what changed (all tuned on DEV 100-129 only)
+1. **Stalls facing an unseeable ditch.** With the ditch interior hidden below its lip, r_vis = 0 so the speed cap is
+   0; the stack wiggled in place until the referee's 20 s stuck rule. Three supervisor bugs kept it from escalating:
+   wiggling counted as turning progress (the baseline heading error was raised whenever it grew); a map change that
+   shortened the route without any motion counted as progress and reset the look / dead-end counts; creeping 0.3 m
+   after each look reset them too. Fixes: only a replan may raise the heading baseline; progress needs displacement;
+   counts reset only after leaving the stall spot by 1.5 m; a speed cap held at ~0 for 2 s is a stall.
+2. **No turn toward a replanned route.** With forward speed capped to 0 every MPPI rollout scores alike and the
+   weighted average barely turns (0.11 rad/s with the route behind, DEV 109). The node now turns in place onto the
+   route when blocked and the route is > 0.5 rad off the heading (the gate still checks the swept body).
+3. **Safety gate let an in-place turn sweep a corner into a rock** (circle clearance shows no decrease on the 0.2 m
+   grid, so the body check never ran). In-place rotations near a lethal core are now always checked against the
+   swept body rectangle.
+4. **Heading drift.** Depth-odometry yaw is biased on some terrain (DEV replay, seed 124: -1.4 -> -3.2 deg), so its yaw
+   sigma is floored at 3 deg and heading comes mainly from the gyro; depth odometry keeps fixing the along-track
+   over-count (6-8 % -> ~1 %). A scalar Kalman gyro-bias filter learns from 1 s windows of standing still and from VO.
+   The stack now stops at 0.25 x the success radius of its own goal estimate.
+5. Looks drifted 0.08 rad per cycle (each started from the heading the previous one reached): fixed. DEAD_END is now
+   visible in telemetry.
+
+Result on DEV (commit 45ec399): **FULL 20/30, TYPICAL 16/30** (`results/closed_loop_dev.json`). Remaining FULL
+failures: water 4 (tier-0 has no water cue: water returns 88 % of pixels vs ~96 % for ground, measured on DEV drives,
+and there are no images for the segmenter), stuck 3 (ditch fields), collision 1 (F4 obstacle approaches from 54-62 deg
+off the heading, outside the +-36 deg camera FOV, until impact), out of bounds 1, arrived_short 1.
+
+### EVAL run 1 (superseded, kept)
+Commit 3cd62df was frozen and run once on EVAL 0-59: **FULL 17/60, TYPICAL 15/60**, 23 FULL runs arrived_short.
+Cause (then confirmed on DEV only): after the last DEV closed-loop check the gyro-bias prior had been widened from
+1e-3 to 1e-2 rad/s to pass a unit test; one brief mid-mission stop then set the bias to a single +-4.5e-3 rad/s noise
+sample. That commit scores **6/30 on DEV**. Lesson recorded: always re-run DEV closed loop after any change before
+freezing. Run 1 is in `results/closed_loop_eval_v1.json` / `results/runs_eval_tier0_v1/`.

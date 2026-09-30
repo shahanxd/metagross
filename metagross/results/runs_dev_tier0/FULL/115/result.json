@@ -1,39 +1,21 @@
 {
  "success": false,
  "failure_type": "stuck",
- "time": 60.02,
- "path_length": 46.536,
+ "time": 53.0,
+ "path_length": 48.119,
  "spl": 0.0,
  "optimal_path_length": 58.7338,
- "min_clearance": 1.9783,
- "final_error": 28.757,
+ "min_clearance": 2.844,
+ "final_error": 28.353,
  "ditch_entries": 0,
  "collisions": 0,
  "water_entries": 0,
- "mean_speed": 0.7753,
- "false_stops": 2,
+ "mean_speed": 0.9079,
+ "false_stops": 1,
  "stops": [
   {
-   "t": 27.1,
-   "duration_s": 1.8,
-   "justified": true,
-   "reason": "hazard_ahead"
-  },
-  {
-   "t": 40.28,
-   "duration_s": 2.76,
-   "justified": true,
-   "reason": "hazard_ahead"
-  },
-  {
-   "t": 43.88,
-   "duration_s": 7.86,
-   "justified": false,
-   "reason": "none"
-  },
-  {
-   "t": 52.84,
-   "duration_s": 7.16,
+   "t": 36.44,
+   "duration_s": 12.26,
    "justified": false,
    "reason": "none"
   }
@@ -48,7 +30,7 @@
   "use_wheel_odom": true,
   "fixed_speed_mps": null,
   "speed_cap_mps": null,
-  "debug_every_n": 5,
+  "debug_every_n": 1,
   "seg_model_path": null,
   "seg_threads": 2,
   "launch_apron_m": 2.0,
@@ -65,27 +47,27 @@
  "sensor_mode": "tier0",
  "camera_hz": 5.0,
  "noise_seed": 0,
- "n_frames": 301,
- "n_telemetry": 101,
+ "n_frames": 265,
+ "n_telemetry": 89,
  "n_cmd_timeouts": 0,
- "compute_ms_mean": 112.1038,
- "compute_ms_p95": 180.8855,
- "sensor_ms_mean": 42.583,
- "physics_ms_per_step": 0.3847,
+ "compute_ms_mean": 54.5853,
+ "compute_ms_p95": 75.7317,
+ "sensor_ms_mean": 35.26,
+ "physics_ms_per_step": 0.1867,
  "sensor_breakdown_ms": {
-  "terrain": 18.8443,
-  "objects": 13.7668,
-  "post": 8.6313,
-  "output": 1.1744,
-  "total": 42.4169
+  "terrain": 18.5622,
+  "objects": 10.6822,
+  "post": 5.6999,
+  "output": 0.236,
+  "total": 35.1803
  },
- "wall_time_s": 57.022,
+ "wall_time_s": 27.082,
  "error": null,
  "machine": {
-  "platform": "Windows-10-10.0.26200-SP0",
-  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
-  "cpu_count": 8,
-  "python": "3.10.0",
-  "numpy": "2.2.6"
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "cpu_count": 4,
+  "python": "3.11.15",
+  "numpy": "2.4.6"
  }
 }

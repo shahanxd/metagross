@@ -1,0 +1,14 @@
+{
+ "mission_id": "F1_trail-108",
+ "goal_xy_a": [
+  40.8165,
+  5.6056
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 163.0,
+ "goal_sigma_m": 1.2191,
+ "goal_entry": {
+  "range_m": 41.1997,
+  "bearing_deg": 7.8199
+ }
+}
