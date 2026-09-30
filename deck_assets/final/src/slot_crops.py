@@ -45,6 +45,40 @@ def run_map_pair_slot() -> Path:
     return out
 
 
+SAT_MIN = 60  # max-min channel spread of a costmap cell colour (the page chrome is near-grey)
+SAT_ROW_FRAC = 0.5  # a costmap row is mostly coloured cells
+CROP_PAD_PX = 6
+
+
+def console_costmap_slot() -> Path:
+    """console_costmap_slot.png: the costmap raster of console_1.png with its numbered callouts.
+
+    The raster is the longest run of rows whose left-half pixels are mostly saturated colour
+    (the green mode banner above it is a shorter run); columns likewise.
+    """
+    src = OUT / "console_1.png"
+    im = Image.open(src).convert("RGB")
+    a = np.asarray(im).astype(int)
+    sat = (a.max(2) - a.min(2)) > SAT_MIN
+    half = a.shape[1] // 2
+    rows = sat[:, :half].mean(1) > SAT_ROW_FRAC
+    runs, start = [], None
+    for y, on in enumerate(list(rows) + [False]):
+        if on and start is None:
+            start = y
+        elif not on and start is not None:
+            runs.append((start, y - 1))
+            start = None
+    y0, y1 = max(runs, key=lambda r: r[1] - r[0])
+    cols = np.where(sat[y0:y1 + 1, :half].mean(0) > SAT_ROW_FRAC)[0]
+    x0, x1 = int(cols.min()), int(cols.max())
+    out = OUT / "console_costmap_slot.png"
+    im.crop((max(0, x0 - CROP_PAD_PX), max(0, y0 - CROP_PAD_PX), x1 + 1 + CROP_PAD_PX, y1 + 1 + CROP_PAD_PX)).save(out)
+    LOG.info("wrote %s %s (raster x %d..%d, y %d..%d)", out, Image.open(out).size, x0, x1, y0, y1)
+    return out
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     run_map_pair_slot()
+    console_costmap_slot()
