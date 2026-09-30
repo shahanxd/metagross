@@ -42,7 +42,8 @@ import numpy as np
 
 log = logging.getLogger(__name__)
 
-DEV_SEEDS = range(100, 130)  # tuning split; EVAL seeds 0-59 are never aggregated here
+DEV_SEEDS = range(100, 130)  # tuning split (the default)
+EVAL_SEEDS = range(0, 60)  # held-out split: aggregated only with --split eval, for the frozen stack
 BEFORE_WINDOW_S = 20.0  # the integration-pass 'before' runs were capped at 20 s of sim time
 FAMILY_ORDER = ("F1_trail", "F2_ditch_field", "F3_crest_ditch", "F4_sudden_obstacle", "F5_lighting", "F6_water_mud")
 ARRIVED_MODE = "ARRIVED"  # DriveMode.ARRIVED.value
@@ -117,8 +118,8 @@ def load_run(run_dir: Path) -> Optional[dict[str, Any]]:
     return r
 
 
-def collect(root: Path, configs: Optional[Iterable[str]] = None) -> list[dict[str, Any]]:
-    """All finished DEV runs under ``root`` (optionally only these config names)."""
+def collect(root: Path, configs: Optional[Iterable[str]] = None, seeds: range = DEV_SEEDS) -> list[dict[str, Any]]:
+    """All finished runs of ``seeds`` (default: DEV) under ``root`` (optionally only these config names)."""
     rows = []
     if not root.exists():
         return rows
@@ -127,7 +128,7 @@ def collect(root: Path, configs: Optional[Iterable[str]] = None) -> list[dict[st
             continue
         for sdir in sorted(p for p in cdir.iterdir() if p.is_dir()):
             r = load_run(sdir)
-            if r is None or int(r["seed"]) not in DEV_SEEDS:
+            if r is None or int(r["seed"]) not in seeds:
                 continue
             r["config_name"] = cdir.name
             rows.append(r)
@@ -225,7 +226,7 @@ def make_claims(doc: dict[str, Any], out_name: str) -> list[dict[str, str]]:
         for cfg, a in agg.items():
             al = a["all"]
             base = f"results/{out_name}#{mode}.aggregate.{cfg}.all"
-            note = f"DEV seeds {al['seeds'][0]}-{al['seeds'][-1]} (n={al['n']}), sensor mode {mode}, referee on GT"
+            note = f"{str(doc.get('split', 'dev')).upper()} seeds {al['seeds'][0]}-{al['seeds'][-1]} (n={al['n']}), sensor mode {mode}, referee on GT"
             claims += [
                 {"id": f"closed_loop_{mode}_{cfg}_success", "value": f"{al['n_success']}/{al['n']}", "label": "Simulated",
                  "source": f"{base}.success_rate", "note": note + "; success = true goal within the mission success radius"},
@@ -250,24 +251,32 @@ def make_claims(doc: dict[str, Any], out_name: str) -> list[dict[str, str]]:
 
 def main(argv: list[str] | None = None) -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--split", choices=("dev", "eval"), default="dev",
+                    help="eval: EVAL seeds 0-59 only, no before/after table (default out results/closed_loop_eval.json)")
     ap.add_argument("--tier0", type=Path, default=Path("results/runs_dev_tier0"))
     ap.add_argument("--stereo", type=Path, default=Path("results/runs_dev_stereo"))
-    ap.add_argument("--out", type=Path, default=Path("results/closed_loop_dev.json"))
+    ap.add_argument("--out", type=Path, default=None)
     ap.add_argument("--extra", type=Path, help="JSON merged into the output (notes)")
     ap.add_argument("--before", type=Path, default=Path("results/runs_integration/tier0/summary.csv"),
                     help="earlier tier0 summary CSV for the same-seed before/after table")
     a = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
-    doc: dict[str, Any] = {"split": "dev", "seeds": [DEV_SEEDS.start, DEV_SEEDS.stop - 1]}
+    seeds = EVAL_SEEDS if a.split == "eval" else DEV_SEEDS
+    if a.out is None:
+        a.out = Path(f"results/closed_loop_{a.split}.json")
+    doc: dict[str, Any] = {"split": a.split, "seeds": [seeds.start, seeds.stop - 1]}
     for mode, root in (("tier0", a.tier0), ("stereo", a.stereo)):
-        rows = collect(root)
+        rows = collect(root, seeds=seeds)
+        if not rows and a.split == "eval":
+            continue
         write_summary_csv(rows, root / "summary.csv")
         doc[mode] = {"root": root.as_posix(), "aggregate": aggregate(rows), "runs": per_run_table(rows)}
         log.info("%s: %d runs", mode, len(rows))
-    doc["before_after_same_seeds"] = {
-        "before_source": a.before.as_posix(), "after_source": a.tier0.as_posix(),
-        "metric": f"GT path length in the first {BEFORE_WINDOW_S:.0f} s of sim time (before runs were capped there)",
-        "rows": before_after(a.before, a.tier0)}
+    if a.split == "dev":
+        doc["before_after_same_seeds"] = {
+            "before_source": a.before.as_posix(), "after_source": a.tier0.as_posix(),
+            "metric": f"GT path length in the first {BEFORE_WINDOW_S:.0f} s of sim time (before runs were capped there)",
+            "rows": before_after(a.before, a.tier0)}
     if a.extra is not None and a.extra.exists():
         doc.update(json.loads(a.extra.read_text(encoding="utf-8")))
     doc["claims"] = make_claims(doc, a.out.name)
