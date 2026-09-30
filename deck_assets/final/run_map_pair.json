@@ -1,0 +1,155 @@
+{
+ "figure": "run_map_pair",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images; held-out EVAL seed)",
+ "seed": 38,
+ "family": "F3_crest_ditch",
+ "split": "eval",
+ "scenario": "data/scenarios/eval/38.json",
+ "scenario_sha256": "802d1c98a44dbab0388d848a46ad5780973e3e6a5141cbbf749d242f2a3e36ef",
+ "world_m": {
+  "x": [
+   0.0,
+   64.0
+  ],
+  "y": [
+   0.0,
+   40.0
+  ],
+  "res_m": 0.05
+ },
+ "start_xy_m": [
+  5.3064,
+  24.8832
+ ],
+ "goal_xy_m": [
+  46.1648,
+  17.3054
+ ],
+ "success_radius_m": 2.0,
+ "hazards": [
+  {
+   "type": "crest",
+   "drop_m": 1.1913
+  },
+  {
+   "type": "ditch",
+   "depth_m": 0.5383,
+   "width_m": 0.5066,
+   "gaps_arc_m": [
+    [
+     25.0987,
+     27.0086
+    ]
+   ]
+  }
+ ],
+ "runs": {
+  "FULL": {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/038",
+   "outcome": "success",
+   "outcome_text": "Reached B",
+   "end_time_s": 33.02,
+   "end_event": {
+    "t": 33.02,
+    "type": "success"
+   },
+   "path_length_m": 44.611,
+   "mean_speed_mps": 1.351,
+   "final_error_m": 1.987,
+   "spl": 0.9717,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    44.94,
+    18.9
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/038/result.json",
+    "results/runs_eval_tier0/FULL/038/gt/events.json",
+    "results/runs_eval_tier0/FULL/038/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,38)"
+   ],
+   "time_ticks": [
+    {
+     "t_s": 10.0,
+     "x_m": 17.26,
+     "y_m": 21.09
+    },
+    {
+     "t_s": 20.0,
+     "x_m": 29.59,
+     "y_m": 21.0
+    },
+    {
+     "t_s": 30.0,
+     "x_m": 40.97,
+     "y_m": 20.67
+    }
+   ]
+  },
+  "TYPICAL": {
+   "config": "TYPICAL",
+   "run_dir": "results/runs_eval_tier0/TYPICAL/038",
+   "outcome": "ditch_entry",
+   "outcome_text": "Drove into the trench",
+   "end_time_s": 22.26,
+   "end_event": {
+    "t": 22.26,
+    "type": "ditch_entry",
+    "wheel": "FL",
+    "depth_below_median_m": 0.0,
+    "in_ditch_mask": true
+   },
+   "path_length_m": 27.324,
+   "mean_speed_mps": 1.2275,
+   "final_error_m": 15.467,
+   "spl": 0.0,
+   "ditch_entries": 1,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    31.14,
+    21.0
+   ],
+   "sources": [
+    "results/runs_eval_tier0/TYPICAL/038/result.json",
+    "results/runs_eval_tier0/TYPICAL/038/gt/events.json",
+    "results/runs_eval_tier0/TYPICAL/038/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row TYPICAL,38)"
+   ],
+   "time_ticks": [
+    {
+     "t_s": 10.0,
+     "x_m": 16.42,
+     "y_m": 21.56
+    },
+    {
+     "t_s": 20.0,
+     "x_m": 29.06,
+     "y_m": 20.38
+    }
+   ]
+  }
+ },
+ "full_first_trench_confirmation": {
+  "t": 18.2,
+  "x": 28.24430356754453,
+  "y": 20.312805831972064,
+  "n_cells": 44,
+  "dist_to_trench_m": 3.067530282128361,
+  "v_min_next3s": 0.6652298084394181,
+  "v_at": 1.5057875622740775,
+  "file": "results/runs_eval_tier0/FULL/038/autonomy/debug/tick_000091.npz"
+ },
+ "selection": "F2/F3 EVAL seeds where FULL reached B and TYPICAL failed (from summary.csv): 2 (F3, TYPICAL out_of_bounds), 7 (F2, ditch_entry), 37 (F2, out_of_bounds), 38 (F3, ditch_entry). Seed 38 is the headline pair: the trench is hidden behind the crest, which is exactly the 'unknown is never free' case.",
+ "how_drawn": {
+  "background": "hillshade of the scenario heightmap (az 315, alt 40, vert. exag. 4) tinted by material, 0.25 m contours of the landform (heightmap + trench excavation, lightly smoothed)",
+  "trench": "GT ditch mask from metagross.sim.hazards.gt_hazard_raster (cells excavated > 0.05 m)",
+  "objects": "static footprints from metagross.sim.objects.parse_static_objects; dark = protrudes above ground clearance (lethal), light = drive-over; drawn at true radius, min 0.30/0.18 m for visibility",
+  "paths": "GT body-origin x, y from gt/states.npz (0.04 s physics steps)",
+  "time_ticks": "GT position every 10 s",
+  "trench_confirmation": "first debug tick with extras_json.map_confirmed_ditch > 0 (newly confirmed trench cells in the rolling map); distance = GT vehicle position to nearest GT ditch cell; speed = min GT speed over the next 3 s"
+ }
+}

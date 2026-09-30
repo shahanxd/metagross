@@ -1,0 +1,267 @@
+{
+ "figure": "run_map_gallery",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images; held-out EVAL seeds)",
+ "panels": [
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/024",
+   "outcome": "success",
+   "outcome_text": "Reached B",
+   "end_time_s": 40.92,
+   "end_event": {
+    "t": 40.92,
+    "type": "success"
+   },
+   "path_length_m": 55.753,
+   "mean_speed_mps": 1.3625,
+   "final_error_m": 1.998,
+   "spl": 0.9736,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    57.93,
+    23.88
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/024/result.json",
+    "results/runs_eval_tier0/FULL/024/gt/events.json",
+    "results/runs_eval_tier0/FULL/024/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,24)"
+   ],
+   "seed": 24,
+   "family": "F1_trail",
+   "scenario": "data/scenarios/eval/24.json",
+   "scenario_sha256": "7fe2dbaaced4e1091a4f8eb276d46e1b0f8b7bf5bf183eca24cca5a394ba43e4",
+   "hazards": [],
+   "typical_same_seed": "success",
+   "typical_same_seed_time_s": 42.66,
+   "lighting": {
+    "sun_elev_deg": 59.8831,
+    "fog_density": 0.0007,
+    "events": []
+   },
+   "lighting_events_drawn": [],
+   "note": "rocks on the trail, trees beside it"
+  },
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/037",
+   "outcome": "success",
+   "outcome_text": "Reached B",
+   "end_time_s": 50.22,
+   "end_event": {
+    "t": 50.22,
+    "type": "success"
+   },
+   "path_length_m": 64.817,
+   "mean_speed_mps": 1.2907,
+   "final_error_m": 1.98,
+   "spl": 0.8776,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    49.11,
+    17.49
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/037/result.json",
+    "results/runs_eval_tier0/FULL/037/gt/events.json",
+    "results/runs_eval_tier0/FULL/037/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,37)"
+   ],
+   "seed": 37,
+   "family": "F2_ditch_field",
+   "scenario": "data/scenarios/eval/37.json",
+   "scenario_sha256": "e02a83d809f8c13ca25efddd8a3bed24a1825bbdb87bf98c07a80cd2723cabe8",
+   "hazards": [
+    {
+     "type": "ditch",
+     "depth_m": 0.6367,
+     "width_m": 0.5816,
+     "gaps_arc_m": [
+      [
+       6.7888,
+       9.2783
+      ]
+     ]
+    },
+    {
+     "type": "ditch",
+     "depth_m": 0.6153,
+     "width_m": 0.3792,
+     "gaps_arc_m": [
+      [
+       5.213,
+       6.8751
+      ]
+     ]
+    },
+    {
+     "type": "ditch",
+     "depth_m": 0.8454,
+     "width_m": 0.44,
+     "gaps_arc_m": [
+      [
+       24.435,
+       27.1837
+      ]
+     ]
+    }
+   ],
+   "typical_same_seed": "out_of_bounds",
+   "typical_same_seed_time_s": 56.26,
+   "lighting": {
+    "sun_elev_deg": 46.2838,
+    "fog_density": 0.0023,
+    "events": []
+   },
+   "lighting_events_drawn": [],
+   "note": "three trenches, one gap each"
+  },
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/002",
+   "outcome": "success",
+   "outcome_text": "Reached B",
+   "end_time_s": 35.54,
+   "end_event": {
+    "t": 35.54,
+    "type": "success"
+   },
+   "path_length_m": 44.748,
+   "mean_speed_mps": 1.2591,
+   "final_error_m": 1.997,
+   "spl": 0.9664,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    43.51,
+    23.06
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/002/result.json",
+    "results/runs_eval_tier0/FULL/002/gt/events.json",
+    "results/runs_eval_tier0/FULL/002/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,2)"
+   ],
+   "seed": 2,
+   "family": "F3_crest_ditch",
+   "scenario": "data/scenarios/eval/2.json",
+   "scenario_sha256": "c478b3ac84d6daec78420765cb3b471c27a8eb8e1b23bd141cd81889d2fd091b",
+   "hazards": [
+    {
+     "type": "crest",
+     "drop_m": 0.8598
+    },
+    {
+     "type": "ditch",
+     "depth_m": 0.6617,
+     "width_m": 0.6215,
+     "gaps_arc_m": [
+      [
+       25.7897,
+       28.6722
+      ]
+     ]
+    }
+   ],
+   "typical_same_seed": "out_of_bounds",
+   "typical_same_seed_time_s": 32.42,
+   "lighting": {
+    "sun_elev_deg": 26.1591,
+    "fog_density": 0.0015,
+    "events": []
+   },
+   "lighting_events_drawn": [],
+   "note": "trench hidden behind a crest"
+  },
+  {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/004",
+   "outcome": "success",
+   "outcome_text": "Reached B",
+   "end_time_s": 34.18,
+   "end_event": {
+    "t": 34.18,
+    "type": "success"
+   },
+   "path_length_m": 48.946,
+   "mean_speed_mps": 1.432,
+   "final_error_m": 1.989,
+   "spl": 0.9591,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    50.11,
+    10.49
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/004/result.json",
+    "results/runs_eval_tier0/FULL/004/gt/events.json",
+    "results/runs_eval_tier0/FULL/004/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,4)"
+   ],
+   "seed": 4,
+   "family": "F5_lighting",
+   "scenario": "data/scenarios/eval/4.json",
+   "scenario_sha256": "e88137590820d5c71441e3dc6d9067badc03270124021b3c0b2e03d8ec5cfe1f",
+   "hazards": [],
+   "typical_same_seed": "success",
+   "typical_same_seed_time_s": 34.8,
+   "lighting": {
+    "sun_elev_deg": 6.6765,
+    "fog_density": 0.0168,
+    "events": [
+     {
+      "gain": 1.8281,
+      "t0": 5.0996,
+      "t1": 10.7796,
+      "type": "glare"
+     },
+     {
+      "gain": 0.4,
+      "t0": 31.529,
+      "t1": 34.529,
+      "type": "dim"
+     },
+     {
+      "gain": 0.1956,
+      "t0": 53.324,
+      "t1": 60.588,
+      "type": "dust"
+     }
+    ]
+   },
+   "lighting_events_drawn": [
+    {
+     "type": "glare",
+     "t0_s": 5.1,
+     "t1_s": 10.78,
+     "gain": 1.8281,
+     "xy_mid_m": [
+      14.761525449092364,
+      21.77966194947005
+     ]
+    },
+    {
+     "type": "dim",
+     "t0_s": 31.53,
+     "t1_s": 34.18,
+     "gain": 0.4,
+     "xy_mid_m": [
+      48.572222898447976,
+      11.530245634802112
+     ]
+    }
+   ],
+   "note": "sun 7\u00b0 above horizon, glare + dimming"
+  }
+ ],
+ "selection": "One FULL success per family for F1, F2, F3, F5 (F4 and F6 excluded by the brief). F2 seed 37 has three trenches; F3 seed 2 is the only other F3 trench seed FULL completed (seed 38 is used in run_map_pair); F5 seed 4 has glare and dimming inside the run window; F1 seed 24 weaves through rocks on the trail.",
+ "note_lighting": "In tier-0 there are no images: lighting events act on the synthetic depth sensor as dropout, noise and dust phantom returns (metagross/sim/sensors.py).",
+ "how_drawn": "same basemap as run_map_pair; amber bands = path stretches while a lighting event was active"
+}

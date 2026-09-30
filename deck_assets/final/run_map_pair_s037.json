@@ -1,0 +1,190 @@
+{
+ "figure": "run_map_pair_s037",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images; held-out EVAL seed)",
+ "seed": 37,
+ "family": "F2_ditch_field",
+ "split": "eval",
+ "scenario": "data/scenarios/eval/37.json",
+ "scenario_sha256": "e02a83d809f8c13ca25efddd8a3bed24a1825bbdb87bf98c07a80cd2723cabe8",
+ "world_m": {
+  "x": [
+   0.0,
+   64.0
+  ],
+  "y": [
+   0.0,
+   40.0
+  ],
+  "res_m": 0.05
+ },
+ "start_xy_m": [
+  6.6403,
+  12.033
+ ],
+ "goal_xy_m": [
+  50.5926,
+  16.1392
+ ],
+ "success_radius_m": 2.0,
+ "hazards": [
+  {
+   "type": "ditch",
+   "depth_m": 0.6367,
+   "width_m": 0.5816,
+   "gaps_arc_m": [
+    [
+     6.7888,
+     9.2783
+    ]
+   ]
+  },
+  {
+   "type": "ditch",
+   "depth_m": 0.6153,
+   "width_m": 0.3792,
+   "gaps_arc_m": [
+    [
+     5.213,
+     6.8751
+    ]
+   ]
+  },
+  {
+   "type": "ditch",
+   "depth_m": 0.8454,
+   "width_m": 0.44,
+   "gaps_arc_m": [
+    [
+     24.435,
+     27.1837
+    ]
+   ]
+  }
+ ],
+ "runs": {
+  "FULL": {
+   "config": "FULL",
+   "run_dir": "results/runs_eval_tier0/FULL/037",
+   "outcome": "success",
+   "outcome_text": "Reached B",
+   "end_time_s": 50.22,
+   "end_event": {
+    "t": 50.22,
+    "type": "success"
+   },
+   "path_length_m": 64.817,
+   "mean_speed_mps": 1.2907,
+   "final_error_m": 1.98,
+   "spl": 0.8776,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    49.11,
+    17.49
+   ],
+   "sources": [
+    "results/runs_eval_tier0/FULL/037/result.json",
+    "results/runs_eval_tier0/FULL/037/gt/events.json",
+    "results/runs_eval_tier0/FULL/037/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row FULL,37)"
+   ],
+   "time_ticks": [
+    {
+     "t_s": 10.0,
+     "x_m": 17.72,
+     "y_m": 10.51
+    },
+    {
+     "t_s": 20.0,
+     "x_m": 28.64,
+     "y_m": 10.04
+    },
+    {
+     "t_s": 30.0,
+     "x_m": 33.76,
+     "y_m": 5.01
+    },
+    {
+     "t_s": 40.0,
+     "x_m": 40.08,
+     "y_m": 18.59
+    }
+   ]
+  },
+  "TYPICAL": {
+   "config": "TYPICAL",
+   "run_dir": "results/runs_eval_tier0/TYPICAL/037",
+   "outcome": "out_of_bounds",
+   "outcome_text": "Drove off the map",
+   "end_time_s": 56.26,
+   "end_event": {
+    "t": 56.26,
+    "type": "out_of_bounds"
+   },
+   "path_length_m": 52.619,
+   "mean_speed_mps": 0.9353,
+   "final_error_m": 31.211,
+   "spl": 0.0,
+   "ditch_entries": 0,
+   "collisions": 0,
+   "water_entries": 0,
+   "end_xy_m": [
+    29.82,
+    39.45
+   ],
+   "sources": [
+    "results/runs_eval_tier0/TYPICAL/037/result.json",
+    "results/runs_eval_tier0/TYPICAL/037/gt/events.json",
+    "results/runs_eval_tier0/TYPICAL/037/gt/states.npz",
+    "results/runs_eval_tier0/summary.csv (row TYPICAL,37)"
+   ],
+   "time_ticks": [
+    {
+     "t_s": 10.0,
+     "x_m": 16.51,
+     "y_m": 16.84
+    },
+    {
+     "t_s": 20.0,
+     "x_m": 24.39,
+     "y_m": 17.53
+    },
+    {
+     "t_s": 30.0,
+     "x_m": 22.7,
+     "y_m": 15.25
+    },
+    {
+     "t_s": 40.0,
+     "x_m": 22.52,
+     "y_m": 21.85
+    },
+    {
+     "t_s": 50.0,
+     "x_m": 25.16,
+     "y_m": 33.64
+    }
+   ]
+  }
+ },
+ "full_first_trench_confirmation": {
+  "t": 4.6000000000000005,
+  "x": 11.195367882067982,
+  "y": 13.432675707366466,
+  "n_cells": 6,
+  "dist_to_trench_m": 11.66780867169058,
+  "v_min_next3s": 1.2384247175820873,
+  "v_at": 1.464479646667553,
+  "file": "results/runs_eval_tier0/FULL/037/autonomy/debug/tick_000023.npz"
+ },
+ "selection": "F2/F3 EVAL seeds where FULL reached B and TYPICAL failed (from summary.csv): 2 (F3, TYPICAL out_of_bounds), 7 (F2, ditch_entry), 37 (F2, out_of_bounds), 38 (F3, ditch_entry). Seed 38 is the headline pair: the trench is hidden behind the crest, which is exactly the 'unknown is never free' case.",
+ "how_drawn": {
+  "background": "hillshade of the scenario heightmap (az 315, alt 40, vert. exag. 4) tinted by material, 0.25 m contours of the landform (heightmap + trench excavation, lightly smoothed)",
+  "trench": "GT ditch mask from metagross.sim.hazards.gt_hazard_raster (cells excavated > 0.05 m)",
+  "objects": "static footprints from metagross.sim.objects.parse_static_objects; dark = protrudes above ground clearance (lethal), light = drive-over; drawn at true radius, min 0.30/0.18 m for visibility",
+  "paths": "GT body-origin x, y from gt/states.npz (0.04 s physics steps)",
+  "time_ticks": "GT position every 10 s",
+  "trench_confirmation": "first debug tick with extras_json.map_confirmed_ditch > 0 (newly confirmed trench cells in the rolling map); distance = GT vehicle position to nearest GT ditch cell; speed = min GT speed over the next 3 s"
+ }
+}
