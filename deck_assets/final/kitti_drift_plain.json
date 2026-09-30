@@ -2,6 +2,10 @@
   "figure": "kitti_drift_plain",
   "label": "Tested",
   "literature_lines": false,
+  "png_px": [
+    1848,
+    1617
+  ],
   "provenance": "Tested on KITTI odometry (real stereo, camera only, no GPS, no loop closure); 00 evaluated on frames 1101-4540",
   "numbers": [
     {
@@ -11,10 +15,22 @@
       "how": "vector paths of the panel drawn by deck_assets/kitti_figures.py from results/raw/kitti_vo_00_poses.txt and data/kitti/poses/00.txt (absent here); converted to metres with its 100 m scale bar"
     },
     {
+      "what": "KITTI 00 distance driven (map header)",
+      "value": "2.91 km",
+      "source": "results/kitti_vo_00.json#path_length_m",
+      "how": "GT path length"
+    },
+    {
       "what": "KITTI 05 top-view trajectory, GT and VO (drawn, not measured here)",
       "value": "151 GT / 156 VO polyline points",
       "source": "deck_assets/kitti_traj_panel.svg",
       "how": "vector paths of the panel drawn by deck_assets/kitti_figures.py from results/raw/kitti_vo_05_poses.txt and data/kitti/poses/05.txt (absent here); converted to metres with its 100 m scale bar"
+    },
+    {
+      "what": "KITTI 05 distance driven (map header)",
+      "value": "2.21 km",
+      "source": "results/kitti_vo_05.json#path_length_m",
+      "how": "GT path length"
     },
     {
       "what": "KITTI 07 top-view trajectory, GT and VO (drawn, not measured here)",
@@ -23,7 +39,13 @@
       "how": "vector paths of the panel drawn by deck_assets/kitti_figures.py from results/raw/kitti_vo_07_poses.txt and data/kitti/poses/07.txt (absent here); converted to metres with its 100 m scale bar"
     },
     {
-      "what": "KITTI 00*: KITTI-protocol translational error t_err (bar)",
+      "what": "KITTI 07 distance driven (map header)",
+      "value": "695 m",
+      "source": "results/kitti_vo_07.json#path_length_m",
+      "how": "GT path length"
+    },
+    {
+      "what": "KITTI 00*: KITTI-protocol translational error t_err (bar and label)",
       "value": 2.11,
       "unit": "%",
       "source": "results/kitti_vo_00.json#t_err_pct",
@@ -43,7 +65,7 @@
       "how": "KITTI devkit protocol"
     },
     {
-      "what": "KITTI 05: KITTI-protocol translational error t_err (bar)",
+      "what": "KITTI 05: KITTI-protocol translational error t_err (bar and label)",
       "value": 1.53,
       "unit": "%",
       "source": "results/kitti_vo_05.json#t_err_pct",
@@ -63,7 +85,7 @@
       "how": "KITTI devkit protocol"
     },
     {
-      "what": "KITTI 07: KITTI-protocol translational error t_err (bar)",
+      "what": "KITTI 07: KITTI-protocol translational error t_err (bar and label)",
       "value": 2.05,
       "unit": "%",
       "source": "results/kitti_vo_07.json#t_err_pct",
@@ -83,7 +105,7 @@
       "how": "KITTI devkit protocol"
     },
     {
-      "what": "All three, pooled: KITTI-protocol translational error t_err (bar)",
+      "what": "All three, pooled: KITTI-protocol translational error t_err (bar and label)",
       "value": 1.87,
       "unit": "%",
       "source": "results/kitti_summary.json#pooled",
@@ -103,6 +125,27 @@
       "how": "KITTI devkit protocol"
     }
   ],
+  "json_only_not_drawn": {
+    "end_point_error_m_vs_distance": {
+      "00": {
+        "final_err_m": 27.4,
+        "path_length_m": 2913.5,
+        "ate_max_m": 79.6
+      },
+      "05": {
+        "final_err_m": 52.3,
+        "path_length_m": 2205.6,
+        "ate_max_m": 52.3
+      },
+      "07": {
+        "final_err_m": 12.1,
+        "path_length_m": 694.7,
+        "ate_max_m": 16.1
+      }
+    },
+    "note": "NOT drawn and NOT in results/claims.csv. t_err is a mean relative error over 100-800 m sub-segments, not the error at the end of the 5.8 km; end-point errors are listed so nobody reads 1.87 % as '109 m after 5.8 km'. Source: results/kitti_vo_0X.json#final_err_m, #ate_max_m.",
+    "vo_config_caveat": "These runs used the VO config logged in results/kitti_vo_0X.json#vo_config (KLT 21 px / 30 iterations, no photometric normalisation). The current onboard default (KLT 15 px / 10 iterations, photometric normalisation on) was re-measured on 07 only: 2.037 % (results/kitti_vo_07_check.json, claims.csv kitti07_t_err_pct_current_vo). 00* and 05 were not re-run with it."
+  },
   "trajectory_recovery_checks": [
     {
       "sequence": "00",

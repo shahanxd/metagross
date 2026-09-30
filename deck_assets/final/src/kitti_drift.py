@@ -39,6 +39,7 @@ from matplotlib import transforms  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
 from matplotlib.patches import PathPatch  # noqa: E402
 from matplotlib.path import Path as MPath  # noqa: E402
+from PIL import Image  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "deck_assets" / "final"
@@ -157,7 +158,7 @@ def fit_equal(ax, xy: np.ndarray, pad=0.07, bottom_band=0.16):
     ax.set_aspect("equal", adjustable="box")
 
 
-def scale_bar(ax, length_m=100.0):
+def scale_bar(ax, length_m=100.0, fontsize=11.5):
     x0, x1 = ax.get_xlim()
     y0, y1 = ax.get_ylim()
     xr = x1 - 0.05 * (x1 - x0)
@@ -166,7 +167,7 @@ def scale_bar(ax, length_m=100.0):
     ax.plot([xl, xr], [yb, yb], color=INK, lw=2.2, solid_capstyle="butt", zorder=6)
     for x in (xl, xr):
         ax.plot([x, x], [yb - 0.015 * (y1 - y0), yb + 0.015 * (y1 - y0)], color=INK, lw=1.2, zorder=6)
-    ax.text((xl + xr) / 2, yb + 0.03 * (y1 - y0), f"{length_m:.0f} m", ha="center", va="bottom", fontsize=11.5,
+    ax.text((xl + xr) / 2, yb + 0.03 * (y1 - y0), f"{length_m:.0f} m", ha="center", va="bottom", fontsize=fontsize,
             color=INK, zorder=6)
 
 
@@ -181,6 +182,22 @@ def save(fig, name):
 
 
 # ---- figure --------------------------------------------------------------------------------
+# text sizes in points at DPI 200 (13 pt = 36 px in the PNG; ~18 px when the figure is shown 900 px wide)
+FS_MIN = 13.0     # footnotes, sub-labels, literature labels, provenance, scale-bar labels
+FS_TICK = 13.5
+FS_LABEL = 14.0
+FS_NAME = 14.5
+FS_VALUE = 15.0
+LIT_LINE = "#5C5C5C"  # literature reference lines: dashed dark grey (the wide light-grey GT track means something else)
+LIT_DASH = (0, (5, 3))
+VALUE_ON_BAR = "#FFFFFF"  # value labels sit inside the navy bars (contrast ~9:1), clear of the reference lines
+
+
+def _fig_y0(fig, artist) -> float:
+    fig.canvas.draw()
+    return artist.get_window_extent().transformed(fig.transFigure.inverted()).y0
+
+
 def build(literature: bool) -> dict:
     runs, summary = load_metrics()
     traj, checks = load_trajectories(runs)
@@ -188,50 +205,62 @@ def build(literature: bool) -> dict:
     lit_rows = {r["method"]: r for r in summary["literature_context"]["rows"]}
     drawn = []
 
-    fig = plt.figure(figsize=(9.0, 7.6), dpi=DPI)
+    # vertical layout in inches from the top, so both variants get the same bar thickness and no empty band
+    top = -1.35 if literature else -0.55  # bar-axes top in data units (room for the literature labels)
+    y_last = 3 + 0.2  # pooled row sits a little lower than the three sequences, under a thin separator
+    y_bottom = y_last + 0.5
+    KEY_IN, HEAD_IN, MAP_IN, GAP_IN, UNIT_IN, BOTTOM_IN = 0.42, 0.36, 2.6, 0.3, 0.58, 1.9
+    bars_in = (y_bottom - top) * UNIT_IN
+    H = KEY_IN + HEAD_IN + MAP_IN + GAP_IN + bars_in + BOTTOM_IN
+    fig = plt.figure(figsize=(9.0, H), dpi=DPI)
+
+    def fy(inches_from_top: float) -> float:
+        return 1 - inches_from_top / H
 
     # key for the trajectory panels
-    ky = 0.978
+    ky = fy(KEY_IN / 2)
     kx = 0.012
     for colour, lw, label in ((GT_TRACK, 5.0, "Ground truth (GPS/INS)"), (NAVY, 2.0, "Our stereo VO, camera only")):
         fig.add_artist(Line2D([kx, kx + 0.04], [ky, ky], transform=fig.transFigure, color=colour, lw=lw,
-                                solid_capstyle="round"))
-        t = fig.text(kx + 0.05, ky, label, fontsize=12.5, va="center", ha="left", color=INK)
+                              solid_capstyle="round"))
+        t = fig.text(kx + 0.05, ky, label, fontsize=FS_LABEL, va="center", ha="left", color=INK)
         fig.canvas.draw()
         kx = t.get_window_extent().transformed(fig.transFigure.inverted()).x1 + 0.035
-    fig.add_artist(Line2D([kx + 0.008], [ky], transform=fig.transFigure, ls="none", marker="o", ms=7.5,
-                            color=INK, mec=BG, mew=1.5))
-    fig.text(kx + 0.022, ky, "start", fontsize=12.5, va="center", ha="left", color=INK)
+    fig.add_artist(Line2D([kx + 0.008], [ky], transform=fig.transFigure, ls="none", marker="o", ms=8,
+                          color=INK, mec=BG, mew=1.5))
+    fig.text(kx + 0.024, ky, "start", fontsize=FS_LABEL, va="center", ha="left", color=INK)
 
     # trajectory small multiples
     w, gap, left = 0.318, 0.023, 0.012
     for i, seq in enumerate(SEQS):
         G, V = traj[seq]
         res = runs[seq]
-        ax = fig.add_axes([left + i * (w + gap), 0.555, w, 0.345])
+        ax = fig.add_axes([left + i * (w + gap), fy(KEY_IN + HEAD_IN + MAP_IN), w, MAP_IN / H])
         ax.plot(G[:, 0], G[:, 1], color=GT_TRACK, lw=5.0, solid_capstyle="round", solid_joinstyle="round", zorder=2)
         ax.plot(V[:, 0], V[:, 1], color=NAVY, lw=1.9, solid_capstyle="round", solid_joinstyle="round", zorder=3)
         ax.plot([0], [0], "o", ms=8, color=INK, mec=BG, mew=1.6, zorder=5)
-        fit_equal(ax, np.vstack([G, V]))
-        scale_bar(ax, SCALE_BAR_M)
+        fit_equal(ax, np.vstack([G, V]), bottom_band=0.19)
+        scale_bar(ax, SCALE_BAR_M, fontsize=FS_MIN)
         ax.set_xticks([])
         ax.set_yticks([])
         for s in ax.spines.values():
             s.set_color(GRID)
         name = f"KITTI {seq}" + ("*" if not res.get("full_sequence", True) else "")
-        ax.text(0.0, 1.035, name, transform=ax.transAxes, ha="left", va="bottom", fontsize=13.5,
+        ax.text(0.0, 1.035, name, transform=ax.transAxes, ha="left", va="bottom", fontsize=FS_NAME,
                 fontweight="bold", color=INK)
         ax.text(1.0, 1.035, km(res["path_length_m"]), transform=ax.transAxes, ha="right", va="bottom",
-                fontsize=12, color=MUTED)
+                fontsize=FS_LABEL, color=MUTED)
         drawn.append({"what": f"KITTI {seq} top-view trajectory, GT and VO (drawn, not measured here)",
                       "value": f"{len(G)} GT / {len(V)} VO polyline points",
                       "source": TRAJ_SVG,
                       "how": "vector paths of the panel drawn by deck_assets/kitti_figures.py from "
                              f"results/raw/kitti_vo_{seq}_poses.txt and data/kitti/poses/{seq}.txt (absent here); "
                              "converted to metres with its 100 m scale bar"})
+        drawn.append({"what": f"KITTI {seq} distance driven (map header)", "value": km(res["path_length_m"]),
+                      "source": SEQ_JSON.format(seq=seq) + "#path_length_m", "how": "GT path length"})
 
     # drift bars
-    ax = fig.add_axes([0.285, 0.19, 0.655, 0.31])
+    ax = fig.add_axes([0.30, fy(KEY_IN + HEAD_IN + MAP_IN + GAP_IN + bars_in), 0.64, bars_in / H])
     rows = [(f"KITTI {s}" + ("*" if not runs[s].get("full_sequence", True) else ""),
              f"{km(runs[s]['path_length_m'])} · {runs[s]['frames']:,} frames",
              runs[s]["t_err_pct"], runs[s]["r_err_deg_per_100m"], runs[s]["n_segments"], s) for s in SEQS]
@@ -239,43 +268,40 @@ def build(literature: bool) -> dict:
     rows.append(("All three, pooled", f"{km(total_m)} · {pooled['n_segments']:,} segments",
                  pooled["t_err_pct"], pooled["r_err_deg_per_100m"], pooled["n_segments"], "pooled"))
     xmax = 2.6
+    assert len(rows) == 4
     ax.set_xlim(0, xmax)
-    top = -1.05 if literature else -0.55
-    ax.set_ylim(len(rows) - 0.45, top)
+    ax.set_ylim(y_bottom, top)
     fig.canvas.draw()
-    bar_h = 0.5 if literature else 0.44
+    bar_h = 0.52
     tr = transforms.blended_transform_factory(ax.transAxes, ax.transData)
     for i, (name, sub, terr, rerr, nseg, key) in enumerate(rows):
-        yc = i + (0.18 if key == "pooled" else 0)
+        yc = y_last if key == "pooled" else i
         round_end_bar(ax, 0, terr, yc, bar_h, NAVY)
         bold = key == "pooled"
-        lab = ax.text(terr + 0.035, yc, f"{terr:.2f} %", va="center", ha="left", fontsize=13.5, color=INK,
-                      fontweight="bold", zorder=5,
-                      bbox=dict(boxstyle="square,pad=0.12", facecolor=BG, edgecolor="none"))
-        ax.text(-0.03, yc, name, transform=transforms.offset_copy(tr, fig=fig, y=8, units="points"),
-                ha="right", va="center", fontsize=13.5, color=INK, fontweight="bold" if bold else "normal")
-        ax.text(-0.03, yc, sub, transform=transforms.offset_copy(tr, fig=fig, y=-9.5, units="points"),
-                ha="right", va="center", fontsize=10.5, color=MUTED)
+        ax.text(terr - 0.045, yc, f"{terr:.2f} %", va="center", ha="right", fontsize=FS_VALUE, color=VALUE_ON_BAR,
+                fontweight="bold", zorder=5)
+        ax.text(-0.03, yc, name, transform=transforms.offset_copy(tr, fig=fig, y=9.0, units="points"),
+                ha="right", va="center", fontsize=FS_NAME, color=INK, fontweight="bold" if bold else "normal")
+        ax.text(-0.03, yc, sub, transform=transforms.offset_copy(tr, fig=fig, y=-10.0, units="points"),
+                ha="right", va="center", fontsize=FS_MIN, color=MUTED)
         src = SUMMARY_JSON + "#pooled" if key == "pooled" else SEQ_JSON.format(seq=key)
-        drawn.append({"what": f"{name}: KITTI-protocol translational error t_err (bar)", "value": round(terr, 2),
-                      "unit": "%", "source": src + ("" if key == "pooled" else "#t_err_pct"),
+        drawn.append({"what": f"{name}: KITTI-protocol translational error t_err (bar and label)",
+                      "value": round(terr, 2), "unit": "%", "source": src + ("" if key == "pooled" else "#t_err_pct"),
                       "how": ("segment-weighted mean over all 100-800 m segments of 00*, 05, 07" if key == "pooled"
                               else f"mean over {nseg} segments of 100-800 m, KITTI devkit protocol")})
         drawn.append({"what": f"{name}: label under the name", "value": sub,
                       "source": src, "how": "path_length_m (GT) and frames / n_segments; pooled km = sum of the three"})
         drawn.append({"what": f"{name}: rotational error r_err (json only, not drawn)", "value": round(rerr, 2),
                       "unit": "deg/100 m", "source": src, "how": "KITTI devkit protocol"})
-    ax.plot([-0.06, xmax], [2.55, 2.55], color=GRID, lw=1.0, zorder=1, clip_on=False,
-            transform=ax.transData)
+    ax.plot([-0.06, xmax], [len(rows) - 1 - 0.4, len(rows) - 1 - 0.4], color=GRID, lw=1.0, zorder=1, clip_on=False)
 
     if literature:
-        for method, short, x_txt, ha in (
-                ("ORB-SLAM2 (stereo)", "ORB-SLAM2 stereo, full\nSLAM with loop closure", None, "center"),
-                ("VISO2-S", "VISO2-S, frame-to-frame\nstereo VO", xmax, "right")):
+        for method, lines in (("ORB-SLAM2 (stereo)", ("ORB-SLAM2 stereo: {v:.2f} %", "(full SLAM, loop closure)")),
+                              ("VISO2-S", ("VISO2-S: {v:.2f} %", "(frame-to-frame stereo VO)"))):
             v = lit_rows[method]["t_err_pct"]
-            ax.plot([v, v], [-0.55, len(rows) - 0.45], color=GREY, lw=1.3, zorder=1)
-            ax.text(v if x_txt is None else x_txt, -0.62, f"{short}: {v:.2f} %", ha=ha, va="bottom", fontsize=10.5,
-                    color=MUTED, linespacing=1.25)
+            ax.plot([v, v], [top + 0.05, y_bottom], color=LIT_LINE, lw=1.3, ls=LIT_DASH, zorder=1)
+            ax.text(v - 0.035, top + 0.12, lines[0].format(v=v) + "\n" + lines[1], ha="right", va="top",
+                    fontsize=FS_MIN, color=MUTED, linespacing=1.25)
             drawn.append({"what": f"Literature reference line: {method}", "value": v, "unit": "%",
                           "label": "Literature (NOT our measurement)",
                           "source": SUMMARY_JSON + "#literature_context (KITTI leaderboard, "
@@ -285,31 +311,55 @@ def build(literature: bool) -> dict:
 
     ax.set_xticks(np.arange(0, xmax + 1e-9, 0.5))
     ax.set_xticklabels([f"{x:g}" for x in np.arange(0, xmax + 1e-9, 0.5)])
-    ax.tick_params(axis="x", labelsize=12.5, length=0, pad=6)
+    ax.tick_params(axis="x", labelsize=FS_TICK, length=0, pad=6)
     ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
     for x in np.arange(0.5, xmax + 1e-9, 0.5):
-        ax.plot([x, x], [-0.45 if not literature else -0.55, len(rows) - 0.45], color=GRID, lw=1, zorder=0)
-    ax.set_xlabel("Translational drift, % of distance travelled (KITTI protocol, 100-800 m segments)",
-                  fontsize=12.5, color=INK, labelpad=8)
+        ax.plot([x, x], [top if not literature else -0.55, y_bottom], color=GRID, lw=1, zorder=0)
+    ax.set_xlabel("Translational error, % of segment length\n(KITTI protocol: mean over all 100-800 m segments)",
+                  fontsize=FS_LABEL, color=INK, labelpad=8, linespacing=1.3)
 
-    note = ("*00: frames 1101-4540 (the downloaded mirror's first 1,101 frames are not sequence 00).\n"
-            "Maps: start pose aligned only, no scale or rotation fit; each map has its own scale.")
+    # footnotes directly under the x label, provenance under them (no empty band in either variant)
+    note = ["*00: frames 1101-4540 only; the downloaded mirror's first 1,101 frames are not sequence 00.",
+            "Maps: aligned at the start pose only, no scale or rotation fit."]
     if literature:
-        note += "\nGrey lines: KITTI leaderboard, test sequences 11-21 (literature, not our runs)."
-    fig.text(0.012, 0.03, note, fontsize=10, color=MUTED, ha="left", va="bottom", linespacing=1.35)
-    fig.text(0.012, 0.0, "Tested on KITTI odometry, real stereo, camera only, no GPS, no loop closure · "
-             "results/kitti_vo_{00,05,07}.json", fontsize=10, color=FAINT, ha="left", va="bottom")
+        note.append("Dashed lines: KITTI leaderboard on test sequences 11-21 (literature, not our runs).")
+    foot = fig.text(0.012, _fig_y0(fig, ax.xaxis.label) - 0.02, "\n".join(note), fontsize=FS_MIN, color=MUTED,
+                    ha="left", va="top", linespacing=1.3)
+    prov = "Tested on KITTI odometry · results/kitti_vo_{00,05,07}.json, results/kitti_summary.json"
+    fig.text(0.012, _fig_y0(fig, foot) - 0.014, prov, fontsize=FS_MIN, color=MUTED, ha="left", va="top")
     name = "kitti_drift" if literature else "kitti_drift_plain"
     save(fig, name)
-    return {"figure": name, "label": "Tested", "literature_lines": literature,
+    with Image.open(OUT / f"{name}.png") as im:
+        png_px = list(im.size)
+    json_only = {
+        "end_point_error_m_vs_distance": {
+            s: {"final_err_m": round(runs[s]["final_err_m"], 1), "path_length_m": round(runs[s]["path_length_m"], 1),
+                "ate_max_m": round(runs[s]["ate_max_m"], 1)} for s in SEQS},
+        "note": "NOT drawn and NOT in results/claims.csv. t_err is a mean relative error over 100-800 m sub-segments, "
+                "not the error at the end of the 5.8 km; end-point errors are listed so nobody reads 1.87 % as "
+                "'109 m after 5.8 km'. Source: results/kitti_vo_0X.json#final_err_m, #ate_max_m.",
+        "vo_config_caveat": "These runs used the VO config logged in results/kitti_vo_0X.json#vo_config (KLT 21 px / "
+                            "30 iterations, no photometric normalisation). The current onboard default (KLT 15 px / "
+                            "10 iterations, photometric normalisation on) was re-measured on 07 only: 2.037 % "
+                            "(results/kitti_vo_07_check.json, claims.csv kitti07_t_err_pct_current_vo). 00* and 05 "
+                            "were not re-run with it.",
+    }
+    info = {"figure": name, "label": "Tested", "literature_lines": literature, "png_px": png_px,
             "provenance": "Tested on KITTI odometry (real stereo, camera only, no GPS, no loop closure); "
                           "00 evaluated on frames 1101-4540",
-            "numbers": drawn, "trajectory_recovery_checks": checks,
+            "numbers": drawn, "json_only_not_drawn": json_only, "trajectory_recovery_checks": checks,
             "trajectory_source_note": "results/raw/kitti_vo_<seq>_poses.txt and data/kitti/poses/<seq>.txt are not "
                                       "present in this container; polylines recovered from " + TRAJ_SVG +
                                       " (see this script's docstring). Metrics come only from the JSONs."}
+    if literature:
+        info["literature_registration_needed"] = (
+            "ORB-SLAM2 1.15 % and VISO2-S 2.44 % are in results/kitti_summary.json#literature_context but NOT in "
+            "results/claims.csv (label Literature), and ORB-SLAM2 (Mur-Artal & Tardos, IEEE T-RO 33(5) 2017) and "
+            "VISO2/StereoScan (Geiger, Ziegler & Stiller, IEEE IV 2011) are not in docs/REFERENCES.md. Register and "
+            "cite them before using this variant, or use kitti_drift_plain.")
+    return info
 
 
 SLOT_W_PX, SLOT_H_PX = 652, 470  # box on the 1920x1080 slide (slide 3, right column)
