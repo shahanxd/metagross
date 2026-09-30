@@ -55,3 +55,15 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 3. **Connect the operator console live**, with a telemetry stream from the running episode and operator commands
    back to the autonomy.
 4. Make the node fail loudly when the segmenter is missing, and record `impl` in `result.json`.
+
+## Next session: handoff (2026-09-30)
+- AWS credentials are set in the environment settings (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
+  `AWS_DEFAULT_REGION`), but they only reach a newly started session. Check them with
+  `aws sts get-caller-identity`.
+- Approved quota: **SageMaker training job, `ml.g6.24xlarge`, 1 instance, ap-south-1** (4x NVIDIA L4, 96 vCPU).
+  - Plan: add a SageMaker backend to `aws/ec2_run.py`. It runs `aws/jobs/seg.sh` as a training job in an AWS PyTorch
+    GPU container, with the code tarball on S3 and outputs to S3.
+  - The EC2 G-instance quota is unchecked. The stereo-mode loop needs a GPU plus a browser, so check the EC2 quota
+    first and fall back to the same SageMaker instance type.
+- Order: (1) train the segmenter, (2) fetch the ONNX files and wire them into the loop, (3) run the stereo-mode
+  DEV/EVAL loop on the GPU, (4) connect the live console. After that, the video and slides.
