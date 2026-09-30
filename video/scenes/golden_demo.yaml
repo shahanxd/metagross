@@ -10,12 +10,12 @@ fps: 30
 voice: en-IN-PrabhatNeural        # alternative: en-IN-NeerjaNeural
 tts_rate: "+12%"                  # measured: -4 % + first script = 3:58; +8 % + tight script = 3:04; +12 % = 2:57.6 (draft_v0)
 
-runs:   # golden DEV run directories picked by the verifier (results/verify_dev2/verify_dev2.json -> golden_runs)
-  run_nominal: results/verify_dev2/stereo/FULL/114       # F1 trail, DEV 114: success at 33.9 s, SPL 0.96 (per_seed.csv)
-  run_crest: results/verify_dev2/stereo/FULL/128         # F3 crest, DEV 128: slows at the crest 22-24 s, resumes, success 41.4 s
-  run_ditch_full: results/verify_dev2/tier0/FULL/110     # F3 hidden trench, DEV 110, FULL: stops 1.57 m short at ~21 s
-  run_ditch_typical: results/verify_dev2/tier0/T1/110    # the SAME seed, T1 (unknown = free): ditch_entry at 17.04 s
-  run_glare: results/verify_dev2/stereo/FULL/100         # F5 lighting, DEV 100: glare 12.76 s, DEGRADED 13.6 s, NOMINAL 18.0 s
+runs:   # golden DEV run directories picked by the verifier (results/archive/verify_dev2/verify_dev2.json -> golden_runs)
+  run_nominal: results/archive/verify_dev2/stereo/FULL/114       # F1 trail, DEV 114: success at 33.9 s, SPL 0.96 (per_seed.csv)
+  run_crest: results/archive/verify_dev2/stereo/FULL/128         # F3 crest, DEV 128: slows at the crest 22-24 s, resumes, success 41.4 s
+  run_ditch_full: results/archive/verify_dev2/tier0/FULL/110     # F3 hidden trench, DEV 110, FULL: stops 1.57 m short at ~21 s
+  run_ditch_typical: results/archive/verify_dev2/tier0/T1/110    # the SAME seed, T1 (unknown = free): ditch_entry at 17.04 s
+  run_glare: results/archive/verify_dev2/stereo/FULL/100         # F5 lighting, DEV 100: glare 12.76 s, DEGRADED 13.6 s, NOMINAL 18.0 s
   t0_nominal: 1           # A->B drive starts here (the robot is still for the first second)
   t1_nominal: 33.8        # ... and ends at the goal (result.json time_s 33.86)
   t0_crest: 20            # crest window 20-28 s (verifier window)
@@ -84,7 +84,7 @@ scenes:
       which is how a ditch shows up. Visual odometry tracks position, and an integrity monitor decides how far
       to trust it. A speed governor then picks the fastest speed that can still stop on ground already seen.
 
-  # Every drive below is a SIMULATED DEV-seed run (seeds 100-129) from results/verify_dev2; the footer chip
+  # Every drive below is a SIMULATED DEV-seed run (seeds 100-129) from results/archive/verify_dev2; the footer chip
   # reads "SIMULATED · DEV seed N · config X". Story checked against inspect_run tables and verify_dev2.json.
   # 5 -- a clean A->B drive (stereo FULL, F1 trail, DEV 114), sped up; the operator link rides along
   - type: dashboard

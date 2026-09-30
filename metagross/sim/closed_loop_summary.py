@@ -23,7 +23,7 @@ entries / out-of-bounds / false stops (sums), arrived_est rate, arrived_short co
 CLI::
 
     python -m metagross.sim.closed_loop_summary --tier0 results/runs_dev_tier0 \
-        --stereo results/runs_dev_stereo --out results/closed_loop_dev.json
+        --stereo results/archive/runs_dev_stereo --out results/closed_loop_dev.json
 
 This is evaluation code on the simulator side (it may read GT-derived results); the autonomy never
 imports it.
@@ -257,7 +257,7 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--stereo", type=Path, default=Path("results/runs_dev_stereo"))
     ap.add_argument("--out", type=Path, default=None)
     ap.add_argument("--extra", type=Path, help="JSON merged into the output (notes)")
-    ap.add_argument("--before", type=Path, default=Path("results/runs_integration/tier0/summary.csv"),
+    ap.add_argument("--before", type=Path, default=Path("results/archive/runs_integration/tier0/summary.csv"),
                     help="earlier tier0 summary CSV for the same-seed before/after table")
     a = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")

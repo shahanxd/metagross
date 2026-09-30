@@ -3,6 +3,12 @@
 One command sets up a fresh Ubuntu 22.04/24.04 NVIDIA instance, downloads the data and trains two LR-ASPP models
 in parallel: CLEAN vs ROBUST augmentation. It then exports ONNX and writes evaluation JSONs and figures.
 
+**Fastest path (no SSH, no console clicking):** with `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and
+`AWS_DEFAULT_REGION` in the environment, run `python aws/ec2_run.py check`, then
+`python aws/ec2_run.py launch --job seg`. The instance uploads logs to S3 every 2 min, uploads the outputs, and
+terminates itself. Use `status`, `fetch` and `cleanup` to follow it, collect the results and remove everything. The
+manual SSH route below still works.
+
 ## 0. Instance
 
 - **Instance and image.** Any NVIDIA GPU instance with the driver preinstalled works, e.g. an AWS "Deep Learning Base OSS Nvidia Driver GPU AMI (Ubuntu 22.04)". The planned card has 96 GB of VRAM. LR-ASPP at batch 32 and 320x416 needs only a few GB per run, so both runs fit side by side. On this model the limit is CPU data loading, not the GPU. Choose ≥ 16 vCPUs if you can.

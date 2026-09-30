@@ -15,10 +15,14 @@ Thesis: **"Unknown is never free. It drives only on ground it has seen, and only
 - `tests/` — pytest. `results/` — generated CSV/JSON (never hand-edited). `data/` — downloaded datasets (git-ignored).
 
 ## Environment
-- Windows 11, Python 3.10 venv at `.venv` (`.venv\Scripts\python.exe`). Path contains a space: always use `pathlib`, quote paths in shell commands.
-- The Bash tool's sandbox blocks local sockets; launch long-running Python/Playwright/servers via the PowerShell tool.
-- Do not `pip install` into the venv without it being listed in your task; report missing deps instead.
-- 4 cores / 8 threads, no NVIDIA GPU locally. Keep live-loop code CPU-friendly (numpy-vectorised, OpenCV, ONNX Runtime).
+- Repo root = this folder (`pip install -e ".[dev]"`; tests: `python -m pytest -q`). Work lands on `main`.
+- Two machines have been used: the team's Windows 11 laptop (Python 3.10 venv `.venv`, path with a space: use
+  `pathlib`, quote paths) and Linux cloud containers (Python 3.11, 4 vCPU, no GPU, Hugging Face / KITTI hosts blocked).
+- GPU work runs on AWS through `aws/ec2_run.py` (credentials from `AWS_*` environment variables, never in chat or git).
+- Rendered-stereo mode: Chrome/Edge + GPU on Windows by default; on Linux set `MG_RENDER_HEADLESS=1` and, CPU-only,
+  `MG_ANGLE=swiftshader MG_ALLOW_SOFTWARE_GL=1` (seconds per frame, smoke tests only).
+- Keep live-loop code CPU-friendly (numpy-vectorised, OpenCV, ONNX Runtime).
+- Status of every component: `docs/PIPELINE_STATUS.md`. Superseded evidence: `results/archive/` (never quote it).
 
 ## Code quality bar
 - Typed, small modules, docstrings stating units and frames. No magic numbers — use `defaults.py` or a module-level constant with a comment.

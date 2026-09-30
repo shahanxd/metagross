@@ -56,7 +56,7 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
    back to the autonomy.
 4. Make the node fail loudly when the segmenter is missing, and record `impl` in `result.json`.
 
-## Next session: handoff (2026-09-30)
+## Next steps (handoff, 2026-09-30)
 - AWS credentials are set in the environment settings (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
   `AWS_DEFAULT_REGION`), but they only reach a newly started session. Check them with
   `aws sts get-caller-identity`.

@@ -62,7 +62,7 @@ episodes end `stuck`).** Root causes found so far are listed below with what was
    localizer gets `per['disparity']`, so SGBM runs once per stereo frame. SGBM already crops rows above the
    horizon (perception `row_start`).
 
-### DEV results, tier0 (measured 2026-09-30, `results/runs_integration/tier0/summary.csv`)
+### DEV results, tier0 (measured 2026-09-30, `results/archive/runs_integration/tier0/summary.csv`)
 
 Runner + separate autonomy process, 5 Hz, 2 batch workers in parallel on the shared 4-core laptop.
 "stuck" = referee: no progress for 20 s.
@@ -86,7 +86,7 @@ Per-module ms, tier0 FULL, 606 ticks over seeds 100-105 (from `autonomy/timings.
 (p95 99.0); perception 49.2 (68.1); localizer 0.2 (no VO in tier0); map 1.9; costmap 4.4; global 2.0 (p95 14.9);
 MPPI 9.6 (14.0); others < 1.
 
-### DEV results, rendered stereo (ThreeRenderer, `results/runs_integration/stereo/summary.csv`)
+### DEV results, rendered stereo (ThreeRenderer, `results/archive/runs_integration/stereo/summary.csv`)
 
 Only short smoke episodes (sim capped at 20 s via `max_sim_s`, 1 worker) because tier0 does not drive yet:
 
@@ -176,7 +176,7 @@ Commit 3cd62df was frozen and run once on EVAL 0-59: **FULL 17/60, TYPICAL 15/60
 Cause (then confirmed on DEV only): after the last DEV closed-loop check the gyro-bias prior had been widened from
 1e-3 to 1e-2 rad/s to pass a unit test; one brief mid-mission stop then set the bias to a single +-4.5e-3 rad/s noise
 sample. That commit scores **6/30 on DEV**. Lesson recorded: always re-run DEV closed loop after any change before
-freezing. Run 1 is in `results/closed_loop_eval_v1.json` / `results/runs_eval_tier0_v1/`.
+freezing. Run 1 is in `results/archive/eval_run1/closed_loop_eval_v1.json` / `results/archive/eval_run1/runs_eval_tier0_v1/`.
 
 ### EVAL run 2 (commit 45ec399, fixed stack)
 **FULL 33/60, TYPICAL 31/60** (`results/closed_loop_eval.json`, protocol and per-family table in

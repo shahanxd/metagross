@@ -63,6 +63,16 @@ The values below are defined in `metagross/config/defaults.py`, which every modu
 A cheaper 7.5 cm-baseline camera (OAK-D Lite class) is analysed as an option in `results/theory.json` (depth
 error grows 1.6x at the same range); it is not the modelled sensor.
 
+## Quickstart (Linux / macOS)
+
+```bash
+git clone https://github.com/shahanxd/metagross && cd metagross
+pip install -e ".[dev]"
+python -m pytest -q                                              # ~420 tests, ~75 s on 4 cores
+python scripts/gen_scenarios.py --split all --workers 4          # 90 pre-registered scenarios (hashes: results/scenario_manifest.json)
+python -m metagross.sim.batch --split dev --seeds 102 --workers 1 --out runs/demo   # one closed-loop episode, A -> B
+```
+
 ## Quickstart (Windows, PowerShell)
 
 The repository path contains a space; keep the quotes. Every command below was run on 2026-09-30 from the

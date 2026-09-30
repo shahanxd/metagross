@@ -43,16 +43,16 @@ REPO = Path(__file__).resolve().parents[3]
 TUNING_GLOBS: dict[str, str] = {
     "tier0_FULL": "results/runs_dev_tier0/FULL/*/autonomy/telemetry.jsonl",
     "tier0_TYPICAL": "results/runs_dev_tier0/TYPICAL/*/autonomy/telemetry.jsonl",
-    "stereo_FULL": "results/runs_dev_stereo/FULL/*/autonomy/telemetry.jsonl",
-    "stereo_FULL_verify": "results/verify_dev/stereo/FULL/*/autonomy/telemetry.jsonl",
+    "stereo_FULL": "results/archive/runs_dev_stereo/FULL/*/autonomy/telemetry.jsonl",
+    "stereo_FULL_verify": "results/archive/verify_dev/stereo/FULL/*/autonomy/telemetry.jsonl",
 }
 HOLDOUT_GLOBS: dict[str, str] = {
-    "holdout_verify_tier0": "results/verify_dev/tier0/*/*/autonomy/telemetry.jsonl",
-    "holdout_stereo_v2_nodyn": "results/runs_dev_stereo/_v2_nodyn_FULL/*/autonomy/telemetry.jsonl",
+    "holdout_verify_tier0": "results/archive/verify_dev/tier0/*/*/autonomy/telemetry.jsonl",
+    "holdout_stereo_v2_nodyn": "results/archive/runs_dev_stereo/_v2_nodyn_FULL/*/autonomy/telemetry.jsonl",
     "holdout_tier0_v3_nodyn": "results/runs_dev_tier0/_v3_nodyn_FULL/*/autonomy/telemetry.jsonl",
-    "holdout_integration": "results/runs_integration/*/*/*/autonomy/telemetry.jsonl",
+    "holdout_integration": "results/archive/runs_integration/*/*/*/autonomy/telemetry.jsonl",
 }
-VENDOR_SOURCE_GLOB = "results/verify_dev/stereo/FULL/102/autonomy/telemetry.jsonl"  # worst-case (stereo) real log
+VENDOR_SOURCE_GLOB = "results/archive/verify_dev/stereo/FULL/102/autonomy/telemetry.jsonl"  # worst-case (stereo) real log
 QUANTILES = (50, 95, 99, 100)
 EMU_SEED = 0
 

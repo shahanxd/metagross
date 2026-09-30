@@ -4,7 +4,7 @@ README is registered here with its provenance and an honesty label.
 Sources
 -------
 1. Any ``results/*.json`` **and** any ``results/<dir>/*.json`` (one level down, e.g.
-   ``results/verify_dev2/verify_dev2.json``) that carries a top-level ``"claims"`` list. Two row
+   ``results/archive/verify_dev2/verify_dev2.json``) that carries a top-level ``"claims"`` list. Two row
    shapes are accepted: ``{id, value, label, source, note}`` and ``{claim, value, label, source}``.
    Top-level files are read first, then sub-directories, each in sorted order. An id is kept from
    the first file that defines it; a later file that repeats it is logged and skipped, so the

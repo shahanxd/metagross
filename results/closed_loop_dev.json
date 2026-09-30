@@ -1861,7 +1861,7 @@
   "runs": []
  },
  "before_after_same_seeds": {
-  "before_source": "results/runs_integration/tier0/summary.csv",
+  "before_source": "results/archive/runs_integration/tier0/summary.csv",
   "after_source": "results/runs_dev_tier0",
   "metric": "GT path length in the first 20 s of sim time (before runs were capped there)",
   "rows": [

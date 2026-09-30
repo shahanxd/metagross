@@ -17,7 +17,7 @@
 
 | Run | Stack commit | FULL | TYPICAL | File |
 |---|---|---|---|---|
-| 1 (superseded) | 3cd62df | 17/60 | 15/60 | `results/closed_loop_eval_v1.json` |
+| 1 (superseded) | 3cd62df | 17/60 | 15/60 | `results/archive/eval_run1/closed_loop_eval_v1.json` |
 | 2 | 45ec399 | **33/60** | 31/60 | `results/closed_loop_eval.json` |
 
 **Why there is a run 2.** Run 1 was dominated by `arrived_short` (23 runs). The cause was a gyro-bias regression
