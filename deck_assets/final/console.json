@@ -1,45 +1,205 @@
 {
  "generator": "deck_assets/final/src/console_shots.py",
- "what": "Operator console (operator_ui/) replaying real logged EVAL closed-loop runs; replay only, not a live link.",
- "caveats": [
-  "tier-0 synthetic depth sensor: no camera images, so VO cannot run (VO tile reads LOST; localisation is wheel + gyro, docs/SIMULATION.md)",
-  "the console is replay-only today (live link not built; docs/PIPELINE_STATUS.md)"
- ],
- "viewport": {
-  "width": 1920,
-  "height": 1080
+ "what": "Crops of the operator console (operator_ui/, unmodified) replaying logged tier-0 EVAL closed-loop runs, plus a deck-style annotation layer (numbered markers, notes, chart, colour key). Replay only, not a live link.",
+ "viewport_css_px": {
+  "width": 1600,
+  "height": 912
  },
- "device_scale_factor": 1.5,
+ "device_scale_factor": 2.0,
+ "caveats": [
+  "Replay of a logged simulation run, not live; the console is replay-only today (docs/PIPELINE_STATUS.md).",
+  "Tier-0 synthetic depth sensor: no camera images, so VO cannot run (the console's VO tile reads LOST; localisation is wheel + gyro, docs/SIMULATION.md).",
+  "Omitted panels: the integrity gauge shows a fixed q = 1.00 / p_fail 0.00 in tier-0 (metagross/autonomy/node.py sets q, p_fail = 1.0, 0.0 without images; the learned monitor is not running); link kbps / loss are computed by app.js from logged packet sizes (no radio in replay); the GO/HOLD/RESUME/E-STOP buttons are not wired to the autonomy.",
+  "Telemetry cadence in these logs is one packet per 0.6 s (1.67 Hz: every 3rd 5 Hz frame; node.py sends when >= 0.5 s has passed), not the 2 Hz the console's downlink subtitle says; console times are packet times.",
+  "Console colours are operator_ui's own tokens (royal-blue plan/trail #1D4ED8/#2563EB, red lethal, orange 'Dynamic'); the annotation layer uses the deck palette. The console draws confirmed ditch (code 14) in the same red as obstacles (code 15); its legend word 'Dynamic' means 'newly occupied where free space was observed' (contracts/messages.py), not a tracked moving object.",
+  "Frames 2 and 3 are one selected successful example: STOP_AND_LOOK occurred in 8 of 60 FULL EVAL runs and 2 of those reached B.",
+  "Per-run numbers shown here are not yet in results/claims.csv (that ledger is generated; see claims_to_register)."
+ ],
+ "eval_context": {
+  "stop_and_look_runs": [
+   {
+    "seed": 13,
+    "family": "F2_ditch_field",
+    "success": false,
+    "failure_type": "stuck",
+    "stops": [
+     {
+      "t": 32.34,
+      "duration_s": 19.66,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ]
+   },
+   {
+    "seed": 25,
+    "family": "F2_ditch_field",
+    "success": false,
+    "failure_type": "arrived_short",
+    "stops": [
+     {
+      "t": 35.74,
+      "duration_s": 11.74,
+      "justified": false,
+      "reason": "none"
+     }
+    ]
+   },
+   {
+    "seed": 31,
+    "family": "F2_ditch_field",
+    "success": false,
+    "failure_type": "stuck",
+    "stops": [
+     {
+      "t": 51.14,
+      "duration_s": 2.34,
+      "justified": true,
+      "reason": "hazard_ahead"
+     },
+     {
+      "t": 54.3,
+      "duration_s": 8.64,
+      "justified": true,
+      "reason": "hazard_ahead"
+     },
+     {
+      "t": 63.14,
+      "duration_s": 6.9,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ]
+   },
+   {
+    "seed": 39,
+    "family": "F4_sudden_obstacle",
+    "success": false,
+    "failure_type": "stuck",
+    "stops": [
+     {
+      "t": 18.04,
+      "duration_s": 18.96,
+      "justified": true,
+      "reason": "dynamic_near"
+     }
+    ]
+   },
+   {
+    "seed": 40,
+    "family": "F5_lighting",
+    "success": true,
+    "failure_type": null,
+    "stops": [
+     {
+      "t": 39.4,
+      "duration_s": 7.3,
+      "justified": false,
+      "reason": "none"
+     }
+    ]
+   },
+   {
+    "seed": 48,
+    "family": "F1_trail",
+    "success": true,
+    "failure_type": null,
+    "stops": [
+     {
+      "t": 6.14,
+      "duration_s": 8.64,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ]
+   },
+   {
+    "seed": 49,
+    "family": "F2_ditch_field",
+    "success": false,
+    "failure_type": "stuck",
+    "stops": [
+     {
+      "t": 21.74,
+      "duration_s": 19.26,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ]
+   },
+   {
+    "seed": 50,
+    "family": "F3_crest_ditch",
+    "success": false,
+    "failure_type": "stuck",
+    "stops": [
+     {
+      "t": 24.8,
+      "duration_s": 7.5,
+      "justified": false,
+      "reason": "none"
+     },
+     {
+      "t": 49.18,
+      "duration_s": 10.12,
+      "justified": true,
+      "reason": "hazard_ahead"
+     },
+     {
+      "t": 65.6,
+      "duration_s": 13.58,
+      "justified": false,
+      "reason": "none"
+     },
+     {
+      "t": 113.84,
+      "duration_s": 19.16,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ]
+   }
+  ],
+  "n_runs_with_stop_and_look": 8,
+  "n_of_those_reached_B": 2,
+  "outcomes_of_the_others": [
+   "13: stuck",
+   "25: arrived_short",
+   "31: stuck",
+   "39: stuck",
+   "49: stuck",
+   "50: stuck"
+  ],
+  "governor_binding_nominal_ticks": {
+   "seen_range_terms_binding": 540,
+   "nominal_ticks": 9896,
+   "fraction": 0.055,
+   "how": "5 Hz per-tick debug records of all 60 FULL EVAL runs, mode NOMINAL, gov_binding in (r_cert, r_vis)"
+  },
+  "source": "results/runs_eval_tier0/FULL/<seed>/result.json, autonomy/telemetry.jsonl, autonomy/debug/tick_*.npz"
+ },
  "figures": [
   {
    "file": "deck_assets/final/console_1.png",
+   "svg": "deck_assets/final/console_1.svg",
    "size_px": [
-    2880,
-    1684
+    1800,
+    1434
    ],
-   "label": "Simulated run, replayed",
-   "moment": "F3 crest + ditch: crest-shadow (unseen) cells ahead, ditch cells passed; the governor is limited by the visible range (GOV_RVIS R=3.0 m -> v_cap 1.98 m/s)",
+   "label": "Simulated",
    "seed": 44,
    "family": "F3_crest_ditch",
    "split": "eval",
    "sensor_mode": "tier0",
    "seek_t_s": 22.8,
-   "map_extent_m": 16,
-   "provenance_line": "Simulated run, replayed (not live) \u00b7 tier-0, EVAL seed 44 (F3_crest_ditch), FULL, t = 22.8 s \u00b7 results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl",
+   "view_extent_m": 16,
+   "costmap_extent_m": 16.0,
    "sources": {
     "mission": "results/runs_eval_tier0/FULL/044/mission.json",
     "telemetry": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl",
+    "debug_tick": "results/runs_eval_tier0/FULL/044/autonomy/debug/tick_000114.npz",
+    "autonomy_log": "results/runs_eval_tier0/FULL/044/autonomy/autonomy.log",
     "result": "results/runs_eval_tier0/FULL/044/result.json"
-   },
-   "run_outcome": {
-    "success": true,
-    "failure_type": null,
-    "time": 44.56,
-    "path_length": 57.151,
-    "spl": 0.9542,
-    "final_error": 2.0,
-    "stops": [],
-    "min_clearance": 1.4987
    },
    "telemetry_packet_shown": {
     "t": 22.8,
@@ -55,21 +215,37 @@
     "v_cap_mps": 1.98,
     "r_cert_m": 3.0,
     "speed_mps": 1.28,
-    "health.q": 1.0,
-    "health.r_vis_m": 3.0,
-    "health.vo_ok": 0.0,
     "packet_bytes": 429,
     "n_packets_applied": 39
    },
-   "console_readout": {
-    "mission": "2622b2a5",
+   "debug_tick_shown": {
+    "tick": 114,
+    "t": 22.8,
+    "reason": "GOV_RVIS R=3.0m",
+    "gov_terms": {
+     "platform": 2.0,
+     "r_cert": 1.982707061079915,
+     "ditch_det": 2.5626566901581014
+    },
+    "gov_binding": "r_vis",
+    "a_mps2": 1.5,
+    "t_r_s": 0.6,
+    "r_path_m": 3.4000000000000004,
+    "r_vis_m": 3.0,
+    "cmd_v": 1.1107236795587185,
+    "speed_meas": 1.2759558728205285
+   },
+   "console_readout_visible": {
     "mode": "NOMINAL",
     "reason": "GOV_RVIS R=3.0m",
     "in_mode": "22.8 s",
     "dist_to_b": "24.9 m",
-    "clock": "T+00:22.8",
     "speed_vcap": "1.28 / 1.98 m/s",
-    "r_cert": "3.0 m",
+    "r_cert": "3.0 m"
+   },
+   "console_readout_not_shown": {
+    "mission": "2622b2a5",
+    "clock": "T+00:22.8",
     "q": "1.00",
     "p_fail": "0.00",
     "pos_sigma": "0.98 m",
@@ -78,94 +254,252 @@
     "link_kbps": "5.99 kbps",
     "link_loss": "loss 0%",
     "packets": "39",
-    "pk_last": "429 B",
     "pk_mean": "430 B",
-    "pk_lost": "0",
     "replay_badge_visible": true,
     "event_log": [
      "T+00:00.0 | NOMINAL | GOV_PLATFORM",
      "T+00:00.0 | HOLD | Mission loaded \u00b7 B at 54.2 m / -2.3\u00b0 (\u03c3 0.8 m)"
     ]
    },
-   "how": "Every value on screen is rendered by operator_ui/app.js from the telemetry packets with t <= seek_t (window.consoleSeek); link kbps/loss are computed by app.js over the replayed packets' packet_bytes/seq."
+   "cell_counts_in_frame": {
+    "UNSEEN": 116,
+    "OCCLUDED": 0,
+    "CREST_SHADOW": 852,
+    "WATER": 0,
+    "DITCH_CANDIDATE": 56,
+    "DYNAMIC": 4,
+    "DITCH": 88,
+    "LETHAL": 164,
+    "GROUND": 2816
+   },
+   "corridor_nearest_m": {
+    "CREST_SHADOW": 3.12
+   },
+   "annotation_facts": {
+    "crest_shadow_region": {
+     "n_cells": 668,
+     "centroid_body_m": [
+      4.15,
+      -4.19
+     ],
+     "nearest_m": 3.13
+    },
+    "crest_shadow_nearest_in_1.2m_corridor_m": 3.12,
+    "waypoints_in_crest_shadow": "2 of 5",
+    "confirmed_ditch_region": {
+     "n_cells": 56,
+     "centroid_body_m": [
+      4.21,
+      3.54
+     ],
+     "nearest_m": 3.71
+    },
+    "confirmed_ditch_cells_total": 88,
+    "confirmed_ditch_span_body_m": {
+     "x_min_m": -2.88,
+     "x_max_m": 5.38,
+     "y_min_m": 2.12,
+     "y_max_m": 4.88,
+     "nearest_m": 2.22,
+     "n_cells": 88,
+     "n_components": 3
+    },
+    "confirmed_ditch_region_near_rover": {
+     "n_cells": 16,
+     "centroid_body_m": [
+      -1.0,
+      2.5
+     ],
+     "nearest_m": 2.22
+    },
+    "ditch_candidate_region": {
+     "n_cells": 40,
+     "centroid_body_m": [
+      -4.15,
+      5.3
+     ],
+     "nearest_m": 5.83
+    },
+    "stop_distance_at_measured_speed_m": 1.81,
+    "stop_distance_inputs": {
+     "v_mps": 1.28,
+     "a_mps2": 1.5,
+     "T_r_s": 0.6,
+     "B_m": 0.5
+    },
+    "v_cap_from_r_cert_term_mps": 1.983
+   },
+   "notes_drawn": [
+    "Crest shadow: ground beyond the crest that it has not seen yet, from 3.1 m ahead. The planned path crosses it: the planner allows that at a cost, while speed is still governed by the seen ground.",
+    "Confirmed ditch, lethal, along its left: from 2.9 m behind to 5.4 m ahead, nearest 2.2 m (the console draws it in the same red as obstacles).",
+    "Ditch candidates, not yet confirmed, behind-left.",
+    "R_cert = 3.0 m of certified ground ahead, capped here by how far it can see (GOV_RVIS). Stopping from 1.28 m/s takes about 1.8 m (Estimated), so the 1.98 m/s cap is not what limits speed in this frame."
+   ],
+   "supervisor_transitions": [],
+   "run_outcome": {
+    "success": true,
+    "failure_type": null,
+    "time": 44.56,
+    "path_length": 57.151,
+    "spl": 0.9542,
+    "final_error": 2.0,
+    "stops": [],
+    "false_stops": 0
+   },
+   "chart": {
+    "what": "speed_mps and v_cap_mps of every telemetry packet of the run (what the console sparkline plots); red band = STOP_AND_LOOK interval from autonomy.log",
+    "n_packets": 75,
+    "packet_period_s": 0.6
+   },
+   "layout": {
+    "banner_crop_css": {
+     "left": [
+      14,
+      70,
+      756.4,
+      76
+     ],
+     "right": [
+      1396.2,
+      70,
+      189.8,
+      76
+     ]
+    },
+    "costmap_crop_css": [
+     328.0,
+     198.5,
+     470.0,
+     439.5
+    ],
+    "governor_crop_css": [
+     1126,
+     160,
+     460,
+     184.5
+    ],
+    "scale_output_px_per_css_px": 1.858,
+    "marker_px": {
+     "1": {
+      "anchors": [
+       [
+        709.4,
+        432.0
+       ]
+      ],
+      "marker": [
+       709.4,
+       432.0
+      ]
+     },
+     "2": {
+      "anchors": [
+       [
+        275.6,
+        444.8
+       ],
+       [
+        326.7,
+        700.0
+       ]
+      ],
+      "marker": [
+       211.6,
+       502.8
+      ]
+     },
+     "3": {
+      "anchors": [
+       [
+        186.3,
+        865.8
+       ]
+      ],
+      "marker": [
+       142.3,
+       927.8
+      ]
+     }
+    },
+    "provenance_line": "Simulated, tier-0, EVAL seed 44, FULL \u00b7 console replay (not live) of results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl"
+   }
   },
   {
    "file": "deck_assets/final/console_2.png",
+   "svg": "deck_assets/final/console_2.svg",
    "size_px": [
-    2880,
-    1684
+    1800,
+    1320
    ],
-   "label": "Simulated run, replayed",
-   "moment": "F1 trail: STOP_AND_LOOK 2/3 with lethal cells directly ahead, v_cap 0 (referee: stop justified, reason hazard_ahead)",
+   "label": "Simulated",
    "seed": 48,
    "family": "F1_trail",
    "split": "eval",
    "sensor_mode": "tier0",
-   "seek_t_s": 9.6,
-   "map_extent_m": 16,
-   "provenance_line": "Simulated run, replayed (not live) \u00b7 tier-0, EVAL seed 48 (F1_trail), FULL, t = 9.6 s \u00b7 results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
+   "seek_t_s": 6.6,
+   "view_extent_m": 16,
+   "costmap_extent_m": 16.0,
    "sources": {
     "mission": "results/runs_eval_tier0/FULL/048/mission.json",
     "telemetry": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
+    "debug_tick": "results/runs_eval_tier0/FULL/048/autonomy/debug/tick_000033.npz",
+    "autonomy_log": "results/runs_eval_tier0/FULL/048/autonomy/autonomy.log",
     "result": "results/runs_eval_tier0/FULL/048/result.json"
    },
-   "run_outcome": {
-    "success": true,
-    "failure_type": null,
-    "time": 57.98,
-    "path_length": 61.312,
-    "spl": 0.8818,
-    "final_error": 1.992,
-    "stops": [
-     {
-      "t": 6.14,
-      "duration_s": 8.64,
-      "justified": true,
-      "reason": "hazard_ahead"
-     }
-    ],
-    "min_clearance": 0.5244
-   },
    "telemetry_packet_shown": {
-    "t": 9.6,
-    "seq": 16,
+    "t": 6.6,
+    "seq": 11,
     "mode": "STOP_AND_LOOK",
-    "reason": "STOP_AND_LOOK 2/3",
+    "reason": "STOP_AND_LOOK 1/3",
     "pose": [
      1.99,
      1.15,
-     1.15
+     0.23
     ],
     "pos_sigma_m": 0.041,
     "v_cap_mps": 0.0,
-    "r_cert_m": 2.8,
-    "speed_mps": 0.0,
-    "health.q": 1.0,
-    "health.r_vis_m": 6.5,
-    "health.vo_ok": 0.0,
-    "packet_bytes": 427,
-    "n_packets_applied": 17
+    "r_cert_m": 2.0,
+    "speed_mps": 0.05,
+    "packet_bytes": 406,
+    "n_packets_applied": 12
    },
-   "console_readout": {
-    "mission": "8e2c8c63",
+   "debug_tick_shown": {
+    "tick": 33,
+    "t": 6.6000000000000005,
+    "reason": "STOP_AND_LOOK 1/3",
+    "gov_terms": {
+     "platform": 2.0,
+     "r_cert": 1.4043437243605825,
+     "ditch_det": 2.55731061067395
+    },
+    "gov_binding": "r_vis",
+    "a_mps2": 1.5,
+    "t_r_s": 0.6000000000000001,
+    "r_path_m": 3.9000000000000004,
+    "r_vis_m": 2.0,
+    "cmd_v": 0.0,
+    "speed_meas": 0.049141658720267364
+   },
+   "console_readout_visible": {
     "mode": "STOP AND LOOK",
-    "reason": "STOP_AND_LOOK 2/3",
-    "in_mode": "3.0 s",
+    "reason": "STOP_AND_LOOK 1/3",
+    "in_mode": "0.0 s",
     "dist_to_b": "50.2 m",
-    "clock": "T+00:09.6",
-    "speed_vcap": "0.00 / 0.00 m/s",
-    "r_cert": "2.8 m",
+    "speed_vcap": "0.05 / 0.00 m/s",
+    "r_cert": "2.0 m"
+   },
+   "console_readout_not_shown": {
+    "mission": "8e2c8c63",
+    "clock": "T+00:06.6",
     "q": "1.00",
     "p_fail": "0.00",
     "pos_sigma": "0.04 m",
     "vo": "LOST",
-    "slip": "0.00",
-    "link_kbps": "5.30 kbps",
+    "slip": "0.07",
+    "link_kbps": "5.18 kbps",
     "link_loss": "loss 0%",
-    "packets": "17",
-    "pk_last": "427 B",
-    "pk_mean": "394 B",
-    "pk_lost": "0",
+    "packets": "12",
+    "pk_mean": "383 B",
     "replay_badge_visible": true,
     "event_log": [
      "T+00:06.6 | NOMINAL \u2192 STOP AND LOOK | STOP_AND_LOOK 1/3",
@@ -173,28 +507,95 @@
      "T+00:00.0 | HOLD | Mission loaded \u00b7 B at 52.2 m / +4.3\u00b0 (\u03c3 0.7 m)"
     ]
    },
-   "how": "Every value on screen is rendered by operator_ui/app.js from the telemetry packets with t <= seek_t (window.consoleSeek); link kbps/loss are computed by app.js over the replayed packets' packet_bytes/seq."
-  },
-  {
-   "file": "deck_assets/final/console_3.png",
-   "size_px": [
-    2880,
-    1684
-   ],
-   "label": "Simulated run, replayed",
-   "moment": "F1 trail: after the look it detoured around the hazard and is back to NOMINAL; the event log shows NOMINAL -> STOP_AND_LOOK -> NOMINAL (RESUME after look 1)",
-   "seed": 48,
-   "family": "F1_trail",
-   "split": "eval",
-   "sensor_mode": "tier0",
-   "seek_t_s": 26.4,
-   "map_extent_m": 24,
-   "provenance_line": "Simulated run, replayed (not live) \u00b7 tier-0, EVAL seed 48 (F1_trail), FULL, t = 26.4 s \u00b7 results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
-   "sources": {
-    "mission": "results/runs_eval_tier0/FULL/048/mission.json",
-    "telemetry": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
-    "result": "results/runs_eval_tier0/FULL/048/result.json"
+   "cell_counts_in_frame": {
+    "UNSEEN": 1624,
+    "OCCLUDED": 168,
+    "CREST_SHADOW": 24,
+    "WATER": 0,
+    "DITCH_CANDIDATE": 0,
+    "DYNAMIC": 96,
+    "DITCH": 0,
+    "LETHAL": 324,
+    "GROUND": 1860
    },
+   "corridor_nearest_m": {
+    "OCCLUDED": 2.62,
+    "LETHAL": 1.12
+   },
+   "annotation_facts": {
+    "nearest_lethal_in_1.2m_corridor_m": 1.12,
+    "lethal_region_at_marker": {
+     "n_cells": 64,
+     "centroid_body_m": [
+      1.78,
+      0.66
+     ],
+     "nearest_m": 1.13
+    },
+    "waypoints_on_unseen": "3 of 5",
+    "waypoints_on_unseen_or_occluded": "4 of 5",
+    "waypoints_body_m": [
+     [
+      -0.97,
+      -1.57
+     ],
+     [
+      -1.43,
+      -3.52
+     ],
+     [
+      -1.29,
+      -5.36
+     ],
+     [
+      0.01,
+      -6.73
+     ],
+     [
+      1.89,
+      -6.78
+     ]
+    ],
+    "waypoint_codes": [
+     "GROUND",
+     "UNSEEN",
+     "UNSEEN",
+     "UNSEEN",
+     "OCCLUDED"
+    ],
+    "unseen_cells": 1624,
+    "supervisor_transition": {
+     "t": 6.4,
+     "from": "NOMINAL",
+     "to": "STOP_AND_LOOK",
+     "why": "NO_PROGRESS look"
+    },
+    "referee_stop": {
+     "t": 6.14,
+     "duration_s": 8.64,
+     "justified": true,
+     "reason": "hazard_ahead"
+    }
+   },
+   "notes_drawn": [
+    "Obstacle cells (lethal) in its lane from 1.1 m ahead.",
+    "The planned route turns back and right, across ground it has not seen (4 of 5 waypoints unseen or occluded).",
+    "After 3 s without progress toward B, the supervisor switched to STOP AND LOOK (log: 6.40 s; first console packet: 6.6 s). It stops and turns in place +45\u00b0, \u221245\u00b0 and back to see the ground around it, then replans."
+   ],
+   "supervisor_transitions": [
+    {
+     "t": 6.4,
+     "from": "NOMINAL",
+     "to": "STOP_AND_LOOK",
+     "why": "NO_PROGRESS look"
+    },
+    {
+     "t": 14.4,
+     "from": "STOP_AND_LOOK",
+     "to": "NOMINAL",
+     "why": "RESUME after look 1"
+    }
+   ],
    "run_outcome": {
     "success": true,
     "failure_type": null,
@@ -210,7 +611,91 @@
       "reason": "hazard_ahead"
      }
     ],
-    "min_clearance": 0.5244
+    "false_stops": 0
+   },
+   "chart": {
+    "what": "speed_mps and v_cap_mps of every telemetry packet of the run (what the console sparkline plots); red band = STOP_AND_LOOK interval from autonomy.log",
+    "n_packets": 97,
+    "packet_period_s": 0.6
+   },
+   "layout": {
+    "banner_crop_css": {
+     "left": [
+      14,
+      70,
+      759.1,
+      76
+     ],
+     "right": [
+      1398.9,
+      70,
+      187.1,
+      76
+     ]
+    },
+    "costmap_crop_css": [
+     328.0,
+     198.5,
+     470.0,
+     439.5
+    ],
+    "governor_crop_css": [
+     1126,
+     160,
+     460,
+     184.5
+    ],
+    "scale_output_px_per_css_px": 1.858,
+    "marker_px": {
+     "1": {
+      "anchors": [
+       [
+        428.7,
+        572.4
+       ]
+      ],
+      "marker": [
+       428.7,
+       572.4
+      ]
+     },
+     "2": {
+      "anchors": [
+       [
+        735.0,
+        776.5
+       ]
+      ],
+      "marker": [
+       735.0,
+       776.5
+      ]
+     }
+    },
+    "provenance_line": "Simulated, tier-0, EVAL seed 48, FULL \u00b7 console replay (not live) of results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl"
+   }
+  },
+  {
+   "file": "deck_assets/final/console_3.png",
+   "svg": "deck_assets/final/console_3.svg",
+   "size_px": [
+    1800,
+    1274
+   ],
+   "label": "Simulated",
+   "seed": 48,
+   "family": "F1_trail",
+   "split": "eval",
+   "sensor_mode": "tier0",
+   "seek_t_s": 26.4,
+   "view_extent_m": 16,
+   "costmap_extent_m": 16.0,
+   "sources": {
+    "mission": "results/runs_eval_tier0/FULL/048/mission.json",
+    "telemetry": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl",
+    "debug_tick": "results/runs_eval_tier0/FULL/048/autonomy/debug/tick_000132.npz",
+    "autonomy_log": "results/runs_eval_tier0/FULL/048/autonomy/autonomy.log",
+    "result": "results/runs_eval_tier0/FULL/048/result.json"
    },
    "telemetry_packet_shown": {
     "t": 26.4,
@@ -226,21 +711,37 @@
     "v_cap_mps": 2.0,
     "r_cert_m": 5.2,
     "speed_mps": 1.47,
-    "health.q": 1.0,
-    "health.r_vis_m": 9.0,
-    "health.vo_ok": 0.0,
     "packet_bytes": 472,
     "n_packets_applied": 45
    },
-   "console_readout": {
-    "mission": "8e2c8c63",
+   "debug_tick_shown": {
+    "tick": 132,
+    "t": 26.400000000000002,
+    "reason": "GOV_PLATFORM",
+    "gov_terms": {
+     "platform": 2.0,
+     "r_cert": 2.961346915261564,
+     "ditch_det": 2.55650387384732
+    },
+    "gov_binding": "platform",
+    "a_mps2": 1.5,
+    "t_r_s": 0.6000000000000003,
+    "r_path_m": 5.2,
+    "r_vis_m": 9.0,
+    "cmd_v": 1.8554599049014475,
+    "speed_meas": 1.472099325212584
+   },
+   "console_readout_visible": {
     "mode": "NOMINAL",
     "reason": "GOV_PLATFORM",
     "in_mode": "12.0 s",
     "dist_to_b": "45.5 m",
-    "clock": "T+00:26.4",
     "speed_vcap": "1.47 / 2.00 m/s",
-    "r_cert": "5.2 m",
+    "r_cert": "5.2 m"
+   },
+   "console_readout_not_shown": {
+    "mission": "8e2c8c63",
+    "clock": "T+00:26.4",
     "q": "1.00",
     "p_fail": "0.00",
     "pos_sigma": "0.48 m",
@@ -249,9 +750,7 @@
     "link_kbps": "6.05 kbps",
     "link_loss": "loss 0%",
     "packets": "45",
-    "pk_last": "472 B",
     "pk_mean": "420 B",
-    "pk_lost": "0",
     "replay_badge_visible": true,
     "event_log": [
      "T+00:14.4 | STOP AND LOOK \u2192 NOMINAL | RESUME after look 1",
@@ -260,7 +759,290 @@
      "T+00:00.0 | HOLD | Mission loaded \u00b7 B at 52.2 m / +4.3\u00b0 (\u03c3 0.7 m)"
     ]
    },
-   "how": "Every value on screen is rendered by operator_ui/app.js from the telemetry packets with t <= seek_t (window.consoleSeek); link kbps/loss are computed by app.js over the replayed packets' packet_bytes/seq."
+   "cell_counts_in_frame": {
+    "UNSEEN": 72,
+    "OCCLUDED": 44,
+    "CREST_SHADOW": 136,
+    "WATER": 0,
+    "DITCH_CANDIDATE": 0,
+    "DYNAMIC": 172,
+    "DITCH": 0,
+    "LETHAL": 200,
+    "GROUND": 3472
+   },
+   "corridor_nearest_m": {},
+   "annotation_facts": {
+    "stop_point_body_m": [
+     -6.62,
+     6.12
+    ],
+    "stop_point_distance_m": 9.01,
+    "look_interval_s": [
+     6.4,
+     14.4
+    ],
+    "resume_reason": "RESUME after look 1",
+    "trail_length_from_packets_m": 14.4,
+    "waypoint_codes": [
+     "GROUND",
+     "GROUND",
+     "GROUND",
+     "GROUND",
+     "GROUND"
+    ],
+    "governor_binding_term": "platform",
+    "gov_terms_mps": {
+     "platform": 2.0,
+     "r_cert": 2.961346915261564,
+     "ditch_det": 2.55650387384732
+    }
+   },
+   "notes_drawn": [
+    "Where it stopped and looked (6.4\u201314.4 s, supervisor log). The blue trail is the route it drove after the look.",
+    "Back to NOMINAL at 14.4 s ('RESUME after look 1'). Now 1.47 m/s under a 2.00 m/s cap (the platform limit), with R_cert = 5.2 m."
+   ],
+   "supervisor_transitions": [
+    {
+     "t": 6.4,
+     "from": "NOMINAL",
+     "to": "STOP_AND_LOOK",
+     "why": "NO_PROGRESS look"
+    },
+    {
+     "t": 14.4,
+     "from": "STOP_AND_LOOK",
+     "to": "NOMINAL",
+     "why": "RESUME after look 1"
+    }
+   ],
+   "run_outcome": {
+    "success": true,
+    "failure_type": null,
+    "time": 57.98,
+    "path_length": 61.312,
+    "spl": 0.8818,
+    "final_error": 1.992,
+    "stops": [
+     {
+      "t": 6.14,
+      "duration_s": 8.64,
+      "justified": true,
+      "reason": "hazard_ahead"
+     }
+    ],
+    "false_stops": 0
+   },
+   "chart": {
+    "what": "speed_mps and v_cap_mps of every telemetry packet of the run (what the console sparkline plots); red band = STOP_AND_LOOK interval from autonomy.log",
+    "n_packets": 97,
+    "packet_period_s": 0.6
+   },
+   "layout": {
+    "banner_crop_css": {
+     "left": [
+      14,
+      70,
+      756.4,
+      76
+     ],
+     "right": [
+      1396.2,
+      70,
+      189.8,
+      76
+     ]
+    },
+    "costmap_crop_css": [
+     328.0,
+     198.5,
+     470.0,
+     439.5
+    ],
+    "governor_crop_css": [
+     1126,
+     160,
+     460,
+     184.5
+    ],
+    "scale_output_px_per_css_px": 1.858,
+    "marker_px": {
+     "1": {
+      "anchors": [
+       [
+        148.5,
+        993.1
+       ]
+      ],
+      "marker": [
+       218.5,
+       959.1
+      ]
+     }
+    },
+    "provenance_line": "Simulated, tier-0, EVAL seed 48, FULL \u00b7 console replay (not live) of results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl"
+   }
+  }
+ ],
+ "claims_to_register": [
+  {
+   "id": "console_s044_t22p8_speed_mps",
+   "value": 1.28,
+   "unit": "m/s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.speed_mps",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 44 (F3_crest_ditch); one selected example shown in the operator console replay; packet seq 38"
+  },
+  {
+   "id": "console_s044_t22p8_v_cap_mps",
+   "value": 1.98,
+   "unit": "m/s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.v_cap_mps",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 44 (F3_crest_ditch); one selected example shown in the operator console replay; packet seq 38"
+  },
+  {
+   "id": "console_s044_t22p8_r_cert_m",
+   "value": 3.0,
+   "unit": "m",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.r_cert_m",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 44 (F3_crest_ditch); one selected example shown in the operator console replay; packet seq 38"
+  },
+  {
+   "id": "console_s044_t22p8_stop_distance_m",
+   "value": 1.81,
+   "unit": "m",
+   "label": "Estimated",
+   "source": "results/runs_eval_tier0/FULL/044/autonomy/debug/tick_000114.npz (a_mps2, t_r_s) + defaults.GOVERNOR_MARGIN_M",
+   "note": "d_stop = v^2/(2a) + v*T_r + B at the logged measured speed"
+  },
+  {
+   "id": "console_s044_t22p8_crest_shadow_ahead_m",
+   "value": 3.12,
+   "unit": "m",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.costmap_u4_hex",
+   "note": "decoded 4-bit costmap, 1.2 m wide lane ahead of the bumper"
+  },
+  {
+   "id": "console_s044_outcome_time_s",
+   "value": 44.56,
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/044/result.json#time",
+   "note": "success=True"
+  },
+  {
+   "id": "console_s044_outcome_spl",
+   "value": 0.9542,
+   "unit": "",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/044/result.json#spl",
+   "note": ""
+  },
+  {
+   "id": "console_s048_t6p6_speed_mps",
+   "value": 0.05,
+   "unit": "m/s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl#seq=11.speed_mps",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 48 (F1_trail); one selected example shown in the operator console replay; packet seq 11"
+  },
+  {
+   "id": "console_s048_t6p6_v_cap_mps",
+   "value": 0.0,
+   "unit": "m/s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl#seq=11.v_cap_mps",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 48 (F1_trail); one selected example shown in the operator console replay; packet seq 11"
+  },
+  {
+   "id": "console_s048_t6p6_r_cert_m",
+   "value": 2.0,
+   "unit": "m",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl#seq=11.r_cert_m",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 48 (F1_trail); one selected example shown in the operator console replay; packet seq 11"
+  },
+  {
+   "id": "console_s048_t6p6_nearest_lethal_ahead_m",
+   "value": 1.12,
+   "unit": "m",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl#seq=11.costmap_u4_hex",
+   "note": "decoded 4-bit costmap, 1.2 m wide lane ahead of the bumper"
+  },
+  {
+   "id": "console_s048_mode_nominal_to_stop_and_look_t_s",
+   "value": 6.4,
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/autonomy.log",
+   "note": "NO_PROGRESS look"
+  },
+  {
+   "id": "console_s048_mode_stop_and_look_to_nominal_t_s",
+   "value": 14.4,
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/autonomy.log",
+   "note": "RESUME after look 1"
+  },
+  {
+   "id": "console_s048_outcome_time_s",
+   "value": 57.98,
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/result.json#time",
+   "note": "success=True"
+  },
+  {
+   "id": "console_s048_outcome_spl",
+   "value": 0.8818,
+   "unit": "",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/result.json#spl",
+   "note": ""
+  },
+  {
+   "id": "console_s048_t26p4_speed_mps",
+   "value": 1.47,
+   "unit": "m/s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl#seq=44.speed_mps",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 48 (F1_trail); one selected example shown in the operator console replay; packet seq 44"
+  },
+  {
+   "id": "console_s048_t26p4_v_cap_mps",
+   "value": 2.0,
+   "unit": "m/s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl#seq=44.v_cap_mps",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 48 (F1_trail); one selected example shown in the operator console replay; packet seq 44"
+  },
+  {
+   "id": "console_s048_t26p4_r_cert_m",
+   "value": 5.2,
+   "unit": "m",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/048/autonomy/telemetry.jsonl#seq=44.r_cert_m",
+   "note": "EVAL closed loop, sensor mode tier0, held-out seed 48 (F1_trail); one selected example shown in the operator console replay; packet seq 44"
+  },
+  {
+   "id": "eval_full_runs_with_stop_and_look",
+   "value": 8,
+   "unit": "runs of 60",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/<seed>/result.json, autonomy/telemetry.jsonl, autonomy/debug/tick_*.npz",
+   "note": "FULL, tier-0, EVAL seeds 0-59"
+  },
+  {
+   "id": "eval_full_stop_and_look_runs_reached_B",
+   "value": 2,
+   "unit": "runs",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/<seed>/result.json, autonomy/telemetry.jsonl, autonomy/debug/tick_*.npz",
+   "note": "of the runs that entered STOP_AND_LOOK"
   }
  ],
  "browser_errors": []
