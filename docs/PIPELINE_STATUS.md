@@ -48,8 +48,8 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 | Ditch visibility range 4.3 m, speed envelope | analytic | Estimated |
 
 ## Gaps to close for a fully built end-to-end pipeline
-1. **Train the terrain segmenter on a GPU** (`python aws/ec2_run.py launch --job seg`). This enables water and obstacle
-   semantics in the loop.
+1. **Train the terrain segmenter on a GPU** (`python aws/ec2_run.py launch --backend sagemaker --job seg`, see
+   `aws/README.md`). This enables water and obstacle semantics in the loop. Blocked on AWS permissions (next section).
 2. **Run the closed loop in stereo mode on the GPU box**, so that SGBM, VO, the integrity monitor and the segmenter
    all run on rendered images. The published numbers are tier-0 only.
 3. **Connect the operator console live**, with a telemetry stream from the running episode and operator commands
@@ -59,11 +59,23 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 ## Next steps (handoff, 2026-09-30)
 - AWS credentials are set in the environment settings (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
   `AWS_DEFAULT_REGION`), but they only reach a newly started session. Check them with
-  `aws sts get-caller-identity`.
+  `aws sts get-caller-identity` or `python aws/ec2_run.py check --backend sagemaker`.
 - Approved quota: **SageMaker training job, `ml.g6.24xlarge`, 1 instance, ap-south-1** (4x NVIDIA L4, 96 vCPU).
-  - Plan: add a SageMaker backend to `aws/ec2_run.py`. It runs `aws/jobs/seg.sh` as a training job in an AWS PyTorch
-    GPU container, with the code tarball on S3 and outputs to S3.
+  - Done: `aws/ec2_run.py --backend sagemaker` runs `aws/jobs/seg.sh` as a training job in the AWS PyTorch GPU
+    container, with the code tarball on S3 and outputs to S3 (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`,
+    usage in `aws/README.md`). It is unit-tested with a fake AWS session and a local run of the entry script
+    (`tests/test_aws_sagemaker.py`); it has **not run on AWS yet**.
   - The EC2 G-instance quota is unchecked. The stereo-mode loop needs a GPU plus a browser, so check the EC2 quota
     first and fall back to the same SageMaker instance type.
-- Order: (1) train the segmenter, (2) fetch the ONNX files and wire them into the loop, (3) run the stereo-mode
-  DEV/EVAL loop on the GPU, (4) connect the live console. After that, the video and slides.
+- **Blocker found 2026-09-30.** The keys are valid: `sts get-caller-identity` succeeds as IAM user `metagross-bot`,
+  which has `AdministratorAccess`. But the account is in an AWS Organization whose service control policy explicitly
+  denies the calls this plan needs. Denied in real calls in ap-south-1: SageMaker `ListTrainingJobs`, `ListDomains`
+  and `ListNotebookInstances`; S3 `ListAllMyBuckets`; EC2 `DescribeInstances` and `DescribeRegions`; SSM
+  `GetParameter` (the GPU AMI); Service Quotas reads. Denied in the IAM policy simulator: `sagemaker:CreateTrainingJob`,
+  `s3:CreateBucket`, `s3:PutObject`, `ec2:RunInstances`. IAM and STS calls work. Neither the SageMaker path nor the
+  EC2 fallback can start until the organisation's management account allows these actions. IAM changes inside this
+  account cannot override an SCP. Nothing was launched and no AWS resources were created. The full list of actions
+  needed is in `aws/README.md` ("Permissions the account needs").
+- Order, once allowed: (1) train the segmenter: `check --backend sagemaker`, then the 1.5 h dry run, then the full run
+  (commands in `aws/README.md`); (2) fetch the ONNX files and wire them into the loop; (3) run the stereo-mode DEV/EVAL
+  loop on the GPU; (4) connect the live console. After that, the video and slides.
