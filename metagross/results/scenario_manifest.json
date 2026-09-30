@@ -1,0 +1,635 @@
+{
+ "schema": "metagross.scenario/1",
+ "scenarios": [
+  {
+   "seed": 0,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "1955175f8e2ef1ae3812fff17f34b14c4e9f5af6077470ae114cd688902dba48",
+   "path": "eval/0.json"
+  },
+  {
+   "seed": 1,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "2b617f60cf055a6e018c36d701a467a9012472c303a415267ce30e942bb11e3a",
+   "path": "eval/1.json"
+  },
+  {
+   "seed": 2,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "c478b3ac84d6daec78420765cb3b471c27a8eb8e1b23bd141cd81889d2fd091b",
+   "path": "eval/2.json"
+  },
+  {
+   "seed": 3,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "29e545be266e942a97c5be6dac28fde70cec93da561e652a34ad23b7708f1b73",
+   "path": "eval/3.json"
+  },
+  {
+   "seed": 4,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "e88137590820d5c71441e3dc6d9067badc03270124021b3c0b2e03d8ec5cfe1f",
+   "path": "eval/4.json"
+  },
+  {
+   "seed": 5,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "3c293866f3caa2b7f92db70a83fe33f15c775356436fe5703873d27da043f111",
+   "path": "eval/5.json"
+  },
+  {
+   "seed": 6,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "c7834f4e7d0ee89408b5f139a6407d8053411feac9268da9289563bcec250260",
+   "path": "eval/6.json"
+  },
+  {
+   "seed": 7,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "9f19b481fc7cb7866cabeace767866cf0934183b7296b92621e6a0713530e23d",
+   "path": "eval/7.json"
+  },
+  {
+   "seed": 8,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "ce9002b7c2e5ec2161a4844cbbd38a6cfe2321866d0af5b392b2a935ad971fb3",
+   "path": "eval/8.json"
+  },
+  {
+   "seed": 9,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "0d0738d6ce535590273bb9ec66b8d0a32f41ae100a96be4b9f9339526b8e7ad9",
+   "path": "eval/9.json"
+  },
+  {
+   "seed": 10,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "fd4615df3233d91cde4069f066a946a774cd087047b8637dd2d2dc3f4ac8703d",
+   "path": "eval/10.json"
+  },
+  {
+   "seed": 11,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "c11a69336a0ae817b4de3f4d295daae81bfb711d1c631d107cc555cfe1098d50",
+   "path": "eval/11.json"
+  },
+  {
+   "seed": 12,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "eb31e6f49e8b4d08ed28266f5fca9f742020ca037ac66115298169a811595fc0",
+   "path": "eval/12.json"
+  },
+  {
+   "seed": 13,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "a503e23569d78cc6721faee38d853c26ca0075b3988f3673511786da62c7944b",
+   "path": "eval/13.json"
+  },
+  {
+   "seed": 14,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "c93d17a2d0f1c1dc6e893898200a39cb4756e548cb2762b2aece6c7fd12ed2fa",
+   "path": "eval/14.json"
+  },
+  {
+   "seed": 15,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "a0fa76fec329ac289786b5cfe19f8cc6daa019237be46627066cd58f940d0fce",
+   "path": "eval/15.json"
+  },
+  {
+   "seed": 16,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "beab39ea777b574e86472a6d86eacfe7f71ded8de19371ca293ce7ece729cf63",
+   "path": "eval/16.json"
+  },
+  {
+   "seed": 17,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "90ff1b95983805b86539b57f9181fa087af9a3938f78fa80925ddda29b819803",
+   "path": "eval/17.json"
+  },
+  {
+   "seed": 18,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "98bb5aa5ffa72df68c69b412f53ab6fd96992fb9a5c1252fb457c5b300e40467",
+   "path": "eval/18.json"
+  },
+  {
+   "seed": 19,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "da4a73a3e8c234de7596519452293e4aff22ce79eecbf54d3b1f63e0dda640ec",
+   "path": "eval/19.json"
+  },
+  {
+   "seed": 20,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "71c2e207b28d960bc8a5c051abb1998b095a4d2e2a1281641d2e7d56221f18a9",
+   "path": "eval/20.json"
+  },
+  {
+   "seed": 21,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "4727afa42ec5b9789395fd78518c42b4a15ae1b8842412094c3dc84d4f530646",
+   "path": "eval/21.json"
+  },
+  {
+   "seed": 22,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "8728327071a40ffe5b2c1489cfada7dc53193bf776f859f13381349461140c34",
+   "path": "eval/22.json"
+  },
+  {
+   "seed": 23,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "b9cedacfe4a241de310e688f8d3b49c5bc57bcb32f6a9e340390ac033b368d12",
+   "path": "eval/23.json"
+  },
+  {
+   "seed": 24,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "7fe2dbaaced4e1091a4f8eb276d46e1b0f8b7bf5bf183eca24cca5a394ba43e4",
+   "path": "eval/24.json"
+  },
+  {
+   "seed": 25,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "8d86273027943ef3020f04d80dfa67838368482e54d7e2209a4165aebf530c63",
+   "path": "eval/25.json"
+  },
+  {
+   "seed": 26,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "725e7570685e822d7c9260a02205c200a0a319816bb55dcdf83d8f4bf21f3e0d",
+   "path": "eval/26.json"
+  },
+  {
+   "seed": 27,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "c72a3cf7ff2514c087c5ae20493bd17d9566d9f9a25b2d41372f0b3d3eb7dab3",
+   "path": "eval/27.json"
+  },
+  {
+   "seed": 28,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "5144583666238fcc0e9f6f0a3ac45100f354d403222b3c5065521e77979b2f18",
+   "path": "eval/28.json"
+  },
+  {
+   "seed": 29,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "68937d6795bccbdd9f6271f66d9021b242dcddc299281689d29ad8158d566ea8",
+   "path": "eval/29.json"
+  },
+  {
+   "seed": 30,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "cd9b47a970160cb9ba1c25f609f72f9db2a1d26e6a1c3a76e0a6351ea6552cbe",
+   "path": "eval/30.json"
+  },
+  {
+   "seed": 31,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "21582f7e327191417a0259f63fdca9a06b9e786721da1c1d2657b574736dfbb3",
+   "path": "eval/31.json"
+  },
+  {
+   "seed": 32,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "81815cea964de4975a709107161e2fba5e2fd0a25e729e9b73ad7bbf611ba669",
+   "path": "eval/32.json"
+  },
+  {
+   "seed": 33,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "d114b42de731f49e7377c0bd9730ea515d3e8477a97746bd3aa231cb1a11cff1",
+   "path": "eval/33.json"
+  },
+  {
+   "seed": 34,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "9e79711f57a84f598cf2f1447573dc0a087f84429738372096cdbf8722e3b90c",
+   "path": "eval/34.json"
+  },
+  {
+   "seed": 35,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "942948263fc457486187e7d48da682f6b89e870ab0738a090af216083e5eeade",
+   "path": "eval/35.json"
+  },
+  {
+   "seed": 36,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "6fdfb3f8c5f74a54f68ccb09185912a70c172f9940fb5267a21bdfdb96ae5e02",
+   "path": "eval/36.json"
+  },
+  {
+   "seed": 37,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "e02a83d809f8c13ca25efddd8a3bed24a1825bbdb87bf98c07a80cd2723cabe8",
+   "path": "eval/37.json"
+  },
+  {
+   "seed": 38,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "802d1c98a44dbab0388d848a46ad5780973e3e6a5141cbbf749d242f2a3e36ef",
+   "path": "eval/38.json"
+  },
+  {
+   "seed": 39,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "c27435e9cc9f33e503fed9490450ec559791c60b7ccd854ea3bea23911608cdf",
+   "path": "eval/39.json"
+  },
+  {
+   "seed": 40,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "dedead65f4a3d328864651fbcdd069e2bf43a349b05afb5359d6a75f257efdbb",
+   "path": "eval/40.json"
+  },
+  {
+   "seed": 41,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "b2b496c0ae75d7ec1ff9f014ba8af45cbd603e6bdefe3cc1e87058eb06c78ab4",
+   "path": "eval/41.json"
+  },
+  {
+   "seed": 42,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "c741f082c262acb2e51b607bba413d5c7cd199087d271f06f2cc769b6c2d282e",
+   "path": "eval/42.json"
+  },
+  {
+   "seed": 43,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "9b3adcfca0120644e8add21117ec5ec886394eda03c3566b8aef34243d8a9382",
+   "path": "eval/43.json"
+  },
+  {
+   "seed": 44,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "2622b2a5b57ddc701c4c5f3ce5586dddd1720a11a76f32cb475f8280696e502b",
+   "path": "eval/44.json"
+  },
+  {
+   "seed": 45,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "90952cb4f12bee24c87c1c658991c77173d0397b131ee636d31961348e5f368f",
+   "path": "eval/45.json"
+  },
+  {
+   "seed": 46,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "535377bd94e5e822f4591e93c0d5c4787057247bb0a0a93978111aac8fce90c7",
+   "path": "eval/46.json"
+  },
+  {
+   "seed": 47,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "61e10f47103ddcf962e406b510e3bd0a28169e4ee1a2a1c3da4d954ec16555d7",
+   "path": "eval/47.json"
+  },
+  {
+   "seed": 48,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "8e2c8c63ca99ee407a3e2d949130d9451c09aec849a48a64adb2b63a91a95ef7",
+   "path": "eval/48.json"
+  },
+  {
+   "seed": 49,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "c2cee550d9d3cf87ffecf3e76c4a63dd604fef0c667ac7086ebbef0bc72aff8a",
+   "path": "eval/49.json"
+  },
+  {
+   "seed": 50,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "aba610d4cf0ccc2130427a653ff99e6a257d00c2d8958dad52295cace06e9ae2",
+   "path": "eval/50.json"
+  },
+  {
+   "seed": 51,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "ea68e08b4dd720f9f2152fa30d2c6ebb0c65c0cfd237d0c1a0672d33027ab2d6",
+   "path": "eval/51.json"
+  },
+  {
+   "seed": 52,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "06be9bd3bdeb7e11b608094e15df8058f7aee18bea822a09394aa6e9ec9b70cc",
+   "path": "eval/52.json"
+  },
+  {
+   "seed": 53,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "508323c253d7a2e4b675b290117ec56e999eb2ed477199b0cc41d17673a44ae7",
+   "path": "eval/53.json"
+  },
+  {
+   "seed": 54,
+   "family": "F1_trail",
+   "split": "eval",
+   "sha256": "075270d49ca5c161c5293495a7f0ab57c3d7e222ffe4ef1f7ac529884899d48a",
+   "path": "eval/54.json"
+  },
+  {
+   "seed": 55,
+   "family": "F2_ditch_field",
+   "split": "eval",
+   "sha256": "2b528d6fca38b22b119b89c5b6f89a9b4f46c6ca5ca0a8df8f577e6545111cab",
+   "path": "eval/55.json"
+  },
+  {
+   "seed": 56,
+   "family": "F3_crest_ditch",
+   "split": "eval",
+   "sha256": "12a8f2086e5f4a6d8f7dfa0799d6c3b69a615d5259744a50c2a4b0ae15593d89",
+   "path": "eval/56.json"
+  },
+  {
+   "seed": 57,
+   "family": "F4_sudden_obstacle",
+   "split": "eval",
+   "sha256": "3ad720008a655a2f6910e13407b597e8b4dcfcddeddd91975ec0caa2c4063ea6",
+   "path": "eval/57.json"
+  },
+  {
+   "seed": 58,
+   "family": "F5_lighting",
+   "split": "eval",
+   "sha256": "d0d9b3a1e47e4b8dfd0bac19104e0c2d426e067889e93e003f539070d56b6bcf",
+   "path": "eval/58.json"
+  },
+  {
+   "seed": 59,
+   "family": "F6_water_mud",
+   "split": "eval",
+   "sha256": "5c1974d75f3d58d36e11106508dce60c7ec89b1fa116f818ed7dfbe56061e95b",
+   "path": "eval/59.json"
+  },
+  {
+   "seed": 100,
+   "family": "F5_lighting",
+   "split": "dev",
+   "sha256": "8ec044e949979b06d49e72ff919b6a47f3e6d7d6eb145b06e849cae46a62e9e2",
+   "path": "dev/100.json"
+  },
+  {
+   "seed": 101,
+   "family": "F6_water_mud",
+   "split": "dev",
+   "sha256": "fc1964dc377ac1688b14c0751563e92a666b1e59f0fe8d5a125cfb08a866bb57",
+   "path": "dev/101.json"
+  },
+  {
+   "seed": 102,
+   "family": "F1_trail",
+   "split": "dev",
+   "sha256": "c0826ca4ea8e9febe96985ebc6231550e6df2ce4af2c6543a2b2abd0f4404ea8",
+   "path": "dev/102.json"
+  },
+  {
+   "seed": 103,
+   "family": "F2_ditch_field",
+   "split": "dev",
+   "sha256": "ff05273200b4066998a5f133829cc84a5394deee2a49454b846e365e71c24828",
+   "path": "dev/103.json"
+  },
+  {
+   "seed": 104,
+   "family": "F3_crest_ditch",
+   "split": "dev",
+   "sha256": "cc950acfd60699b4b38efcea3c8a0e332b5e47c9449faa46ab7b0629df624cf8",
+   "path": "dev/104.json"
+  },
+  {
+   "seed": 105,
+   "family": "F4_sudden_obstacle",
+   "split": "dev",
+   "sha256": "25972700a3543cbb87beabf11202a744b8ee16062e46f334ea6c5a73531757ec",
+   "path": "dev/105.json"
+  },
+  {
+   "seed": 106,
+   "family": "F5_lighting",
+   "split": "dev",
+   "sha256": "fba1865425a882df06ee882a28cb30189f82008cb4d98c899b8d11cd994832b6",
+   "path": "dev/106.json"
+  },
+  {
+   "seed": 107,
+   "family": "F6_water_mud",
+   "split": "dev",
+   "sha256": "51e2ec7454da09feb3001095adb1253ab9ef5935e20d9c3c39e6dcf60e605235",
+   "path": "dev/107.json"
+  },
+  {
+   "seed": 108,
+   "family": "F1_trail",
+   "split": "dev",
+   "sha256": "b126817b62ad777de17936533a34d54643341cdced6e0a6876ff44b72d4e86a4",
+   "path": "dev/108.json"
+  },
+  {
+   "seed": 109,
+   "family": "F2_ditch_field",
+   "split": "dev",
+   "sha256": "da3f9ba23993809702732b4ca7feef9d90354cd40be3d6123711f05564d3e6f3",
+   "path": "dev/109.json"
+  },
+  {
+   "seed": 110,
+   "family": "F3_crest_ditch",
+   "split": "dev",
+   "sha256": "804be0a687b4fa0f6dde74bb6747e3f392df9c31bfeec6d240b48056923a31cc",
+   "path": "dev/110.json"
+  },
+  {
+   "seed": 111,
+   "family": "F4_sudden_obstacle",
+   "split": "dev",
+   "sha256": "52c951f80d6137c6a84f22c79d047b476eebce125c9a92f30e80faef559c97a7",
+   "path": "dev/111.json"
+  },
+  {
+   "seed": 112,
+   "family": "F5_lighting",
+   "split": "dev",
+   "sha256": "6a14275b31f04219bf544eef526e2eaec411df1d63ee4a19f6c6b1cfed2d6ad2",
+   "path": "dev/112.json"
+  },
+  {
+   "seed": 113,
+   "family": "F6_water_mud",
+   "split": "dev",
+   "sha256": "b26e5b435b981e64348885231589b09b867ab9420dbae12c31b880146d84f138",
+   "path": "dev/113.json"
+  },
+  {
+   "seed": 114,
+   "family": "F1_trail",
+   "split": "dev",
+   "sha256": "0cc31415cfa094afb6b5c5b4c3e12071316ff5e2291aeb463361b0bdde326813",
+   "path": "dev/114.json"
+  },
+  {
+   "seed": 115,
+   "family": "F2_ditch_field",
+   "split": "dev",
+   "sha256": "4a639c3b75a4a37f7063461ab7952db5247ad95764fc368bbec53a43fa721ae9",
+   "path": "dev/115.json"
+  },
+  {
+   "seed": 116,
+   "family": "F3_crest_ditch",
+   "split": "dev",
+   "sha256": "0e2e04470e13ba81d5774b537d99bcd6149d8257db26d0cf423d1bba47094b15",
+   "path": "dev/116.json"
+  },
+  {
+   "seed": 117,
+   "family": "F4_sudden_obstacle",
+   "split": "dev",
+   "sha256": "3954ed315b4c413cf72c0ad7675fc5e2d98a78cb560272eff8b2b0d8dbf95fdc",
+   "path": "dev/117.json"
+  },
+  {
+   "seed": 118,
+   "family": "F5_lighting",
+   "split": "dev",
+   "sha256": "2e021b0ddc3669e35c8911ecbfb97689c455cb243e3835ef0ef316d3d1edf244",
+   "path": "dev/118.json"
+  },
+  {
+   "seed": 119,
+   "family": "F6_water_mud",
+   "split": "dev",
+   "sha256": "4e1a11d616ae8ff9d463887a8d55ab07cf2720f5b8ce05fcddb589f1645aea40",
+   "path": "dev/119.json"
+  },
+  {
+   "seed": 120,
+   "family": "F1_trail",
+   "split": "dev",
+   "sha256": "e2b999dfa79a7a98158bbfd7e3a93307e0edaf33da8d171359052acf10583d08",
+   "path": "dev/120.json"
+  },
+  {
+   "seed": 121,
+   "family": "F2_ditch_field",
+   "split": "dev",
+   "sha256": "15feef0a92416067ed18fb73087082a5a5cbeb8c9aec7d49582a0d1455c317fe",
+   "path": "dev/121.json"
+  },
+  {
+   "seed": 122,
+   "family": "F3_crest_ditch",
+   "split": "dev",
+   "sha256": "1fb58425c1b11f5e6e83d4216cc6a4aa2f0febf8adb642b65df52e5126d39b05",
+   "path": "dev/122.json"
+  },
+  {
+   "seed": 123,
+   "family": "F4_sudden_obstacle",
+   "split": "dev",
+   "sha256": "99a7347fef483e3bada89f4c040d9b14a17bbf3a77c854d4afd80ad0bce3e998",
+   "path": "dev/123.json"
+  },
+  {
+   "seed": 124,
+   "family": "F5_lighting",
+   "split": "dev",
+   "sha256": "6ae9e2d5401f74542ed58566efc60c80787340778bd821fbb8f7229c074ffee1",
+   "path": "dev/124.json"
+  },
+  {
+   "seed": 125,
+   "family": "F6_water_mud",
+   "split": "dev",
+   "sha256": "a8447619e83e8c5e1f3167b6fddbc5167df954c66047cefd26152cb3b3f120f3",
+   "path": "dev/125.json"
+  },
+  {
+   "seed": 126,
+   "family": "F1_trail",
+   "split": "dev",
+   "sha256": "48862137de39f94361b20f0135032ee69002b6f4beaf158f935063fd3defb7d6",
+   "path": "dev/126.json"
+  },
+  {
+   "seed": 127,
+   "family": "F2_ditch_field",
+   "split": "dev",
+   "sha256": "42b6de7d166ccc5c05827e4fa4d25b66ab3b0da17a2eaf6ede8dd25a94393ed2",
+   "path": "dev/127.json"
+  },
+  {
+   "seed": 128,
+   "family": "F3_crest_ditch",
+   "split": "dev",
+   "sha256": "f6bc7edce8b87eee3736382c48050a2ad84933361ce7a8905b38608683b0ba9f",
+   "path": "dev/128.json"
+  },
+  {
+   "seed": 129,
+   "family": "F4_sudden_obstacle",
+   "split": "dev",
+   "sha256": "8ed0e6c1a3a83296eb3fb961909dade39888d0e76baf0dfab4b16fc3781f7b4f",
+   "path": "dev/129.json"
+  }
+ ]
+}
