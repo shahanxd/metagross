@@ -30,9 +30,10 @@ How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
 
 - **Code** goes up as the same `git archive HEAD` tarball (commit first) and arrives as the `code` input channel. Shell
   scripts are archived with LF endings whatever the local `core.autocrlf` (`.gitattributes` pins `*.sh` to LF), and the
-  launcher refuses a tarball with CRLF scripts. The container entrypoint unpacks it and runs `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with
-  `SYSTEM_TORCH=1` (the container's CUDA torch is reused; no torch download) and the datasets and venv on the
-  instance's local NVMe.
+  launcher refuses a tarball with CRLF scripts. The container entrypoint unpacks it and runs
+  `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with `SYSTEM_TORCH=1` (the container's CUDA torch
+  is reused when it sees the GPU, so normally no torch download) and the datasets and venv on the instance's local
+  NVMe.
 - **GPUs**: with two or more GPUs, `run_pipeline.sh` puts the clean run on GPU 0 and the robust run on GPU 1. GPUs 2
   and 3 stay idle, because `train_seg` has no multi-GPU mode.
 - **Time cap**: `--max-hours` becomes `MaxRuntimeInSeconds`. Unless `DEADLINE` is passed, the entry script sets one
@@ -40,7 +41,8 @@ How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
   ONNX export and evaluation.
 - **Logs**: `logs/` is copied to the job's checkpoint path on S3 every 2 min (`status` shows it). The job output,
   `logs/pipeline.log` and the tagged `logs/train_*.log` also stream to CloudWatch (`/aws/sagemaker/TrainingJobs`),
-  where SageMaker parses per-epoch val mIoU into the `clean:val_miou` / `robust:val_miou` metrics.
+  where the job's metric definitions are set up to pick per-epoch val mIoU into `clean:val_miou` /
+  `robust:val_miou` (the regexes are unit-tested on a sample log line, not yet seen on SageMaker).
 - **Outputs**: the `JOB_OUTPUTS` globs are copied to `<checkpoints>/out/` (what `fetch` downloads) and to
   `/opt/ml/model` (`model.tar.gz`, the fallback once the job has ended). `fetch` writes only paths that match those
   globs (both backends), so a job cannot drop, say, `tests/conftest.py` into the local repo. A job that exits 0 without `models/lraspp_offroad5_*.onnx` is marked
