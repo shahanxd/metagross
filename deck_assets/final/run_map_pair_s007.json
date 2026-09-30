@@ -1,7 +1,9 @@
 {
  "figure": "run_map_pair_s007",
+ "role": "backup",
  "label": "Simulated (tier-0 synthetic depth sensor, no images; held-out EVAL seed)",
  "generator": "deck_assets/final/src/runs_map.py",
+ "provenance_status": "NOT REGISTERED: the per-seed numbers below are read from results/runs_eval_tier0 but have no row in results/claims.csv; register `claims_to_register` (e.g. by extending metagross/eval/example_runs.py to more seeds) before this backup goes on a slide",
  "seed": 7,
  "family": "F2_ditch_field",
  "split": "eval",
@@ -40,16 +42,178 @@
    ]
   }
  ],
- "gap_used_by_full_xy_m": [
-  40.27214015261626,
-  4.2985984636804275
+ "text_on_figure": {
+  "full_below": "17.4 s: first confirmed ditch cells on the trench, 8.6 m ahead (9 of 53 confirmed cells lie on it, 44 are not on any trench), turns hard toward the gap (slowing to 1.3 m/s) and goes through the gap. Reached B at 42.7 s.",
+  "typical_below": "Treats unseen ground as free, 1.5 m/s set-point: drove into the trench at 47.0 s (rear-left wheel first).",
+  "note": "Backup example, one selected seed. Over all 60 EVAL runs each stack drove into a trench twice (FULL: F3 seeds 14 and 26; TYPICAL: seeds 7 and 38). Ditch-field and crest worlds reached B: FULL 11/20, TYPICAL 8/20.",
+  "provenance": "Simulated \u00b7 tier-0 synthetic depth sensor, no images \u00b7 held-out EVAL seed 7 (F2 ditch field) \u00b7 results/runs_eval_tier0/{FULL,TYPICAL}/007, results/claims.csv",
+  "headers": {
+   "FULL": [
+    "FULL stack",
+    "unseen ground is not free, ditch detector"
+   ],
+   "TYPICAL": [
+    "TYPICAL baseline",
+    "unseen ground = free, no ditch detector"
+   ]
+  }
+ },
+ "numbers": [
+  {
+   "what": "FULL outcome and time",
+   "value": "reached B at 42.7 s (42.74)",
+   "source": "results/runs_eval_tier0/FULL/007/result.json; results/runs_eval_tier0/summary.csv row FULL,7",
+   "claim_id": null
+  },
+  {
+   "what": "TYPICAL outcome and time",
+   "value": "ditch_entry at 47.0 s (46.98)",
+   "source": "results/runs_eval_tier0/TYPICAL/007/result.json + gt/events.json; results/runs_eval_tier0/summary.csv row TYPICAL,7",
+   "claim_id": null
+  },
+  {
+   "what": "FULL trench confirmation time (in-map label and below-panel sentence)",
+   "value": "17.4 s",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+   "how": "first tick whose rolling map held >= 3 confirmed-ditch cells within 1.0 m of the GT trench (A-frame -> world via the scenario start pose)",
+   "claim_id": null
+  },
+  {
+   "what": "range to the nearest confirmed trench cell",
+   "value": "8.6 m",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz + results/runs_eval_tier0/FULL/007/gt/states.npz",
+   "how": "GT vehicle position at that tick to the nearest matched confirmed cell",
+   "claim_id": null
+  },
+  {
+   "what": "confirmed cells on the GT trench / all confirmed cells in the map crop",
+   "value": "9/53",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+   "claim_id": null,
+   "drawn": true
+  },
+  {
+   "what": "speed clause",
+   "value": "turns hard toward the gap (slowing to 1.3 m/s)",
+   "source": "results/runs_eval_tier0/FULL/007/gt/states.npz v; debug ticks gov_binding / cmd_w",
+   "how": "GT speed at the tick 1.495 m/s, min over the next 3 s 1.275 m/s; governor binding {'platform': 16}; peak |cmd_w| 1.16 rad/s",
+   "claim_id": null
+  },
+  {
+   "what": "trench depth",
+   "value": "0.75 m (0.7519)",
+   "source": "data/scenarios/eval/7.json hazards[ditch].depth (scenario input, not a result)",
+   "claim_id": null
+  },
+  {
+   "what": "trench entries over all 60 EVAL runs",
+   "value": "FULL [14, 26], TYPICAL [7, 38]",
+   "source": "results/runs_eval_tier0/summary.csv",
+   "claim_id": "example_eval_ditch_entry_seeds_FULL, example_eval_ditch_entry_seeds_TYPICAL"
+  },
+  {
+   "what": "F2 + F3 reached B",
+   "value": "FULL 11/20, TYPICAL 8/20",
+   "source": "results/closed_loop_eval.json (= summary.csv count)",
+   "claim_id": "closed_loop_eval_tier0_FULL_F2F3_ditch_crest_success, closed_loop_eval_tier0_TYPICAL_F2F3_ditch_crest_success"
+  },
+  {
+   "what": "success radius",
+   "value": "2 m",
+   "source": "data/scenarios/eval/7.json mission.success_radius_m (scenario input)",
+   "claim_id": null
+  }
  ],
+ "numbers_without_claim_row": [
+  {
+   "what": "FULL outcome and time",
+   "value": "reached B at 42.7 s (42.74)",
+   "source": "results/runs_eval_tier0/FULL/007/result.json; results/runs_eval_tier0/summary.csv row FULL,7",
+   "claim_id": null
+  },
+  {
+   "what": "TYPICAL outcome and time",
+   "value": "ditch_entry at 47.0 s (46.98)",
+   "source": "results/runs_eval_tier0/TYPICAL/007/result.json + gt/events.json; results/runs_eval_tier0/summary.csv row TYPICAL,7",
+   "claim_id": null
+  },
+  {
+   "what": "FULL trench confirmation time (in-map label and below-panel sentence)",
+   "value": "17.4 s",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+   "how": "first tick whose rolling map held >= 3 confirmed-ditch cells within 1.0 m of the GT trench (A-frame -> world via the scenario start pose)",
+   "claim_id": null
+  },
+  {
+   "what": "range to the nearest confirmed trench cell",
+   "value": "8.6 m",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz + results/runs_eval_tier0/FULL/007/gt/states.npz",
+   "how": "GT vehicle position at that tick to the nearest matched confirmed cell",
+   "claim_id": null
+  },
+  {
+   "what": "confirmed cells on the GT trench / all confirmed cells in the map crop",
+   "value": "9/53",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+   "claim_id": null,
+   "drawn": true
+  },
+  {
+   "what": "speed clause",
+   "value": "turns hard toward the gap (slowing to 1.3 m/s)",
+   "source": "results/runs_eval_tier0/FULL/007/gt/states.npz v; debug ticks gov_binding / cmd_w",
+   "how": "GT speed at the tick 1.495 m/s, min over the next 3 s 1.275 m/s; governor binding {'platform': 16}; peak |cmd_w| 1.16 rad/s",
+   "claim_id": null
+  }
+ ],
+ "claims_to_register": [
+  {
+   "id": "example_eval_s007_full_reached_b_s",
+   "value": "42.7",
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/007/result.json#time",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 7 (F2_ditch_field); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; FULL reached B"
+  },
+  {
+   "id": "example_eval_s007_typical_end_s",
+   "value": "47.0",
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/TYPICAL/007/result.json#time",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 7 (F2_ditch_field); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; TYPICAL run ended (ditch_entry)"
+  },
+  {
+   "id": "example_eval_s007_full_trench_confirmed_s",
+   "value": "17.4",
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 7 (F2_ditch_field); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; first tick with >= 3 confirmed ditch cells on the GT trench (same rule as metagross/eval/example_runs.py)"
+  },
+  {
+   "id": "example_eval_s007_full_trench_confirmed_range_m",
+   "value": "8.6",
+   "unit": "m",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 7 (F2_ditch_field); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; GT distance to the nearest confirmed trench cell"
+  },
+  {
+   "id": "example_eval_s007_full_trench_cells_on_gt",
+   "value": "9/53",
+   "unit": "cells",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 7 (F2_ditch_field); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; confirmed ditch cells within 1.0 m of the GT trench / all"
+  }
+ ],
+ "registered_values_checked": null,
  "runs": {
   "FULL": {
    "config": "FULL",
    "run_dir": "results/runs_eval_tier0/FULL/007",
    "outcome": "success",
-   "outcome_text": "Reached B",
    "end_time_s": 42.74,
    "end_event": {
     "t": 42.74,
@@ -57,6 +221,7 @@
    },
    "path_length_m": 60.867,
    "mean_speed_mps": 1.4241,
+   "gt_speed_max_mps": 1.763356042667188,
    "final_error_m": 1.997,
    "spl": 0.9104,
    "ditch_entries": 0,
@@ -83,13 +248,13 @@
      "t_s": 20.0,
      "x_m": 32.21,
      "y_m": 15.83,
-     "labelled": true
+     "labelled": false
     },
     {
      "t_s": 30.0,
      "x_m": 39.06,
      "y_m": 4.49,
-     "labelled": true
+     "labelled": false
     },
     {
      "t_s": 40.0,
@@ -97,13 +262,26 @@
      "y_m": 12.88,
      "labelled": true
     }
+   ],
+   "trench_crossings": [
+    {
+     "trench": 0,
+     "t_s": 31.34,
+     "arc_m": 6.21,
+     "gaps_arc_m": [
+      [
+       5.0828,
+       7.0319
+      ]
+     ],
+     "in_gap": true
+    }
    ]
   },
   "TYPICAL": {
    "config": "TYPICAL",
    "run_dir": "results/runs_eval_tier0/TYPICAL/007",
    "outcome": "ditch_entry",
-   "outcome_text": "Drove into the trench",
    "end_time_s": 46.98,
    "end_event": {
     "t": 46.98,
@@ -114,6 +292,7 @@
    },
    "path_length_m": 44.614,
    "mean_speed_mps": 0.9496,
+   "gt_speed_max_mps": 1.401182024349568,
    "final_error_m": 20.248,
    "spl": 0.0,
    "ditch_entries": 1,
@@ -154,37 +333,229 @@
      "y_m": 10.59,
      "labelled": false
     }
-   ]
+   ],
+   "trench_crossings": []
   }
  },
  "full_trench_confirmation": {
-  "t": 17.400000000000002,
-  "x": 28.605111124710465,
-  "y": 15.058838417343617,
-  "n_confirmed_cells_in_crop": 53,
+  "t_s": 17.400000000000002,
+  "file": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz",
+  "vehicle_xy_m": [
+   28.605111124710465,
+   15.058838417343617
+  ],
+  "n_confirmed_cells": 53,
   "n_on_gt_trench": 9,
+  "n_not_on_trench": 44,
+  "median_dist_off_trench_cells_to_trench_m": 18.251300657314985,
   "match_tolerance_m": 1.0,
+  "min_cells": 3,
   "map_res_m": 0.2,
-  "dist_to_nearest_confirmed_cell_m": 8.590000612180974,
-  "dist_to_gt_trench_m": 7.858912138457843,
-  "v_at_mps": 1.495198858915967,
-  "v_min_next3s_mps": 1.275009718726174,
-  "file": "results/runs_eval_tier0/FULL/007/autonomy/debug/tick_000087.npz"
+  "range_to_nearest_cell_m": 8.590000612180974,
+  "vehicle_dist_to_gt_trench_m": 7.858912138457843,
+  "vehicle_dist_to_crest_m": null,
+  "gt_speed_at_mps": 1.495198858915967,
+  "gt_speed_min_next3s_mps": 1.275009718726174,
+  "gt_yaw_rate_max_abs_next3s_rad_s": 0.9895597142992386,
+  "n_ticks_next3s": 16,
+  "gov_binding_counts_next3s": {
+   "platform": 16
+  },
+  "max_abs_cmd_w_next3s_rad_s": 1.1550834773316743,
+  "cmd_v_range_next3s_mps": [
+   1.249424648528258,
+   1.6548967867367075
+  ],
+  "first_tick_with_any_confirmed_cells": {
+   "t_s": 0.2,
+   "n_cells": 27,
+   "n_on_gt_trench": 0
+  }
  },
- "numbers_drawn": {
-  "FULL end": "Reached B at 42.7 s (result.json time, summary.csv)",
-  "TYPICAL end": "Drove into the trench at 47.0 s (result.json time, gt/events.json)",
-  "crest drop / trench depth": null,
-  "trench confirmed": "full_trench_confirmation.t, .dist_to_nearest_confirmed_cell_m, .v_at_mps, .v_min_next3s_mps",
-  "time ticks": "GT position at t = 10, 20, ... s (gt/states.npz)"
+ "selection": {
+  "f2f3_seeds_full_reached_b_typical_failed": [
+   {
+    "seed": 2,
+    "family": "F3_crest_ditch",
+    "typical_failure": "out_of_bounds",
+    "typical_time_s": 32.42
+   },
+   {
+    "seed": 7,
+    "family": "F2_ditch_field",
+    "typical_failure": "ditch_entry",
+    "typical_time_s": 46.98
+   },
+   {
+    "seed": 32,
+    "family": "F3_crest_ditch",
+    "typical_failure": "arrived_short",
+    "typical_time_s": 50.8
+   },
+   {
+    "seed": 37,
+    "family": "F2_ditch_field",
+    "typical_failure": "out_of_bounds",
+    "typical_time_s": 56.26
+   },
+   {
+    "seed": 38,
+    "family": "F3_crest_ditch",
+    "typical_failure": "ditch_entry",
+    "typical_time_s": 22.26
+   },
+   {
+    "seed": 44,
+    "family": "F3_crest_ditch",
+    "typical_failure": "arrived_short",
+    "typical_time_s": 49.96
+   }
+  ],
+  "trench_entries_all_60_eval": {
+   "FULL": {
+    "seeds": [
+     14,
+     26
+    ],
+    "families": [
+     "F3_crest_ditch",
+     "F3_crest_ditch"
+    ],
+    "claim_id": "example_eval_ditch_entry_seeds_FULL"
+   },
+   "TYPICAL": {
+    "seeds": [
+     7,
+     38
+    ],
+    "families": [
+     "F2_ditch_field",
+     "F3_crest_ditch"
+    ],
+    "claim_id": "example_eval_ditch_entry_seeds_TYPICAL"
+   }
+  },
+  "why_this_seed": "backup pair; same caveats as run_map_pair.json"
  },
- "selection": "F2/F3 EVAL seeds where FULL reached B and TYPICAL failed (summary.csv): 2 (F3, TYPICAL out_of_bounds), 7 (F2, ditch_entry), 37 (F2, out_of_bounds), 38 (F3, ditch_entry). Seed 38 is the headline pair: the trench is hidden behind the crest, the 'unknown is never free' case; 7 and 37 are backups.",
+ "label_placement": {
+  "FULL": [
+   {
+    "name": "FULL end",
+    "placed": true,
+    "covered_cells": 18,
+    "leader_cost": 3.0
+   },
+   {
+    "name": "confirm label",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "gap",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 28.0
+   },
+   {
+    "name": "A",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "B",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "FULL tick 10",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "FULL tick 20",
+    "placed": false,
+    "reason": "no clear candidate"
+   },
+   {
+    "name": "FULL tick 30",
+    "placed": false,
+    "reason": "no clear candidate"
+   },
+   {
+    "name": "FULL tick 40",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "scale bar",
+    "x0_m": 1.98,
+    "y0_m": 32.98,
+    "covered_cells": 0.0
+   }
+  ],
+  "TYPICAL": [
+   {
+    "name": "TYPICAL end",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 7.5
+   },
+   {
+    "name": "trench",
+    "placed": true,
+    "covered_cells": 7,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "A",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "B",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "TYPICAL tick 10",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "TYPICAL tick 20",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "TYPICAL tick 30",
+    "placed": true,
+    "covered_cells": 0,
+    "leader_cost": 0.0
+   },
+   {
+    "name": "TYPICAL tick 40",
+    "placed": false,
+    "reason": "no clear candidate"
+   }
+  ]
+ },
  "how_drawn": {
-  "background": "hillshade (az 315, alt 40, vert. exag. 3.0) of the scenario heightmap smoothed by 0.15 m, tinted by material; 0.25 m contours of the landform (heightmap + trench excavation, smoothed)",
+  "background": "hillshade (az 315, alt 40, vert. exag. 3.0) of the scenario heightmap smoothed by 0.15 m, tinted by material (gravel trail = beige band); 0.25 m contours of the landform (heightmap + trench excavation, smoothed)",
   "trench": "GT ditch mask from metagross.sim.hazards.gt_hazard_raster (cells excavated > 0.05 m)",
   "crest": "scenario hazards[type=crest].polyline",
   "objects": "static footprints from metagross.sim.objects.parse_static_objects; dark = protrudes above ground clearance (lethal), light = drive-over; true radius with a drawing floor of 0.3/0.18 m",
   "paths": "GT body-origin x, y from gt/states.npz (0.04 s physics steps)",
-  "end markers": "last GT state; green dot = reached B, red X = referee terminal event"
+  "end markers": "last GT state; green dot = reached B, red X = referee terminal event (drawn unclipped so an exit at the frame stays whole)",
+  "confirmation marker": "navy diamond = GT vehicle position at the confirmation tick",
+  "labels": "placed by an occupancy check (objects, paths, trench, crest, markers, earlier labels); tick labels are dropped when every candidate overlaps something"
  }
 }
