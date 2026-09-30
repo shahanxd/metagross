@@ -1,11 +1,13 @@
 {
  "figure": "link_budget",
- "label": "Simulated (tier-0 synthetic depth sensor, no images)",
+ "label": "Simulated (tier-0 synthetic depth sensor, no images); packet sizes only, no link in the loop",
  "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl (60 runs, 3505 packets)",
  "method": "Histogram (8-byte bins) of packet_bytes as logged by each run: len(codec.encode_with_info(tel)) computed onboard in metagross/autonomy/process.py from the full-resolution costmap. Cross-check: every logged line was rebuilt with codec.telemetry_from_jsonable and re-encoded with codec.encode_with_info (as in tests/test_link_budget.py); the re-encoded sizes differ per packet because the log holds the already-pooled/decoded costmap, so the onboard sizes are plotted.",
+ "scope": "The 9.6 kbit/s link (with 20 % loss, 0.4 s latency) is a design assumption (README). In these EVAL runs packets were only encoded and logged; the link emulator is BUILT, NOT IN LOOP (docs/PIPELINE_STATUS.md row 14). 'Every packet carried the costmap' is true of packets sent, not of packets an operator would receive: the registered DEV emulation delivered 1811 of 2255 (results/link_budget.json#groups.tier0_FULL.emulated_link_after).",
  "budget_bytes": 600,
  "budget_derivation": "9.6 kbit/s / 8 / 2.0 Hz = 600 B (codec.PACKET_BUDGET_B)",
  "encoder_target_bytes": 480,
+ "encoder_target_reason": "codec.py: 80 % of the budget, headroom for link framing / retries",
  "onboard_bytes": {
   "n": 3505,
   "p50": 423.0,
@@ -28,6 +30,14 @@
    "2": 139
   }
  },
+ "registered_dev_replay_for_comparison": {
+  "source": "results/link_budget.json#groups.tier0_FULL.after_bytes",
+  "claims": "link_packet_after_tier0_FULL_p50_bytes / p100_bytes / frac_over_budget",
+  "n": 2255,
+  "p50": 427.0,
+  "p100": 480.0,
+  "frac_over_budget": 0.0
+ },
  "onboard_rungs": {
   "0": 378,
   "1": 249,
@@ -44,7 +54,74 @@
  "share_costmap_0p25m": 0.1789,
  "share_costmap_0p5m": 0.8211,
  "telemetry_period_s_median": 0.6,
- "note_period": "The 2 Hz telemetry timer runs on the 5 Hz tick, so packets go out every 0.6 s (1.67 Hz); the 600 B budget assumes 2 Hz, so it is conservative.",
+ "note_period": "The 2 Hz telemetry timer runs on the 5 Hz tick, so packets go out every 0.6 s (1.67 Hz); the 600 B budget assumes 2 Hz, so it is conservative. Do not say 'exactly 2 Hz'.",
  "mean_bitrate_kbps_at_logged_period": 5.55,
- "worst_bitrate_kbps_at_2hz": 7.68
+ "worst_bitrate_kbps_at_2hz": 7.68,
+ "registration_status": "None of the EVAL-onboard numbers drawn here are in results/claims.csv (the registered link claims are the DEV replay above). Register claims_to_register before the slide ships, or quote only the registered DEV numbers.",
+ "claims_to_register": [
+  {
+   "id": "deck_link_eval_tier0_FULL_n_packets",
+   "value": 3505,
+   "unit": "packets",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "EVAL closed loop, tier-0, FULL, seeds 0-59; packet_bytes as encoded onboard (codec v2); sizes only, link not in the loop; budget 600 B = 9.6 kbit/s at 2 Hz (design assumption)"
+  },
+  {
+   "id": "deck_link_eval_tier0_FULL_p50_bytes",
+   "value": 423.0,
+   "unit": "B",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "EVAL closed loop, tier-0, FULL, seeds 0-59; packet_bytes as encoded onboard (codec v2); sizes only, link not in the loop; budget 600 B = 9.6 kbit/s at 2 Hz (design assumption)"
+  },
+  {
+   "id": "deck_link_eval_tier0_FULL_p95_bytes",
+   "value": 472.0,
+   "unit": "B",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "EVAL closed loop, tier-0, FULL, seeds 0-59; packet_bytes as encoded onboard (codec v2); sizes only, link not in the loop; budget 600 B = 9.6 kbit/s at 2 Hz (design assumption)"
+  },
+  {
+   "id": "deck_link_eval_tier0_FULL_max_bytes",
+   "value": 480,
+   "unit": "B",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "EVAL closed loop, tier-0, FULL, seeds 0-59; packet_bytes as encoded onboard (codec v2); sizes only, link not in the loop; budget 600 B = 9.6 kbit/s at 2 Hz (design assumption)"
+  },
+  {
+   "id": "deck_link_eval_tier0_FULL_n_over_budget",
+   "value": 0,
+   "unit": "packets",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "EVAL closed loop, tier-0, FULL, seeds 0-59; packet_bytes as encoded onboard (codec v2); sizes only, link not in the loop; budget 600 B = 9.6 kbit/s at 2 Hz (design assumption)"
+  },
+  {
+   "id": "deck_link_eval_tier0_FULL_share_costmap_0p25m",
+   "value": 0.179,
+   "unit": "fraction",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "EVAL closed loop, tier-0, FULL, seeds 0-59; packet_bytes as encoded onboard (codec v2); sizes only, link not in the loop; budget 600 B = 9.6 kbit/s at 2 Hz (design assumption); link_rung 0 or 1"
+  },
+  {
+   "id": "deck_link_eval_tier0_FULL_share_costmap_0p5m",
+   "value": 0.821,
+   "unit": "fraction",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "EVAL closed loop, tier-0, FULL, seeds 0-59; packet_bytes as encoded onboard (codec v2); sizes only, link not in the loop; budget 600 B = 9.6 kbit/s at 2 Hz (design assumption); link_rung 2 or 3"
+  },
+  {
+   "id": "deck_link_eval_tier0_FULL_period_s",
+   "value": 0.6,
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl",
+   "note": "median spacing of logged packets (2 Hz timer on the 5 Hz tick)"
+  }
+ ]
 }
