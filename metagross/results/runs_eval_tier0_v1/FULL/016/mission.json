@@ -1,0 +1,14 @@
+{
+ "mission_id": "beab39ea",
+ "goal_xy_a": [
+  47.5212,
+  -1.0928
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 178.8,
+ "goal_sigma_m": 0.7879,
+ "goal_entry": {
+  "range_m": 47.5338,
+  "bearing_deg": -1.3174
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "mission_id": "aba610d4",
+ "goal_xy_a": [
+  42.0294,
+  0.1339
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 165.1,
+ "goal_sigma_m": 0.7898,
+ "goal_entry": {
+  "range_m": 42.0296,
+  "bearing_deg": 0.1825
+ }
+}

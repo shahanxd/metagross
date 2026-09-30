@@ -1,0 +1,103 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 127.02,
+ "path_length": 65.929,
+ "spl": 0.0,
+ "optimal_path_length": 47.6177,
+ "min_clearance": 0.7887,
+ "final_error": 2.943,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.519,
+ "false_stops": 4,
+ "stops": [
+  {
+   "t": 42.84,
+   "duration_s": 6.86,
+   "justified": true,
+   "reason": "lighting_event"
+  },
+  {
+   "t": 55.48,
+   "duration_s": 6.62,
+   "justified": true,
+   "reason": "lighting_event"
+  },
+  {
+   "t": 68.2,
+   "duration_s": 6.1,
+   "justified": false,
+   "reason": "none"
+  },
+  {
+   "t": 80.24,
+   "duration_s": 4.84,
+   "justified": false,
+   "reason": "none"
+  },
+  {
+   "t": 91.38,
+   "duration_s": 6.06,
+   "justified": false,
+   "reason": "none"
+  },
+  {
+   "t": 109.94,
+   "duration_s": 6.74,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "TYPICAL",
+  "unknown_is_free": true,
+  "use_negobs": false,
+  "use_governor": false,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": 1.5,
+  "speed_cap_mps": null,
+  "debug_every_n": 1,
+  "seg_model_path": null,
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 16,
+ "family": "F5_lighting",
+ "split": "eval",
+ "sha256": "beab39ea777b574e86472a6d86eacfe7f71ded8de19371ca293ce7ece729cf63",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 636,
+ "n_telemetry": 212,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 47.2032,
+ "compute_ms_p95": 61.8511,
+ "sensor_ms_mean": 38.1626,
+ "physics_ms_per_step": 0.4013,
+ "sensor_breakdown_ms": {
+  "terrain": 20.2058,
+  "objects": 12.2649,
+  "post": 5.3641,
+  "output": 0.1788,
+  "total": 38.0136
+ },
+ "wall_time_s": 60.606,
+ "error": null,
+ "machine": {
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "cpu_count": 4,
+  "python": "3.11.15",
+  "numpy": "2.4.6"
+ }
+}

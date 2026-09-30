@@ -70,7 +70,11 @@ class LocalizerConfig:
     q_reject: float = 0.4  # reject VO when q_gate is below this
     # gyro-bias Kalman filter (scalar). Datasheet-class MEMS numbers, not simulator internals:
     gyro_density_rps_rthz: float = 2.0e-3  # white-noise density (rad/s/sqrt(Hz))
-    gyro_bias_init_sigma_rps: float = 1.0e-2  # turn-on bias 1-sigma (rad/s); consumer MEMS specs quote up to ~1 deg/s
+    gyro_bias_init_sigma_rps: float = 1.0e-3  # turn-on bias 1-sigma (rad/s)
+    # Standing still, the bias is observed as the mean over windows of this many consecutive still frames (1 s at
+    # 5 Hz): a single frame is +-4.5e-3 rad/s of noise, and with a 1e-2 prior one brief mid-mission stop set the
+    # bias to that noise (DEV 100-129 closed loop: 19/30 -> 6/30 reached B).
+    gyro_bias_still_window: int = 5
     gyro_bias_rw_rps_rts: float = 1.0e-4  # bias random walk (rad/s/sqrt(s))
     # Depth-odometry yaw is not a reliable bias reference (DEV replay, seeds 100-129: median final error 1.05 -> 1.55 m
     # when it feeds the bias), so by default the bias is learned standing still (launch hold) and from VO only.
@@ -143,6 +147,7 @@ class Localizer:
         self._prev_wheels: Optional[tuple[float, float]] = None
         self.gyro_bias = 0.0
         self.gyro_bias_var = self.cfg.gyro_bias_init_sigma_rps ** 2
+        self._still_n, self._still_sum = 0, 0.0
         self.n_bias_updates = 0
         self.n_frames = 0
         self.n_vo_accepted = 0
@@ -268,10 +273,17 @@ class Localizer:
         turn-on bias of 0.06 deg/s alone turns into ~2 m of cross-track error over a 45 m mission."""
         cfg = self.cfg
         self.gyro_bias_var += cfg.gyro_bias_rw_rps_rts ** 2 * dt
+        if not still:
+            self._still_n, self._still_sum = 0, 0.0
         white_var = cfg.gyro_density_rps_rthz ** 2 / dt  # variance of the interval-mean rate
         z = R = None
         if still and (dyaw_vo is None or abs(dyaw_vo) < math.radians(0.05)):
-            z, R = gyro_rps, white_var
+            self._still_n += 1
+            self._still_sum += gyro_rps
+            if self._still_n < cfg.gyro_bias_still_window:
+                return
+            z, R = self._still_sum / self._still_n, white_var / self._still_n
+            self._still_n, self._still_sum = 0, 0.0
         elif dyaw_vo is not None:
             z, R = gyro_rps - dyaw_vo / dt, white_var + (self.ekf.cfg.vo_yaw_floor_rad / dt) ** 2
         elif do_info.get("accepted") and self.last_do is not None:

@@ -1,0 +1,73 @@
+{
+ "success": false,
+ "failure_type": "arrived_short",
+ "time": 51.12,
+ "path_length": 51.82,
+ "spl": 0.0,
+ "optimal_path_length": 49.5135,
+ "min_clearance": 2.0835,
+ "final_error": 6.534,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 1.0137,
+ "false_stops": 0,
+ "stops": [
+  {
+   "t": 39.84,
+   "duration_s": 6.9,
+   "justified": true,
+   "reason": "hazard_ahead"
+  }
+ ],
+ "config": {
+  "name": "FULL",
+  "unknown_is_free": false,
+  "use_negobs": true,
+  "use_governor": true,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": null,
+  "speed_cap_mps": null,
+  "debug_every_n": 1,
+  "seg_model_path": null,
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 40,
+ "family": "F5_lighting",
+ "split": "eval",
+ "sha256": "dedead65f4a3d328864651fbcdd069e2bf43a349b05afb5359d6a75f257efdbb",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 256,
+ "n_telemetry": 86,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 65.5046,
+ "compute_ms_p95": 84.3506,
+ "sensor_ms_mean": 43.7776,
+ "physics_ms_per_step": 0.2501,
+ "sensor_breakdown_ms": {
+  "terrain": 23.2263,
+  "objects": 13.4698,
+  "post": 6.7879,
+  "output": 0.2112,
+  "total": 43.6952
+ },
+ "wall_time_s": 31.422,
+ "error": null,
+ "machine": {
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "cpu_count": 4,
+  "python": "3.11.15",
+  "numpy": "2.4.6"
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 25.04,
+ "path_length": 6.636,
+ "spl": 0.0,
+ "optimal_path_length": 54.066,
+ "min_clearance": 0.3678,
+ "final_error": 48.498,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.265,
+ "false_stops": 1,
+ "stops": [
+  {
+   "t": 9.68,
+   "duration_s": 1.56,
+   "justified": true,
+   "reason": "hazard_ahead"
+  },
+  {
+   "t": 12.88,
+   "duration_s": 6.8,
+   "justified": true,
+   "reason": "hazard_ahead"
+  },
+  {
+   "t": 21.04,
+   "duration_s": 1.64,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "TYPICAL",
+  "unknown_is_free": true,
+  "use_negobs": false,
+  "use_governor": false,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": 1.5,
+  "speed_cap_mps": null,
+  "debug_every_n": 1,
+  "seg_model_path": null,
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 48,
+ "family": "F1_trail",
+ "split": "eval",
+ "sha256": "8e2c8c63ca99ee407a3e2d949130d9451c09aec849a48a64adb2b63a91a95ef7",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 126,
+ "n_telemetry": 42,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 55.5069,
+ "compute_ms_p95": 73.5743,
+ "sensor_ms_mean": 57.8684,
+ "physics_ms_per_step": 0.228,
+ "sensor_breakdown_ms": {
+  "terrain": 21.6566,
+  "objects": 30.9058,
+  "post": 5.0329,
+  "output": 0.1621,
+  "total": 57.7574
+ },
+ "wall_time_s": 16.775,
+ "error": null,
+ "machine": {
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "cpu_count": 4,
+  "python": "3.11.15",
+  "numpy": "2.4.6"
+ }
+}

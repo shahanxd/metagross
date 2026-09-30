@@ -1,0 +1,73 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 43.02,
+ "path_length": 24.22,
+ "spl": 0.0,
+ "optimal_path_length": 46.4429,
+ "min_clearance": null,
+ "final_error": 28.26,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.563,
+ "false_stops": 0,
+ "stops": [
+  {
+   "t": 26.68,
+   "duration_s": 16.32,
+   "justified": true,
+   "reason": "hazard_ahead"
+  }
+ ],
+ "config": {
+  "name": "TYPICAL",
+  "unknown_is_free": true,
+  "use_negobs": false,
+  "use_governor": false,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": 1.5,
+  "speed_cap_mps": null,
+  "debug_every_n": 1,
+  "seg_model_path": null,
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 19,
+ "family": "F2_ditch_field",
+ "split": "eval",
+ "sha256": "da4a73a3e8c234de7596519452293e4aff22ce79eecbf54d3b1f63e0dda640ec",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 216,
+ "n_telemetry": 72,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 53.0686,
+ "compute_ms_p95": 70.0231,
+ "sensor_ms_mean": 38.3864,
+ "physics_ms_per_step": 0.1977,
+ "sensor_breakdown_ms": {
+  "terrain": 22.3122,
+  "objects": 9.13,
+  "post": 6.6282,
+  "output": 0.2298,
+  "total": 38.3002
+ },
+ "wall_time_s": 22.968,
+ "error": null,
+ "machine": {
+  "platform": "Linux-6.18.44-fc-v50-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "cpu_count": 4,
+  "python": "3.11.15",
+  "numpy": "2.4.6"
+ }
+}

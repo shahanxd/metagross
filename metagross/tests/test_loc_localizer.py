@@ -121,5 +121,6 @@ def test_tier0_without_images_dead_reckons():
 
 def test_gyro_bias_learned_while_stationary(tex):
     loc = Localizer(calib(), VEHICLE, model_path=None)
-    drive(loc, tex, 40, v=0.0, gyro_bias=0.01, images=False)
+    # a 10-sigma bias (prior 1e-3 rad/s) needs ~20 s of standing still to be learned to 20 %
+    drive(loc, tex, 100, v=0.0, gyro_bias=0.01, images=False)
     assert loc.gyro_bias == pytest.approx(0.01, rel=0.2)
