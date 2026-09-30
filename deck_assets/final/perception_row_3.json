@@ -1,15 +1,144 @@
 {
  "figure": "perception_row_3",
- "label": "Simulated (rendered camera, real stereo matching)",
+ "label": "Simulated (software-rendered camera images, real SGBM stereo matching, onboard Perception node)",
  "generator": "deck_assets/final/src/perception_gallery.py",
  "files": [
   "deck_assets/final/perception_row_3.png",
   "deck_assets/final/perception_row_3.svg"
  ],
- "what": "one rendered stereo frame per DEV scenario -> SGBM disparity -> onboard Perception.process() (fresh node, single frame, no temporal fusion, no segmenter)",
+ "layout": {
+  "panels": "left camera | SGBM disparity | bird's-eye cell states",
+  "camera_shown_px": [
+   598,
+   374
+  ],
+  "bev_px_per_m": 33.39
+ },
+ "min_font_px_at_1800": 32,
+ "headline": "Past a crest the ground drops out of view, so the rover marks it as unknown, not free, even though here it happens to be drivable",
+ "caption": "DEV seed 116 (F3 crest-ditch family, crest-only control: no trench). Seen ground gives way to amber crest shadow about 5.3 m ahead, right at the crest top (5.3 m, ground truth): unknown, not free. Behind the crest the ground falls 1.1 m over about 8 m (steepest 15\u00b0, below the 20\u00b0 lethal slope), so it is drivable here, but the rover cannot know that from this viewpoint. Bright specks at the top of the disparity map are horizon mismatches. Hatched: certified ground, where a 0.3 m design ditch would already be visible (to about 3.7 m here; the design ditch resolves to 4.3 m on level ground, Estimated). The speed governor counts only certified ground. Illustrative frame, hand-picked from 20 rendered poses; a single frame from a fresh Perception node (no fusion, no segmenter), software-rendered (SwiftShader). Not a closed-loop result.",
+ "selection": {
+  "hand_picked": true,
+  "poses_rendered": 20,
+  "seeds_rendered": [
+   102,
+   103,
+   104,
+   108,
+   109,
+   110,
+   116,
+   120,
+   122,
+   126,
+   128
+  ],
+  "poses": [
+   [
+    102,
+    8.0,
+    0.0
+   ],
+   [
+    103,
+    5.8,
+    0.0
+   ],
+   [
+    104,
+    21.9,
+    0.0
+   ],
+   [
+    108,
+    0.0,
+    0.0
+   ],
+   [
+    108,
+    1.0,
+    0.0
+   ],
+   [
+    108,
+    1.0,
+    0.8
+   ],
+   [
+    108,
+    25.0,
+    0.0
+   ],
+   [
+    109,
+    13.8,
+    0.0
+   ],
+   [
+    109,
+    14.8,
+    0.0
+   ],
+   [
+    116,
+    17.3,
+    0.0
+   ],
+   [
+    116,
+    18.3,
+    0.0
+   ],
+   [
+    120,
+    7.0,
+    0.0
+   ],
+   [
+    120,
+    8.0,
+    0.0
+   ],
+   [
+    126,
+    5.0,
+    0.0
+   ],
+   [
+    126,
+    20.0,
+    0.0
+   ],
+   [
+    128,
+    20.9,
+    0.0
+   ],
+   [
+    110,
+    20.4,
+    0.0
+   ],
+   [
+    110,
+    20.9,
+    0.0
+   ],
+   [
+    122,
+    17.5,
+    0.0
+   ],
+   [
+    122,
+    18.0,
+    0.0
+   ]
+  ],
+  "criterion": "clean single-frame bird's-eye maps that show one hazard type each (not random)"
+ },
  "pipeline": {
   "renderer": "metagross.sim.render.bridge.ThreeRenderer(defaults.stereo_calibration(), defaults.VEHICLE)",
-  "renderer_backend_this_run": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
   "world": "metagross.sim.world.World(scenario, sensor_mode='stereo', renderer)",
   "placement": "world.vehicle.reset(x, y, yaw) on the straight start->goal line (simulator settles z, roll, pitch)",
   "auto_exposure_preroll_t_s": [
@@ -18,43 +147,139 @@
   ],
   "frame": "world.make_sensor_frame(world.t, 0)",
   "perception": "metagross.autonomy.perception.pipeline.Perception(calib, VEHICLE).process(frame, (0, 0, 0))",
-  "segmenter": null
- },
- "drawn_numbers": {
-  "hazard_text_on_images": {
-   "crest": "Crest 5.5 m ahead, then a 1.1 m drop"
-  },
-  "bev_range_ticks_m": [
-   4,
-   8,
-   12
-  ],
-  "bev_window_body_m": {
-   "x_forward": [
-    -0.5,
-    12.0
-   ],
-   "y_left": [
-    -6.0,
-    6.0
-   ],
-   "px_per_m": 32.0
-  },
-  "disparity_colour_scale_px": [
-   0.0,
-   50.0
-  ],
-  "disparity_scale_how": "0 to the 99.5th percentile of valid disparity over all three frames, rounded up to 10 px",
-  "rover_footprint_m": {
-   "length": 0.8,
-   "width": 0.6
+  "segmenter": null,
+  "reprocess_check": {
+   "trail": {
+    "disparity_px_mismatch": 0,
+    "cell_state_mismatch": 0,
+    "certified_mismatch": 0,
+    "r_det_m": 4.306,
+    "r_vis_m": 11.5,
+    "certified_cells": 811,
+    "stored": true
+   },
+   "ditch": {
+    "disparity_px_mismatch": 0,
+    "cell_state_mismatch": 0,
+    "certified_mismatch": 0,
+    "r_det_m": 4.429,
+    "r_vis_m": 11.5,
+    "certified_cells": 766,
+    "stored": true
+   },
+   "crest": {
+    "disparity_px_mismatch": 0,
+    "cell_state_mismatch": 0,
+    "certified_mismatch": 0,
+    "r_det_m": 4.357,
+    "r_vis_m": 5.5,
+    "certified_cells": 635,
+    "stored": true
+   }
   }
  },
+ "drawn_numbers": [
+  {
+   "what": "crest: hazard label",
+   "value": "Crest top 5.3 m ahead",
+   "source": "data/scenarios/dev/116.json",
+   "how": "terrain heightmap sampled every 0.05 m along the start->goal line: top = highest point within 10 m ahead; drop = top minus the lowest point within 12 m past it; run = distance past the top to lose 95 % of the drop; slope over a 1.0 m baseline"
+  },
+  {
+   "what": "bird's-eye range lines",
+   "value": [
+    2,
+    4,
+    6,
+    8,
+    10
+   ],
+   "unit": "m ahead of the body origin",
+   "source": "display"
+  },
+  {
+   "what": "bird's-eye window",
+   "value": {
+    "x_forward_m": [
+     -0.6,
+     10.6
+    ],
+    "y_left_m": [
+     -6.0,
+     6.0
+    ]
+   },
+   "source": "display; perception grid is x -2..14 m, y +/-6 m, 0.1 m cells (defaults.BEV_LOCAL_*)"
+  },
+  {
+   "what": "certified ground (hatched)",
+   "value": {
+    "crest": 3.65
+   },
+   "unit": "farthest certified cell centre within |y| <= 1 m (m); captions quote its far edge (+0.05 m)",
+   "source": "Perception.process()['certified_local'] on the stored frame (re-run and checked at every build)"
+  },
+  {
+   "what": "disparity colour scale",
+   "value": [
+    0.0,
+    50.0
+   ],
+   "unit": "px",
+   "source": "99.5th percentile of valid disparity over the three frames (42.12 px), rounded up to 10 px"
+  }
+ ],
+ "caption_numbers": [
+  {
+   "row": "crest",
+   "what": "crest top ahead; drop over run; steepest slope; lethal slope",
+   "value": [
+    5.3,
+    1.14,
+    7.6,
+    14.8,
+    20.0
+   ],
+   "json": "hazard_ground_truth"
+  },
+  {
+   "row": "crest",
+   "what": "first crest-shadow cell centre, median over the central 4 m (m)",
+   "value": 5.35,
+   "json": "cell_analysis.crest_shadow_first_x_median_m"
+  },
+  {
+   "row": "crest",
+   "what": "certified ground far edge (m)",
+   "value": 3.7,
+   "json": "cell_analysis.certified_x_max_central_m"
+  },
+  {
+   "row": "all",
+   "what": "0.3 m design ditch resolvable range (m), Estimated",
+   "value": 4.3,
+   "json": "registered: results/claims.csv row 2 -> results/theory.json#ditch_detection"
+  },
+  {
+   "row": "all",
+   "what": "poses rendered while choosing the frames",
+   "value": 20,
+   "json": "selection"
+  }
+ ],
+ "registered_claims_quoted": [
+  {
+   "text": "a 0.3 m design ditch resolves to 4.3 m on level ground (0.9 m mast)",
+   "value": "4.30 m",
+   "label": "Estimated",
+   "source": "results/claims.csv row 2 -> results/theory.json#ditch_detection"
+  }
+ ],
  "colours": {
   "cell_states": {
    "GROUND": "#81C784",
-   "UNSEEN": "#DADADA",
-   "OCCLUDED": "#8F8F8F",
+   "UNSEEN": "#E6E6E6",
+   "OCCLUDED": "#546E7A",
    "DITCH_CANDIDATE": "#C828A0",
    "POSITIVE": "#C62828",
    "DEPRESSION": "#C62828",
@@ -62,17 +287,42 @@
    "WATER": "#1E88E5",
    "DYNAMIC": "#C62828"
   },
-  "note": "ground = light tint of deck green #2E7D32 for red/green CVD separation (validator: deutan dE 4.2 -> >= 10)",
+  "certified_hatch": "#2E7D32",
+  "rover": "#1F497D",
   "disparity_cmap": "magma",
-  "no_match": "#D6D6D6"
+  "no_match": "#D6D6D6",
+  "note": "occluded is slate #546E7A (not the deck's TYPICAL grey); ground is a tint of deck green for red/green CVD separation; certified ground is hatched (texture) instead of a second green"
  },
  "caveats": [
   "Simulated: procedurally generated Three.js worlds, not real imagery.",
-  "Rendered with software WebGL (SwiftShader) in a CPU container; same scene and shaders as the GPU path.",
-  "Single frame from a fresh Perception node: ditch persistence filtering does not apply to a node's first frame; the closed loop fuses frames in the rolling map.",
-  "No terrain segmenter (deploy model not trained), so there is no water / semantic cue.",
-  "Closed-loop results are tier-0 only; this gallery shows perception on rendered stereo, not a closed-loop run.",
-  "Perception timings were measured in this 4-vCPU container and are not a claim."
+  "Software-rendered (SwiftShader) in a CPU container; CLAUDE.md calls this path smoke-test grade. Same scenes and shaders as the GPU path, but no GPU-rendered comparison was made for these frames.",
+  "Hand-picked illustrative frames (see selection); single frames from a fresh node: the ditch and positive persistence filters pass a node's first frame through unfiltered and nothing is fused over time.",
+  "No terrain segmenter (deploy model not trained): no water / semantic cue.",
+  "Not a closed-loop result: closed-loop results are tier-0 only.",
+  "Numbers here are not yet in results/claims.csv; see proposed_claims."
+ ],
+ "proposed_claims": [
+  {
+   "id": "percgal_crest116_top_ahead_m",
+   "value": 5.3,
+   "label": "Simulated",
+   "source": "data/scenarios/dev/116.json (GT heightmap)"
+  },
+  {
+   "id": "percgal_crest116_drop_m_over_run_m",
+   "value": [
+    1.14,
+    7.6
+   ],
+   "label": "Simulated",
+   "source": "data/scenarios/dev/116.json (GT heightmap)"
+  },
+  {
+   "id": "percgal_crest116_certified_to_m",
+   "value": 3.7,
+   "label": "Simulated",
+   "source": "Perception single frame, deck_assets/final/perception_frames/crest.npz"
+  }
  ],
  "rows": [
   {
@@ -81,6 +331,8 @@
    "split": "dev",
    "family": "F3_crest_ditch",
    "scenario": "data/scenarios/dev/116.json",
+   "frame_npz": "deck_assets/final/perception_frames/crest.npz",
+   "frame_npz_sha256": "b5a3ea94b48c99c36ec8dc2555704aab69f5e63c7f247de473be6c10882cdd85",
    "rover_s_along_start_goal_m": 17.3,
    "rover_pose6_world": [
     22.1375,
@@ -90,15 +342,67 @@
     -0.0571,
     -0.3309
    ],
+   "renderer_backend": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
    "hazard_ground_truth": {
+    "rover_s_m": 17.3,
     "type": "crest",
-    "distance_ahead_m": 5.54,
-    "how": "straight start->goal line intersected with the hazard centreline polyline; minus the rover's arc length",
-    "drop_m": 1.11,
-    "text": "Crest 5.5 m ahead, then a 1.1 m drop"
+    "has_trench": false,
+    "polyline_ahead_m": 5.54,
+    "scenario_drop_m": 1.11,
+    "top_ahead_m": 5.3,
+    "height_drop_m": 1.14,
+    "drop_run_m": 7.6,
+    "lowest_ahead_m": 15.45,
+    "max_downhill_slope_deg_1m": 14.8,
+    "slope_lethal_deg": 20.0,
+    "how": "terrain heightmap sampled every 0.05 m along the start->goal line: top = highest point within 10 m ahead; drop = top minus the lowest point within 12 m past it; run = distance past the top to lose 95 % of the drop; slope over a 1.0 m baseline",
+    "label": "Crest top 5.3 m ahead"
    },
-   "perception_r_vis_m": 5.5,
-   "perception_timings_ms_this_container": {
+   "cell_analysis": {
+    "window_body_m": {
+     "x_forward": [
+      -0.6,
+      10.6
+     ],
+     "y_left": [
+      -6.0,
+      6.0
+     ]
+    },
+    "cell_counts_window": {
+     "UNSEEN": 6686,
+     "GROUND": 1887,
+     "POSITIVE": 14,
+     "CREST_SHADOW": 4839,
+     "OCCLUDED": 14
+    },
+    "certified_cells_window": 635,
+    "certified_x_max_m": 3.65,
+    "certified_x_max_central_m": 3.65,
+    "r_det_m": 4.36,
+    "r_vis_m": 5.5,
+    "red_cells": 14,
+    "magenta_cells": 0,
+    "amber_cells": 4839,
+    "amber_x_range_m": [
+     4.95,
+     10.55
+    ],
+    "amber_x_median_m": 8.45,
+    "seen_ground_last_before_shadow_median_m": 5.25,
+    "crest_shadow_first_x_median_m": 5.35,
+    "crest_how": "per lateral column with |y| <= 2.0 m: nearest CREST_SHADOW cell centre, and the last GROUND cell centre before it; median over columns",
+    "red_x_range_m": [
+     5.65,
+     6.95
+    ]
+   },
+   "disparity_valid_fraction": 0.639,
+   "disparity_top_band": {
+    "first_valid_row": 66,
+    "px_above_20px_in_top_40_rows": 964
+   },
+   "perception_timings_ms_this_container_not_a_claim": {
     "stereo": 26.9,
     "geometry": 3.4,
     "ground": 6.9,
@@ -107,27 +411,7 @@
     "cells": 3.1,
     "semantics": 0.0,
     "total": 61.2
-   },
-   "cell_counts_displayed_window_0p1m_cells": {
-    "UNSEEN": 6625,
-    "GROUND": 1955,
-    "POSITIVE": 22,
-    "CREST_SHADOW": 6374,
-    "OCCLUDED": 24
-   },
-   "cell_counts_full_grid": {
-    "UNSEEN": 10810,
-    "GROUND": 1970,
-    "POSITIVE": 22,
-    "CREST_SHADOW": 6374,
-    "OCCLUDED": 24
-   },
-   "disparity_valid_fraction": 0.639,
-   "disparity_px_p1_p99": [
-    0.81,
-    42.31
-   ],
-   "missing_ground_pixels": 17632
+   }
   }
  ]
 }

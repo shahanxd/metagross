@@ -1,15 +1,144 @@
 {
  "figure": "perception_row_1",
- "label": "Simulated (rendered camera, real stereo matching)",
+ "label": "Simulated (software-rendered camera images, real SGBM stereo matching, onboard Perception node)",
  "generator": "deck_assets/final/src/perception_gallery.py",
  "files": [
   "deck_assets/final/perception_row_1.png",
   "deck_assets/final/perception_row_1.svg"
  ],
- "what": "one rendered stereo frame per DEV scenario -> SGBM disparity -> onboard Perception.process() (fresh node, single frame, no temporal fusion, no segmenter)",
+ "layout": {
+  "panels": "left camera | SGBM disparity | bird's-eye cell states",
+  "camera_shown_px": [
+   598,
+   374
+  ],
+  "bev_px_per_m": 33.39
+ },
+ "min_font_px_at_1800": 32,
+ "headline": "A boulder on the trail becomes a lethal obstacle, and the ground hidden behind it stays unknown instead of free",
+ "caption": "DEV seed 120 (F1 trail). The boulder (0.56 m tall, centre 4.8 m ahead, 1.1 m left) is red (lethal) and the ground behind it is a slate occluded wedge (unknown, not free). Of the 277 red cells, 128 are at the boulder, 26 at a second 0.39 m rock 10 m ahead, 101 at trees (trunks and low canopy) and 22 match no object (6 to 10.6 m out). 31 magenta ditch cells sit at the boulder's near base (also lethal). 248 amber crest-shadow cells (233 of them at the far left and right edges, beyond 7 m) are unknown. Hatched: certified ground, where a 0.3 m design ditch would already be visible (to about 4.7 m here; the design ditch resolves to 4.3 m on level ground, Estimated). The speed governor counts only certified ground. Illustrative frame, hand-picked from 20 rendered poses; a single frame from a fresh Perception node (no fusion, no segmenter), software-rendered (SwiftShader). Not a closed-loop result.",
+ "selection": {
+  "hand_picked": true,
+  "poses_rendered": 20,
+  "seeds_rendered": [
+   102,
+   103,
+   104,
+   108,
+   109,
+   110,
+   116,
+   120,
+   122,
+   126,
+   128
+  ],
+  "poses": [
+   [
+    102,
+    8.0,
+    0.0
+   ],
+   [
+    103,
+    5.8,
+    0.0
+   ],
+   [
+    104,
+    21.9,
+    0.0
+   ],
+   [
+    108,
+    0.0,
+    0.0
+   ],
+   [
+    108,
+    1.0,
+    0.0
+   ],
+   [
+    108,
+    1.0,
+    0.8
+   ],
+   [
+    108,
+    25.0,
+    0.0
+   ],
+   [
+    109,
+    13.8,
+    0.0
+   ],
+   [
+    109,
+    14.8,
+    0.0
+   ],
+   [
+    116,
+    17.3,
+    0.0
+   ],
+   [
+    116,
+    18.3,
+    0.0
+   ],
+   [
+    120,
+    7.0,
+    0.0
+   ],
+   [
+    120,
+    8.0,
+    0.0
+   ],
+   [
+    126,
+    5.0,
+    0.0
+   ],
+   [
+    126,
+    20.0,
+    0.0
+   ],
+   [
+    128,
+    20.9,
+    0.0
+   ],
+   [
+    110,
+    20.4,
+    0.0
+   ],
+   [
+    110,
+    20.9,
+    0.0
+   ],
+   [
+    122,
+    17.5,
+    0.0
+   ],
+   [
+    122,
+    18.0,
+    0.0
+   ]
+  ],
+  "criterion": "clean single-frame bird's-eye maps that show one hazard type each (not random)"
+ },
  "pipeline": {
   "renderer": "metagross.sim.render.bridge.ThreeRenderer(defaults.stereo_calibration(), defaults.VEHICLE)",
-  "renderer_backend_this_run": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
   "world": "metagross.sim.world.World(scenario, sensor_mode='stereo', renderer)",
   "placement": "world.vehicle.reset(x, y, yaw) on the straight start->goal line (simulator settles z, roll, pitch)",
   "auto_exposure_preroll_t_s": [
@@ -18,43 +147,168 @@
   ],
   "frame": "world.make_sensor_frame(world.t, 0)",
   "perception": "metagross.autonomy.perception.pipeline.Perception(calib, VEHICLE).process(frame, (0, 0, 0))",
-  "segmenter": null
- },
- "drawn_numbers": {
-  "hazard_text_on_images": {
-   "trail": "Boulder 0.56 m tall, centre 4.8 m ahead"
-  },
-  "bev_range_ticks_m": [
-   4,
-   8,
-   12
-  ],
-  "bev_window_body_m": {
-   "x_forward": [
-    -0.5,
-    12.0
-   ],
-   "y_left": [
-    -6.0,
-    6.0
-   ],
-   "px_per_m": 32.0
-  },
-  "disparity_colour_scale_px": [
-   0.0,
-   50.0
-  ],
-  "disparity_scale_how": "0 to the 99.5th percentile of valid disparity over all three frames, rounded up to 10 px",
-  "rover_footprint_m": {
-   "length": 0.8,
-   "width": 0.6
+  "segmenter": null,
+  "reprocess_check": {
+   "trail": {
+    "disparity_px_mismatch": 0,
+    "cell_state_mismatch": 0,
+    "certified_mismatch": 0,
+    "r_det_m": 4.306,
+    "r_vis_m": 11.5,
+    "certified_cells": 811,
+    "stored": true
+   },
+   "ditch": {
+    "disparity_px_mismatch": 0,
+    "cell_state_mismatch": 0,
+    "certified_mismatch": 0,
+    "r_det_m": 4.429,
+    "r_vis_m": 11.5,
+    "certified_cells": 766,
+    "stored": true
+   },
+   "crest": {
+    "disparity_px_mismatch": 0,
+    "cell_state_mismatch": 0,
+    "certified_mismatch": 0,
+    "r_det_m": 4.357,
+    "r_vis_m": 5.5,
+    "certified_cells": 635,
+    "stored": true
+   }
   }
  },
+ "drawn_numbers": [
+  {
+   "what": "trail: hazard label",
+   "value": "Boulder 4.8 m ahead",
+   "source": "data/scenarios/dev/120.json",
+   "how": "scenario objects in the body frame of the rendered rover pose; rock protrusion = rock top - terrain height"
+  },
+  {
+   "what": "bird's-eye range lines",
+   "value": [
+    2,
+    4,
+    6,
+    8,
+    10
+   ],
+   "unit": "m ahead of the body origin",
+   "source": "display"
+  },
+  {
+   "what": "bird's-eye window",
+   "value": {
+    "x_forward_m": [
+     -0.6,
+     10.6
+    ],
+    "y_left_m": [
+     -6.0,
+     6.0
+    ]
+   },
+   "source": "display; perception grid is x -2..14 m, y +/-6 m, 0.1 m cells (defaults.BEV_LOCAL_*)"
+  },
+  {
+   "what": "certified ground (hatched)",
+   "value": {
+    "trail": 4.65
+   },
+   "unit": "farthest certified cell centre within |y| <= 1 m (m); captions quote its far edge (+0.05 m)",
+   "source": "Perception.process()['certified_local'] on the stored frame (re-run and checked at every build)"
+  },
+  {
+   "what": "disparity colour scale",
+   "value": [
+    0.0,
+    50.0
+   ],
+   "unit": "px",
+   "source": "99.5th percentile of valid disparity over the three frames (42.12 px), rounded up to 10 px"
+  }
+ ],
+ "caption_numbers": [
+  {
+   "row": "trail",
+   "what": "boulder protrusion, centre ahead, left (m)",
+   "value": [
+    0.562,
+    4.77,
+    1.12
+   ],
+   "json": "hazard_ground_truth.boulder"
+  },
+  {
+   "row": "trail",
+   "what": "red cells in the window and their attribution",
+   "value": {
+    "total": 277,
+    "boulder": 128,
+    "none": 22,
+    "rock 0.39 m tall at 10.0 m ahead, +3.7 m left": 26,
+    "tree trunk": 79,
+    "under a tree canopy (not near the trunk)": 22
+   },
+   "json": "cell_analysis.red_attribution"
+  },
+  {
+   "row": "trail",
+   "what": "red cells matching no object: x range (cell centres, m)",
+   "value": [
+    6.05,
+    10.55
+   ],
+   "json": "cell_analysis.red_none_x_range_m"
+  },
+  {
+   "row": "trail",
+   "what": "magenta cells at the boulder base",
+   "value": 31,
+   "json": "cell_analysis.magenta"
+  },
+  {
+   "row": "trail",
+   "what": "amber cells; of them at |y| > 3 m and x > 7 m",
+   "value": [
+    248,
+    233
+   ],
+   "json": "cell_analysis.amber_at_sides_far"
+  },
+  {
+   "row": "trail",
+   "what": "certified ground far edge (m)",
+   "value": 4.7,
+   "json": "cell_analysis.certified_x_max_central_m"
+  },
+  {
+   "row": "all",
+   "what": "0.3 m design ditch resolvable range (m), Estimated",
+   "value": 4.3,
+   "json": "registered: results/claims.csv row 2 -> results/theory.json#ditch_detection"
+  },
+  {
+   "row": "all",
+   "what": "poses rendered while choosing the frames",
+   "value": 20,
+   "json": "selection"
+  }
+ ],
+ "registered_claims_quoted": [
+  {
+   "text": "a 0.3 m design ditch resolves to 4.3 m on level ground (0.9 m mast)",
+   "value": "4.30 m",
+   "label": "Estimated",
+   "source": "results/claims.csv row 2 -> results/theory.json#ditch_detection"
+  }
+ ],
  "colours": {
   "cell_states": {
    "GROUND": "#81C784",
-   "UNSEEN": "#DADADA",
-   "OCCLUDED": "#8F8F8F",
+   "UNSEEN": "#E6E6E6",
+   "OCCLUDED": "#546E7A",
    "DITCH_CANDIDATE": "#C828A0",
    "POSITIVE": "#C62828",
    "DEPRESSION": "#C62828",
@@ -62,17 +316,39 @@
    "WATER": "#1E88E5",
    "DYNAMIC": "#C62828"
   },
-  "note": "ground = light tint of deck green #2E7D32 for red/green CVD separation (validator: deutan dE 4.2 -> >= 10)",
+  "certified_hatch": "#2E7D32",
+  "rover": "#1F497D",
   "disparity_cmap": "magma",
-  "no_match": "#D6D6D6"
+  "no_match": "#D6D6D6",
+  "note": "occluded is slate #546E7A (not the deck's TYPICAL grey); ground is a tint of deck green for red/green CVD separation; certified ground is hatched (texture) instead of a second green"
  },
  "caveats": [
   "Simulated: procedurally generated Three.js worlds, not real imagery.",
-  "Rendered with software WebGL (SwiftShader) in a CPU container; same scene and shaders as the GPU path.",
-  "Single frame from a fresh Perception node: ditch persistence filtering does not apply to a node's first frame; the closed loop fuses frames in the rolling map.",
-  "No terrain segmenter (deploy model not trained), so there is no water / semantic cue.",
-  "Closed-loop results are tier-0 only; this gallery shows perception on rendered stereo, not a closed-loop run.",
-  "Perception timings were measured in this 4-vCPU container and are not a claim."
+  "Software-rendered (SwiftShader) in a CPU container; CLAUDE.md calls this path smoke-test grade. Same scenes and shaders as the GPU path, but no GPU-rendered comparison was made for these frames.",
+  "Hand-picked illustrative frames (see selection); single frames from a fresh node: the ditch and positive persistence filters pass a node's first frame through unfiltered and nothing is fused over time.",
+  "No terrain segmenter (deploy model not trained): no water / semantic cue.",
+  "Not a closed-loop result: closed-loop results are tier-0 only.",
+  "Numbers here are not yet in results/claims.csv; see proposed_claims."
+ ],
+ "proposed_claims": [
+  {
+   "id": "percgal_trail120_boulder_protrusion_m",
+   "value": 0.562,
+   "label": "Simulated",
+   "source": "data/scenarios/dev/120.json (GT)"
+  },
+  {
+   "id": "percgal_trail120_boulder_ahead_m",
+   "value": 4.77,
+   "label": "Simulated",
+   "source": "data/scenarios/dev/120.json (GT)"
+  },
+  {
+   "id": "percgal_trail120_certified_to_m",
+   "value": 4.7,
+   "label": "Simulated",
+   "source": "Perception single frame, deck_assets/final/perception_frames/trail.npz"
+  }
  ],
  "rows": [
   {
@@ -81,6 +357,8 @@
    "split": "dev",
    "family": "F1_trail",
    "scenario": "data/scenarios/dev/120.json",
+   "frame_npz": "deck_assets/final/perception_frames/trail.npz",
+   "frame_npz_sha256": "dd846da0474080084832a635cf4075a22a851d71281e0c126b61f19a5caf3894",
    "rover_s_along_start_goal_m": 8.0,
    "rover_pose6_world": [
     13.502,
@@ -90,59 +368,189 @@
     0.0071,
     0.2435
    ],
+   "renderer_backend": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
    "hazard_ground_truth": {
+    "rover_s_m": 8.0,
     "type": "rocks",
-    "rocks_in_window": [
+    "boulder": {
+     "type": "rock",
+     "ahead_m": 4.77,
+     "left_m": 1.12,
+     "radius_m": 1.0,
+     "protrusion_m": 0.562,
+     "lethal": true
+    },
+    "objects_near_window": [
      {
+      "type": "bush",
+      "ahead_m": -2.61,
+      "left_m": -7.56,
+      "radius_m": 0.606,
+      "height_m": 0.48
+     },
+     {
+      "type": "rock",
+      "ahead_m": -2.46,
+      "left_m": 2.48,
+      "radius_m": 0.509,
+      "protrusion_m": 0.226,
+      "lethal": true
+     },
+     {
+      "type": "tree",
+      "ahead_m": -2.01,
+      "left_m": 4.48,
+      "trunk_r_m": 0.187,
+      "canopy_r_m": 1.613,
+      "height_m": 5.07
+     },
+     {
+      "type": "rock",
       "ahead_m": -0.21,
       "left_m": -3.4,
       "radius_m": 0.19,
-      "protrusion_m": 0.1,
+      "protrusion_m": 0.097,
       "lethal": false
      },
      {
-      "ahead_m": 4.77,
-      "left_m": 1.12,
-      "radius_m": 1.0,
-      "protrusion_m": 0.56,
+      "type": "rock",
+      "ahead_m": 1.74,
+      "left_m": 8.42,
+      "radius_m": 0.418,
+      "protrusion_m": 0.2,
       "lethal": true
      },
      {
-      "ahead_m": 9.96,
-      "left_m": 3.72,
-      "radius_m": 0.7,
-      "protrusion_m": 0.39,
-      "lethal": true
-     }
-    ],
-    "other_objects_in_window": [
-     {
       "type": "tree",
       "ahead_m": 3.92,
-      "left_m": -2.92
+      "left_m": -2.92,
+      "trunk_r_m": 0.219,
+      "canopy_r_m": 2.135,
+      "height_m": 6.5
+     },
+     {
+      "type": "rock",
+      "ahead_m": 4.77,
+      "left_m": 1.12,
+      "radius_m": 1.0,
+      "protrusion_m": 0.562,
+      "lethal": true
+     },
+     {
+      "type": "tree",
+      "ahead_m": 6.0,
+      "left_m": 6.2,
+      "trunk_r_m": 0.195,
+      "canopy_r_m": 1.973,
+      "height_m": 6.61
      },
      {
       "type": "tree",
       "ahead_m": 6.92,
-      "left_m": -3.61
+      "left_m": -3.61,
+      "trunk_r_m": 0.15,
+      "canopy_r_m": 2.147,
+      "height_m": 6.2
+     },
+     {
+      "type": "rock",
+      "ahead_m": 9.96,
+      "left_m": 3.72,
+      "radius_m": 0.697,
+      "protrusion_m": 0.392,
+      "lethal": true
      },
      {
       "type": "tree",
       "ahead_m": 10.64,
-      "left_m": 0.16
+      "left_m": 0.16,
+      "trunk_r_m": 0.21,
+      "canopy_r_m": 1.036,
+      "height_m": 4.39
      },
      {
       "type": "tree",
       "ahead_m": 10.68,
-      "left_m": 1.48
+      "left_m": 1.48,
+      "trunk_r_m": 0.124,
+      "canopy_r_m": 1.703,
+      "height_m": 5.01
      }
     ],
     "step_lethal_m": 0.15,
-    "text": "Boulder 0.56 m tall, centre 4.8 m ahead",
-    "how": "rock centres (scenario objects) in the rover body frame; protrusion = rock top - terrain height"
+    "how": "scenario objects in the body frame of the rendered rover pose; rock protrusion = rock top - terrain height",
+    "label": "Boulder 4.8 m ahead"
    },
-   "perception_r_vis_m": 11.5,
-   "perception_timings_ms_this_container": {
+   "cell_analysis": {
+    "window_body_m": {
+     "x_forward": [
+      -0.6,
+      10.6
+     ],
+     "y_left": [
+      -6.0,
+      6.0
+     ]
+    },
+    "cell_counts_window": {
+     "UNSEEN": 6620,
+     "GROUND": 5130,
+     "POSITIVE": 270,
+     "DEPRESSION": 7,
+     "DITCH_CANDIDATE": 31,
+     "CREST_SHADOW": 248,
+     "OCCLUDED": 1134
+    },
+    "certified_cells_window": 811,
+    "certified_x_max_m": 4.65,
+    "certified_x_max_central_m": 4.65,
+    "r_det_m": 4.31,
+    "r_vis_m": 11.5,
+    "red_cells": 277,
+    "magenta_cells": 31,
+    "amber_cells": 248,
+    "amber_x_range_m": [
+     5.35,
+     10.55
+    ],
+    "amber_x_median_m": 8.65,
+    "red_attribution": {
+     "boulder": 128,
+     "none": 22,
+     "rock 0.39 m tall at 10.0 m ahead, +3.7 m left": 26,
+     "tree trunk": 79,
+     "under a tree canopy (not near the trunk)": 22
+    },
+    "red_attribution_how": "each red cell (POSITIVE/DEPRESSION) in the window is assigned, in this order, to a rock within radius + 0.3 m, a tree trunk within trunk radius + 0.6 m, a bush within radius + 0.3 m, or a tree canopy (within canopy radius); else 'none'",
+    "red_none_x_range_m": [
+     6.05,
+     10.55
+    ],
+    "magenta": {
+     "x_range_m": [
+      3.15,
+      4.35
+     ],
+     "y_range_m": [
+      0.25,
+      0.65
+     ],
+     "distance_outside_boulder_footprint_m": [
+      -0.12,
+      0.75
+     ],
+     "note": "ditch cells at the near (rover-facing) base of the boulder, inside the rover's corridor"
+    },
+    "occluded_behind_boulder": 879,
+    "amber_at_sides_far": 233,
+    "amber_at_sides_far_how": "amber cells with |y| > 3 m and x > 7 m"
+   },
+   "disparity_valid_fraction": 0.721,
+   "disparity_top_band": {
+    "first_valid_row": 66,
+    "px_above_20px_in_top_40_rows": 0
+   },
+   "perception_timings_ms_this_container_not_a_claim": {
     "stereo": 27.9,
     "geometry": 3.4,
     "ground": 9.6,
@@ -151,31 +559,7 @@
     "cells": 2.9,
     "semantics": 0.0,
     "total": 70.2
-   },
-   "cell_counts_displayed_window_0p1m_cells": {
-    "UNSEEN": 6799,
-    "GROUND": 6054,
-    "POSITIVE": 421,
-    "DEPRESSION": 7,
-    "DITCH_CANDIDATE": 31,
-    "CREST_SHADOW": 291,
-    "OCCLUDED": 1397
-   },
-   "cell_counts_full_grid": {
-    "UNSEEN": 10930,
-    "GROUND": 6092,
-    "POSITIVE": 439,
-    "DEPRESSION": 7,
-    "DITCH_CANDIDATE": 31,
-    "CREST_SHADOW": 294,
-    "OCCLUDED": 1407
-   },
-   "disparity_valid_fraction": 0.721,
-   "disparity_px_p1_p99": [
-    1.0,
-    37.94
-   ],
-   "missing_ground_pixels": 5556
+   }
   }
  ]
 }
