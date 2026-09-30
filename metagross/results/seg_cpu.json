@@ -1,0 +1,1287 @@
+{
+ "schema": "metagross.seg_eval/1",
+ "label": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL",
+ "smoke": false,
+ "claim_label": "Tested",
+ "created_utc": "2026-09-30T02:09:28+00:00",
+ "model": {
+  "path": "models/lraspp_offroad5_cpu.onnx",
+  "sha256": "9cf4ab548732347d2ef028d7684fed96f462ada20d90d22ed271dab8b63138f0",
+  "kind": "direct5",
+  "input_hw": [
+   256,
+   320
+  ],
+  "sidecar": {
+   "name": "LR-ASPP MobileNetV3, RUGD-5L (OFFROAD5 classes), CPU-trained, robust aug",
+   "kind": "direct5",
+   "architecture": "lraspp (torchvision lraspp_mobilenet_v3_large)",
+   "params": 3218818,
+   "input_hw": [
+    256,
+    320
+   ],
+   "input": "input: (1, 3, H, W) float32, RGB, (x/255 - mean) / std",
+   "output": "logits: (1, 5, H, W) float32",
+   "mean": [
+    0.485,
+    0.456,
+    0.406
+   ],
+   "std": [
+    0.229,
+    0.224,
+    0.225
+   ],
+   "classes": {
+    "0": "background/sky",
+    "1": "obstacle",
+    "2": "water/mud",
+    "3": "unstable (grass/dirt)",
+    "4": "stable (asphalt/concrete/gravel path)"
+   },
+   "colors_rgb": {
+    "0": [
+     203,
+     208,
+     214
+    ],
+    "1": [
+     220,
+     50,
+     47
+    ],
+    "2": [
+     20,
+     140,
+     190
+    ],
+    "3": [
+     217,
+     180,
+     58
+    ],
+    "4": [
+     34,
+     160,
+     90
+    ]
+   },
+   "smoke": false,
+   "training": {
+    "data": "rugd5",
+    "aug": "robust",
+    "init": "imagenet",
+    "img_hw": [
+     256,
+     320
+    ],
+    "batch_size": 8,
+    "lr": 0.0006,
+    "sched": "poly",
+    "epochs_planned": 11,
+    "best_epoch": 9,
+    "iterations_at_best": 2500,
+    "iterations_planned": 2750,
+    "partial": true,
+    "sampling": "repeat",
+    "repeat_factor_sampling": {
+     "class_repeat_factor": [
+      1.0,
+      1.0,
+      2.6036,
+      1.0,
+      1.4155
+     ],
+     "class_image_freq": [
+      0.91944,
+      1.0,
+      0.0295,
+      0.98514,
+      0.09981
+     ],
+     "mean_image_factor": 1.0873,
+     "max_image_factor": 2.6036
+    },
+    "n_train_images": 4779,
+    "n_val_images": 300,
+    "train_list_sha": "ff7edf979e89e911",
+    "class_weights": [
+     0.6029170751571655,
+     0.1420154869556427,
+     2.6275634765625,
+     0.14401833713054657,
+     1.4834855794906616
+    ],
+    "device": "cpu",
+    "torch": "2.14.0+cpu"
+   },
+   "val_metrics_at_train_res": {
+    "miou": 0.5763870414763803,
+    "pixel_acc": 0.8390543212890625,
+    "false_safe_rate": 0.19769816227971324,
+    "per_class_iou": {
+     "background/sky": 0.7299643588904767,
+     "obstacle": 0.757434885120975,
+     "water/mud": 0.01330938123752495,
+     "unstable (grass/dirt)": 0.6887256439982514,
+     "stable (asphalt/concrete/gravel path)": 0.6925009381346732
+    }
+   },
+   "licence": {
+    "code": "torchvision LR-ASPP MobileNetV3-Large architecture (BSD-3-Clause)",
+    "backbone_init": "torchvision ImageNet-1k MobileNetV3-Large weights (BSD-3-Clause distribution; ImageNet data terms apply)",
+    "training_data": "GAIA-URJC RUGD-5Labels-resized / OFFROAD5 (RUGD, RELLIS-3D, GOOSE) mirrors: CC BY-NC-SA 3.0",
+    "weights_use": "research / evaluation only (derived from non-commercial data). A production BEL deployment must retrain with the same pipeline on commercially licensed or own-collected data."
+   },
+   "export": {
+    "opset": 17,
+    "torch": "2.14.0+cpu",
+    "onnxruntime": "1.23.2",
+    "max_abs_logit_diff_vs_torch": 1.1920928955078125e-05,
+    "argmax_agreement_vs_torch": 1.0,
+    "sha256": "9cf4ab548732347d2ef028d7684fed96f462ada20d90d22ed271dab8b63138f0",
+    "source_checkpoint": "runs/seg_cpu/finish/best_snapshot.pt",
+    "created_utc": "2026-09-30T02:02:49+00:00"
+   }
+  }
+ },
+ "eval_threads": 2,
+ "splits": {
+  "val": {
+   "n_images": 1924,
+   "overall": {
+    "n_pixels": 246272000,
+    "miou": 0.576786668961528,
+    "miou_present": 0.576786668961528,
+    "pixel_acc": 0.8291718628183472,
+    "per_class_iou": {
+     "background/sky": 0.7211180293562314,
+     "obstacle": 0.7464443748264971,
+     "water/mud": 0.0451531145908758,
+     "unstable (grass/dirt)": 0.6636467192012413,
+     "stable (asphalt/concrete/gravel path)": 0.7075711068327946
+    },
+    "per_class_recall": {
+     "background/sky": 0.9224761084250694,
+     "obstacle": 0.772547112167159,
+     "water/mud": 0.04715447860701271,
+     "unstable (grass/dirt)": 0.9421960484599802,
+     "stable (asphalt/concrete/gravel path)": 0.9445300770450954
+    },
+    "per_class_precision": {
+     "background/sky": 0.767638436224893,
+     "obstacle": 0.9566950866605982,
+     "water/mud": 0.5154710638641338,
+     "unstable (grass/dirt)": 0.6918138394061746,
+     "stable (asphalt/concrete/gravel path)": 0.7382482038843
+    },
+    "gt_class_fraction": {
+     "background/sky": 0.07125338243892931,
+     "obstacle": 0.6088020887474013,
+     "water/mud": 0.009348971868503118,
+     "unstable (grass/dirt)": 0.29719725750389814,
+     "stable (asphalt/concrete/gravel path)": 0.013398299441268191
+    },
+    "false_safe_rate": 0.20468442455999344,
+    "false_safe_obstacle": 0.19427027014336498,
+    "false_safe_water": 0.8828508636677539,
+    "false_hazard_rate": 0.04903554064387898,
+    "confusion": [
+     [
+      16187346,
+      1346791,
+      1,
+      10534,
+      3041
+     ],
+     [
+      4888191,
+      115828690,
+      86909,
+      28629641,
+      497477
+     ],
+     [
+      583,
+      160572,
+      108568,
+      2032666,
+      1
+     ],
+     [
+      9865,
+      3601543,
+      14847,
+      68960613,
+      604495
+     ],
+     [
+      1216,
+      134093,
+      294,
+      47427,
+      3116596
+     ]
+    ]
+   },
+   "per_source": {
+    "rugd": {
+     "n_pixels": 246272000,
+     "miou": 0.576786668961528,
+     "miou_present": 0.576786668961528,
+     "pixel_acc": 0.8291718628183472,
+     "per_class_iou": {
+      "background/sky": 0.7211180293562314,
+      "obstacle": 0.7464443748264971,
+      "water/mud": 0.0451531145908758,
+      "unstable (grass/dirt)": 0.6636467192012413,
+      "stable (asphalt/concrete/gravel path)": 0.7075711068327946
+     },
+     "per_class_recall": {
+      "background/sky": 0.9224761084250694,
+      "obstacle": 0.772547112167159,
+      "water/mud": 0.04715447860701271,
+      "unstable (grass/dirt)": 0.9421960484599802,
+      "stable (asphalt/concrete/gravel path)": 0.9445300770450954
+     },
+     "per_class_precision": {
+      "background/sky": 0.767638436224893,
+      "obstacle": 0.9566950866605982,
+      "water/mud": 0.5154710638641338,
+      "unstable (grass/dirt)": 0.6918138394061746,
+      "stable (asphalt/concrete/gravel path)": 0.7382482038843
+     },
+     "gt_class_fraction": {
+      "background/sky": 0.07125338243892931,
+      "obstacle": 0.6088020887474013,
+      "water/mud": 0.009348971868503118,
+      "unstable (grass/dirt)": 0.29719725750389814,
+      "stable (asphalt/concrete/gravel path)": 0.013398299441268191
+     },
+     "false_safe_rate": 0.20468442455999344,
+     "false_safe_obstacle": 0.19427027014336498,
+     "false_safe_water": 0.8828508636677539,
+     "false_hazard_rate": 0.04903554064387898,
+     "confusion": [
+      [
+       16187346,
+       1346791,
+       1,
+       10534,
+       3041
+      ],
+      [
+       4888191,
+       115828690,
+       86909,
+       28629641,
+       497477
+      ],
+      [
+       583,
+       160572,
+       108568,
+       2032666,
+       1
+      ],
+      [
+       9865,
+       3601543,
+       14847,
+       68960613,
+       604495
+      ],
+      [
+       1216,
+       134093,
+       294,
+       47427,
+       3116596
+      ]
+     ],
+     "n_images": 1924
+    }
+   },
+   "per_sequence": {
+    "creek": {
+     "n_images": 836,
+     "miou": 0.3400598720484569,
+     "false_safe_rate": 0.315288039441377,
+     "hazard_px": 88551675,
+     "false_safe_px": 27919284
+    },
+    "park-1": {
+     "n_images": 627,
+     "miou": 0.6483711146290121,
+     "false_safe_rate": 0.05454061556709119,
+     "hazard_px": 36998794,
+     "false_safe_px": 2017937
+    },
+    "trail-13": {
+     "n_images": 172,
+     "miou": 0.5501255345955164,
+     "false_safe_rate": 0.024417133409415415,
+     "hazard_px": 8513612,
+     "false_safe_px": 207878
+    },
+    "trail-7": {
+     "n_images": 289,
+     "miou": 0.5036594653029312,
+     "false_safe_rate": 0.05584643520961855,
+     "hazard_px": 18169217,
+     "false_safe_px": 1014686
+    }
+   },
+   "brightness": {
+    "luma_tercile_thresholds": [
+     97.41252136230469,
+     109.03202056884766
+    ],
+    "dark": {
+     "n_images": 641,
+     "luma_range": [
+      34.54737091064453,
+      97.39781188964844
+     ],
+     "miou": 0.5430830507430968,
+     "pixel_acc": 0.8722625536271451,
+     "false_safe_rate": 0.12817134725160476,
+     "per_class_iou": {
+      "background/sky": 0.5983647921658347,
+      "obstacle": 0.8136438459503043,
+      "water/mud": 0.013992490191786357,
+      "unstable (grass/dirt)": 0.7500340771297757,
+      "stable (asphalt/concrete/gravel path)": 0.539380048277783
+     }
+    },
+    "mid": {
+     "n_images": 641,
+     "luma_range": [
+      97.41252136230469,
+      108.9923095703125
+     ],
+     "miou": 0.5819589267369186,
+     "pixel_acc": 0.811793706123245,
+     "false_safe_rate": 0.23642015126940596,
+     "per_class_iou": {
+      "background/sky": 0.7092161259125027,
+      "obstacle": 0.7293817006868776,
+      "water/mud": 0.03373295510651095,
+      "unstable (grass/dirt)": 0.6292629346768671,
+      "stable (asphalt/concrete/gravel path)": 0.8082009173018346
+     }
+    },
+    "bright": {
+     "n_images": 642,
+     "luma_range": [
+      109.03202056884766,
+      132.36117553710938
+     ],
+     "miou": 0.5752813124945441,
+     "pixel_acc": 0.8034993793808411,
+     "false_safe_rate": 0.25120362481585873,
+     "per_class_iou": {
+      "background/sky": 0.7868856979675336,
+      "obstacle": 0.6932461103957929,
+      "water/mud": 0.08222334373150506,
+      "unstable (grass/dirt)": 0.6161252056582884,
+      "stable (asphalt/concrete/gravel path)": 0.6979262047196001
+     }
+    }
+   },
+   "entropy": {
+    "mean_on_correct": 0.09817691141251415,
+    "mean_on_wrong": 0.22980027413458287
+   },
+   "split": "val",
+   "data_root": "data/rugd5",
+   "file_list_sha": "daf0978fff591e80",
+   "max_images": null,
+   "wall_s": 261.2
+  },
+  "test": {
+   "n_images": 733,
+   "overall": {
+    "n_pixels": 93824000,
+    "miou": 0.7275697432752073,
+    "miou_present": 0.7275697432752073,
+    "pixel_acc": 0.926853363744884,
+    "per_class_iou": {
+     "background/sky": 0.5877998670205399,
+     "obstacle": 0.8640091076158963,
+     "water/mud": 0.4107591754650578,
+     "unstable (grass/dirt)": 0.9197460353091528,
+     "stable (asphalt/concrete/gravel path)": 0.8555345309653895
+    },
+    "per_class_recall": {
+     "background/sky": 0.7976943922874427,
+     "obstacle": 0.9254270699885915,
+     "water/mud": 0.7402845828579099,
+     "unstable (grass/dirt)": 0.944082649831447,
+     "stable (asphalt/concrete/gravel path)": 0.9693826638374102
+    },
+    "per_class_precision": {
+     "background/sky": 0.6907764254842035,
+     "obstacle": 0.9286663275425937,
+     "water/mud": 0.47991906709598814,
+     "unstable (grass/dirt)": 0.972736754868409,
+     "stable (asphalt/concrete/gravel path)": 0.8792943978549268
+    },
+    "gt_class_fraction": {
+     "background/sky": 0.06379675775920873,
+     "obstacle": 0.4690447859822647,
+     "water/mud": 0.0006351892905866303,
+     "unstable (grass/dirt)": 0.42741012960436564,
+     "stable (asphalt/concrete/gravel path)": 0.03911313736357435
+    },
+    "false_safe_rate": 0.026609849572201617,
+    "false_safe_obstacle": 0.026452509697289503,
+    "false_safe_water": 0.1427948184441909,
+    "false_hazard_rate": 0.04604259355818028,
+    "confusion": [
+     [
+      4774733,
+      1158619,
+      0,
+      21893,
+      30422
+     ],
+     [
+      2117405,
+      40725878,
+      262,
+      952388,
+      211725
+     ],
+     [
+      5095,
+      1873,
+      44118,
+      8510,
+      0
+     ],
+     [
+      9897,
+      1938719,
+      47548,
+      37858968,
+      246196
+     ],
+     [
+      4995,
+      29067,
+      0,
+      78296,
+      3557393
+     ]
+    ]
+   },
+   "per_source": {
+    "rugd": {
+     "n_pixels": 93824000,
+     "miou": 0.7275697432752073,
+     "miou_present": 0.7275697432752073,
+     "pixel_acc": 0.926853363744884,
+     "per_class_iou": {
+      "background/sky": 0.5877998670205399,
+      "obstacle": 0.8640091076158963,
+      "water/mud": 0.4107591754650578,
+      "unstable (grass/dirt)": 0.9197460353091528,
+      "stable (asphalt/concrete/gravel path)": 0.8555345309653895
+     },
+     "per_class_recall": {
+      "background/sky": 0.7976943922874427,
+      "obstacle": 0.9254270699885915,
+      "water/mud": 0.7402845828579099,
+      "unstable (grass/dirt)": 0.944082649831447,
+      "stable (asphalt/concrete/gravel path)": 0.9693826638374102
+     },
+     "per_class_precision": {
+      "background/sky": 0.6907764254842035,
+      "obstacle": 0.9286663275425937,
+      "water/mud": 0.47991906709598814,
+      "unstable (grass/dirt)": 0.972736754868409,
+      "stable (asphalt/concrete/gravel path)": 0.8792943978549268
+     },
+     "gt_class_fraction": {
+      "background/sky": 0.06379675775920873,
+      "obstacle": 0.4690447859822647,
+      "water/mud": 0.0006351892905866303,
+      "unstable (grass/dirt)": 0.42741012960436564,
+      "stable (asphalt/concrete/gravel path)": 0.03911313736357435
+     },
+     "false_safe_rate": 0.026609849572201617,
+     "false_safe_obstacle": 0.026452509697289503,
+     "false_safe_water": 0.1427948184441909,
+     "false_hazard_rate": 0.04604259355818028,
+     "confusion": [
+      [
+       4774733,
+       1158619,
+       0,
+       21893,
+       30422
+      ],
+      [
+       2117405,
+       40725878,
+       262,
+       952388,
+       211725
+      ],
+      [
+       5095,
+       1873,
+       44118,
+       8510,
+       0
+      ],
+      [
+       9897,
+       1938719,
+       47548,
+       37858968,
+       246196
+      ],
+      [
+       4995,
+       29067,
+       0,
+       78296,
+       3557393
+      ]
+     ],
+     "n_images": 733
+    }
+   },
+   "per_sequence": {
+    "park-8": {
+     "n_images": 357,
+     "miou": 0.6566887493423735,
+     "false_safe_rate": 0.02460592767369505,
+     "hazard_px": 20806206,
+     "false_safe_px": 511956
+    },
+    "trail-5": {
+     "n_images": 376,
+     "miou": 0.5427130508689891,
+     "false_safe_rate": 0.02840228866730338,
+     "hazard_px": 23261048,
+     "false_safe_px": 660667
+    }
+   },
+   "brightness": {
+    "luma_tercile_thresholds": [
+     99.85183715820312,
+     107.86373138427734
+    ],
+    "dark": {
+     "n_images": 244,
+     "luma_range": [
+      74.03379821777344,
+      99.83824157714844
+     ],
+     "miou": 0.7184971761587532,
+     "pixel_acc": 0.9350319544057377,
+     "false_safe_rate": 0.021435748275085802,
+     "per_class_iou": {
+      "background/sky": 0.5539628041574717,
+      "obstacle": 0.8837237795714636,
+      "water/mud": 0.339668644615475,
+      "unstable (grass/dirt)": 0.9205813435196801,
+      "stable (asphalt/concrete/gravel path)": 0.894549308929675
+     }
+    },
+    "mid": {
+     "n_images": 244,
+     "luma_range": [
+      99.85183715820312,
+      107.85637664794922
+     ],
+     "miou": 0.7547851326828268,
+     "pixel_acc": 0.9294472015881148,
+     "false_safe_rate": 0.021064682999244,
+     "per_class_iou": {
+      "background/sky": 0.5660952063173385,
+      "obstacle": 0.8685438704978717,
+      "water/mud": 0.5257821799013773,
+      "unstable (grass/dirt)": 0.9210099328922706,
+      "stable (asphalt/concrete/gravel path)": 0.892494473805276
+     }
+    },
+    "bright": {
+     "n_images": 245,
+     "luma_range": [
+      107.86373138427734,
+      129.37631225585938
+     ],
+     "miou": 0.6682974836441078,
+     "pixel_acc": 0.9161249043367347,
+     "false_safe_rate": 0.03763462118768405,
+     "per_class_iou": {
+      "background/sky": 0.6223801777292792,
+      "obstacle": 0.8393968661765402,
+      "water/mud": 0.2970816233470132,
+      "unstable (grass/dirt)": 0.9177404361634662,
+      "stable (asphalt/concrete/gravel path)": 0.6648883148042398
+     }
+    }
+   },
+   "entropy": {
+    "mean_on_correct": 0.08948389215586426,
+    "mean_on_wrong": 0.350531079043826
+   },
+   "split": "test",
+   "data_root": "data/rugd5",
+   "file_list_sha": "89595e9806a630b2",
+   "max_images": null,
+   "wall_s": 111.2
+  }
+ },
+ "latency_ms": {
+  "dataset_image": {
+   "image_hw": [
+    320,
+    400
+   ],
+   "n_iter": 30,
+   "threads_2": {
+    "total_median_ms": 61.02,
+    "total_p90_ms": 75.47,
+    "infer_median_ms": 37.69,
+    "min_total_ms": 48.13
+   },
+   "threads_4": {
+    "total_median_ms": 98.54,
+    "total_p90_ms": 210.14,
+    "infer_median_ms": 60.53,
+    "min_total_ms": 46.18
+   }
+  },
+  "camera_frame": {
+   "image_hw": [
+    400,
+    640
+   ],
+   "n_iter": 30,
+   "threads_2": {
+    "total_median_ms": 63.49,
+    "total_p90_ms": 84.23,
+    "infer_median_ms": 38.05,
+    "min_total_ms": 49.67
+   },
+   "threads_4": {
+    "total_median_ms": 84.91,
+    "total_p90_ms": 128.64,
+    "infer_median_ms": 58.42,
+    "min_total_ms": 49.7
+   }
+  },
+  "measured_utc": "2026-09-30T02:09:28+00:00",
+  "note": "wall-clock on the development laptop; other jobs may share the CPU"
+ },
+ "host": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cpu_count": 8,
+  "onnxruntime": "1.23.2",
+  "python": "3.10.0"
+ },
+ "notes": "Evaluated at label resolution; per-class IoU None = class absent in GT and never predicted.",
+ "claims": [
+  {
+   "id": "seg_cpu_val_miou",
+   "value": 0.5768,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
+  },
+  {
+   "id": "seg_cpu_val_pixel_acc",
+   "value": 0.8292,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
+  },
+  {
+   "id": "seg_cpu_val_false_safe_rate",
+   "value": 0.2047,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
+  },
+  {
+   "id": "seg_cpu_test_miou",
+   "value": 0.7276,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
+  },
+  {
+   "id": "seg_cpu_test_pixel_acc",
+   "value": 0.9269,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
+  },
+  {
+   "id": "seg_cpu_test_false_safe_rate",
+   "value": 0.0266,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL"
+  },
+  {
+   "id": "seg_cpu_latency_threads_2_ms",
+   "value": 63.49,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
+  },
+  {
+   "id": "seg_cpu_latency_threads_4_ms",
+   "value": 84.91,
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
+  },
+  {
+   "id": "seg_cpu_val_false_safe_obstacle",
+   "value": 0.1943,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_false_safe_water",
+   "value": 0.8829,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_false_hazard_rate",
+   "value": 0.049,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_hazard_to_stable_rate",
+   "value": 0.0033,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_obstacle_to_stable_rate",
+   "value": 0.0033,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_water_to_stable_rate",
+   "value": 0.0,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_iou_sky",
+   "value": 0.7211,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_iou_obstacle",
+   "value": 0.7464,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_iou_water",
+   "value": 0.0452,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_iou_unstable",
+   "value": 0.6636,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_iou_stable",
+   "value": 0.7076,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+  },
+  {
+   "id": "seg_cpu_val_miou_delta_vs_smoke",
+   "value": 0.0258,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_val_false_safe_rate_delta_vs_smoke",
+   "value": -0.0681,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_val_false_safe_water_delta_vs_smoke",
+   "value": -0.0589,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_val_hazard_to_stable_rate_delta_vs_smoke",
+   "value": 0.002,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_val_miou_delta_vs_zeroshot",
+   "value": 0.0342,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_val_false_safe_rate_delta_vs_zeroshot",
+   "value": 0.0361,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_val_false_safe_water_delta_vs_zeroshot",
+   "value": 0.3162,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_val_hazard_to_stable_rate_delta_vs_zeroshot",
+   "value": -0.0,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+  },
+  {
+   "id": "seg_cpu_test_false_safe_obstacle",
+   "value": 0.0265,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_false_safe_water",
+   "value": 0.1428,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_false_hazard_rate",
+   "value": 0.046,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_hazard_to_stable_rate",
+   "value": 0.0048,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_obstacle_to_stable_rate",
+   "value": 0.0048,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_water_to_stable_rate",
+   "value": 0.0,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_iou_sky",
+   "value": 0.5878,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_iou_obstacle",
+   "value": 0.864,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_iou_water",
+   "value": 0.4108,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_iou_unstable",
+   "value": 0.9197,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_iou_stable",
+   "value": 0.8555,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution"
+  },
+  {
+   "id": "seg_cpu_test_miou_delta_vs_smoke",
+   "value": 0.0948,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_test_false_safe_rate_delta_vs_smoke",
+   "value": -0.0168,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_test_false_safe_water_delta_vs_smoke",
+   "value": -0.7567,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_test_hazard_to_stable_rate_delta_vs_smoke",
+   "value": 0.0037,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_test_miou_delta_vs_zeroshot",
+   "value": 0.1838,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_test_false_safe_rate_delta_vs_zeroshot",
+   "value": 0.0003,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_test_false_safe_water_delta_vs_zeroshot",
+   "value": -0.6469,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_test_hazard_to_stable_rate_delta_vs_zeroshot",
+   "value": 0.0036,
+   "unit": "fraction",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+  },
+  {
+   "id": "seg_cpu_train_iters_at_best",
+   "value": 2500,
+   "unit": "iterations",
+   "label": "Tested",
+   "source": "results/seg_cpu.json",
+   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; batch 8, [256, 320] crops, laptop CPU (2 threads)"
+  }
+ ],
+ "training": {
+  "iterations_at_best": 2500,
+  "total_iters_planned": 2750,
+  "partial": true,
+  "best_epoch": 9,
+  "epoch_iters": 250,
+  "batch_size": 8,
+  "img_hw": [
+   256,
+   320
+  ],
+  "aug": "robust",
+  "sampling": "repeat",
+  "repeat_factor_sampling": {
+   "class_repeat_factor": [
+    1.0,
+    1.0,
+    2.6036,
+    1.0,
+    1.4155
+   ],
+   "class_image_freq": [
+    0.91944,
+    1.0,
+    0.0295,
+    0.98514,
+    0.09981
+   ],
+   "mean_image_factor": 1.0873,
+   "max_image_factor": 2.6036
+  },
+  "lr": 0.0006,
+  "n_train_images": 4779,
+  "selection": "best of per-epoch val mIoU on a seeded 300-image subset of RUGD-5L val (so val numbers carry a small selection bias; test is untouched)",
+  "val_at_selection": {
+   "miou": 0.5763870414763803,
+   "false_safe_rate": 0.19769816227971324
+  },
+  "run_progress": {
+   "global_iter": 2750,
+   "complete": true,
+   "stopped_by_deadline": false,
+   "n_epochs_done": 11,
+   "last_train_s_per_iter": 3.7183
+  }
+ },
+ "comparison": {
+  "val": {
+   "ours": {
+    "miou": 0.576786668961528,
+    "pixel_acc": 0.8291718628183472,
+    "false_safe_rate": 0.20468442455999344,
+    "false_safe_obstacle": 0.19427027014336498,
+    "false_safe_water": 0.8828508636677539,
+    "false_hazard_rate": 0.04903554064387898,
+    "hazard_to_stable_rate": 0.0032678658778055245,
+    "obstacle_to_stable_rate": 0.00331804166756597,
+    "water_to_stable_rate": 4.343312818419121e-07,
+    "per_class_iou": {
+     "background/sky": 0.7211180293562314,
+     "obstacle": 0.7464443748264971,
+     "water/mud": 0.0451531145908758,
+     "unstable (grass/dirt)": 0.6636467192012413,
+     "stable (asphalt/concrete/gravel path)": 0.7075711068327946
+    },
+    "n_images": 1924
+   },
+   "baselines": {
+    "smoke": {
+     "miou": 0.5509910804941028,
+     "pixel_acc": 0.789159961343555,
+     "false_safe_rate": 0.2728231703946925,
+     "false_safe_obstacle": 0.2625512746177726,
+     "false_safe_water": 0.9417257719152706,
+     "false_hazard_rate": 0.03277911598188383,
+     "hazard_to_stable_rate": 0.0012293171235113096,
+     "obstacle_to_stable_rate": 0.001248194935229766,
+     "water_to_stable_rate": 0.0,
+     "per_class_iou": {
+      "background/sky": 0.6860424408915028,
+      "obstacle": 0.6810591925394551,
+      "water/mud": 6.152334362282773e-05,
+      "unstable (grass/dirt)": 0.6147212250957319,
+      "stable (asphalt/concrete/gravel path)": 0.7730710206002016
+     },
+     "n_images": 1924,
+     "same_images": true,
+     "model": "models/lraspp_smoke.onnx",
+     "label": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)",
+     "delta_ours_minus_baseline": {
+      "miou": 0.025795588467425135,
+      "pixel_acc": 0.040011901474792166,
+      "false_safe_rate": -0.06813874583469906,
+      "false_safe_obstacle": -0.06828100447440763,
+      "false_safe_water": -0.05887490824751673,
+      "false_hazard_rate": 0.01625642466199515,
+      "hazard_to_stable_rate": 0.002038548754294215,
+      "obstacle_to_stable_rate": 0.002069846732336204,
+      "water_to_stable_rate": 4.343312818419121e-07
+     }
+    },
+    "zeroshot": {
+     "miou": 0.542575137475243,
+     "pixel_acc": 0.8087205244607588,
+     "false_safe_rate": 0.16857276520410142,
+     "false_safe_obstacle": 0.16245929091551956,
+     "false_safe_water": 0.5666802757134977,
+     "false_hazard_rate": 0.15610404775914194,
+     "hazard_to_stable_rate": 0.003297544010378071,
+     "obstacle_to_stable_rate": 0.00332110974743113,
+     "water_to_stable_rate": 0.0017629506729963213,
+     "per_class_iou": {
+      "background/sky": 0.7468067588938689,
+      "obstacle": 0.7485939943514444,
+      "water/mud": 0.21730285137754624,
+      "unstable (grass/dirt)": 0.5884640884982624,
+      "stable (asphalt/concrete/gravel path)": 0.4117079942550934
+     },
+     "n_images": 1924,
+     "same_images": true,
+     "model": "models/segformer_b0_ade.onnx",
+     "label": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)",
+     "delta_ours_minus_baseline": {
+      "miou": 0.034211531486284974,
+      "pixel_acc": 0.02045133835758839,
+      "false_safe_rate": 0.03611165935589203,
+      "false_safe_obstacle": 0.031810979227845426,
+      "false_safe_water": 0.31617058795425623,
+      "false_hazard_rate": -0.10706850711526296,
+      "hazard_to_stable_rate": -2.9678132572546687e-05,
+      "obstacle_to_stable_rate": -3.068079865160226e-06,
+      "water_to_stable_rate": -0.0017625163417144794
+     }
+    }
+   }
+  },
+  "test": {
+   "ours": {
+    "miou": 0.7275697432752073,
+    "pixel_acc": 0.926853363744884,
+    "false_safe_rate": 0.026609849572201617,
+    "false_safe_obstacle": 0.026452509697289503,
+    "false_safe_water": 0.1427948184441909,
+    "false_hazard_rate": 0.04604259355818028,
+    "hazard_to_stable_rate": 0.004804588005415541,
+    "obstacle_to_stable_rate": 0.00481109446905809,
+    "water_to_stable_rate": 0.0,
+    "per_class_iou": {
+     "background/sky": 0.5877998670205399,
+     "obstacle": 0.8640091076158963,
+     "water/mud": 0.4107591754650578,
+     "unstable (grass/dirt)": 0.9197460353091528,
+     "stable (asphalt/concrete/gravel path)": 0.8555345309653895
+    },
+    "n_images": 733
+   },
+   "baselines": {
+    "smoke": {
+     "miou": 0.632804678349412,
+     "pixel_acc": 0.9216004646998636,
+     "false_safe_rate": 0.04340431559452286,
+     "false_safe_obstacle": 0.04224496563757153,
+     "false_safe_water": 0.8995066783005571,
+     "false_hazard_rate": 0.029181048975283428,
+     "hazard_to_stable_rate": 0.0011440013938694704,
+     "obstacle_to_stable_rate": 0.001145550622121268,
+     "water_to_stable_rate": 0.0,
+     "per_class_iou": {
+      "background/sky": 0.5519926776582083,
+      "obstacle": 0.856080203945271,
+      "water/mud": 0.0,
+      "unstable (grass/dirt)": 0.9141115184797642,
+      "stable (asphalt/concrete/gravel path)": 0.8418389916638163
+     },
+     "n_images": 733,
+     "same_images": true,
+     "model": "models/lraspp_smoke.onnx",
+     "label": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)",
+     "delta_ours_minus_baseline": {
+      "miou": 0.09476506492579528,
+      "pixel_acc": 0.005252899045020465,
+      "false_safe_rate": -0.016794466022321243,
+      "false_safe_obstacle": -0.01579245594028203,
+      "false_safe_water": -0.7567118598563662,
+      "false_hazard_rate": 0.01686154458289685,
+      "hazard_to_stable_rate": 0.0036605866115460703,
+      "obstacle_to_stable_rate": 0.003665543846936822,
+      "water_to_stable_rate": 0.0
+     }
+    },
+    "zeroshot": {
+     "miou": 0.5437303494850066,
+     "pixel_acc": 0.8759331301159619,
+     "false_safe_rate": 0.026263878389154904,
+     "false_safe_obstacle": 0.02522997247433617,
+     "false_safe_water": 0.7897342103496879,
+     "false_hazard_rate": 0.09636554767132882,
+     "hazard_to_stable_rate": 0.0011993713064126937,
+     "obstacle_to_stable_rate": 0.0010190271884043456,
+     "water_to_stable_rate": 0.1343714343244513,
+     "per_class_iou": {
+      "background/sky": 0.5497489426736107,
+      "obstacle": 0.8382552467603881,
+      "water/mud": 0.012721522481525005,
+      "unstable (grass/dirt)": 0.798001062329103,
+      "stable (asphalt/concrete/gravel path)": 0.5199249731804069
+     },
+     "n_images": 733,
+     "same_images": true,
+     "model": "models/segformer_b0_ade.onnx",
+     "label": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)",
+     "delta_ours_minus_baseline": {
+      "miou": 0.18383939379020064,
+      "pixel_acc": 0.050920233628922174,
+      "false_safe_rate": 0.0003459711830467137,
+      "false_safe_obstacle": 0.0012225372229533321,
+      "false_safe_water": -0.6469393919054971,
+      "false_hazard_rate": -0.05032295411314854,
+      "hazard_to_stable_rate": 0.003605216699002847,
+      "obstacle_to_stable_rate": 0.0037920672806537447,
+      "water_to_stable_rate": -0.1343714343244513
+     }
+    }
+   }
+  }
+ }
+}

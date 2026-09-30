@@ -1,0 +1,14 @@
+{
+ "mission_id": "0cc31415",
+ "goal_xy_a": [
+  45.8944,
+  8.003
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 150.0,
+ "goal_sigma_m": 1.0326,
+ "goal_entry": {
+  "range_m": 46.587,
+  "bearing_deg": 9.8917
+ }
+}

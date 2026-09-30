@@ -1,0 +1,646 @@
+{
+ "schema": "metagross.seg_eval/1",
+ "label": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)",
+ "smoke": false,
+ "claim_label": "Tested",
+ "created_utc": "2026-09-29T21:56:29+00:00",
+ "model": {
+  "path": "models/segformer_b0_ade.onnx",
+  "sha256": "3e5c18a4be395f16646438d54c42377ddc202edfa33d5eced0c9506de75c44c2",
+  "kind": "ade150",
+  "input_hw": [
+   320,
+   416
+  ],
+  "sidecar": {
+   "name": "SegFormer-B0 ADE20K (zero-shot, mapped to 5 classes)",
+   "kind": "ade150",
+   "input_hw": [
+    320,
+    416
+   ],
+   "mean": [
+    0.485,
+    0.456,
+    0.406
+   ],
+   "std": [
+    0.229,
+    0.224,
+    0.225
+   ],
+   "output": "logits (1, 150, H/4, W/4), ADE20K SceneParse150 ids",
+   "classes": {
+    "0": "background/sky",
+    "1": "obstacle",
+    "2": "water/mud",
+    "3": "unstable (grass/dirt)",
+    "4": "stable (asphalt/concrete/gravel path)"
+   },
+   "class_mapping": "metagross.autonomy.perception.semantics.ADE20K_TO_SEM5 (unlisted ADE ids -> obstacle)",
+   "source": "https://huggingface.co/Xenova/segformer-b0-finetuned-ade-512-512 (onnx/model.onnx); weights nvidia/segformer-b0-finetuned-ade-512-512",
+   "licence": "NVIDIA Source Code License for SegFormer (non-commercial, research/evaluation only). NOT for deployment.",
+   "training_data": "ADE20K (no off-road training); used zero-shot as a research baseline"
+  }
+ },
+ "eval_threads": 2,
+ "splits": {
+  "val": {
+   "n_images": 1924,
+   "overall": {
+    "n_pixels": 246272000,
+    "miou": 0.542575137475243,
+    "miou_present": 0.542575137475243,
+    "pixel_acc": 0.8087205244607588,
+    "per_class_iou": {
+     "background/sky": 0.7468067588938689,
+     "obstacle": 0.7485939943514444,
+     "water/mud": 0.21730285137754624,
+     "unstable (grass/dirt)": 0.5884640884982624,
+     "stable (asphalt/concrete/gravel path)": 0.4117079942550934
+    },
+    "per_class_recall": {
+     "background/sky": 0.837764100655168,
+     "obstacle": 0.8177375674934217,
+     "water/mud": 0.39326786513145034,
+     "unstable (grass/dirt)": 0.7922695195606618,
+     "stable (asphalt/concrete/gravel path)": 0.8993440468707665
+    },
+    "per_class_precision": {
+     "background/sky": 0.8730718987475286,
+     "obstacle": 0.8985118492785933,
+     "water/mud": 0.3268960622183295,
+     "unstable (grass/dirt)": 0.6958253158881598,
+     "stable (asphalt/concrete/gravel path)": 0.43159547556892447
+    },
+    "gt_class_fraction": {
+     "background/sky": 0.07125338243892931,
+     "obstacle": 0.6088020887474013,
+     "water/mud": 0.009348971868503118,
+     "unstable (grass/dirt)": 0.29719725750389814,
+     "stable (asphalt/concrete/gravel path)": 0.013398299441268191
+    },
+    "false_safe_rate": 0.16857276520410142,
+    "false_safe_obstacle": 0.16245929091551956,
+    "false_safe_water": 0.5666802757134977,
+    "false_hazard_rate": 0.15610404775914194,
+    "confusion": [
+     [
+      14700844,
+      2829678,
+      4629,
+      11463,
+      1099
+     ],
+     [
+      2123410,
+      122604136,
+      845693,
+      23859732,
+      497937
+     ],
+     [
+      59,
+      92156,
+      905456,
+      1300660,
+      4059
+     ],
+     [
+      10452,
+      10777998,
+      1010572,
+      57987286,
+      3405055
+     ],
+     [
+      3303,
+      148474,
+      3509,
+      176841,
+      2967499
+     ]
+    ]
+   },
+   "per_source": {
+    "rugd": {
+     "n_pixels": 246272000,
+     "miou": 0.542575137475243,
+     "miou_present": 0.542575137475243,
+     "pixel_acc": 0.8087205244607588,
+     "per_class_iou": {
+      "background/sky": 0.7468067588938689,
+      "obstacle": 0.7485939943514444,
+      "water/mud": 0.21730285137754624,
+      "unstable (grass/dirt)": 0.5884640884982624,
+      "stable (asphalt/concrete/gravel path)": 0.4117079942550934
+     },
+     "per_class_recall": {
+      "background/sky": 0.837764100655168,
+      "obstacle": 0.8177375674934217,
+      "water/mud": 0.39326786513145034,
+      "unstable (grass/dirt)": 0.7922695195606618,
+      "stable (asphalt/concrete/gravel path)": 0.8993440468707665
+     },
+     "per_class_precision": {
+      "background/sky": 0.8730718987475286,
+      "obstacle": 0.8985118492785933,
+      "water/mud": 0.3268960622183295,
+      "unstable (grass/dirt)": 0.6958253158881598,
+      "stable (asphalt/concrete/gravel path)": 0.43159547556892447
+     },
+     "gt_class_fraction": {
+      "background/sky": 0.07125338243892931,
+      "obstacle": 0.6088020887474013,
+      "water/mud": 0.009348971868503118,
+      "unstable (grass/dirt)": 0.29719725750389814,
+      "stable (asphalt/concrete/gravel path)": 0.013398299441268191
+     },
+     "false_safe_rate": 0.16857276520410142,
+     "false_safe_obstacle": 0.16245929091551956,
+     "false_safe_water": 0.5666802757134977,
+     "false_hazard_rate": 0.15610404775914194,
+     "confusion": [
+      [
+       14700844,
+       2829678,
+       4629,
+       11463,
+       1099
+      ],
+      [
+       2123410,
+       122604136,
+       845693,
+       23859732,
+       497937
+      ],
+      [
+       59,
+       92156,
+       905456,
+       1300660,
+       4059
+      ],
+      [
+       10452,
+       10777998,
+       1010572,
+       57987286,
+       3405055
+      ],
+      [
+       3303,
+       148474,
+       3509,
+       176841,
+       2967499
+      ]
+     ],
+     "n_images": 1924
+    }
+   },
+   "per_sequence": {
+    "creek": {
+     "n_images": 836,
+     "miou": 0.3848028747711899,
+     "false_safe_rate": 0.24231499855875116,
+     "hazard_px": 88551675,
+     "false_safe_px": 21457399
+    },
+    "park-1": {
+     "n_images": 627,
+     "miou": 0.660949697528751,
+     "false_safe_rate": 0.07854934406780935,
+     "hazard_px": 36998794,
+     "false_safe_px": 2906231
+    },
+    "trail-13": {
+     "n_images": 172,
+     "miou": 0.5021055448277865,
+     "false_safe_rate": 0.03848930395230603,
+     "hazard_px": 8513612,
+     "false_safe_px": 327683
+    },
+    "trail-7": {
+     "n_images": 289,
+     "miou": 0.3921175799436444,
+     "false_safe_rate": 0.05344616666750141,
+     "hazard_px": 18169217,
+     "false_safe_px": 971075
+    }
+   },
+   "brightness": {
+    "luma_tercile_thresholds": [
+     97.41252136230469,
+     109.03202056884766
+    ],
+    "dark": {
+     "n_images": 641,
+     "luma_range": [
+      34.54737091064453,
+      97.39781188964844
+     ],
+     "miou": 0.5262610997818638,
+     "pixel_acc": 0.844627206025741,
+     "false_safe_rate": 0.10137813476204281,
+     "per_class_iou": {
+      "background/sky": 0.6387862919846636,
+      "obstacle": 0.792744705068348,
+      "water/mud": 0.12906168443828064,
+      "unstable (grass/dirt)": 0.6566200647344321,
+      "stable (asphalt/concrete/gravel path)": 0.4140927526835946
+     }
+    },
+    "mid": {
+     "n_images": 641,
+     "luma_range": [
+      97.41252136230469,
+      108.9923095703125
+     ],
+     "miou": 0.574909575520054,
+     "pixel_acc": 0.8065482644305773,
+     "false_safe_rate": 0.18123441766451334,
+     "per_class_iou": {
+      "background/sky": 0.736647902972133,
+      "obstacle": 0.7462994760674349,
+      "water/mud": 0.28491440005060786,
+      "unstable (grass/dirt)": 0.5833239104640648,
+      "stable (asphalt/concrete/gravel path)": 0.5233621880460292
+     }
+    },
+    "bright": {
+     "n_images": 642,
+     "luma_range": [
+      109.03202056884766,
+      132.36117553710938
+     ],
+     "miou": 0.5046434467582797,
+     "pixel_acc": 0.775038648753894,
+     "false_safe_rate": 0.22552562220840275,
+     "per_class_iou": {
+      "background/sky": 0.7984294944670643,
+      "obstacle": 0.7028015986988148,
+      "water/mud": 0.15541813062530097,
+      "unstable (grass/dirt)": 0.528700643261017,
+      "stable (asphalt/concrete/gravel path)": 0.3378673667392012
+     }
+    }
+   },
+   "entropy": {
+    "mean_on_correct": 0.12881441594110693,
+    "mean_on_wrong": 0.32082580613627676
+   },
+   "split": "val",
+   "data_root": "data/rugd5",
+   "file_list_sha": "daf0978fff591e80",
+   "max_images": null,
+   "wall_s": 432.1
+  },
+  "test": {
+   "n_images": 733,
+   "overall": {
+    "n_pixels": 93824000,
+    "miou": 0.5437303494850066,
+    "miou_present": 0.5437303494850066,
+    "pixel_acc": 0.8759331301159619,
+    "per_class_iou": {
+     "background/sky": 0.5497489426736107,
+     "obstacle": 0.8382552467603881,
+     "water/mud": 0.012721522481525005,
+     "unstable (grass/dirt)": 0.798001062329103,
+     "stable (asphalt/concrete/gravel path)": 0.5199249731804069
+    },
+    "per_class_recall": {
+     "background/sky": 0.6467503120370712,
+     "obstacle": 0.950319442129822,
+     "water/mud": 0.10826229948318679,
+     "unstable (grass/dirt)": 0.8240609637665864,
+     "stable (asphalt/concrete/gravel path)": 0.9370101677198263
+    },
+    "per_class_precision": {
+     "background/sky": 0.7856568080865645,
+     "obstacle": 0.8766728888473742,
+     "water/mud": 0.01421057732122248,
+     "unstable (grass/dirt)": 0.9618818607450619,
+     "stable (asphalt/concrete/gravel path)": 0.5387553235592821
+    },
+    "gt_class_fraction": {
+     "background/sky": 0.06379675775920873,
+     "obstacle": 0.4690447859822647,
+     "water/mud": 0.0006351892905866303,
+     "unstable (grass/dirt)": 0.42741012960436564,
+     "stable (asphalt/concrete/gravel path)": 0.03911313736357435
+    },
+    "false_safe_rate": 0.026263878389154904,
+    "false_safe_obstacle": 0.02522997247433617,
+    "false_safe_water": 0.7897342103496879,
+    "false_hazard_rate": 0.09636554767132882,
+    "confusion": [
+     [
+      3871232,
+      2075190,
+      1949,
+      28923,
+      8373
+     ],
+     [
+      1042486,
+      41821333,
+      33527,
+      1065467,
+      44845
+     ],
+     [
+      3922,
+      2157,
+      6452,
+      39057,
+      8008
+     ],
+     [
+      1255,
+      3762096,
+      409380,
+      33045939,
+      2882658
+     ],
+     [
+      8488,
+      43828,
+      2720,
+      176121,
+      3438594
+     ]
+    ]
+   },
+   "per_source": {
+    "rugd": {
+     "n_pixels": 93824000,
+     "miou": 0.5437303494850066,
+     "miou_present": 0.5437303494850066,
+     "pixel_acc": 0.8759331301159619,
+     "per_class_iou": {
+      "background/sky": 0.5497489426736107,
+      "obstacle": 0.8382552467603881,
+      "water/mud": 0.012721522481525005,
+      "unstable (grass/dirt)": 0.798001062329103,
+      "stable (asphalt/concrete/gravel path)": 0.5199249731804069
+     },
+     "per_class_recall": {
+      "background/sky": 0.6467503120370712,
+      "obstacle": 0.950319442129822,
+      "water/mud": 0.10826229948318679,
+      "unstable (grass/dirt)": 0.8240609637665864,
+      "stable (asphalt/concrete/gravel path)": 0.9370101677198263
+     },
+     "per_class_precision": {
+      "background/sky": 0.7856568080865645,
+      "obstacle": 0.8766728888473742,
+      "water/mud": 0.01421057732122248,
+      "unstable (grass/dirt)": 0.9618818607450619,
+      "stable (asphalt/concrete/gravel path)": 0.5387553235592821
+     },
+     "gt_class_fraction": {
+      "background/sky": 0.06379675775920873,
+      "obstacle": 0.4690447859822647,
+      "water/mud": 0.0006351892905866303,
+      "unstable (grass/dirt)": 0.42741012960436564,
+      "stable (asphalt/concrete/gravel path)": 0.03911313736357435
+     },
+     "false_safe_rate": 0.026263878389154904,
+     "false_safe_obstacle": 0.02522997247433617,
+     "false_safe_water": 0.7897342103496879,
+     "false_hazard_rate": 0.09636554767132882,
+     "confusion": [
+      [
+       3871232,
+       2075190,
+       1949,
+       28923,
+       8373
+      ],
+      [
+       1042486,
+       41821333,
+       33527,
+       1065467,
+       44845
+      ],
+      [
+       3922,
+       2157,
+       6452,
+       39057,
+       8008
+      ],
+      [
+       1255,
+       3762096,
+       409380,
+       33045939,
+       2882658
+      ],
+      [
+       8488,
+       43828,
+       2720,
+       176121,
+       3438594
+      ]
+     ],
+     "n_images": 733
+    }
+   },
+   "per_sequence": {
+    "park-8": {
+     "n_images": 357,
+     "miou": 0.6540322039823493,
+     "false_safe_rate": 0.0202021935186069,
+     "hazard_px": 20806206,
+     "false_safe_px": 420331
+    },
+    "trail-5": {
+     "n_images": 376,
+     "miou": 0.40410610723911605,
+     "false_safe_rate": 0.03168584665660808,
+     "hazard_px": 23261048,
+     "false_safe_px": 737046
+    }
+   },
+   "brightness": {
+    "luma_tercile_thresholds": [
+     99.85183715820312,
+     107.86373138427734
+    ],
+    "dark": {
+     "n_images": 244,
+     "luma_range": [
+      74.03379821777344,
+      99.83824157714844
+     ],
+     "miou": 0.5765963373362095,
+     "pixel_acc": 0.892622534579918,
+     "false_safe_rate": 0.021405507642678578,
+     "per_class_iou": {
+      "background/sky": 0.5117021493862856,
+      "obstacle": 0.8553446073875972,
+      "water/mud": 0.0,
+      "unstable (grass/dirt)": 0.8119684726912144,
+      "stable (asphalt/concrete/gravel path)": 0.7039664572159504
+     }
+    },
+    "mid": {
+     "n_images": 244,
+     "luma_range": [
+      99.85183715820312,
+      107.85637664794922
+     ],
+     "miou": 0.5209459531751491,
+     "pixel_acc": 0.8641001536885246,
+     "false_safe_rate": 0.024616138018112327,
+     "per_class_iou": {
+      "background/sky": 0.5223901016883491,
+      "obstacle": 0.8414508952606391,
+      "water/mud": 0.05287181126107301,
+      "unstable (grass/dirt)": 0.7687458294062834,
+      "stable (asphalt/concrete/gravel path)": 0.4192711282594009
+     }
+    },
+    "bright": {
+     "n_images": 245,
+     "luma_range": [
+      107.86373138427734,
+      129.37631225585938
+     ],
+     "miou": 0.5078330046759628,
+     "pixel_acc": 0.8710965242346939,
+     "false_safe_rate": 0.03295270005445546,
+     "per_class_iou": {
+      "background/sky": 0.588296652009132,
+      "obstacle": 0.8176675804411492,
+      "water/mud": 0.0,
+      "unstable (grass/dirt)": 0.8134381261265409,
+      "stable (asphalt/concrete/gravel path)": 0.319762664802992
+     }
+    }
+   },
+   "entropy": {
+    "mean_on_correct": 0.14237182800106818,
+    "mean_on_wrong": 0.3963677896797744
+   },
+   "split": "test",
+   "data_root": "data/rugd5",
+   "file_list_sha": "89595e9806a630b2",
+   "max_images": null,
+   "wall_s": 150.6
+  }
+ },
+ "latency_ms": {
+  "dataset_image": {
+   "image_hw": [
+    320,
+    400
+   ],
+   "n_iter": 30,
+   "threads_2": {
+    "total_median_ms": 165.03,
+    "total_p90_ms": 222.06,
+    "infer_median_ms": 142.43,
+    "min_total_ms": 106.72
+   },
+   "threads_4": {
+    "total_median_ms": 116.43,
+    "total_p90_ms": 121.85,
+    "infer_median_ms": 92.65,
+    "min_total_ms": 107.45
+   }
+  },
+  "camera_frame": {
+   "image_hw": [
+    400,
+    640
+   ],
+   "n_iter": 30,
+   "threads_2": {
+    "total_median_ms": 223.03,
+    "total_p90_ms": 259.53,
+    "infer_median_ms": 186.09,
+    "min_total_ms": 153.94
+   },
+   "threads_4": {
+    "total_median_ms": 118.4,
+    "total_p90_ms": 133.62,
+    "infer_median_ms": 92.78,
+    "min_total_ms": 107.87
+   }
+  },
+  "measured_utc": "2026-09-29T21:57:09+00:00",
+  "note": "wall-clock on the development laptop; other jobs may share the CPU"
+ },
+ "host": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "cpu_count": 8,
+  "onnxruntime": "1.23.2",
+  "python": "3.10.0"
+ },
+ "notes": "Evaluated at label resolution; per-class IoU None = class absent in GT and never predicted.",
+ "claims": [
+  {
+   "id": "seg_zeroshot_val_miou",
+   "value": 0.5426,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+  },
+  {
+   "id": "seg_zeroshot_val_pixel_acc",
+   "value": 0.8087,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+  },
+  {
+   "id": "seg_zeroshot_val_false_safe_rate",
+   "value": 0.1686,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+  },
+  {
+   "id": "seg_zeroshot_test_miou",
+   "value": 0.5437,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+  },
+  {
+   "id": "seg_zeroshot_test_pixel_acc",
+   "value": 0.8759,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+  },
+  {
+   "id": "seg_zeroshot_test_false_safe_rate",
+   "value": 0.0263,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+  },
+  {
+   "id": "seg_zeroshot_latency_threads_2_ms",
+   "value": 223.03,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Segmenter.__call__ median on this laptop"
+  },
+  {
+   "id": "seg_zeroshot_latency_threads_4_ms",
+   "value": 118.4,
+   "label": "Tested",
+   "source": "results/seg_zeroshot.json",
+   "note": "Segmenter.__call__ median on this laptop"
+  }
+ ]
+}

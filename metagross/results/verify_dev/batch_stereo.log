@@ -1,0 +1,11 @@
+﻿python.exe : 2026-09-30 06:18:31,942 INFO __main__: 3 jobs, 0 already done, 3 to run on 2 workers
+At line:5 char:1
++ & $py -m metagross.sim.batch --split dev --seeds 102 103 104 --worker ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 06:1...un on 2 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 06:19:27,196 INFO __main__: done FULL seed 103: success=False failure=stuck
+2026-09-30 06:19:38,458 INFO __main__: done FULL seed 102: success=False failure=stuck
+2026-09-30 06:20:03,379 INFO __main__: done FULL seed 104: success=False failure=stuck
+2026-09-30 06:20:03,555 INFO __main__: summary: 3 rows -> results\verify_dev\stereo\summary.csv

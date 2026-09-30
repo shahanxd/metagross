@@ -1,0 +1,83 @@
+﻿python.exe : 2026-09-30 07:42:39,529 INFO stereo 102_drive: 41 frames
+At line:1 char:367
++ ... HREADS="2"; & .\.venv\Scripts\python.exe results\verify_dev2\_scripts ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:4...rive: 41 frames:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:42:40,239 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:43:03,960 INFO stereo 106_drive: 41 frames
+2026-09-30 07:43:04,059 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:43:30,253 INFO stereo 120_drive: 41 frames
+2026-09-30 07:43:30,326 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:43:53,626 INFO stereo 125_drive: 41 frames
+2026-09-30 07:43:53,822 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:44:15,927 INFO stereo 101_drive: 41 frames
+2026-09-30 07:44:16,002 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:44:39,002 INFO stereo 103_approach: 44 frames
+2026-09-30 07:44:39,168 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:45:03,439 INFO stereo 121_approach: 58 frames
+2026-09-30 07:45:03,514 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:45:43,865 INFO stereo 122_approach: 58 frames
+2026-09-30 07:45:44,048 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:46:24,875 INFO r1_fee1da9 pooled: cand_off 0.0546 lethal_off 0.1032 pos_off 0.0470 cert_env {'cells': 0, 
+'of': 1878} timing {'p50': 95.3, 'p95': 145.3, 'stages_p50': {'bev': 5.09, 'cells': 4.08, 'geometry': 3.84, 'ground': 
+10.21, 'negobs': 21.07, 'semantics': 5.71, 'stereo': 42.29, 'total': 93.16}}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 102 drive: cand_off 0.0583 lethal_off 0.1268 det None cert_env {'cells': 0, 
+'of': 0}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 106 drive: cand_off 0.2317 lethal_off 0.3114 det None cert_env {'cells': 0, 
+'of': 0}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 120 drive: cand_off 0.0284 lethal_off 0.0834 det None cert_env {'cells': 0, 
+'of': 334}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 125 drive: cand_off 0.0271 lethal_off 0.0589 det None cert_env {'cells': 0, 
+'of': 6}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 101 drive: cand_off 0.0120 lethal_off 0.0307 det None cert_env {'cells': 0, 
+'of': 0}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 103 approach: cand_off 0.0283 lethal_off 0.0490 det {'r_first_m': 5.05, 
+'r_stable_m': 4.65, 'n_frames': 38, 'max_range_scored_m': 9.45, 'width_m': 0.838, 'depth_m': 0.842, 'angle_deg': 78.8, 
+'theory_r_det_m': 7.03} cert_env {'cells': 0, 'of': 487}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 121 approach: cand_off 0.0163 lethal_off 0.0527 det {'r_first_m': 4.65, 
+'r_stable_m': 4.25, 'n_frames': 51, 'max_range_scored_m': 12.05, 'width_m': 1.062, 'depth_m': 0.639, 'angle_deg': 
+69.1, 'theory_r_det_m': 7.86} cert_env {'cells': 0, 'of': 658}
+2026-09-30 07:46:24,876 INFO   r1_fee1da9 122 approach: cand_off 0.0403 lethal_off 0.1321 det {'r_first_m': 3.05, 
+'r_stable_m': 0.0, 'n_frames': 53, 'max_range_scored_m': 12.45, 'width_m': 0.627, 'depth_m': 0.574, 'angle_deg': 90.0, 
+'theory_r_det_m': 6.13} cert_env {'cells': 0, 'of': 393}
+2026-09-30 07:46:25,102 INFO stereo 102_drive: 41 frames
+2026-09-30 07:46:25,265 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:46:47,091 INFO stereo 106_drive: 41 frames
+2026-09-30 07:46:47,166 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:47:08,785 INFO stereo 120_drive: 41 frames
+2026-09-30 07:47:08,859 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:47:29,902 INFO stereo 125_drive: 41 frames
+2026-09-30 07:47:29,981 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:47:50,735 INFO stereo 101_drive: 41 frames
+2026-09-30 07:47:50,808 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:48:10,971 INFO stereo 103_approach: 44 frames
+2026-09-30 07:48:11,047 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:48:34,688 INFO stereo 121_approach: 58 frames
+2026-09-30 07:48:34,855 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:49:13,554 INFO stereo 122_approach: 58 frames
+2026-09-30 07:49:13,734 INFO Segmenter lraspp_smoke.onnx kind=direct5 input_hw=(256, 320) threads=2
+2026-09-30 07:49:52,235 INFO r2_tree pooled: cand_off 0.0535 lethal_off 0.0668 pos_off 0.0108 cert_env {'cells': 13, 
+'of': 1878} timing {'p50': 95.4, 'p95': 118.6, 'stages_p50': {'bev': 7.09, 'cells': 4.16, 'geometry': 3.7, 'ground': 
+9.97, 'negobs': 19.76, 'semantics': 5.05, 'stereo': 40.33, 'total': 93.49}}
+2026-09-30 07:49:52,235 INFO   r2_tree 102 drive: cand_off 0.0550 lethal_off 0.0745 det None cert_env {'cells': 0, 
+'of': 0}
+2026-09-30 07:49:52,235 INFO   r2_tree 106 drive: cand_off 0.2404 lethal_off 0.2758 det None cert_env {'cells': 0, 
+'of': 0}
+2026-09-30 07:49:52,235 INFO   r2_tree 120 drive: cand_off 0.0262 lethal_off 0.0378 det None cert_env {'cells': 0, 
+'of': 334}
+2026-09-30 07:49:52,235 INFO   r2_tree 125 drive: cand_off 0.0242 lethal_off 0.0274 det None cert_env {'cells': 0, 
+'of': 6}
+2026-09-30 07:49:52,235 INFO   r2_tree 101 drive: cand_off 0.0114 lethal_off 0.0128 det None cert_env {'cells': 0, 
+'of': 0}
+2026-09-30 07:49:52,235 INFO   r2_tree 103 approach: cand_off 0.0251 lethal_off 0.0276 det {'r_first_m': 5.05, 
+'r_stable_m': 4.65, 'n_frames': 38, 'max_range_scored_m': 9.45, 'width_m': 0.838, 'depth_m': 0.842, 'angle_deg': 78.8, 
+'theory_r_det_m': 7.03} cert_env {'cells': 0, 'of': 487}
+2026-09-30 07:49:52,235 INFO   r2_tree 121 approach: cand_off 0.0137 lethal_off 0.0184 det {'r_first_m': 4.65, 
+'r_stable_m': 4.25, 'n_frames': 51, 'max_range_scored_m': 12.05, 'width_m': 1.062, 'depth_m': 0.639, 'angle_deg': 
+69.1, 'theory_r_det_m': 7.86} cert_env {'cells': 0, 'of': 658}
+2026-09-30 07:49:52,235 INFO   r2_tree 122 approach: cand_off 0.0385 lethal_off 0.0731 det {'r_first_m': 2.85, 
+'r_stable_m': 0.0, 'n_frames': 53, 'max_range_scored_m': 12.45, 'width_m': 0.627, 'depth_m': 0.574, 'angle_deg': 90.0, 
+'theory_r_det_m': 6.13} cert_env {'cells': 13, 'of': 393}
+exit=0

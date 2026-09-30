@@ -1,0 +1,14 @@
+{
+ "mission_id": "c0826ca4",
+ "goal_xy_a": [
+  44.6387,
+  0.6017
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 171.6,
+ "goal_sigma_m": 1.0213,
+ "goal_entry": {
+  "range_m": 44.6428,
+  "bearing_deg": 0.7723
+ }
+}

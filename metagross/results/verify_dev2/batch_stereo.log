@@ -1,0 +1,22 @@
+
+30 September 2026 07:03:39
+
+
+python.exe : 2026-09-30 07:03:40,328 INFO __main__: 6 jobs, 0 already done, 6 to run on 1 workers
+At line:1 char:441
++ ... stereo.log; & .\.venv\Scripts\python.exe -m metagross.sim.batch --spl ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:0...un on 1 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:05:12,975 INFO __main__: done FULL seed 102: success=True failure=None
+2026-09-30 07:07:06,001 INFO __main__: done FULL seed 103: success=True failure=None
+2026-09-30 07:09:30,684 INFO __main__: done FULL seed 104: success=False failure=arrived_short
+2026-09-30 07:11:23,821 INFO __main__: done FULL seed 105: success=False failure=stuck
+2026-09-30 07:13:08,112 INFO __main__: done FULL seed 106: success=True failure=None
+2026-09-30 07:13:48,050 INFO __main__: done FULL seed 101: success=False failure=water_entry
+2026-09-30 07:13:48,237 INFO __main__: summary: 6 rows -> results\verify_dev2\stereo\summary.csv
+
+30 September 2026 07:13:48
+
+

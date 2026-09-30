@@ -1,0 +1,836 @@
+{
+ "what": "perception_dev stereo metrics on cached DEV frames, fee1da9 perception vs working tree, run back to back",
+ "plan": {
+  "stereo": {
+   "drive": [
+    102,
+    106,
+    120,
+    125,
+    101
+   ],
+   "approach": [
+    103,
+    121,
+    122
+   ]
+  }
+ },
+ "time": "2026-09-30 07:42:38",
+ "r1_fee1da9": {
+  "stereo": {
+   "pooled": {
+    "n_frames": 365,
+    "cand_rate_off": 0.05456,
+    "lethal_rate_off": 0.10321,
+    "positive_rate_off": 0.04704,
+    "n_observed_off_cells": 2101435,
+    "certified_hazard_in_envelope": {
+     "cells": 0,
+     "of": 1878
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 237,
+     "of": 227205
+    },
+    "ditch_path_certified": {
+     "cells": 6,
+     "of": 8334
+    },
+    "timing_ms": {
+     "p50": 95.3,
+     "p95": 145.3,
+     "stages_p50": {
+      "bev": 5.09,
+      "cells": 4.08,
+      "geometry": 3.84,
+      "ground": 10.21,
+      "negobs": 21.07,
+      "semantics": 5.71,
+      "stereo": 42.29,
+      "total": 93.16
+     }
+    }
+   },
+   "pooled_F1": {
+    "n_frames": 82,
+    "cand_rate_off": 0.04273,
+    "lethal_rate_off": 0.10421,
+    "positive_rate_off": 0.06058,
+    "n_observed_off_cells": 456088,
+    "certified_hazard_in_envelope": {
+     "cells": 0,
+     "of": 334
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 108,
+     "of": 42477
+    },
+    "ditch_path_certified": {
+     "cells": 0,
+     "of": 0
+    },
+    "timing_ms": {
+     "p50": 102.3,
+     "p95": 142.0,
+     "stages_p50": {
+      "bev": 5.44,
+      "cells": 4.4,
+      "geometry": 3.99,
+      "ground": 11.15,
+      "negobs": 23.49,
+      "semantics": 6.2,
+      "stereo": 43.3,
+      "total": 101.45
+     }
+    }
+   },
+   "sequences": [
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.05835,
+     "lethal_rate_off": 0.12682,
+     "positive_rate_off": 0.06749,
+     "n_observed_off_cells": 218584,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 49,
+      "of": 21188
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 99.4,
+      "p95": 143.5,
+      "stages_p50": {
+       "bev": 5.23,
+       "cells": 4.13,
+       "geometry": 3.84,
+       "ground": 11.52,
+       "negobs": 22.87,
+       "semantics": 6.11,
+       "stereo": 42.22,
+       "total": 98.17
+      }
+     },
+     "seed": 102,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.23167,
+     "lethal_rate_off": 0.31143,
+     "positive_rate_off": 0.07544,
+     "n_observed_off_cells": 269562,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 6,
+      "of": 2405
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 120.6,
+      "p95": 187.9,
+      "stages_p50": {
+       "bev": 5.92,
+       "cells": 5.89,
+       "geometry": 4.33,
+       "ground": 11.25,
+       "negobs": 34.35,
+       "semantics": 6.59,
+       "stereo": 48.24,
+       "total": 119.6
+      }
+     },
+     "seed": 106,
+     "family": "F5_lighting",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.02836,
+     "lethal_rate_off": 0.0834,
+     "positive_rate_off": 0.05422,
+     "n_observed_off_cells": 237504,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 334
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 59,
+      "of": 21289
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 103.3,
+      "p95": 139.9,
+      "stages_p50": {
+       "bev": 5.58,
+       "cells": 4.58,
+       "geometry": 4.18,
+       "ground": 10.82,
+       "negobs": 24.03,
+       "semantics": 6.25,
+       "stereo": 44.84,
+       "total": 102.01
+      }
+     },
+     "seed": 120,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.02711,
+     "lethal_rate_off": 0.05891,
+     "positive_rate_off": 0.03113,
+     "n_observed_off_cells": 241723,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 6
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 0,
+      "of": 5612
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 93.2,
+      "p95": 140.6,
+      "stages_p50": {
+       "bev": 4.73,
+       "cells": 4.22,
+       "geometry": 3.79,
+       "ground": 10.36,
+       "negobs": 21.21,
+       "semantics": 6.2,
+       "stereo": 40.33,
+       "total": 92.07
+      }
+     },
+     "seed": 125,
+     "family": "F6_water_mud",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.01198,
+     "lethal_rate_off": 0.03073,
+     "positive_rate_off": 0.01822,
+     "n_observed_off_cells": 265091,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 16,
+      "of": 4429
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 96.8,
+      "p95": 131.7,
+      "stages_p50": {
+       "bev": 5.72,
+       "cells": 4.04,
+       "geometry": 4.27,
+       "ground": 11.04,
+       "negobs": 19.87,
+       "semantics": 5.93,
+       "stereo": 44.27,
+       "total": 94.95
+      }
+     },
+     "seed": 101,
+     "family": "F6_water_mud",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 44,
+     "cand_rate_off": 0.02826,
+     "lethal_rate_off": 0.04895,
+     "positive_rate_off": 0.02001,
+     "n_observed_off_cells": 276074,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 487
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 12,
+      "of": 49758
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 2244
+     },
+     "timing_ms": {
+      "p50": 92.6,
+      "p95": 117.0,
+      "stages_p50": {
+       "bev": 5.18,
+       "cells": 3.55,
+       "geometry": 3.51,
+       "ground": 9.31,
+       "negobs": 19.38,
+       "semantics": 5.08,
+       "stereo": 40.07,
+       "total": 90.11
+      }
+     },
+     "seed": 103,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 5.05,
+      "r_stable_m": 4.65,
+      "n_frames": 38,
+      "max_range_scored_m": 9.45,
+      "width_m": 0.838,
+      "depth_m": 0.842,
+      "angle_deg": 78.8,
+      "theory_r_det_m": 7.03
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.01633,
+     "lethal_rate_off": 0.05274,
+     "positive_rate_off": 0.03601,
+     "n_observed_off_cells": 363306,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 658
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 0,
+      "of": 75164
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 4002
+     },
+     "timing_ms": {
+      "p50": 92.1,
+      "p95": 108.4,
+      "stages_p50": {
+       "bev": 4.59,
+       "cells": 3.61,
+       "geometry": 3.98,
+       "ground": 9.76,
+       "negobs": 17.78,
+       "semantics": 5.53,
+       "stereo": 40.6,
+       "total": 90.54
+      }
+     },
+     "seed": 121,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 4.65,
+      "r_stable_m": 4.25,
+      "n_frames": 51,
+      "max_range_scored_m": 12.05,
+      "width_m": 1.062,
+      "depth_m": 0.639,
+      "angle_deg": 69.1,
+      "theory_r_det_m": 7.86
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.04026,
+     "lethal_rate_off": 0.13215,
+     "positive_rate_off": 0.08681,
+     "n_observed_off_cells": 229591,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 393
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 95,
+      "of": 47360
+     },
+     "ditch_path_certified": {
+      "cells": 6,
+      "of": 2088
+     },
+     "timing_ms": {
+      "p50": 91.5,
+      "p95": 113.1,
+      "stages_p50": {
+       "bev": 4.49,
+       "cells": 3.49,
+       "geometry": 3.72,
+       "ground": 8.47,
+       "negobs": 20.14,
+       "semantics": 5.02,
+       "stereo": 41.52,
+       "total": 89.86
+      }
+     },
+     "seed": 122,
+     "family": "F3_crest_ditch",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 3.05,
+      "r_stable_m": 0.0,
+      "n_frames": 53,
+      "max_range_scored_m": 12.45,
+      "width_m": 0.627,
+      "depth_m": 0.574,
+      "angle_deg": 90.0,
+      "theory_r_det_m": 6.13
+     }
+    }
+   ]
+  }
+ },
+ "r2_tree": {
+  "stereo": {
+   "pooled": {
+    "n_frames": 365,
+    "cand_rate_off": 0.05352,
+    "lethal_rate_off": 0.06679,
+    "positive_rate_off": 0.01078,
+    "n_observed_off_cells": 2133671,
+    "certified_hazard_in_envelope": {
+     "cells": 13,
+     "of": 1878
+    },
+    "certified_hazard_in_envelope_ditch_cells": 13,
+    "certified_hazard_any": {
+     "cells": 424,
+     "of": 227205
+    },
+    "ditch_path_certified": {
+     "cells": 48,
+     "of": 8334
+    },
+    "timing_ms": {
+     "p50": 95.4,
+     "p95": 118.6,
+     "stages_p50": {
+      "bev": 7.09,
+      "cells": 4.16,
+      "geometry": 3.7,
+      "ground": 9.97,
+      "negobs": 19.76,
+      "semantics": 5.05,
+      "stereo": 40.33,
+      "total": 93.49
+     }
+    }
+   },
+   "pooled_F1": {
+    "n_frames": 82,
+    "cand_rate_off": 0.03998,
+    "lethal_rate_off": 0.05538,
+    "positive_rate_off": 0.01367,
+    "n_observed_off_cells": 462604,
+    "certified_hazard_in_envelope": {
+     "cells": 0,
+     "of": 334
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 117,
+     "of": 42477
+    },
+    "ditch_path_certified": {
+     "cells": 0,
+     "of": 0
+    },
+    "timing_ms": {
+     "p50": 96.6,
+     "p95": 122.2,
+     "stages_p50": {
+      "bev": 7.39,
+      "cells": 4.31,
+      "geometry": 3.73,
+      "ground": 10.12,
+      "negobs": 20.94,
+      "semantics": 5.11,
+      "stereo": 41.46,
+      "total": 94.74
+     }
+    }
+   },
+   "sequences": [
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.05498,
+     "lethal_rate_off": 0.07452,
+     "positive_rate_off": 0.01744,
+     "n_observed_off_cells": 221642,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 71,
+      "of": 21188
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 100.6,
+      "p95": 120.1,
+      "stages_p50": {
+       "bev": 7.48,
+       "cells": 4.94,
+       "geometry": 3.69,
+       "ground": 10.24,
+       "negobs": 22.57,
+       "semantics": 5.05,
+       "stereo": 41.52,
+       "total": 99.78
+      }
+     },
+     "seed": 102,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.24042,
+     "lethal_rate_off": 0.27582,
+     "positive_rate_off": 0.02887,
+     "n_observed_off_cells": 273113,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 6,
+      "of": 2405
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 106.0,
+      "p95": 125.1,
+      "stages_p50": {
+       "bev": 7.42,
+       "cells": 5.05,
+       "geometry": 3.88,
+       "ground": 9.61,
+       "negobs": 26.09,
+       "semantics": 5.77,
+       "stereo": 40.78,
+       "total": 104.27
+      }
+     },
+     "seed": 106,
+     "family": "F5_lighting",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.02617,
+     "lethal_rate_off": 0.03779,
+     "positive_rate_off": 0.0102,
+     "n_observed_off_cells": 240962,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 334
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 46,
+      "of": 21289
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 94.3,
+      "p95": 122.3,
+      "stages_p50": {
+       "bev": 7.22,
+       "cells": 3.94,
+       "geometry": 3.78,
+       "ground": 9.94,
+       "negobs": 19.08,
+       "semantics": 5.14,
+       "stereo": 41.18,
+       "total": 91.45
+      }
+     },
+     "seed": 120,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.02424,
+     "lethal_rate_off": 0.02738,
+     "positive_rate_off": 0.00237,
+     "n_observed_off_cells": 247415,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 6
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 0,
+      "of": 5612
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 94.5,
+      "p95": 113.7,
+      "stages_p50": {
+       "bev": 7.22,
+       "cells": 4.05,
+       "geometry": 3.86,
+       "ground": 10.03,
+       "negobs": 19.72,
+       "semantics": 5.1,
+       "stereo": 42.75,
+       "total": 93.3
+      }
+     },
+     "seed": 125,
+     "family": "F6_water_mud",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.01142,
+     "lethal_rate_off": 0.01282,
+     "positive_rate_off": 0.00086,
+     "n_observed_off_cells": 270293,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 18,
+      "of": 4429
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 88.6,
+      "p95": 106.7,
+      "stages_p50": {
+       "bev": 6.64,
+       "cells": 3.77,
+       "geometry": 3.72,
+       "ground": 9.63,
+       "negobs": 16.98,
+       "semantics": 4.61,
+       "stereo": 39.98,
+       "total": 86.87
+      }
+     },
+     "seed": 101,
+     "family": "F6_water_mud",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 44,
+     "cand_rate_off": 0.02512,
+     "lethal_rate_off": 0.02761,
+     "positive_rate_off": 0.00178,
+     "n_observed_off_cells": 281826,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 487
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 16,
+      "of": 49758
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 2244
+     },
+     "timing_ms": {
+      "p50": 96.2,
+      "p95": 111.9,
+      "stages_p50": {
+       "bev": 7.57,
+       "cells": 4.33,
+       "geometry": 3.56,
+       "ground": 10.8,
+       "negobs": 19.74,
+       "semantics": 5.1,
+       "stereo": 39.74,
+       "total": 94.47
+      }
+     },
+     "seed": 103,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 5.05,
+      "r_stable_m": 4.65,
+      "n_frames": 38,
+      "max_range_scored_m": 9.45,
+      "width_m": 0.838,
+      "depth_m": 0.842,
+      "angle_deg": 78.8,
+      "theory_r_det_m": 7.03
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.01371,
+     "lethal_rate_off": 0.01844,
+     "positive_rate_off": 0.00413,
+     "n_observed_off_cells": 369561,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 658
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 0,
+      "of": 75164
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 4002
+     },
+     "timing_ms": {
+      "p50": 94.5,
+      "p95": 114.4,
+      "stages_p50": {
+       "bev": 6.91,
+       "cells": 3.69,
+       "geometry": 3.77,
+       "ground": 10.24,
+       "negobs": 17.98,
+       "semantics": 4.83,
+       "stereo": 39.38,
+       "total": 92.54
+      }
+     },
+     "seed": 121,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 4.65,
+      "r_stable_m": 4.25,
+      "n_frames": 51,
+      "max_range_scored_m": 12.05,
+      "width_m": 1.062,
+      "depth_m": 0.639,
+      "angle_deg": 69.1,
+      "theory_r_det_m": 7.86
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.03854,
+     "lethal_rate_off": 0.07308,
+     "positive_rate_off": 0.02595,
+     "n_observed_off_cells": 228859,
+     "certified_hazard_in_envelope": {
+      "cells": 13,
+      "of": 393
+     },
+     "certified_hazard_in_envelope_ditch_cells": 13,
+     "certified_hazard_any": {
+      "cells": 267,
+      "of": 47360
+     },
+     "ditch_path_certified": {
+      "cells": 48,
+      "of": 2088
+     },
+     "timing_ms": {
+      "p50": 90.8,
+      "p95": 112.3,
+      "stages_p50": {
+       "bev": 6.74,
+       "cells": 4.18,
+       "geometry": 3.49,
+       "ground": 8.72,
+       "negobs": 19.66,
+       "semantics": 4.91,
+       "stereo": 40.28,
+       "total": 88.24
+      }
+     },
+     "seed": 122,
+     "family": "F3_crest_ditch",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 2.85,
+      "r_stable_m": 0.0,
+      "n_frames": 53,
+      "max_range_scored_m": 12.45,
+      "width_m": 0.627,
+      "depth_m": 0.574,
+      "angle_deg": 90.0,
+      "theory_r_det_m": 6.13
+     }
+    }
+   ]
+  }
+ }
+}

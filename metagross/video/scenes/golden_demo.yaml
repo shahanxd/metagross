@@ -1,0 +1,219 @@
+# METAGROSS demo video (target 2:30-3:00). Machine-readable twin of video/NARRATION.md.
+#
+# Render (see video/MAKE_VIDEO.md for the full procedure):
+#   python -m video.collect_values video/scenes/golden_demo.yaml --out video/out/values_golden.json
+#   python -m video.render_timeline video/scenes/golden_demo.yaml video/out/metagross_demo.mp4 --values video/out/values_golden.json
+# Run directories are placeholders filled from `runs:` below; override any of them on the command
+# line with  --run run_ditch_full=results/golden/stereo/FULL/104  (both tools accept --run).
+# Every other {placeholder} comes from `values:` (claims ledger or a run directory) - never typed by hand.
+fps: 30
+voice: en-IN-PrabhatNeural        # alternative: en-IN-NeerjaNeural
+tts_rate: "+12%"                  # measured: -4 % + first script = 3:58; +8 % + tight script = 3:04; +12 % = 2:57.6 (draft_v0)
+
+runs:   # golden DEV run directories picked by the verifier (results/verify_dev2/verify_dev2.json -> golden_runs)
+  run_nominal: results/verify_dev2/stereo/FULL/114       # F1 trail, DEV 114: success at 33.9 s, SPL 0.96 (per_seed.csv)
+  run_crest: results/verify_dev2/stereo/FULL/128         # F3 crest, DEV 128: slows at the crest 22-24 s, resumes, success 41.4 s
+  run_ditch_full: results/verify_dev2/tier0/FULL/110     # F3 hidden trench, DEV 110, FULL: stops 1.57 m short at ~21 s
+  run_ditch_typical: results/verify_dev2/tier0/T1/110    # the SAME seed, T1 (unknown = free): ditch_entry at 17.04 s
+  run_glare: results/verify_dev2/stereo/FULL/100         # F5 lighting, DEV 100: glare 12.76 s, DEGRADED 13.6 s, NOMINAL 18.0 s
+  t0_nominal: 1           # A->B drive starts here (the robot is still for the first second)
+  t1_nominal: 33.8        # ... and ends at the goal (result.json time_s 33.86)
+  t0_crest: 20            # crest window 20-28 s (verifier window)
+  t1_crest: 28
+  t0_ditch: 6             # split: both stacks from the same start; T1 enters the trench at 17.04 s
+  t1_ditch: 23            # FULL stopped on the crest by 21 s; it moves again at ~24 s and later sticks at the world edge - cut before
+  t0_glare: 11            # glare window 11-20 s (verifier window)
+  t1_glare: 20
+  t0_link: 5              # kept for the values block (packet_bytes is the median over the whole nominal run)
+
+claims_index: results/claims_index.json   # written by python -m metagross.eval.claims
+values:  # placeholder -> source, read by python -m video.collect_values ('claim' ids must exist in the ledger)
+  kitti_t_err_pct: {claim: kitti_pooled_t_err_pct, fmt: "{:.1f}"}
+  seg_miou: {claim: seg_smoke_test_miou, fmt: "{:.2f}"}
+  n_closed_loop_runs: {claim: closed_loop_eval_stereo_FULL_n, fmt: "{:.0f}"}
+  success_full: {claim: closed_loop_eval_stereo_FULL_success, fmt: "{:.0f}"}
+  ditch_entries_full: {claim: closed_loop_eval_stereo_FULL_ditch, fmt: "{:.0f}"}
+  ditch_entries_typical: {claim: closed_loop_eval_stereo_T1_TYPICAL_ditch, fmt: "{:.0f}"}
+  split_rcert_min_m: {run: "{run_ditch_full}", field: r_cert_m, stat: min, t0: "{t0_ditch}", t1: "{t1_ditch}", fmt: "{:.1f}"}
+  glare_q_min: {run: "{run_glare}", field: q, stat: min, t0: "{t0_glare}", t1: "{t1_glare}", fmt: "{:.2f}"}
+  glare_worst_mode: {run: "{run_glare}", field: mode, stat: worst, t0: "{t0_glare}", t1: "{t1_glare}"}
+  packet_bytes: {run: "{run_nominal}", field: packet_bytes, stat: median, fmt: "{:.0f}"}
+
+scenes:
+  # 1 -- hook
+  - type: card
+    card: title
+    duration: auto
+    title: "Two cameras. No GPS. No map."
+    subtitle: "METAGROSS · vision-based navigation for a ground robot in GNSS-denied terrain"
+    narration: >-
+      A small robot, in rough open country. No GPS, no map, no lidar. Just two cameras.
+      So how does it know where it is safe to drive?
+
+  # 2 -- problem
+  - type: card
+    card: title
+    duration: auto
+    kicker: "The problem"
+    title: "A ditch looks like nothing at all."
+    subtitle: "Most stacks treat what they cannot see as free space."
+    narration: >-
+      Most navigation stacks treat what they cannot see as free space.
+      But a ditch is not something sticking up. It is ground that is missing. To a camera, it looks like nothing at all.
+
+  # 3 -- thesis
+  - type: card
+    card: title
+    duration: auto
+    kicker: "Our rule"
+    title: "Unknown is never free."
+    subtitle: "It drives only on ground it has seen, and only as fast as it can see."
+    narration: >-
+      So METAGROSS follows one rule. Unknown is never free.
+      It drives only on ground it has seen, and only as fast as it can see.
+
+  # 4 -- how it works
+  - type: card
+    card: image
+    duration: auto
+    kicker: "How it works"
+    title: "From two images to wheel commands"
+    path: deck_assets/diagrams/figma/01_how_it_works.png
+    narration: >-
+      The stereo cameras measure the ground ahead. Every patch gets a state: seen, unseen, or missing,
+      which is how a ditch shows up. Visual odometry tracks position, and an integrity monitor decides how far
+      to trust it. A speed governor then picks the fastest speed that can still stop on ground already seen.
+
+  # Every drive below is a SIMULATED DEV-seed run (seeds 100-129) from results/verify_dev2; the footer chip
+  # reads "SIMULATED · DEV seed N · config X". Story checked against inspect_run tables and verify_dev2.json.
+  # 5 -- a clean A->B drive (stereo FULL, F1 trail, DEV 114), sped up; the operator link rides along
+  - type: dashboard
+    run: "{run_nominal}"
+    t0: "{t0_nominal}"
+    t1: "{t1_nominal}"
+    speed: 2
+    chase: three
+    caption: {title: "A to B on two cameras", subtitle: "DEV seed 114 · simulated · passive stereo"}
+    narration: >-
+      First, a complete drive from A to B, on the two cameras alone, at twice real speed.
+      The operator never gets video. Twice a second, the robot sends one small packet:
+      position, health, planned path and a coarse map, about {packet_bytes} bytes.
+
+  # 6 -- crest approach (stereo FULL, DEV 128, 20-28 s): slows at the crest line, resumes once it can see
+  - type: dashboard
+    run: "{run_crest}"
+    t0: "{t0_crest}"
+    t1: "{t1_crest}"
+    speed: 0.5
+    chase: three
+    caption: {title: "A blind crest", subtitle: "DEV seed 128 · simulated · passive stereo"}
+    narration: >-
+      Now a crest. Near the top, the planner eases off.
+      On the crest line it cannot yet see the ground beyond, so its certified range drops to zero,
+      and so does its speed limit. As soon as the far slope comes into view, it speeds up again,
+      and goes on to reach the goal.
+
+  # 7 -- hidden trench, T1 (unknown = free) vs FULL, same DEV seed 110, tier-0 synthetic depth.
+  #      T1: ditch_entry at 17.04 s. FULL: governor binds (R = 0) at 20.4 s, stops 1.57 m short by 21 s.
+  #      FULL later gets stuck at the world edge (52 s): t1 = 23 cuts before it moves again.
+  - type: split
+    run_a: "{run_ditch_typical}"
+    run_b: "{run_ditch_full}"
+    label_a: "BASELINE T1 · unknown = free"
+    label_b: "METAGROSS FULL · unknown is never free"
+    config_a: T1
+    config_b: FULL
+    t0: "{t0_ditch}"
+    t1: "{t1_ditch}"
+    chase: three
+    caption: {title: "A trench behind a crest", subtitle: "DEV seed 110 · same start, two stacks"}
+    narration: >-
+      Next, a trench hidden behind a crest. Same start, two stacks, and here the depth comes from the
+      simulator's synthetic depth sensor. On the left, a baseline that treats unknown as free.
+      It keeps its speed over the crest, sees the trench too late, and drives in.
+      On the right, METAGROSS. Beyond the crest the ground is not yet seen, so it is not trusted.
+      It slows, and stops short of the trench.
+
+  # 8 -- glare / degraded localisation (stereo FULL, DEV 100, 11-20 s)
+  - type: dashboard
+    run: "{run_glare}"
+    t0: "{t0_glare}"
+    t1: "{t1_glare}"
+    speed: 0.6
+    chase: three
+    caption: {title: "Glare", subtitle: "DEV seed 100 · simulated · localisation integrity sets the speed"}
+    narration: >-
+      Finally, glare. The image washes out and visual odometry loses its features.
+      The integrity score drops to {glare_q_min}, the mode changes to {glare_worst_mode},
+      and the robot slows almost to a stop. When the image clears, it speeds up again.
+
+  # 8 -- honest results
+  - type: card
+    card: evidence
+    duration: auto
+    kicker: "What we measured · localisation"
+    headline: "{kitti_t_err_pct}"
+    unit: "%"
+    label: "Translation drift of camera-only stereo visual odometry, pooled over KITTI 00, 05 and 07 (real driving data)"
+    bullets:
+      - "Chart: KITTI 07 trajectory, ground truth vs our VO"
+    claim_label: Tested
+    chart: deck_assets/kitti_07_traj.png
+    source: "results/claims_index.json · kitti_pooled_t_err_pct"
+    narration: >-
+      What have we measured? On real KITTI driving data,
+      our camera-only visual odometry drifts {kitti_t_err_pct} percent of the distance travelled.
+
+  - type: card
+    card: evidence
+    duration: auto
+    kicker: "What we measured · terrain"
+    headline: "{seg_miou}"
+    unit: "mIoU"
+    label: "Five-class terrain segmentation, held-out off-road test images"
+    claim_label: Tested
+    chart: deck_assets/seg_smoke_confusion_test.png
+    source: "results/claims_index.json · seg_smoke_test_miou"
+    narration: >-
+      Terrain segmentation scores {seg_miou} mean IoU on held-out off-road images.
+
+  - type: card
+    card: evidence
+    duration: auto
+    kicker: "What we measured · closed loop"
+    headline: "{success_full} / {n_closed_loop_runs}"
+    unit: "runs"
+    label: "Simulated runs on held-out EVAL seeds that reached the goal, METAGROSS full stack (pre-registered)"
+    claim_label: Simulated
+    bullets:
+      - "Ditch entries: METAGROSS {ditch_entries_full}, unknown-is-free baseline {ditch_entries_typical}"
+    source: "results/closed_loop_eval.json via results/claims_index.json · closed_loop_eval_*"
+    narration: >-
+      In the pre-registered simulated evaluation, on held-out seeds, METAGROSS reached the goal in
+      {success_full} of {n_closed_loop_runs} runs, with {ditch_entries_full} ditch entries.
+      The unknown-is-free baseline had {ditch_entries_typical}.
+
+  # 9 -- limits
+  - type: card
+    card: end
+    duration: auto
+    kicker: "Honest limits"
+    title: "What this is not, yet."
+    lines:
+      - "Every drive in this video is simulated."
+      - "Visual odometry and segmentation are tested on real images; the closed loop is not."
+      - "It is still slower than we want. The next step is a real vehicle."
+    narration: >-
+      The limits: every drive you saw is simulated, the robot is still slower than we want,
+      and the full system has not yet run on a real vehicle. That is our next step.
+
+  # 10 -- close
+  - type: card
+    card: end
+    duration: auto
+    title: "Unknown is never free."
+    lines:
+      - "It drives only on ground it has seen, and only as fast as it can see."
+      - "METAGROSS · SIH26126 · Bharat Electronics Ltd"
+    narration: >-
+      Unknown is never free. METAGROSS drives only on ground it has seen, and only as fast as it can see.

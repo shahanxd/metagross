@@ -1,0 +1,4 @@
+config_name,seed,family,success,failure_type,time,path_length,spl,mean_speed,drive_speed,final_error,arrived_est,t_arrived_est,ditch_entries,collisions,water_entries,false_stops,compute_ms_mean,compute_ms_p95
+FULL,102,F1_trail,False,stuck,20.02,2.045,0.0,0.1021,0.1021,44.727,False,,0,0,0,2,301.1886,498.0119
+FULL,103,F2_ditch_field,False,stuck,23.04,1.891,0.0,0.0821,0.0821,39.509,False,,0,0,0,2,287.1562,439.1511
+FULL,104,F3_crest_ditch,False,stuck,30.02,1.808,0.0,0.0602,0.0602,50.512,False,,0,0,0,3,183.7134,273.9699

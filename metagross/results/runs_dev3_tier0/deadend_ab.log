@@ -1,0 +1,18 @@
+2026-09-30 08:13:24,048 INFO __main__: 16 jobs, 0 already done, 16 to run on 2 workers
+2026-09-30 08:14:02,078 INFO __main__: done FULL seed 109: success=False failure=stuck
+2026-09-30 08:14:07,477 INFO __main__: done FULL seed 110: success=False failure=stuck
+2026-09-30 08:14:49,743 INFO __main__: done FULL seed 115: success=False failure=stuck
+2026-09-30 08:14:50,209 INFO __main__: done FULL seed 103: success=True failure=None
+2026-09-30 08:15:24,233 INFO __main__: done FULL seed 116: success=True failure=None
+2026-09-30 08:15:37,406 INFO __main__: done FULL seed 104: success=False failure=arrived_short
+2026-09-30 08:16:00,364 INFO __main__: done FULL seed 102: success=True failure=None
+2026-09-30 08:16:07,493 INFO __main__: done FULL seed 108: success=True failure=None
+2026-09-30 08:16:35,644 INFO __main__: done FULL_NODEMEM seed 109: success=False failure=stuck
+2026-09-30 08:16:38,704 INFO __main__: done FULL_NODEMEM seed 110: success=False failure=stuck
+2026-09-30 08:17:01,339 INFO __main__: done FULL_NODEMEM seed 103: success=True failure=None
+2026-09-30 08:17:04,202 INFO __main__: done FULL_NODEMEM seed 115: success=False failure=stuck
+2026-09-30 08:17:24,356 INFO __main__: done FULL_NODEMEM seed 116: success=True failure=None
+2026-09-30 08:17:29,982 INFO __main__: done FULL_NODEMEM seed 104: success=True failure=None
+2026-09-30 08:17:45,154 INFO __main__: done FULL_NODEMEM seed 102: success=True failure=None
+2026-09-30 08:17:48,734 INFO __main__: done FULL_NODEMEM seed 108: success=True failure=None
+2026-09-30 08:17:48,923 INFO __main__: summary: 16 rows -> results\runs_dev3_tier0\deadend_ab\summary.csv

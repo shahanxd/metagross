@@ -1,0 +1,15 @@
+# Installed by aws/setup_and_train.sh AFTER torch/torchvision (CUDA wheels from download.pytorch.org).
+numpy<2.3
+opencv-python-headless
+onnx
+onnxruntime
+scipy
+matplotlib
+pillow
+pyyaml
+pytest
+tqdm
+huggingface_hub
+# optional research comparisons (not part of the deployed runtime):
+transformers   # SegFormer-B0 training (--model segformer_b0)
+timm           # DINOv2-S / FiT3D teacher (aws/teacher_dinov2.py)

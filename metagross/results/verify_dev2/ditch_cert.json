@@ -1,0 +1,538 @@
+[
+ {
+  "run": "results\\verify_dev2\\tier0\\FULL\\103",
+  "family": "F2_ditch_field",
+  "config": "FULL",
+  "bins": {
+   "0-2": {
+    "n": 1310,
+    "ground": 21,
+    "ground_frac": 0.01603053435114504,
+    "labels": {
+     "unseen": 1281,
+     "GROUND": 21,
+     "DITCH": 8
+    }
+   },
+   "2-4": {
+    "n": 1432,
+    "ground": 86,
+    "ground_frac": 0.06005586592178771,
+    "labels": {
+     "unseen": 509,
+     "GROUND": 86,
+     "depr": 186,
+     "DITCH": 645,
+     "crest_sh": 6
+    }
+   },
+   "4-6": {
+    "n": 2042,
+    "ground": 127,
+    "ground_frac": 0.062193927522037215,
+    "labels": {
+     "GROUND": 127,
+     "DITCH": 1761,
+     "depr": 143,
+     "unseen": 10,
+     "crest_sh": 1
+    }
+   },
+   "6-8": {
+    "n": 1743,
+    "ground": 464,
+    "ground_frac": 0.2662076878944349,
+    "labels": {
+     "unseen": 130,
+     "GROUND": 464,
+     "DITCH": 1085,
+     "crest_sh": 20,
+     "depr": 44
+    }
+   },
+   "8-10": {
+    "n": 2017,
+    "ground": 1530,
+    "ground_frac": 0.7585523054040655,
+    "labels": {
+     "GROUND": 1530,
+     "unseen": 149,
+     "crest_sh": 73,
+     "depr": 13,
+     "DITCH": 248,
+     "occl": 4
+    }
+   },
+   "10-14": {
+    "n": 2490,
+    "ground": 1251,
+    "ground_frac": 0.5024096385542168,
+    "labels": {
+     "unseen": 1026,
+     "GROUND": 1251,
+     "crest_sh": 189,
+     "depr": 2,
+     "DITCH": 9,
+     "occl": 13
+    }
+   }
+  }
+ },
+ {
+  "run": "results\\verify_dev2\\tier0\\T1\\103",
+  "family": "F2_ditch_field",
+  "config": "T1",
+  "bins": {
+   "0-2": {
+    "n": 1598,
+    "ground": 14,
+    "ground_frac": 0.008760951188986232,
+    "labels": {
+     "unseen": 1579,
+     "GROUND": 14,
+     "depr": 5
+    }
+   },
+   "2-4": {
+    "n": 1728,
+    "ground": 283,
+    "ground_frac": 0.16377314814814814,
+    "labels": {
+     "unseen": 1169,
+     "GROUND": 283,
+     "depr": 276
+    }
+   },
+   "4-6": {
+    "n": 1683,
+    "ground": 742,
+    "ground_frac": 0.44087938205585264,
+    "labels": {
+     "unseen": 735,
+     "GROUND": 742,
+     "depr": 206
+    }
+   },
+   "6-8": {
+    "n": 1695,
+    "ground": 983,
+    "ground_frac": 0.5799410029498525,
+    "labels": {
+     "unseen": 542,
+     "GROUND": 983,
+     "depr": 170
+    }
+   },
+   "8-10": {
+    "n": 1538,
+    "ground": 1033,
+    "ground_frac": 0.6716514954486346,
+    "labels": {
+     "GROUND": 1033,
+     "unseen": 443,
+     "depr": 62
+    }
+   },
+   "10-14": {
+    "n": 3358,
+    "ground": 1504,
+    "ground_frac": 0.4478856462179869,
+    "labels": {
+     "unseen": 1849,
+     "GROUND": 1504,
+     "depr": 5
+    }
+   }
+  }
+ },
+ {
+  "run": "results\\verify_dev2\\stereo\\FULL\\103",
+  "family": "F2_ditch_field",
+  "config": "FULL",
+  "bins": {
+   "0-2": {
+    "n": 6451,
+    "ground": 57,
+    "ground_frac": 0.00883583940474345,
+    "labels": {
+     "unseen": 6385,
+     "GROUND": 57,
+     "DITCH": 1,
+     "depr": 8
+    }
+   },
+   "2-4": {
+    "n": 5577,
+    "ground": 324,
+    "ground_frac": 0.05809575040344271,
+    "labels": {
+     "unseen": 2661,
+     "DITCH": 2196,
+     "GROUND": 324,
+     "depr": 395,
+     "crest_sh": 1
+    }
+   },
+   "4-6": {
+    "n": 5790,
+    "ground": 1445,
+    "ground_frac": 0.24956822107081175,
+    "labels": {
+     "GROUND": 1445,
+     "DITCH": 3561,
+     "unseen": 344,
+     "crest_sh": 14,
+     "pos": 4,
+     "depr": 421,
+     "occl": 1
+    }
+   },
+   "6-8": {
+    "n": 5577,
+    "ground": 3289,
+    "ground_frac": 0.5897435897435898,
+    "labels": {
+     "GROUND": 3289,
+     "unseen": 124,
+     "pos": 12,
+     "crest_sh": 74,
+     "occl": 6,
+     "DITCH": 1951,
+     "depr": 121
+    }
+   },
+   "8-10": {
+    "n": 5935,
+    "ground": 4789,
+    "ground_frac": 0.8069081718618366,
+    "labels": {
+     "GROUND": 4789,
+     "unseen": 335,
+     "occl": 41,
+     "pos": 12,
+     "depr": 10,
+     "DITCH": 596,
+     "crest_sh": 152
+    }
+   },
+   "10-14": {
+    "n": 8962,
+    "ground": 5315,
+    "ground_frac": 0.5930595849140817,
+    "labels": {
+     "unseen": 3214,
+     "GROUND": 5315,
+     "pos": 15,
+     "depr": 6,
+     "DITCH": 3,
+     "occl": 167,
+     "crest_sh": 242
+    }
+   }
+  }
+ },
+ {
+  "run": "results\\verify_dev2\\stereo\\T1\\103",
+  "family": "F2_ditch_field",
+  "config": "T1",
+  "bins": {
+   "0-2": {
+    "n": 11150,
+    "ground": 229,
+    "ground_frac": 0.02053811659192825,
+    "labels": {
+     "unseen": 10845,
+     "GROUND": 229,
+     "depr": 76
+    }
+   },
+   "2-4": {
+    "n": 7661,
+    "ground": 1635,
+    "ground_frac": 0.21341861375799503,
+    "labels": {
+     "unseen": 4673,
+     "GROUND": 1635,
+     "depr": 1353
+    }
+   },
+   "4-6": {
+    "n": 5779,
+    "ground": 2950,
+    "ground_frac": 0.5104689392628482,
+    "labels": {
+     "unseen": 1773,
+     "GROUND": 2950,
+     "depr": 1053,
+     "pos": 3
+    }
+   },
+   "6-8": {
+    "n": 5039,
+    "ground": 3767,
+    "ground_frac": 0.7475689620956539,
+    "labels": {
+     "GROUND": 3767,
+     "unseen": 913,
+     "depr": 343,
+     "pos": 16
+    }
+   },
+   "8-10": {
+    "n": 5453,
+    "ground": 4720,
+    "ground_frac": 0.8655785805978361,
+    "labels": {
+     "GROUND": 4720,
+     "unseen": 586,
+     "pos": 22,
+     "depr": 125
+    }
+   },
+   "10-14": {
+    "n": 9466,
+    "ground": 4528,
+    "ground_frac": 0.478343545320093,
+    "labels": {
+     "unseen": 4902,
+     "GROUND": 4528,
+     "pos": 20,
+     "depr": 16
+    }
+   }
+  }
+ },
+ {
+  "run": "results\\verify_dev2\\stereo\\FULL\\122",
+  "family": "F3_crest_ditch",
+  "config": "FULL",
+  "bins": {
+   "0-2": {
+    "n": 2782,
+    "ground": 16,
+    "ground_frac": 0.005751258087706686,
+    "labels": {
+     "unseen": 2759,
+     "GROUND": 16,
+     "DITCH": 7
+    }
+   },
+   "2-4": {
+    "n": 4402,
+    "ground": 645,
+    "ground_frac": 0.1465243071331213,
+    "labels": {
+     "unseen": 2090,
+     "crest_sh": 491,
+     "GROUND": 645,
+     "pos": 304,
+     "DITCH": 843,
+     "occl": 8,
+     "depr": 21
+    }
+   },
+   "4-6": {
+    "n": 4447,
+    "ground": 1300,
+    "ground_frac": 0.29233190915223745,
+    "labels": {
+     "crest_sh": 1640,
+     "unseen": 1207,
+     "GROUND": 1300,
+     "pos": 138,
+     "depr": 1,
+     "DITCH": 155,
+     "occl": 6
+    }
+   },
+   "6-8": {
+    "n": 3819,
+    "ground": 526,
+    "ground_frac": 0.13773239067818802,
+    "labels": {
+     "unseen": 1447,
+     "GROUND": 526,
+     "crest_sh": 1578,
+     "occl": 195,
+     "pos": 51,
+     "DITCH": 19,
+     "depr": 3
+    }
+   },
+   "8-10": {
+    "n": 2543,
+    "ground": 258,
+    "ground_frac": 0.10145497443963822,
+    "labels": {
+     "occl": 178,
+     "unseen": 134,
+     "crest_sh": 1879,
+     "GROUND": 258,
+     "pos": 82,
+     "depr": 3,
+     "DITCH": 9
+    }
+   },
+   "10-14": {
+    "n": 4129,
+    "ground": 271,
+    "ground_frac": 0.06563332526035359,
+    "labels": {
+     "unseen": 2532,
+     "GROUND": 271,
+     "crest_sh": 1041,
+     "occl": 226,
+     "pos": 54,
+     "depr": 5
+    }
+   }
+  }
+ },
+ {
+  "run": "results\\verify_dev2\\tier0\\FULL\\110",
+  "family": "F3_crest_ditch",
+  "config": "FULL",
+  "bins": {
+   "0-2": {
+    "n": 4474,
+    "ground": 24,
+    "ground_frac": 0.005364327223960662,
+    "labels": {
+     "unseen": 4404,
+     "DITCH": 35,
+     "GROUND": 24,
+     "crest_sh": 9,
+     "pos": 2
+    }
+   },
+   "2-4": {
+    "n": 7878,
+    "ground": 643,
+    "ground_frac": 0.08161970043158162,
+    "labels": {
+     "unseen": 3637,
+     "GROUND": 643,
+     "pos": 482,
+     "crest_sh": 1184,
+     "depr": 301,
+     "DITCH": 1585,
+     "occl": 46
+    }
+   },
+   "4-6": {
+    "n": 2439,
+    "ground": 536,
+    "ground_frac": 0.2197621976219762,
+    "labels": {
+     "crest_sh": 1291,
+     "unseen": 66,
+     "GROUND": 536,
+     "pos": 102,
+     "depr": 61,
+     "DITCH": 151,
+     "occl": 232
+    }
+   },
+   "6-8": {
+    "n": 1587,
+    "ground": 164,
+    "ground_frac": 0.1033396345305608,
+    "labels": {
+     "crest_sh": 1381,
+     "GROUND": 164,
+     "depr": 7,
+     "pos": 19,
+     "occl": 5,
+     "unseen": 11
+    }
+   },
+   "8-10": {
+    "n": 703,
+    "ground": 75,
+    "ground_frac": 0.10668563300142248,
+    "labels": {
+     "crest_sh": 619,
+     "unseen": 9,
+     "GROUND": 75
+    }
+   },
+   "10-14": {
+    "n": 2421,
+    "ground": 35,
+    "ground_frac": 0.014456836018174308,
+    "labels": {
+     "unseen": 1103,
+     "GROUND": 35,
+     "crest_sh": 1282,
+     "pos": 1
+    }
+   }
+  }
+ },
+ {
+  "run": "results\\verify_dev2\\tier0\\T1\\110",
+  "family": "F3_crest_ditch",
+  "config": "T1",
+  "bins": {
+   "0-2": {
+    "n": 488,
+    "ground": 12,
+    "ground_frac": 0.02459016393442623,
+    "labels": {
+     "unseen": 471,
+     "GROUND": 12,
+     "pos": 3,
+     "depr": 2
+    }
+   },
+   "2-4": {
+    "n": 858,
+    "ground": 123,
+    "ground_frac": 0.14335664335664336,
+    "labels": {
+     "unseen": 700,
+     "GROUND": 123,
+     "pos": 21,
+     "depr": 14
+    }
+   },
+   "4-6": {
+    "n": 568,
+    "ground": 72,
+    "ground_frac": 0.1267605633802817,
+    "labels": {
+     "unseen": 490,
+     "GROUND": 72,
+     "pos": 6
+    }
+   },
+   "6-8": {
+    "n": 493,
+    "ground": 3,
+    "ground_frac": 0.006085192697768763,
+    "labels": {
+     "unseen": 490,
+     "GROUND": 3
+    }
+   },
+   "8-10": {
+    "n": 494,
+    "ground": 3,
+    "ground_frac": 0.006072874493927126,
+    "labels": {
+     "unseen": 491,
+     "GROUND": 3
+    }
+   },
+   "10-14": {
+    "n": 1011,
+    "ground": 1,
+    "ground_frac": 0.0009891196834817012,
+    "labels": {
+     "unseen": 1010,
+     "GROUND": 1
+    }
+   }
+  }
+ }
+]

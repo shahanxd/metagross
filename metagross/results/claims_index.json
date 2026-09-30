@@ -1,0 +1,2130 @@
+{
+ "A 0.3 m ditch is first resolvable at 4.3 m from a 0.9 m mast": {
+  "id": "A 0.3 m ditch is first resolvable at 4.3 m from a 0.9 m mast",
+  "value": "4.30 m",
+  "unit": "",
+  "label": "Estimated",
+  "source": "results/theory.json#ditch_detection",
+  "note": ""
+ },
+ "A 0.3 m rock is resolvable at 22.0 m (1/R vs 1/R^2)": {
+  "id": "A 0.3 m rock is resolvable at 22.0 m (1/R vs 1/R^2)",
+  "value": "22.0 m",
+  "unit": "",
+  "label": "Estimated",
+  "source": "results/theory.json#positive_detection",
+  "note": ""
+ },
+ "Safe-speed envelope at our mast/design ditch (before 2 m/s platform cap)": {
+  "id": "Safe-speed envelope at our mast/design ditch (before 2 m/s platform cap)",
+  "value": "2.60 m/s",
+  "unit": "",
+  "label": "Estimated",
+  "source": "results/theory.json#envelope",
+  "note": ""
+ },
+ "Stopping distance from 2 m/s (a=1.5 m/s^2, T_r=0.6 s, B=0.5 m)": {
+  "id": "Stopping distance from 2 m/s (a=1.5 m/s^2, T_r=0.6 s, B=0.5 m)",
+  "value": "3.03 m",
+  "unit": "",
+  "label": "Estimated",
+  "source": "results/theory.json#stopping",
+  "note": ""
+ },
+ "closed_loop_stereo_FULL_arrived_est": {
+  "id": "closed_loop_stereo_FULL_arrived_est",
+  "value": "0.00",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.arrived_est_rate",
+  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; share of runs that reached the goal in their own pose estimate"
+ },
+ "closed_loop_stereo_FULL_compute_p50_p95": {
+  "id": "closed_loop_stereo_FULL_compute_p50_p95",
+  "value": "232.3 / 420.0 ms",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.compute_ms_p50",
+  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; autonomy wall time per 5 Hz tick on the shared 4-core laptop (other jobs running)"
+ },
+ "closed_loop_stereo_FULL_ditch_collisions": {
+  "id": "closed_loop_stereo_FULL_ditch_collisions",
+  "value": "0 ditch / 0 coll",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.ditch_entries",
+  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT"
+ },
+ "closed_loop_stereo_FULL_drive_speed": {
+  "id": "closed_loop_stereo_FULL_drive_speed",
+  "value": "0.08 m/s",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.drive_speed_mps",
+  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; GT path / time until estimated arrival or episode end"
+ },
+ "closed_loop_stereo_FULL_success": {
+  "id": "closed_loop_stereo_FULL_success",
+  "value": "0/3",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#stereo.aggregate.FULL.all.success_rate",
+  "note": "DEV seeds 102-104 (n=3), sensor mode stereo, referee on GT; success = true goal within the mission success radius"
+ },
+ "closed_loop_tier0_FULL_arrived_est": {
+  "id": "closed_loop_tier0_FULL_arrived_est",
+  "value": "0.53",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.arrived_est_rate",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; share of runs that reached the goal in their own pose estimate"
+ },
+ "closed_loop_tier0_FULL_compute_p50_p95": {
+  "id": "closed_loop_tier0_FULL_compute_p50_p95",
+  "value": "150.8 / 237.7 ms",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.compute_ms_p50",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; autonomy wall time per 5 Hz tick on the shared 4-core laptop (other jobs running)"
+ },
+ "closed_loop_tier0_FULL_ditch_collisions": {
+  "id": "closed_loop_tier0_FULL_ditch_collisions",
+  "value": "0 ditch / 1 coll",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.ditch_entries",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT"
+ },
+ "closed_loop_tier0_FULL_drive_speed": {
+  "id": "closed_loop_tier0_FULL_drive_speed",
+  "value": "1.21 m/s",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.drive_speed_mps",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT path / time until estimated arrival or episode end"
+ },
+ "closed_loop_tier0_FULL_success": {
+  "id": "closed_loop_tier0_FULL_success",
+  "value": "3/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.FULL.all.success_rate",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; success = true goal within the mission success radius"
+ },
+ "closed_loop_tier0_TYPICAL_arrived_est": {
+  "id": "closed_loop_tier0_TYPICAL_arrived_est",
+  "value": "0.53",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.arrived_est_rate",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; share of runs that reached the goal in their own pose estimate"
+ },
+ "closed_loop_tier0_TYPICAL_compute_p50_p95": {
+  "id": "closed_loop_tier0_TYPICAL_compute_p50_p95",
+  "value": "130.7 / 232.3 ms",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.compute_ms_p50",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; autonomy wall time per 5 Hz tick on the shared 4-core laptop (other jobs running)"
+ },
+ "closed_loop_tier0_TYPICAL_ditch_collisions": {
+  "id": "closed_loop_tier0_TYPICAL_ditch_collisions",
+  "value": "0 ditch / 1 coll",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.ditch_entries",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT"
+ },
+ "closed_loop_tier0_TYPICAL_drive_speed": {
+  "id": "closed_loop_tier0_TYPICAL_drive_speed",
+  "value": "1.21 m/s",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.drive_speed_mps",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT path / time until estimated arrival or episode end"
+ },
+ "closed_loop_tier0_TYPICAL_success": {
+  "id": "closed_loop_tier0_TYPICAL_success",
+  "value": "4/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.success_rate",
+  "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; success = true goal within the mission success radius"
+ },
+ "integrity_auroc_07to05": {
+  "id": "integrity_auroc_07to05",
+  "value": "0.957",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/integrity_07to05.json#meta.auroc_test",
+  "note": "trained on degraded KITTI 07, tested on degraded KITTI 05 (real images, synthetic degradations)"
+ },
+ "integrity_auroc_silent_07to05": {
+  "id": "integrity_auroc_silent_07to05",
+  "value": "0.849",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/integrity_07to05.json#meta.auroc_test_silent_only",
+  "note": "silent failures only; just 6 positives"
+ },
+ "integrity_onboard_auroc_kitti_holdout": {
+  "id": "integrity_onboard_auroc_kitti_holdout",
+  "value": "1.000",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/integrity_sim.json#models.kitti_only.auroc_kitti_holdout",
+  "note": "onboard model on held-out degraded KITTI 07 (real images, synthetic degradations; see results/integrity.json for its silent-failure count)"
+ },
+ "integrity_sim_auroc_dev": {
+  "id": "integrity_sim_auroc_dev",
+  "value": "0.999",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.auroc_dev_all",
+  "note": "per-frame AUROC of p_fail vs GT VO failure, all rendered DEV frames (14 failure frames, 8 silent; silent-only AUROC 0.998)"
+ },
+ "integrity_sim_auroc_dev_holdout": {
+  "id": "integrity_sim_auroc_dev_holdout",
+  "value": "0.996",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.auroc_dev_F5_lighting_holdout",
+  "note": "held-out DEV family F5_lighting (never used for fitting)"
+ },
+ "integrity_sim_auroc_synthetic_degradations": {
+  "id": "integrity_sim_auroc_synthetic_degradations",
+  "value": "1.000",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.dev_synthetic_degradations.auroc",
+  "note": "rendered DEV frames with synthetic degradation segments (flare, low light, blur, ...)"
+ },
+ "integrity_sim_caution_false_per_min": {
+  "id": "integrity_sim_caution_false_per_min",
+  "value": "0.00",
+  "unit": "/min",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.dev_all.caution_false_alarms_per_min",
+  "note": "CAUTION onsets (q<=0.7) without VO failure in nominal DEV driving"
+ },
+ "integrity_sim_degraded_false_per_5min": {
+  "id": "integrity_sim_degraded_false_per_5min",
+  "value": "0.00",
+  "unit": "/5 min",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.dev_all.degraded_false_alarms_per_5min",
+  "note": "DEGRADED onsets without any VO failure in the preceding 1 s (false alarms)"
+ },
+ "integrity_sim_degraded_per_5min": {
+  "id": "integrity_sim_degraded_per_5min",
+  "value": "0.35",
+  "unit": "/5 min",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.dev_all.degraded_onsets_per_5min",
+  "note": "DEGRADED onsets (q<=0.4, supervisor hysteresis) in nominal DEV driving, model 'kitti_only'"
+ },
+ "integrity_sim_events_vo_fail_flagged": {
+  "id": "integrity_sim_events_vo_fail_flagged",
+  "value": "3/3",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.dev_all",
+  "note": "lighting / sudden-obstacle events in which VO actually failed that drove q to CAUTION or below"
+ },
+ "integrity_sim_nominal_minutes": {
+  "id": "integrity_sim_nominal_minutes",
+  "value": "14.3",
+  "unit": "min",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.dev_all.nominal_minutes",
+  "note": "nominal rendered DEV driving scored (22 drives, DEV seeds only)"
+ },
+ "integrity_sim_synth_segments_flagged": {
+  "id": "integrity_sim_synth_segments_flagged",
+  "value": "8/8",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/integrity_sim.json#models.kitti_only.dev_synthetic_degradations",
+  "note": "synthetic degradation segments with a VO failure that drove q to CAUTION or below"
+ },
+ "kitti00_drift_1000m_pct": {
+  "id": "kitti00_drift_1000m_pct",
+  "value": "2.14",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_00.json#drift_1000m_pct",
+  "note": "KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; mean end-point drift over 242 segments of 1000 m (= 21.4 m)"
+ },
+ "kitti00_drift_100m_pct": {
+  "id": "kitti00_drift_100m_pct",
+  "value": "1.44",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_00.json#drift_100m_pct",
+  "note": "KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; mean end-point drift over 334 segments of 100 m (= 1.4 m)"
+ },
+ "kitti00_drift_500m_pct": {
+  "id": "kitti00_drift_500m_pct",
+  "value": "2.51",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_00.json#drift_500m_pct",
+  "note": "KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; mean end-point drift over 298 segments of 500 m (= 12.6 m)"
+ },
+ "kitti00_r_err_deg100m": {
+  "id": "kitti00_r_err_deg100m",
+  "value": "0.81",
+  "unit": "deg/100 m",
+  "label": "Tested",
+  "source": "results/kitti_vo_00.json#r_err_deg_per_100m",
+  "note": "KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; KITTI protocol"
+ },
+ "kitti00_t_err_pct": {
+  "id": "kitti00_t_err_pct",
+  "value": "2.11",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_00.json#t_err_pct",
+  "note": "KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; KITTI protocol, mean over 2402 segments of 100-800 m"
+ },
+ "kitti05_drift_1000m_pct": {
+  "id": "kitti05_drift_1000m_pct",
+  "value": "1.52",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_05.json#drift_1000m_pct",
+  "note": "KITTI 05, mean over 1000 m segments"
+ },
+ "kitti05_drift_100m_pct": {
+  "id": "kitti05_drift_100m_pct",
+  "value": "0.99",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_05.json#drift_100m_pct",
+  "note": "KITTI 05"
+ },
+ "kitti05_drift_500m_pct": {
+  "id": "kitti05_drift_500m_pct",
+  "value": "1.84",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_05.json#drift_500m_pct",
+  "note": "KITTI 05"
+ },
+ "kitti05_r_err_deg100m": {
+  "id": "kitti05_r_err_deg100m",
+  "value": "0.68",
+  "unit": "deg/100 m",
+  "label": "Tested",
+  "source": "results/kitti_vo_05.json#r_err_deg_per_100m",
+  "note": "KITTI 05"
+ },
+ "kitti05_t_err_pct": {
+  "id": "kitti05_t_err_pct",
+  "value": "1.53",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_05.json#t_err_pct",
+  "note": "KITTI 05, camera-only stereo VO, KITTI protocol 100-800 m"
+ },
+ "kitti07_drift_100m_pct": {
+  "id": "kitti07_drift_100m_pct",
+  "value": "1.29",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_07.json#drift_100m_pct",
+  "note": "KITTI 07"
+ },
+ "kitti07_drift_500m_pct": {
+  "id": "kitti07_drift_500m_pct",
+  "value": "2.70",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_07.json#drift_500m_pct",
+  "note": "KITTI 07"
+ },
+ "kitti07_r_err_deg100m": {
+  "id": "kitti07_r_err_deg100m",
+  "value": "1.28",
+  "unit": "deg/100 m",
+  "label": "Tested",
+  "source": "results/kitti_vo_07.json#r_err_deg_per_100m",
+  "note": "KITTI 07"
+ },
+ "kitti07_t_err_pct": {
+  "id": "kitti07_t_err_pct",
+  "value": "2.05",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_07.json#t_err_pct",
+  "note": "KITTI 07, camera-only stereo VO"
+ },
+ "kitti07_t_err_pct_current_vo": {
+  "id": "kitti07_t_err_pct_current_vo",
+  "value": "2.037",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_vo_07_check.json#configs.photometric_w15_it10.t_err_pct",
+  "note": "KITTI 07 with photometric normalisation + KLT 15 px/10 it (previous config 2.048 % in the same run)"
+ },
+ "kitti07_vo_p95_ms_prev_vs_current": {
+  "id": "kitti07_vo_p95_ms_prev_vs_current",
+  "value": "210 -> 167",
+  "unit": "ms",
+  "label": "Tested",
+  "source": "results/kitti_vo_07_check.json#configs.*.vo_ms_p95_excl_sgbm",
+  "note": "full-res KITTI VO excl. SGBM, paired per frame on a loaded shared laptop (ratio is the result)"
+ },
+ "kitti_pooled_r_err_deg100m": {
+  "id": "kitti_pooled_r_err_deg100m",
+  "value": "0.79",
+  "unit": "deg/100 m",
+  "label": "Tested",
+  "source": "results/kitti_summary.json#pooled.r_err_deg_per_100m",
+  "note": "KITTI 00 (frames 1101-4540) + 05 + 07, camera-only stereo VO; KITTI protocol pooled over 4525 segments of 100-800 m"
+ },
+ "kitti_pooled_t_err_pct": {
+  "id": "kitti_pooled_t_err_pct",
+  "value": "1.87",
+  "unit": "%",
+  "label": "Tested",
+  "source": "results/kitti_summary.json#pooled.t_err_pct",
+  "note": "KITTI 00 (frames 1101-4540) + 05 + 07, camera-only stereo VO; KITTI protocol pooled over 4525 segments of 100-800 m"
+ },
+ "link_packet_after_holdout_integration_frac_over_budget": {
+  "id": "link_packet_after_holdout_integration_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_integration.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_holdout_integration_p100_bytes": {
+  "id": "link_packet_after_holdout_integration_p100_bytes",
+  "value": "480.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_integration.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=440 packets"
+ },
+ "link_packet_after_holdout_integration_p50_bytes": {
+  "id": "link_packet_after_holdout_integration_p50_bytes",
+  "value": "339.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_integration.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=440 packets"
+ },
+ "link_packet_after_holdout_stereo_v2_nodyn_frac_over_budget": {
+  "id": "link_packet_after_holdout_stereo_v2_nodyn_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_stereo_v2_nodyn.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_holdout_stereo_v2_nodyn_p100_bytes": {
+  "id": "link_packet_after_holdout_stereo_v2_nodyn_p100_bytes",
+  "value": "480.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_stereo_v2_nodyn.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=168 packets"
+ },
+ "link_packet_after_holdout_stereo_v2_nodyn_p50_bytes": {
+  "id": "link_packet_after_holdout_stereo_v2_nodyn_p50_bytes",
+  "value": "434.5",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_stereo_v2_nodyn.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=168 packets"
+ },
+ "link_packet_after_holdout_tier0_v3_nodyn_frac_over_budget": {
+  "id": "link_packet_after_holdout_tier0_v3_nodyn_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_tier0_v3_nodyn.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_holdout_tier0_v3_nodyn_p100_bytes": {
+  "id": "link_packet_after_holdout_tier0_v3_nodyn_p100_bytes",
+  "value": "480.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_tier0_v3_nodyn.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2254 packets"
+ },
+ "link_packet_after_holdout_tier0_v3_nodyn_p50_bytes": {
+  "id": "link_packet_after_holdout_tier0_v3_nodyn_p50_bytes",
+  "value": "425.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_tier0_v3_nodyn.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2254 packets"
+ },
+ "link_packet_after_holdout_verify_tier0_frac_over_budget": {
+  "id": "link_packet_after_holdout_verify_tier0_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_verify_tier0.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_holdout_verify_tier0_p100_bytes": {
+  "id": "link_packet_after_holdout_verify_tier0_p100_bytes",
+  "value": "480.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_verify_tier0.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=4437 packets"
+ },
+ "link_packet_after_holdout_verify_tier0_p50_bytes": {
+  "id": "link_packet_after_holdout_verify_tier0_p50_bytes",
+  "value": "421.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_verify_tier0.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=4437 packets"
+ },
+ "link_packet_after_stereo_FULL_frac_over_budget": {
+  "id": "link_packet_after_stereo_FULL_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_stereo_FULL_p100_bytes": {
+  "id": "link_packet_after_stereo_FULL_p100_bytes",
+  "value": "480.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=124 packets"
+ },
+ "link_packet_after_stereo_FULL_p50_bytes": {
+  "id": "link_packet_after_stereo_FULL_p50_bytes",
+  "value": "447.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=124 packets"
+ },
+ "link_packet_after_stereo_FULL_verify_frac_over_budget": {
+  "id": "link_packet_after_stereo_FULL_verify_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL_verify.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_stereo_FULL_verify_p100_bytes": {
+  "id": "link_packet_after_stereo_FULL_verify_p100_bytes",
+  "value": "478.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL_verify.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=122 packets"
+ },
+ "link_packet_after_stereo_FULL_verify_p50_bytes": {
+  "id": "link_packet_after_stereo_FULL_verify_p50_bytes",
+  "value": "443.5",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL_verify.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=122 packets"
+ },
+ "link_packet_after_tier0_FULL_frac_over_budget": {
+  "id": "link_packet_after_tier0_FULL_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_FULL.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_tier0_FULL_p100_bytes": {
+  "id": "link_packet_after_tier0_FULL_p100_bytes",
+  "value": "480.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_FULL.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2255 packets"
+ },
+ "link_packet_after_tier0_FULL_p50_bytes": {
+  "id": "link_packet_after_tier0_FULL_p50_bytes",
+  "value": "427.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_FULL.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2255 packets"
+ },
+ "link_packet_after_tier0_TYPICAL_frac_over_budget": {
+  "id": "link_packet_after_tier0_TYPICAL_frac_over_budget",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_TYPICAL.after_frac_over_budget",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl"
+ },
+ "link_packet_after_tier0_TYPICAL_p100_bytes": {
+  "id": "link_packet_after_tier0_TYPICAL_p100_bytes",
+  "value": "480.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_TYPICAL.after_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2112 packets"
+ },
+ "link_packet_after_tier0_TYPICAL_p50_bytes": {
+  "id": "link_packet_after_tier0_TYPICAL_p50_bytes",
+  "value": "394.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_TYPICAL.after_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2112 packets"
+ },
+ "link_packet_before_holdout_integration_p100_bytes": {
+  "id": "link_packet_before_holdout_integration_p100_bytes",
+  "value": "1361.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_integration.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=440 packets"
+ },
+ "link_packet_before_holdout_integration_p50_bytes": {
+  "id": "link_packet_before_holdout_integration_p50_bytes",
+  "value": "917.5",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_integration.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=440 packets"
+ },
+ "link_packet_before_holdout_stereo_v2_nodyn_p100_bytes": {
+  "id": "link_packet_before_holdout_stereo_v2_nodyn_p100_bytes",
+  "value": "1662.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_stereo_v2_nodyn.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=168 packets"
+ },
+ "link_packet_before_holdout_stereo_v2_nodyn_p50_bytes": {
+  "id": "link_packet_before_holdout_stereo_v2_nodyn_p50_bytes",
+  "value": "1518.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_stereo_v2_nodyn.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=168 packets"
+ },
+ "link_packet_before_holdout_tier0_v3_nodyn_p100_bytes": {
+  "id": "link_packet_before_holdout_tier0_v3_nodyn_p100_bytes",
+  "value": "1513.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_tier0_v3_nodyn.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2254 packets"
+ },
+ "link_packet_before_holdout_tier0_v3_nodyn_p50_bytes": {
+  "id": "link_packet_before_holdout_tier0_v3_nodyn_p50_bytes",
+  "value": "1064.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_tier0_v3_nodyn.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2254 packets"
+ },
+ "link_packet_before_holdout_verify_tier0_p100_bytes": {
+  "id": "link_packet_before_holdout_verify_tier0_p100_bytes",
+  "value": "1472.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_verify_tier0.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=4437 packets"
+ },
+ "link_packet_before_holdout_verify_tier0_p50_bytes": {
+  "id": "link_packet_before_holdout_verify_tier0_p50_bytes",
+  "value": "993.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.holdout_verify_tier0.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=4437 packets"
+ },
+ "link_packet_before_stereo_FULL_p100_bytes": {
+  "id": "link_packet_before_stereo_FULL_p100_bytes",
+  "value": "1622.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=124 packets"
+ },
+ "link_packet_before_stereo_FULL_p50_bytes": {
+  "id": "link_packet_before_stereo_FULL_p50_bytes",
+  "value": "1521.5",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=124 packets"
+ },
+ "link_packet_before_stereo_FULL_verify_p100_bytes": {
+  "id": "link_packet_before_stereo_FULL_verify_p100_bytes",
+  "value": "1637.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL_verify.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=122 packets"
+ },
+ "link_packet_before_stereo_FULL_verify_p50_bytes": {
+  "id": "link_packet_before_stereo_FULL_verify_p50_bytes",
+  "value": "1494.5",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.stereo_FULL_verify.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=122 packets"
+ },
+ "link_packet_before_tier0_FULL_p100_bytes": {
+  "id": "link_packet_before_tier0_FULL_p100_bytes",
+  "value": "1491.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_FULL.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2255 packets"
+ },
+ "link_packet_before_tier0_FULL_p50_bytes": {
+  "id": "link_packet_before_tier0_FULL_p50_bytes",
+  "value": "1094.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_FULL.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2255 packets"
+ },
+ "link_packet_before_tier0_TYPICAL_p100_bytes": {
+  "id": "link_packet_before_tier0_TYPICAL_p100_bytes",
+  "value": "1281.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_TYPICAL.before_bytes.p100",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2112 packets"
+ },
+ "link_packet_before_tier0_TYPICAL_p50_bytes": {
+  "id": "link_packet_before_tier0_TYPICAL_p50_bytes",
+  "value": "875.0",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/link_budget.json#groups.tier0_TYPICAL.before_bytes.p50",
+  "note": "codec v2; budget 600 B = 9.6 kbit/s at 2.0 Hz; replay of DEV telemetry.jsonl; n=2112 packets"
+ },
+ "link_packet_budget_bytes": {
+  "id": "link_packet_budget_bytes",
+  "value": "600",
+  "unit": "B",
+  "label": "Proposed",
+  "source": "metagross/autonomy/link/codec.py#PACKET_BUDGET_B",
+  "note": "9.6 kbit/s / 8 / 2 Hz"
+ },
+ "localizer_hz_640": {
+  "id": "localizer_hz_640",
+  "value": "31.5",
+  "unit": "Hz",
+  "label": "Tested",
+  "source": "results/localizer_timing.json#hz_localizer_only",
+  "note": "Localizer.update at 640 px with shared disparity, i5-1135G7"
+ },
+ "localizer_p95_ms_sim_paired": {
+  "id": "localizer_p95_ms_sim_paired",
+  "value": "171.1 -> 124.0",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/vo_sim_dev.json#localizer_timing_paired",
+  "note": "stereo-mode Localizer.update p95, previous vs current VO config, paired on the same rendered DEV frames on a loaded shared laptop (ratio is the result)"
+ },
+ "perc_dev_stereo_F1_offhazard_ditch_cand_pct_after": {
+  "id": "perc_dev_stereo_F1_offhazard_ditch_cand_pct_after",
+  "value": "5.83",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.stereo.pooled_F1.cand_rate_off",
+  "note": "DEV F1 trail frames (stereo), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, after the perception fix"
+ },
+ "perc_dev_stereo_F1_offhazard_ditch_cand_pct_before": {
+  "id": "perc_dev_stereo_F1_offhazard_ditch_cand_pct_before",
+  "value": "23.61",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.stereo.pooled_F1.cand_rate_off",
+  "note": "DEV F1 trail frames (stereo), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, before the perception fix"
+ },
+ "perc_dev_stereo_F1_offhazard_lethal_pct_after": {
+  "id": "perc_dev_stereo_F1_offhazard_lethal_pct_after",
+  "value": "12.68",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.stereo.pooled_F1.lethal_rate_off",
+  "note": "DEV F1 (stereo), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, after"
+ },
+ "perc_dev_stereo_F1_offhazard_lethal_pct_before": {
+  "id": "perc_dev_stereo_F1_offhazard_lethal_pct_before",
+  "value": "30.14",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.stereo.pooled_F1.lethal_rate_off",
+  "note": "DEV F1 (stereo), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, before"
+ },
+ "perc_dev_stereo_certified_hazard_cells_in_envelope_after": {
+  "id": "perc_dev_stereo_certified_hazard_cells_in_envelope_after",
+  "value": "0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.stereo.pooled.certified_hazard_in_envelope.cells",
+  "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 85 DEV frames (stereo), of 487, after"
+ },
+ "perc_dev_stereo_certified_hazard_cells_in_envelope_before": {
+  "id": "perc_dev_stereo_certified_hazard_cells_in_envelope_before",
+  "value": "18",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.stereo.pooled.certified_hazard_in_envelope.cells",
+  "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 85 DEV frames (stereo), of 487, before"
+ },
+ "perc_dev_stereo_ditch103_r_stable_m_after": {
+  "id": "perc_dev_stereo_ditch103_r_stable_m_after",
+  "value": "4.65",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.stereo.sequences[seed=103].detection.r_stable_m",
+  "note": "DEV seed 103 ditch w=0.838 m (stereo): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; after"
+ },
+ "perc_dev_stereo_ditch103_r_stable_m_before": {
+  "id": "perc_dev_stereo_ditch103_r_stable_m_before",
+  "value": "5.25",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.stereo.sequences[seed=103].detection.r_stable_m",
+  "note": "DEV seed 103 ditch w=0.838 m (stereo): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; before"
+ },
+ "perc_dev_stereo_ditch_path_cells_certified_pct_after": {
+  "id": "perc_dev_stereo_ditch_path_cells_certified_pct_after",
+  "value": "0.0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.stereo.pooled.ditch_path_certified",
+  "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (stereo), 0 of 2244; after"
+ },
+ "perc_dev_stereo_ditch_path_cells_certified_pct_before": {
+  "id": "perc_dev_stereo_ditch_path_cells_certified_pct_before",
+  "value": "31.51",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.stereo.pooled.ditch_path_certified",
+  "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (stereo), 707 of 2244; before"
+ },
+ "perc_dev_stereo_perception_p50_ms_after": {
+  "id": "perc_dev_stereo_perception_p50_ms_after",
+  "value": "81.0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#timing_ab_stereo.after.p50_ms",
+  "note": "as above, median; after"
+ },
+ "perc_dev_stereo_perception_p50_ms_before": {
+  "id": "perc_dev_stereo_perception_p50_ms_before",
+  "value": "78.7",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#timing_ab_stereo.before.p50_ms",
+  "note": "as above, median; before"
+ },
+ "perc_dev_stereo_perception_p95_ms_after": {
+  "id": "perc_dev_stereo_perception_p95_ms_after",
+  "value": "107.7",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#timing_ab_stereo.after.p95_ms",
+  "note": "interleaved A/B, Perception.process wall clock incl. SGBM + segmenter at 1/3 rate, 85 DEV stereo frames, shared loaded laptop; after"
+ },
+ "perc_dev_stereo_perception_p95_ms_before": {
+  "id": "perc_dev_stereo_perception_p95_ms_before",
+  "value": "111.4",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#timing_ab_stereo.before.p95_ms",
+  "note": "interleaved A/B, Perception.process wall clock incl. SGBM + segmenter at 1/3 rate, 85 DEV stereo frames, shared loaded laptop; before"
+ },
+ "perc_dev_tier0_F1_offhazard_ditch_cand_pct_after": {
+  "id": "perc_dev_tier0_F1_offhazard_ditch_cand_pct_after",
+  "value": "0.13",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.pooled_F1.cand_rate_off",
+  "note": "DEV F1 trail frames (tier0), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, after the perception fix"
+ },
+ "perc_dev_tier0_F1_offhazard_ditch_cand_pct_before": {
+  "id": "perc_dev_tier0_F1_offhazard_ditch_cand_pct_before",
+  "value": "23.18",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.pooled_F1.cand_rate_off",
+  "note": "DEV F1 trail frames (tier0), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, before the perception fix"
+ },
+ "perc_dev_tier0_F1_offhazard_lethal_pct_after": {
+  "id": "perc_dev_tier0_F1_offhazard_lethal_pct_after",
+  "value": "1.16",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.pooled_F1.lethal_rate_off",
+  "note": "DEV F1 (tier0), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, after"
+ },
+ "perc_dev_tier0_F1_offhazard_lethal_pct_before": {
+  "id": "perc_dev_tier0_F1_offhazard_lethal_pct_before",
+  "value": "24.18",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.pooled_F1.lethal_rate_off",
+  "note": "DEV F1 (tier0), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, before"
+ },
+ "perc_dev_tier0_certified_hazard_cells_in_envelope_after": {
+  "id": "perc_dev_tier0_certified_hazard_cells_in_envelope_after",
+  "value": "25",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.pooled.certified_hazard_in_envelope.cells",
+  "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 382 DEV frames (tier0), of 2846, after"
+ },
+ "perc_dev_tier0_certified_hazard_cells_in_envelope_before": {
+  "id": "perc_dev_tier0_certified_hazard_cells_in_envelope_before",
+  "value": "195",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.pooled.certified_hazard_in_envelope.cells",
+  "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 382 DEV frames (tier0), of 2846, before"
+ },
+ "perc_dev_tier0_ditch103_r_stable_m_after": {
+  "id": "perc_dev_tier0_ditch103_r_stable_m_after",
+  "value": "6.65",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.sequences[seed=103].detection.r_stable_m",
+  "note": "DEV seed 103 ditch w=0.838 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; after"
+ },
+ "perc_dev_tier0_ditch103_r_stable_m_before": {
+  "id": "perc_dev_tier0_ditch103_r_stable_m_before",
+  "value": "6.25",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.sequences[seed=103].detection.r_stable_m",
+  "note": "DEV seed 103 ditch w=0.838 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; before"
+ },
+ "perc_dev_tier0_ditch109_r_stable_m_after": {
+  "id": "perc_dev_tier0_ditch109_r_stable_m_after",
+  "value": "6.85",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.sequences[seed=109].detection.r_stable_m",
+  "note": "DEV seed 109 ditch w=1.036 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.77 m; after"
+ },
+ "perc_dev_tier0_ditch109_r_stable_m_before": {
+  "id": "perc_dev_tier0_ditch109_r_stable_m_before",
+  "value": "8.85",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.sequences[seed=109].detection.r_stable_m",
+  "note": "DEV seed 109 ditch w=1.036 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.77 m; before"
+ },
+ "perc_dev_tier0_ditch110_r_stable_m_after": {
+  "id": "perc_dev_tier0_ditch110_r_stable_m_after",
+  "value": "2.75",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.sequences[seed=110].detection.r_stable_m",
+  "note": "DEV seed 110 ditch w=0.823 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.98 m; after"
+ },
+ "perc_dev_tier0_ditch110_r_stable_m_before": {
+  "id": "perc_dev_tier0_ditch110_r_stable_m_before",
+  "value": "2.95",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.sequences[seed=110].detection.r_stable_m",
+  "note": "DEV seed 110 ditch w=0.823 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.98 m; before"
+ },
+ "perc_dev_tier0_ditch115_r_stable_m_after": {
+  "id": "perc_dev_tier0_ditch115_r_stable_m_after",
+  "value": "5.95",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.sequences[seed=115].detection.r_stable_m",
+  "note": "DEV seed 115 ditch w=0.662 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.29 m; after"
+ },
+ "perc_dev_tier0_ditch115_r_stable_m_before": {
+  "id": "perc_dev_tier0_ditch115_r_stable_m_before",
+  "value": "7.35",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.sequences[seed=115].detection.r_stable_m",
+  "note": "DEV seed 115 ditch w=0.662 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.29 m; before"
+ },
+ "perc_dev_tier0_ditch_path_cells_certified_pct_after": {
+  "id": "perc_dev_tier0_ditch_path_cells_certified_pct_after",
+  "value": "0.88",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#after.tier0.pooled.ditch_path_certified",
+  "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (tier0), 94 of 10712; after"
+ },
+ "perc_dev_tier0_ditch_path_cells_certified_pct_before": {
+  "id": "perc_dev_tier0_ditch_path_cells_certified_pct_before",
+  "value": "10.6",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/perception_dev.json#before.tier0.pooled.ditch_path_certified",
+  "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (tier0), 1136 of 10712; before"
+ },
+ "renderer_ms_js_side": {
+  "id": "renderer_ms_js_side",
+  "value": "31.6",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/renderer_bench.json#stereo_ms_js_side.mean",
+  "note": "browser-side render+readback per stereo pair, Iris Xe"
+ },
+ "renderer_sgbm_median_err_px": {
+  "id": "renderer_sgbm_median_err_px",
+  "value": "0.22",
+  "unit": "px",
+  "label": "Simulated",
+  "source": "results/renderer_bench.json#sgbm.median_abs_disp_err_px",
+  "note": "rendered stereo, SGBM vs GT disparity on ground"
+ },
+ "renderer_sgbm_valid_ground": {
+  "id": "renderer_sgbm_valid_ground",
+  "value": "0.998",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/renderer_bench.json#sgbm.valid_ground_fraction",
+  "note": "rendered stereo, SGBM valid disparity on ground within 10 m"
+ },
+ "seg_cpu_latency_threads_2_ms": {
+  "id": "seg_cpu_latency_threads_2_ms",
+  "value": "63.49",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
+ },
+ "seg_cpu_latency_threads_4_ms": {
+  "id": "seg_cpu_latency_threads_4_ms",
+  "value": "84.91",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back"
+ },
+ "seg_cpu_test_false_hazard_rate": {
+  "id": "seg_cpu_test_false_hazard_rate",
+  "value": "0.046",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_false_safe_obstacle": {
+  "id": "seg_cpu_test_false_safe_obstacle",
+  "value": "0.0265",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_false_safe_rate": {
+  "id": "seg_cpu_test_false_safe_rate",
+  "value": "0.0266",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+ },
+ "seg_cpu_test_false_safe_rate_delta_vs_smoke": {
+  "id": "seg_cpu_test_false_safe_rate_delta_vs_smoke",
+  "value": "-0.0168",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+ },
+ "seg_cpu_test_false_safe_rate_delta_vs_zeroshot": {
+  "id": "seg_cpu_test_false_safe_rate_delta_vs_zeroshot",
+  "value": "0.0003",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+ },
+ "seg_cpu_test_false_safe_water": {
+  "id": "seg_cpu_test_false_safe_water",
+  "value": "0.1428",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_false_safe_water_delta_vs_smoke": {
+  "id": "seg_cpu_test_false_safe_water_delta_vs_smoke",
+  "value": "-0.7567",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+ },
+ "seg_cpu_test_false_safe_water_delta_vs_zeroshot": {
+  "id": "seg_cpu_test_false_safe_water_delta_vs_zeroshot",
+  "value": "-0.6469",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+ },
+ "seg_cpu_test_hazard_to_stable_rate": {
+  "id": "seg_cpu_test_hazard_to_stable_rate",
+  "value": "0.0048",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_hazard_to_stable_rate_delta_vs_smoke": {
+  "id": "seg_cpu_test_hazard_to_stable_rate_delta_vs_smoke",
+  "value": "0.0037",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+ },
+ "seg_cpu_test_hazard_to_stable_rate_delta_vs_zeroshot": {
+  "id": "seg_cpu_test_hazard_to_stable_rate_delta_vs_zeroshot",
+  "value": "0.0036",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+ },
+ "seg_cpu_test_iou_obstacle": {
+  "id": "seg_cpu_test_iou_obstacle",
+  "value": "0.864",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_iou_sky": {
+  "id": "seg_cpu_test_iou_sky",
+  "value": "0.5878",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_iou_stable": {
+  "id": "seg_cpu_test_iou_stable",
+  "value": "0.8555",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_iou_unstable": {
+  "id": "seg_cpu_test_iou_unstable",
+  "value": "0.9197",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_iou_water": {
+  "id": "seg_cpu_test_iou_water",
+  "value": "0.4108",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_miou": {
+  "id": "seg_cpu_test_miou",
+  "value": "0.7276",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+ },
+ "seg_cpu_test_miou_delta_vs_smoke": {
+  "id": "seg_cpu_test_miou_delta_vs_smoke",
+  "value": "0.0948",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 733 images"
+ },
+ "seg_cpu_test_miou_delta_vs_zeroshot": {
+  "id": "seg_cpu_test_miou_delta_vs_zeroshot",
+  "value": "0.1838",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 733 images"
+ },
+ "seg_cpu_test_obstacle_to_stable_rate": {
+  "id": "seg_cpu_test_obstacle_to_stable_rate",
+  "value": "0.0048",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_test_pixel_acc": {
+  "id": "seg_cpu_test_pixel_acc",
+  "value": "0.9269",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+ },
+ "seg_cpu_test_water_to_stable_rate": {
+  "id": "seg_cpu_test_water_to_stable_rate",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L test (n=733), label resolution"
+ },
+ "seg_cpu_train_iters_at_best": {
+  "id": "seg_cpu_train_iters_at_best",
+  "value": "2500",
+  "unit": "iterations",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; batch 8, [256, 320] crops, laptop CPU (2 threads)"
+ },
+ "seg_cpu_val_false_hazard_rate": {
+  "id": "seg_cpu_val_false_hazard_rate",
+  "value": "0.049",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_false_safe_obstacle": {
+  "id": "seg_cpu_val_false_safe_obstacle",
+  "value": "0.1943",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_false_safe_rate": {
+  "id": "seg_cpu_val_false_safe_rate",
+  "value": "0.2047",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+ },
+ "seg_cpu_val_false_safe_rate_delta_vs_smoke": {
+  "id": "seg_cpu_val_false_safe_rate_delta_vs_smoke",
+  "value": "-0.0681",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+ },
+ "seg_cpu_val_false_safe_rate_delta_vs_zeroshot": {
+  "id": "seg_cpu_val_false_safe_rate_delta_vs_zeroshot",
+  "value": "0.0361",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+ },
+ "seg_cpu_val_false_safe_water": {
+  "id": "seg_cpu_val_false_safe_water",
+  "value": "0.8829",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_false_safe_water_delta_vs_smoke": {
+  "id": "seg_cpu_val_false_safe_water_delta_vs_smoke",
+  "value": "-0.0589",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+ },
+ "seg_cpu_val_false_safe_water_delta_vs_zeroshot": {
+  "id": "seg_cpu_val_false_safe_water_delta_vs_zeroshot",
+  "value": "0.3162",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+ },
+ "seg_cpu_val_hazard_to_stable_rate": {
+  "id": "seg_cpu_val_hazard_to_stable_rate",
+  "value": "0.0033",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_hazard_to_stable_rate_delta_vs_smoke": {
+  "id": "seg_cpu_val_hazard_to_stable_rate_delta_vs_smoke",
+  "value": "0.002",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+ },
+ "seg_cpu_val_hazard_to_stable_rate_delta_vs_zeroshot": {
+  "id": "seg_cpu_val_hazard_to_stable_rate_delta_vs_zeroshot",
+  "value": "-0.0",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+ },
+ "seg_cpu_val_iou_obstacle": {
+  "id": "seg_cpu_val_iou_obstacle",
+  "value": "0.7464",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_iou_sky": {
+  "id": "seg_cpu_val_iou_sky",
+  "value": "0.7211",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_iou_stable": {
+  "id": "seg_cpu_val_iou_stable",
+  "value": "0.7076",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_iou_unstable": {
+  "id": "seg_cpu_val_iou_unstable",
+  "value": "0.6636",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_iou_water": {
+  "id": "seg_cpu_val_iou_water",
+  "value": "0.0452",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_miou": {
+  "id": "seg_cpu_val_miou",
+  "value": "0.5768",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+ },
+ "seg_cpu_val_miou_delta_vs_smoke": {
+  "id": "seg_cpu_val_miou_delta_vs_smoke",
+  "value": "0.0258",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) on the same 1924 images"
+ },
+ "seg_cpu_val_miou_delta_vs_zeroshot": {
+  "id": "seg_cpu_val_miou_delta_vs_zeroshot",
+  "value": "0.0342",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution; ours minus Zero-shot SegFormer-B0 (ADE20K -> 5 classes) on the same 1924 images"
+ },
+ "seg_cpu_val_obstacle_to_stable_rate": {
+  "id": "seg_cpu_val_obstacle_to_stable_rate",
+  "value": "0.0033",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_cpu_val_pixel_acc": {
+  "id": "seg_cpu_val_pixel_acc",
+  "value": "0.8292",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750"
+ },
+ "seg_cpu_val_water_to_stable_rate": {
+  "id": "seg_cpu_val_water_to_stable_rate",
+  "value": "0.0",
+  "unit": "fraction",
+  "label": "Tested",
+  "source": "results/seg_cpu.json",
+  "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), complete, best checkpoint at iteration 2500/2750; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_smoke_latency_threads_2_ms": {
+  "id": "seg_smoke_latency_threads_2_ms",
+  "value": "31.1",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "Segmenter.__call__ median on this laptop"
+ },
+ "seg_smoke_latency_threads_4_ms": {
+  "id": "seg_smoke_latency_threads_4_ms",
+  "value": "26.68",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "Segmenter.__call__ median on this laptop"
+ },
+ "seg_smoke_test_false_safe_rate": {
+  "id": "seg_smoke_test_false_safe_rate",
+  "value": "0.0434",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)"
+ },
+ "seg_smoke_test_miou": {
+  "id": "seg_smoke_test_miou",
+  "value": "0.6328",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)"
+ },
+ "seg_smoke_test_pixel_acc": {
+  "id": "seg_smoke_test_pixel_acc",
+  "value": "0.9216",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)"
+ },
+ "seg_smoke_val_false_safe_rate": {
+  "id": "seg_smoke_val_false_safe_rate",
+  "value": "0.2728",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)"
+ },
+ "seg_smoke_val_miou": {
+  "id": "seg_smoke_val_miou",
+  "value": "0.551",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)"
+ },
+ "seg_smoke_val_pixel_acc": {
+  "id": "seg_smoke_val_pixel_acc",
+  "value": "0.7892",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_smoke.json",
+  "note": "SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs)"
+ },
+ "seg_zeroshot_latency_threads_2_ms": {
+  "id": "seg_zeroshot_latency_threads_2_ms",
+  "value": "223.03",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Segmenter.__call__ median on this laptop"
+ },
+ "seg_zeroshot_latency_threads_4_ms": {
+  "id": "seg_zeroshot_latency_threads_4_ms",
+  "value": "118.4",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Segmenter.__call__ median on this laptop"
+ },
+ "seg_zeroshot_test_false_safe_rate": {
+  "id": "seg_zeroshot_test_false_safe_rate",
+  "value": "0.0263",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+ },
+ "seg_zeroshot_test_miou": {
+  "id": "seg_zeroshot_test_miou",
+  "value": "0.5437",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+ },
+ "seg_zeroshot_test_pixel_acc": {
+  "id": "seg_zeroshot_test_pixel_acc",
+  "value": "0.8759",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+ },
+ "seg_zeroshot_val_false_safe_rate": {
+  "id": "seg_zeroshot_val_false_safe_rate",
+  "value": "0.1686",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+ },
+ "seg_zeroshot_val_miou": {
+  "id": "seg_zeroshot_val_miou",
+  "value": "0.5426",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+ },
+ "seg_zeroshot_val_pixel_acc": {
+  "id": "seg_zeroshot_val_pixel_acc",
+  "value": "0.8087",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_zeroshot.json",
+  "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+ },
+ "verify_dev2_perception_122_min_obstacle_size_ablation": {
+  "id": "verify_dev2_perception_122_min_obstacle_size_ablation",
+  "value": "13/393 -> 0/393",
+  "unit": "cells",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "results/verify_dev2/_scripts/pd_122.py: DEV 122 stereo approach (cached), tree perception default vs min_obstacle_size=False; certified hazard cells in the stopping envelope (other round-2 switches: no effect)"
+ },
+ "verify_dev2_perception_ab_stereo_cand_rate_off": {
+  "id": "verify_dev2_perception_ab_stereo_cand_rate_off",
+  "value": "0.0546 -> 0.0535",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; share of observed off-hazard cells (> buffer from any GT hazard)"
+ },
+ "verify_dev2_perception_ab_stereo_certified_hazard_in_envelope": {
+  "id": "verify_dev2_perception_ab_stereo_certified_hazard_in_envelope",
+  "value": "0/1878 -> 13/1878",
+  "unit": "cells",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; GT lethal cells in the path-corridor stopping envelope that perception certifies as ground (all on 122 approach)"
+ },
+ "verify_dev2_perception_ab_stereo_lethal_rate_off": {
+  "id": "verify_dev2_perception_ab_stereo_lethal_rate_off",
+  "value": "0.1032 -> 0.0668",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; share of observed off-hazard cells (> buffer from any GT hazard)"
+ },
+ "verify_dev2_perception_ab_stereo_positive_rate_off": {
+  "id": "verify_dev2_perception_ab_stereo_positive_rate_off",
+  "value": "0.0470 -> 0.0108",
+  "unit": "fraction",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; share of observed off-hazard cells (> buffer from any GT hazard)"
+ },
+ "verify_dev2_stereo_full_arrived_est": {
+  "id": "verify_dev2_stereo_full_arrived_est",
+  "value": "1/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); ARRIVED commanded in the vehicle's own estimate (gt/cmds.npz)"
+ },
+ "verify_dev2_stereo_full_arrived_short": {
+  "id": "verify_dev2_stereo_full_arrived_short",
+  "value": "1/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); referee arrived_short: ARRIVED at rest with GT goal > 2 m away"
+ },
+ "verify_dev2_stereo_full_collisions": {
+  "id": "verify_dev2_stereo_full_collisions",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_stereo_full_compute_p50_p95": {
+  "id": "verify_dev2_stereo_full_compute_p50_p95",
+  "value": "167 / 261",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); autonomy/timings.csv compute_ms over all ticks"
+ },
+ "verify_dev2_stereo_full_ditch_entries": {
+  "id": "verify_dev2_stereo_full_ditch_entries",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_stereo_full_final_error_p50": {
+  "id": "verify_dev2_stereo_full_final_error_p50",
+  "value": "1.99",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); GT distance to B at episode end"
+ },
+ "verify_dev2_stereo_full_holdout_success": {
+  "id": "verify_dev2_stereo_full_holdout_success",
+  "value": "3/6",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); holdout subset seeds [120, 121, 122, 126, 127, 128]"
+ },
+ "verify_dev2_stereo_full_mean_speed": {
+  "id": "verify_dev2_stereo_full_mean_speed",
+  "value": "1.26",
+  "unit": "m/s",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); mean over runs of referee mean_speed"
+ },
+ "verify_dev2_stereo_full_odometry_ratio_p50": {
+  "id": "verify_dev2_stereo_full_odometry_ratio_p50",
+  "value": "1.004",
+  "unit": "ratio",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); estimated path length (telemetry pose, ~2 Hz) / GT path length at the same timestamps, median over runs"
+ },
+ "verify_dev2_stereo_full_out_of_bounds": {
+  "id": "verify_dev2_stereo_full_out_of_bounds",
+  "value": "0",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_stereo_full_packet_p50_p95": {
+  "id": "verify_dev2_stereo_full_packet_p50_p95",
+  "value": "443 / 476",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); live telemetry packet_bytes; fraction > 600 B = 0.000"
+ },
+ "verify_dev2_stereo_full_same16_safety_events": {
+  "id": "verify_dev2_stereo_full_same16_safety_events",
+  "value": "success 8/16, ditch 1, collisions 0, out-of-bounds 0",
+  "unit": "runs / counts",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "stereo FULL vs T1 (unknown_is_free, no negobs, no governor, 2.0 m/s) on the same 16 DEV seeds [103, 104, 105, 106, 109, 110, 111, 115, 116, 117, 121, 122, 123, 127, 128, 129]; referee counts"
+ },
+ "verify_dev2_stereo_full_success": {
+  "id": "verify_dev2_stereo_full_success",
+  "value": "19/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); success = referee: GT body origin within 2 m of B"
+ },
+ "verify_dev2_stereo_full_water_entries": {
+  "id": "verify_dev2_stereo_full_water_entries",
+  "value": "3",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_stereo_t1_arrived_est": {
+  "id": "verify_dev2_stereo_t1_arrived_est",
+  "value": "0/16",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); ARRIVED commanded in the vehicle's own estimate (gt/cmds.npz)"
+ },
+ "verify_dev2_stereo_t1_arrived_short": {
+  "id": "verify_dev2_stereo_t1_arrived_short",
+  "value": "0/16",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); referee arrived_short: ARRIVED at rest with GT goal > 2 m away"
+ },
+ "verify_dev2_stereo_t1_collisions": {
+  "id": "verify_dev2_stereo_t1_collisions",
+  "value": "2",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_stereo_t1_compute_p50_p95": {
+  "id": "verify_dev2_stereo_t1_compute_p50_p95",
+  "value": "138 / 234",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); autonomy/timings.csv compute_ms over all ticks"
+ },
+ "verify_dev2_stereo_t1_ditch_entries": {
+  "id": "verify_dev2_stereo_t1_ditch_entries",
+  "value": "2",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_stereo_t1_final_error_p50": {
+  "id": "verify_dev2_stereo_t1_final_error_p50",
+  "value": "12.33",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); GT distance to B at episode end"
+ },
+ "verify_dev2_stereo_t1_holdout_success": {
+  "id": "verify_dev2_stereo_t1_holdout_success",
+  "value": "1/4",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); holdout subset seeds [121, 122, 127, 128]"
+ },
+ "verify_dev2_stereo_t1_mean_speed": {
+  "id": "verify_dev2_stereo_t1_mean_speed",
+  "value": "1.5",
+  "unit": "m/s",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); mean over runs of referee mean_speed"
+ },
+ "verify_dev2_stereo_t1_odometry_ratio_p50": {
+  "id": "verify_dev2_stereo_t1_odometry_ratio_p50",
+  "value": "1.005",
+  "unit": "ratio",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); estimated path length (telemetry pose, ~2 Hz) / GT path length at the same timestamps, median over runs"
+ },
+ "verify_dev2_stereo_t1_out_of_bounds": {
+  "id": "verify_dev2_stereo_t1_out_of_bounds",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_stereo_t1_packet_p50_p95": {
+  "id": "verify_dev2_stereo_t1_packet_p50_p95",
+  "value": "432 / 471",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); live telemetry packet_bytes; fraction > 600 B = 0.000"
+ },
+ "verify_dev2_stereo_t1_same16_safety_events": {
+  "id": "verify_dev2_stereo_t1_same16_safety_events",
+  "value": "success 8/16, ditch 2, collisions 2, out-of-bounds 2",
+  "unit": "runs / counts",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "stereo FULL vs T1 (unknown_is_free, no negobs, no governor, 2.0 m/s) on the same 16 DEV seeds [103, 104, 105, 106, 109, 110, 111, 115, 116, 117, 121, 122, 123, 127, 128, 129]; referee counts"
+ },
+ "verify_dev2_stereo_t1_success": {
+  "id": "verify_dev2_stereo_t1_success",
+  "value": "8/16",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); success = referee: GT body origin within 2 m of B"
+ },
+ "verify_dev2_stereo_t1_water_entries": {
+  "id": "verify_dev2_stereo_t1_water_entries",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode stereo, FULL 1 worker in 3 batches 07:03-07:55 (load varied), T1 1-2 workers, 5 Hz camera, --max-sim-s 150), config T1, DEV seeds 103,104,105,106,109,110,111,115,116,117,121,122,123,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_full_arrived_est": {
+  "id": "verify_dev2_tier0_full_arrived_est",
+  "value": "10/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); ARRIVED commanded in the vehicle's own estimate (gt/cmds.npz)"
+ },
+ "verify_dev2_tier0_full_arrived_short": {
+  "id": "verify_dev2_tier0_full_arrived_short",
+  "value": "8/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); referee arrived_short: ARRIVED at rest with GT goal > 2 m away"
+ },
+ "verify_dev2_tier0_full_baseline_fee1da9_success": {
+  "id": "verify_dev2_tier0_full_baseline_fee1da9_success",
+  "value": "2/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "tier0 FULL, DEV seeds 100-129: fee1da9 (git archive snapshot run from scratch) vs working tree, each at 2 workers with one stereo worker in parallel (fee1da9 07:29-, working tree 07:02-07:24)"
+ },
+ "verify_dev2_tier0_full_collisions": {
+  "id": "verify_dev2_tier0_full_collisions",
+  "value": "1",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_full_compute_p50_p95": {
+  "id": "verify_dev2_tier0_full_compute_p50_p95",
+  "value": "154 / 214",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); autonomy/timings.csv compute_ms over all ticks"
+ },
+ "verify_dev2_tier0_full_ditch_entries": {
+  "id": "verify_dev2_tier0_full_ditch_entries",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_full_final_error_p50": {
+  "id": "verify_dev2_tier0_full_final_error_p50",
+  "value": "2.41",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); GT distance to B at episode end"
+ },
+ "verify_dev2_tier0_full_holdout_success": {
+  "id": "verify_dev2_tier0_full_holdout_success",
+  "value": "3/6",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); holdout subset seeds [120, 121, 122, 126, 127, 128]"
+ },
+ "verify_dev2_tier0_full_mean_speed": {
+  "id": "verify_dev2_tier0_full_mean_speed",
+  "value": "1.28",
+  "unit": "m/s",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); mean over runs of referee mean_speed"
+ },
+ "verify_dev2_tier0_full_odometry_ratio_p50": {
+  "id": "verify_dev2_tier0_full_odometry_ratio_p50",
+  "value": "1.016",
+  "unit": "ratio",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); estimated path length (telemetry pose, ~2 Hz) / GT path length at the same timestamps, median over runs"
+ },
+ "verify_dev2_tier0_full_out_of_bounds": {
+  "id": "verify_dev2_tier0_full_out_of_bounds",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_full_packet_p50_p95": {
+  "id": "verify_dev2_tier0_full_packet_p50_p95",
+  "value": "422 / 471",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); live telemetry packet_bytes; fraction > 600 B = 0.000"
+ },
+ "verify_dev2_tier0_full_success": {
+  "id": "verify_dev2_tier0_full_success",
+  "value": "11/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); success = referee: GT body origin within 2 m of B"
+ },
+ "verify_dev2_tier0_full_tree_success_same_session": {
+  "id": "verify_dev2_tier0_full_tree_success_same_session",
+  "value": "11/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "tier0 FULL, DEV seeds 100-129: fee1da9 (git archive snapshot run from scratch) vs working tree, each at 2 workers with one stereo worker in parallel (fee1da9 07:29-, working tree 07:02-07:24)"
+ },
+ "verify_dev2_tier0_full_water_entries": {
+  "id": "verify_dev2_tier0_full_water_entries",
+  "value": "5",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config FULL, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_t1_arrived_est": {
+  "id": "verify_dev2_tier0_t1_arrived_est",
+  "value": "7/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); ARRIVED commanded in the vehicle's own estimate (gt/cmds.npz)"
+ },
+ "verify_dev2_tier0_t1_arrived_short": {
+  "id": "verify_dev2_tier0_t1_arrived_short",
+  "value": "2/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); referee arrived_short: ARRIVED at rest with GT goal > 2 m away"
+ },
+ "verify_dev2_tier0_t1_collisions": {
+  "id": "verify_dev2_tier0_t1_collisions",
+  "value": "0",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_t1_compute_p50_p95": {
+  "id": "verify_dev2_tier0_t1_compute_p50_p95",
+  "value": "138 / 191",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); autonomy/timings.csv compute_ms over all ticks"
+ },
+ "verify_dev2_tier0_t1_ditch_entries": {
+  "id": "verify_dev2_tier0_t1_ditch_entries",
+  "value": "3",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_t1_final_error_p50": {
+  "id": "verify_dev2_tier0_t1_final_error_p50",
+  "value": "2.0",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); GT distance to B at episode end"
+ },
+ "verify_dev2_tier0_t1_holdout_success": {
+  "id": "verify_dev2_tier0_t1_holdout_success",
+  "value": "3/6",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); holdout subset seeds [120, 121, 122, 126, 127, 128]"
+ },
+ "verify_dev2_tier0_t1_mean_speed": {
+  "id": "verify_dev2_tier0_t1_mean_speed",
+  "value": "1.55",
+  "unit": "m/s",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); mean over runs of referee mean_speed"
+ },
+ "verify_dev2_tier0_t1_odometry_ratio_p50": {
+  "id": "verify_dev2_tier0_t1_odometry_ratio_p50",
+  "value": "1.017",
+  "unit": "ratio",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); estimated path length (telemetry pose, ~2 Hz) / GT path length at the same timestamps, median over runs"
+ },
+ "verify_dev2_tier0_t1_out_of_bounds": {
+  "id": "verify_dev2_tier0_t1_out_of_bounds",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev2_tier0_t1_packet_p50_p95": {
+  "id": "verify_dev2_tier0_t1_packet_p50_p95",
+  "value": "392 / 470",
+  "unit": "B",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); live telemetry packet_bytes; fraction > 600 B = 0.000"
+ },
+ "verify_dev2_tier0_t1_success": {
+  "id": "verify_dev2_tier0_t1_success",
+  "value": "16/30",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training); success = referee: GT body origin within 2 m of B"
+ },
+ "verify_dev2_tier0_t1_water_entries": {
+  "id": "verify_dev2_tier0_t1_water_entries",
+  "value": "5",
+  "unit": "count",
+  "label": "Simulated",
+  "source": "results/verify_dev2/verify_dev2.json",
+  "note": "verifier round-2 re-run: python -m metagross.sim.batch --split dev (--sensor-mode tier0, 2 workers, one stereo worker in parallel, 5 Hz camera), config T1, DEV seeds 100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129, uncommitted tree on fee1da9, shared 4-core laptop (other agents + seg training)"
+ },
+ "verify_dev_full_arrived_est": {
+  "id": "verify_dev_full_arrived_est",
+  "value": "19/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config FULL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m; arrived_est = ARRIVED declared in the vehicle's own pose estimate"
+ },
+ "verify_dev_full_collisions": {
+  "id": "verify_dev_full_collisions",
+  "value": "1",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config FULL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_full_ditch_entries": {
+  "id": "verify_dev_full_ditch_entries",
+  "value": "0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config FULL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_full_success": {
+  "id": "verify_dev_full_success",
+  "value": "1/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config FULL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_noneg_arrived_est": {
+  "id": "verify_dev_noneg_arrived_est",
+  "value": "4/10",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0_noneg config NO-NEG, DEV seeds 103-128 (n=10), 2 workers on a shared laptop; success = referee GT goal within 2 m; arrived_est = ARRIVED declared in the vehicle's own pose estimate"
+ },
+ "verify_dev_noneg_collisions": {
+  "id": "verify_dev_noneg_collisions",
+  "value": "0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0_noneg config NO-NEG, DEV seeds 103-128 (n=10), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_noneg_ditch_entries": {
+  "id": "verify_dev_noneg_ditch_entries",
+  "value": "0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0_noneg config NO-NEG, DEV seeds 103-128 (n=10), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_noneg_success": {
+  "id": "verify_dev_noneg_success",
+  "value": "0/10",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0_noneg config NO-NEG, DEV seeds 103-128 (n=10), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_stereo_full_arrived_est": {
+  "id": "verify_dev_stereo_full_arrived_est",
+  "value": "0/3",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch stereo config FULL, DEV seeds 102-104 (n=3), 2 workers on a shared laptop; success = referee GT goal within 2 m; arrived_est = ARRIVED declared in the vehicle's own pose estimate"
+ },
+ "verify_dev_stereo_full_collisions": {
+  "id": "verify_dev_stereo_full_collisions",
+  "value": "0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch stereo config FULL, DEV seeds 102-104 (n=3), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_stereo_full_ditch_entries": {
+  "id": "verify_dev_stereo_full_ditch_entries",
+  "value": "0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch stereo config FULL, DEV seeds 102-104 (n=3), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_stereo_full_success": {
+  "id": "verify_dev_stereo_full_success",
+  "value": "0/3",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch stereo config FULL, DEV seeds 102-104 (n=3), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_typical_arrived_est": {
+  "id": "verify_dev_typical_arrived_est",
+  "value": "15/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config TYPICAL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m; arrived_est = ARRIVED declared in the vehicle's own pose estimate"
+ },
+ "verify_dev_typical_collisions": {
+  "id": "verify_dev_typical_collisions",
+  "value": "2",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config TYPICAL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_typical_ditch_entries": {
+  "id": "verify_dev_typical_ditch_entries",
+  "value": "0",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config TYPICAL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "verify_dev_typical_success": {
+  "id": "verify_dev_typical_success",
+  "value": "3/30",
+  "unit": "",
+  "label": "Simulated",
+  "source": "results/verify_dev/verify_dev.json",
+  "note": "verifier re-run, metagross.sim.batch tier0 config TYPICAL, DEV seeds 100-129 (n=30), 2 workers on a shared laptop; success = referee GT goal within 2 m"
+ },
+ "vo_sim_dev_median_drift_pct": {
+  "id": "vo_sim_dev_median_drift_pct",
+  "value": "0.62",
+  "unit": "%",
+  "label": "Simulated",
+  "source": "results/vo_sim_dev.json#summary.photometric.median_drift_pct",
+  "note": "VO-only end-point drift, median over 22 rendered DEV drives (1071 m)"
+ }
+}

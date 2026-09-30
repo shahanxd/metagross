@@ -1,0 +1,14 @@
+{
+ "mission_id": "F2_ditch_field-109",
+ "goal_xy_a": [
+  41.3144,
+  1.4518
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 163.3,
+ "goal_sigma_m": 0.5224,
+ "goal_entry": {
+  "range_m": 41.3399,
+  "bearing_deg": 2.0126
+ }
+}

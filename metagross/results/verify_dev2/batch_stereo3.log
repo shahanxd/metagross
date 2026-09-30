@@ -1,0 +1,39 @@
+
+30 September 2026 07:28:57
+
+
+python.exe : 2026-09-30 07:28:57,898 INFO __main__: 20 jobs, 0 already done, 20 to run on 1 workers
+At line:1 char:442
++ ... tereo3.log; & .\.venv\Scripts\python.exe -m metagross.sim.batch --spl ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:2...un on 1 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:33:07,814 INFO __main__: done FULL seed 127: success=False failure=timeout
+2026-09-30 07:34:26,451 INFO __main__: done FULL seed 128: success=True failure=None
+2026-09-30 07:35:46,556 INFO __main__: done FULL seed 126: success=True failure=None
+2026-09-30 07:40:07,133 INFO __main__: done FULL seed 109: success=False failure=timeout
+2026-09-30 07:41:56,173 INFO __main__: done FULL seed 116: success=True failure=None
+2026-09-30 07:43:01,058 INFO __main__: done FULL seed 111: success=True failure=None
+2026-09-30 07:44:10,050 INFO __main__: done FULL seed 112: success=True failure=None
+2026-09-30 07:44:55,316 INFO __main__: done FULL seed 108: success=True failure=None
+2026-09-30 07:46:25,224 INFO __main__: done FULL seed 115: success=False failure=stuck
+2026-09-30 07:47:12,480 INFO __main__: done FULL seed 117: success=True failure=None
+2026-09-30 07:48:41,631 INFO __main__: done FULL seed 100: success=True failure=None
+2026-09-30 07:49:48,247 INFO __main__: done FULL seed 118: success=True failure=None
+2026-09-30 07:50:26,828 INFO __main__: done FULL seed 114: success=True failure=None
+2026-09-30 07:51:24,153 INFO __main__: done FULL seed 123: success=True failure=None
+2026-09-30 07:52:17,023 INFO __main__: done FULL seed 124: success=True failure=None
+2026-09-30 07:53:05,212 INFO __main__: done FULL seed 129: success=True failure=None
+2026-09-30 07:53:33,724 INFO __main__: done FULL seed 107: success=False failure=water_entry
+2026-09-30 07:53:53,888 INFO __main__: done FULL seed 113: success=False failure=water_entry
+D:\Downloads\sih again\metagross\metagross\autonomy\perception\ground.py:214: RuntimeWarning: invalid value 
+encountered in subtract
+  c = P[:, 0, 2] - a * P[:, 0, 0] - b * P[:, 0, 1]
+2026-09-30 07:54:37,504 INFO __main__: done FULL seed 119: success=True failure=None
+2026-09-30 07:55:12,758 INFO __main__: done FULL seed 125: success=True failure=None
+2026-09-30 07:55:12,951 INFO __main__: summary: 20 rows -> results\verify_dev2\stereo\summary.csv
+
+30 September 2026 07:55:13
+
+

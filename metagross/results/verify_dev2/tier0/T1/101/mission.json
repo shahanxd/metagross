@@ -1,0 +1,14 @@
+{
+ "mission_id": "fc1964dc",
+ "goal_xy_a": [
+  49.1144,
+  -3.2928
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 183.1,
+ "goal_sigma_m": 0.549,
+ "goal_entry": {
+  "range_m": 49.2247,
+  "bearing_deg": -3.8355
+ }
+}

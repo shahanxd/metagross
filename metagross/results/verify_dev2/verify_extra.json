@@ -1,0 +1,2180 @@
+{
+ "pytest": {
+  "command": "$env:OMP_NUM_THREADS=2; .venv\\Scripts\\python.exe -m pytest -q -p no:cacheprovider (07:24-07:28, stereo batch running)",
+  "log": "results/verify_dev2/pytest_full.log",
+  "failed_tests": [
+   "tests/test_node_closed_loop.py::test_stops_before_ditch_candidate_band",
+   "tests/test_perception_pipeline.py::test_box_is_positive",
+   "tests/test_perception_pipeline.py::test_rock_shadow_is_occluded_not_lethal",
+   "tests/test_plan_units.py::test_supervisor_stop_and_look_then_safe_stop"
+  ],
+  "failed": 4,
+  "passed": 452,
+  "duration_s": 242.41
+ },
+ "pytest_end": {
+  "command": "$env:OMP_NUM_THREADS=2; .venv\\Scripts\\python.exe -m pytest -q -p no:cacheprovider (08:05, after all batches, no other verifier load)",
+  "log": "results/verify_dev2/pytest_full_end.log",
+  "failed_tests": [
+   "tests/test_node_closed_loop.py::test_stops_before_ditch_candidate_band",
+   "tests/test_perception_pipeline.py::test_box_is_positive",
+   "tests/test_perception_pipeline.py::test_rock_shadow_is_occluded_not_lethal",
+   "tests/test_plan_units.py::test_supervisor_stop_and_look_then_safe_stop"
+  ],
+  "failed": 4,
+  "passed": 452,
+  "duration_s": 128.31
+ },
+ "baseline_fee1da9_vs_tree_tier0_full": {
+  "what": "tier0 FULL, DEV seeds 100-129: fee1da9 (git archive snapshot run from scratch) vs working tree, each at 2 workers with one stereo worker in parallel (fee1da9 07:29-, working tree 07:02-07:24)",
+  "n": 30,
+  "fee1da9": {
+   "success": 2,
+   "arrived_est": 19,
+   "ditch": 2,
+   "coll": 0,
+   "water": 5,
+   "final_error_p50": 3.4450000000000003,
+   "mean_speed": 0.9929099999999998,
+   "holdout_success": "1/6"
+  },
+  "tree": {
+   "success": 11,
+   "arrived_est": 10,
+   "ditch": 0,
+   "coll": 1,
+   "water": 5,
+   "final_error_p50": 2.412,
+   "mean_speed": 1.2750666666666666,
+   "holdout_success": "3/6"
+  },
+  "flips": [
+   [
+    100,
+    "stuck",
+    "success"
+   ],
+   [
+    102,
+    "stuck",
+    "arrived_short"
+   ],
+   [
+    103,
+    "stuck",
+    "success"
+   ],
+   [
+    104,
+    "stuck",
+    "arrived_short"
+   ],
+   [
+    105,
+    "stuck",
+    "collision"
+   ],
+   [
+    106,
+    "stuck",
+    "success"
+   ],
+   [
+    110,
+    "ditch_entry",
+    "stuck"
+   ],
+   [
+    111,
+    "stuck",
+    "success"
+   ],
+   [
+    112,
+    "stuck",
+    "arrived_short"
+   ],
+   [
+    114,
+    "stuck",
+    "success"
+   ],
+   [
+    116,
+    "stuck",
+    "arrived_short"
+   ],
+   [
+    117,
+    "stuck",
+    "success"
+   ],
+   [
+    118,
+    "stuck",
+    "success"
+   ],
+   [
+    120,
+    "stuck",
+    "success"
+   ],
+   [
+    122,
+    "ditch_entry",
+    "out_of_bounds"
+   ],
+   [
+    123,
+    "stuck",
+    "arrived_short"
+   ],
+   [
+    124,
+    "stuck",
+    "arrived_short"
+   ],
+   [
+    126,
+    "success",
+    "arrived_short"
+   ],
+   [
+    127,
+    "stuck",
+    "success"
+   ],
+   [
+    128,
+    "stuck",
+    "success"
+   ],
+   [
+    129,
+    "stuck",
+    "arrived_short"
+   ]
+  ]
+ },
+ "fp_corridor": [
+  {
+   "run": "results\\verify_dev\\stereo\\FULL\\102",
+   "n_bundles": 31,
+   "n_clear": 6,
+   "start_pos": 9,
+   "start_ditch": 270,
+   "clear_pos_max": 231,
+   "clear_pos_median": 55.5,
+   "clear_pos_frac_ge1": 0.8333333333333334,
+   "clear_ditch_max": 3,
+   "clear_ditch_median": 0.0,
+   "clear_ditch_frac_ge1": 0.16666666666666666
+  },
+  {
+   "run": "results\\verify_dev\\stereo\\FULL\\103",
+   "n_bundles": 23,
+   "n_clear": 2,
+   "start_pos": 0,
+   "start_ditch": 73,
+   "clear_pos_max": 67,
+   "clear_pos_median": 33.5,
+   "clear_pos_frac_ge1": 0.5,
+   "clear_ditch_max": 73,
+   "clear_ditch_median": 69.5,
+   "clear_ditch_frac_ge1": 1.0
+  },
+  {
+   "run": "results\\verify_dev\\stereo\\FULL\\104",
+   "n_bundles": 21,
+   "n_clear": 19,
+   "start_pos": 2,
+   "start_ditch": 50,
+   "clear_pos_max": 105,
+   "clear_pos_median": 49.0,
+   "clear_pos_frac_ge1": 1.0,
+   "clear_ditch_max": 78,
+   "clear_ditch_median": 34.0,
+   "clear_ditch_frac_ge1": 0.8421052631578947
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\102",
+   "n_bundles": 110,
+   "n_clear": 57,
+   "start_pos": 1,
+   "start_ditch": 270,
+   "clear_pos_max": 3,
+   "clear_pos_median": 0.0,
+   "clear_pos_frac_ge1": 0.05263157894736842,
+   "clear_ditch_max": 171,
+   "clear_ditch_median": 26.0,
+   "clear_ditch_frac_ge1": 0.7368421052631579
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\103",
+   "n_bundles": 151,
+   "n_clear": 3,
+   "start_pos": 0,
+   "start_ditch": 73,
+   "clear_pos_max": 0,
+   "clear_pos_median": 0.0,
+   "clear_pos_frac_ge1": 0.0,
+   "clear_ditch_max": 82,
+   "clear_ditch_median": 73.0,
+   "clear_ditch_frac_ge1": 1.0
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\104",
+   "n_bundles": 186,
+   "n_clear": 48,
+   "start_pos": 2,
+   "start_ditch": 50,
+   "clear_pos_max": 8,
+   "clear_pos_median": 0.0,
+   "clear_pos_frac_ge1": 0.16666666666666666,
+   "clear_ditch_max": 133,
+   "clear_ditch_median": 1.5,
+   "clear_ditch_frac_ge1": 0.5
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\105",
+   "n_bundles": 156,
+   "n_clear": 19,
+   "start_pos": 0,
+   "start_ditch": 289,
+   "clear_pos_max": 3,
+   "clear_pos_median": 0.0,
+   "clear_pos_frac_ge1": 0.05263157894736842,
+   "clear_ditch_max": 289,
+   "clear_ditch_median": 0.0,
+   "clear_ditch_frac_ge1": 0.42105263157894735
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\106",
+   "n_bundles": 129,
+   "n_clear": 79,
+   "start_pos": 0,
+   "start_ditch": 53,
+   "clear_pos_max": 23,
+   "clear_pos_median": 0.0,
+   "clear_pos_frac_ge1": 0.26582278481012656,
+   "clear_ditch_max": 568,
+   "clear_ditch_median": 47.0,
+   "clear_ditch_frac_ge1": 0.6835443037974683
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\101",
+   "n_bundles": 35,
+   "n_clear": 16,
+   "start_pos": 0,
+   "start_ditch": 0,
+   "clear_pos_max": 0,
+   "clear_pos_median": 0.0,
+   "clear_pos_frac_ge1": 0.0,
+   "clear_ditch_max": 75,
+   "clear_ditch_median": 0.0,
+   "clear_ditch_frac_ge1": 0.1875
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\120",
+   "n_bundles": 129,
+   "n_clear": 40,
+   "start_pos": 12,
+   "start_ditch": 296,
+   "clear_pos_max": 6,
+   "clear_pos_median": 0.0,
+   "clear_pos_frac_ge1": 0.2,
+   "clear_ditch_max": 360,
+   "clear_ditch_median": 15.0,
+   "clear_ditch_frac_ge1": 0.55
+  }
+ ],
+ "ditch_cert": [
+  {
+   "run": "results\\verify_dev2\\tier0\\FULL\\103",
+   "family": "F2_ditch_field",
+   "config": "FULL",
+   "bins": {
+    "0-2": {
+     "n": 1310,
+     "ground": 21,
+     "ground_frac": 0.01603053435114504,
+     "labels": {
+      "unseen": 1281,
+      "GROUND": 21,
+      "DITCH": 8
+     }
+    },
+    "2-4": {
+     "n": 1432,
+     "ground": 86,
+     "ground_frac": 0.06005586592178771,
+     "labels": {
+      "unseen": 509,
+      "GROUND": 86,
+      "depr": 186,
+      "DITCH": 645,
+      "crest_sh": 6
+     }
+    },
+    "4-6": {
+     "n": 2042,
+     "ground": 127,
+     "ground_frac": 0.062193927522037215,
+     "labels": {
+      "GROUND": 127,
+      "DITCH": 1761,
+      "depr": 143,
+      "unseen": 10,
+      "crest_sh": 1
+     }
+    },
+    "6-8": {
+     "n": 1743,
+     "ground": 464,
+     "ground_frac": 0.2662076878944349,
+     "labels": {
+      "unseen": 130,
+      "GROUND": 464,
+      "DITCH": 1085,
+      "crest_sh": 20,
+      "depr": 44
+     }
+    },
+    "8-10": {
+     "n": 2017,
+     "ground": 1530,
+     "ground_frac": 0.7585523054040655,
+     "labels": {
+      "GROUND": 1530,
+      "unseen": 149,
+      "crest_sh": 73,
+      "depr": 13,
+      "DITCH": 248,
+      "occl": 4
+     }
+    },
+    "10-14": {
+     "n": 2490,
+     "ground": 1251,
+     "ground_frac": 0.5024096385542168,
+     "labels": {
+      "unseen": 1026,
+      "GROUND": 1251,
+      "crest_sh": 189,
+      "depr": 2,
+      "DITCH": 9,
+      "occl": 13
+     }
+    }
+   }
+  },
+  {
+   "run": "results\\verify_dev2\\tier0\\T1\\103",
+   "family": "F2_ditch_field",
+   "config": "T1",
+   "bins": {
+    "0-2": {
+     "n": 1598,
+     "ground": 14,
+     "ground_frac": 0.008760951188986232,
+     "labels": {
+      "unseen": 1579,
+      "GROUND": 14,
+      "depr": 5
+     }
+    },
+    "2-4": {
+     "n": 1728,
+     "ground": 283,
+     "ground_frac": 0.16377314814814814,
+     "labels": {
+      "unseen": 1169,
+      "GROUND": 283,
+      "depr": 276
+     }
+    },
+    "4-6": {
+     "n": 1683,
+     "ground": 742,
+     "ground_frac": 0.44087938205585264,
+     "labels": {
+      "unseen": 735,
+      "GROUND": 742,
+      "depr": 206
+     }
+    },
+    "6-8": {
+     "n": 1695,
+     "ground": 983,
+     "ground_frac": 0.5799410029498525,
+     "labels": {
+      "unseen": 542,
+      "GROUND": 983,
+      "depr": 170
+     }
+    },
+    "8-10": {
+     "n": 1538,
+     "ground": 1033,
+     "ground_frac": 0.6716514954486346,
+     "labels": {
+      "GROUND": 1033,
+      "unseen": 443,
+      "depr": 62
+     }
+    },
+    "10-14": {
+     "n": 3358,
+     "ground": 1504,
+     "ground_frac": 0.4478856462179869,
+     "labels": {
+      "unseen": 1849,
+      "GROUND": 1504,
+      "depr": 5
+     }
+    }
+   }
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\103",
+   "family": "F2_ditch_field",
+   "config": "FULL",
+   "bins": {
+    "0-2": {
+     "n": 6451,
+     "ground": 57,
+     "ground_frac": 0.00883583940474345,
+     "labels": {
+      "unseen": 6385,
+      "GROUND": 57,
+      "DITCH": 1,
+      "depr": 8
+     }
+    },
+    "2-4": {
+     "n": 5577,
+     "ground": 324,
+     "ground_frac": 0.05809575040344271,
+     "labels": {
+      "unseen": 2661,
+      "DITCH": 2196,
+      "GROUND": 324,
+      "depr": 395,
+      "crest_sh": 1
+     }
+    },
+    "4-6": {
+     "n": 5790,
+     "ground": 1445,
+     "ground_frac": 0.24956822107081175,
+     "labels": {
+      "GROUND": 1445,
+      "DITCH": 3561,
+      "unseen": 344,
+      "crest_sh": 14,
+      "pos": 4,
+      "depr": 421,
+      "occl": 1
+     }
+    },
+    "6-8": {
+     "n": 5577,
+     "ground": 3289,
+     "ground_frac": 0.5897435897435898,
+     "labels": {
+      "GROUND": 3289,
+      "unseen": 124,
+      "pos": 12,
+      "crest_sh": 74,
+      "occl": 6,
+      "DITCH": 1951,
+      "depr": 121
+     }
+    },
+    "8-10": {
+     "n": 5935,
+     "ground": 4789,
+     "ground_frac": 0.8069081718618366,
+     "labels": {
+      "GROUND": 4789,
+      "unseen": 335,
+      "occl": 41,
+      "pos": 12,
+      "depr": 10,
+      "DITCH": 596,
+      "crest_sh": 152
+     }
+    },
+    "10-14": {
+     "n": 8962,
+     "ground": 5315,
+     "ground_frac": 0.5930595849140817,
+     "labels": {
+      "unseen": 3214,
+      "GROUND": 5315,
+      "pos": 15,
+      "depr": 6,
+      "DITCH": 3,
+      "occl": 167,
+      "crest_sh": 242
+     }
+    }
+   }
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\T1\\103",
+   "family": "F2_ditch_field",
+   "config": "T1",
+   "bins": {
+    "0-2": {
+     "n": 11150,
+     "ground": 229,
+     "ground_frac": 0.02053811659192825,
+     "labels": {
+      "unseen": 10845,
+      "GROUND": 229,
+      "depr": 76
+     }
+    },
+    "2-4": {
+     "n": 7661,
+     "ground": 1635,
+     "ground_frac": 0.21341861375799503,
+     "labels": {
+      "unseen": 4673,
+      "GROUND": 1635,
+      "depr": 1353
+     }
+    },
+    "4-6": {
+     "n": 5779,
+     "ground": 2950,
+     "ground_frac": 0.5104689392628482,
+     "labels": {
+      "unseen": 1773,
+      "GROUND": 2950,
+      "depr": 1053,
+      "pos": 3
+     }
+    },
+    "6-8": {
+     "n": 5039,
+     "ground": 3767,
+     "ground_frac": 0.7475689620956539,
+     "labels": {
+      "GROUND": 3767,
+      "unseen": 913,
+      "depr": 343,
+      "pos": 16
+     }
+    },
+    "8-10": {
+     "n": 5453,
+     "ground": 4720,
+     "ground_frac": 0.8655785805978361,
+     "labels": {
+      "GROUND": 4720,
+      "unseen": 586,
+      "pos": 22,
+      "depr": 125
+     }
+    },
+    "10-14": {
+     "n": 9466,
+     "ground": 4528,
+     "ground_frac": 0.478343545320093,
+     "labels": {
+      "unseen": 4902,
+      "GROUND": 4528,
+      "pos": 20,
+      "depr": 16
+     }
+    }
+   }
+  },
+  {
+   "run": "results\\verify_dev2\\stereo\\FULL\\122",
+   "family": "F3_crest_ditch",
+   "config": "FULL",
+   "bins": {
+    "0-2": {
+     "n": 2782,
+     "ground": 16,
+     "ground_frac": 0.005751258087706686,
+     "labels": {
+      "unseen": 2759,
+      "GROUND": 16,
+      "DITCH": 7
+     }
+    },
+    "2-4": {
+     "n": 4402,
+     "ground": 645,
+     "ground_frac": 0.1465243071331213,
+     "labels": {
+      "unseen": 2090,
+      "crest_sh": 491,
+      "GROUND": 645,
+      "pos": 304,
+      "DITCH": 843,
+      "occl": 8,
+      "depr": 21
+     }
+    },
+    "4-6": {
+     "n": 4447,
+     "ground": 1300,
+     "ground_frac": 0.29233190915223745,
+     "labels": {
+      "crest_sh": 1640,
+      "unseen": 1207,
+      "GROUND": 1300,
+      "pos": 138,
+      "depr": 1,
+      "DITCH": 155,
+      "occl": 6
+     }
+    },
+    "6-8": {
+     "n": 3819,
+     "ground": 526,
+     "ground_frac": 0.13773239067818802,
+     "labels": {
+      "unseen": 1447,
+      "GROUND": 526,
+      "crest_sh": 1578,
+      "occl": 195,
+      "pos": 51,
+      "DITCH": 19,
+      "depr": 3
+     }
+    },
+    "8-10": {
+     "n": 2543,
+     "ground": 258,
+     "ground_frac": 0.10145497443963822,
+     "labels": {
+      "occl": 178,
+      "unseen": 134,
+      "crest_sh": 1879,
+      "GROUND": 258,
+      "pos": 82,
+      "depr": 3,
+      "DITCH": 9
+     }
+    },
+    "10-14": {
+     "n": 4129,
+     "ground": 271,
+     "ground_frac": 0.06563332526035359,
+     "labels": {
+      "unseen": 2532,
+      "GROUND": 271,
+      "crest_sh": 1041,
+      "occl": 226,
+      "pos": 54,
+      "depr": 5
+     }
+    }
+   }
+  },
+  {
+   "run": "results\\verify_dev2\\tier0\\FULL\\110",
+   "family": "F3_crest_ditch",
+   "config": "FULL",
+   "bins": {
+    "0-2": {
+     "n": 4474,
+     "ground": 24,
+     "ground_frac": 0.005364327223960662,
+     "labels": {
+      "unseen": 4404,
+      "DITCH": 35,
+      "GROUND": 24,
+      "crest_sh": 9,
+      "pos": 2
+     }
+    },
+    "2-4": {
+     "n": 7878,
+     "ground": 643,
+     "ground_frac": 0.08161970043158162,
+     "labels": {
+      "unseen": 3637,
+      "GROUND": 643,
+      "pos": 482,
+      "crest_sh": 1184,
+      "depr": 301,
+      "DITCH": 1585,
+      "occl": 46
+     }
+    },
+    "4-6": {
+     "n": 2439,
+     "ground": 536,
+     "ground_frac": 0.2197621976219762,
+     "labels": {
+      "crest_sh": 1291,
+      "unseen": 66,
+      "GROUND": 536,
+      "pos": 102,
+      "depr": 61,
+      "DITCH": 151,
+      "occl": 232
+     }
+    },
+    "6-8": {
+     "n": 1587,
+     "ground": 164,
+     "ground_frac": 0.1033396345305608,
+     "labels": {
+      "crest_sh": 1381,
+      "GROUND": 164,
+      "depr": 7,
+      "pos": 19,
+      "occl": 5,
+      "unseen": 11
+     }
+    },
+    "8-10": {
+     "n": 703,
+     "ground": 75,
+     "ground_frac": 0.10668563300142248,
+     "labels": {
+      "crest_sh": 619,
+      "unseen": 9,
+      "GROUND": 75
+     }
+    },
+    "10-14": {
+     "n": 2421,
+     "ground": 35,
+     "ground_frac": 0.014456836018174308,
+     "labels": {
+      "unseen": 1103,
+      "GROUND": 35,
+      "crest_sh": 1282,
+      "pos": 1
+     }
+    }
+   }
+  },
+  {
+   "run": "results\\verify_dev2\\tier0\\T1\\110",
+   "family": "F3_crest_ditch",
+   "config": "T1",
+   "bins": {
+    "0-2": {
+     "n": 488,
+     "ground": 12,
+     "ground_frac": 0.02459016393442623,
+     "labels": {
+      "unseen": 471,
+      "GROUND": 12,
+      "pos": 3,
+      "depr": 2
+     }
+    },
+    "2-4": {
+     "n": 858,
+     "ground": 123,
+     "ground_frac": 0.14335664335664336,
+     "labels": {
+      "unseen": 700,
+      "GROUND": 123,
+      "pos": 21,
+      "depr": 14
+     }
+    },
+    "4-6": {
+     "n": 568,
+     "ground": 72,
+     "ground_frac": 0.1267605633802817,
+     "labels": {
+      "unseen": 490,
+      "GROUND": 72,
+      "pos": 6
+     }
+    },
+    "6-8": {
+     "n": 493,
+     "ground": 3,
+     "ground_frac": 0.006085192697768763,
+     "labels": {
+      "unseen": 490,
+      "GROUND": 3
+     }
+    },
+    "8-10": {
+     "n": 494,
+     "ground": 3,
+     "ground_frac": 0.006072874493927126,
+     "labels": {
+      "unseen": 491,
+      "GROUND": 3
+     }
+    },
+    "10-14": {
+     "n": 1011,
+     "ground": 1,
+     "ground_frac": 0.0009891196834817012,
+     "labels": {
+      "unseen": 1010,
+      "GROUND": 1
+     }
+    }
+   }
+  }
+ ],
+ "perception_ab": {
+  "what": "perception_dev stereo metrics on cached DEV frames, fee1da9 perception vs working tree, run back to back",
+  "plan": {
+   "stereo": {
+    "drive": [
+     102,
+     106,
+     120,
+     125,
+     101
+    ],
+    "approach": [
+     103,
+     121,
+     122
+    ]
+   }
+  },
+  "time": "2026-09-30 07:42:38",
+  "r1_fee1da9": {
+   "stereo": {
+    "pooled": {
+     "n_frames": 365,
+     "cand_rate_off": 0.05456,
+     "lethal_rate_off": 0.10321,
+     "positive_rate_off": 0.04704,
+     "n_observed_off_cells": 2101435,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 1878
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 237,
+      "of": 227205
+     },
+     "ditch_path_certified": {
+      "cells": 6,
+      "of": 8334
+     },
+     "timing_ms": {
+      "p50": 95.3,
+      "p95": 145.3,
+      "stages_p50": {
+       "bev": 5.09,
+       "cells": 4.08,
+       "geometry": 3.84,
+       "ground": 10.21,
+       "negobs": 21.07,
+       "semantics": 5.71,
+       "stereo": 42.29,
+       "total": 93.16
+      }
+     }
+    },
+    "pooled_F1": {
+     "n_frames": 82,
+     "cand_rate_off": 0.04273,
+     "lethal_rate_off": 0.10421,
+     "positive_rate_off": 0.06058,
+     "n_observed_off_cells": 456088,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 334
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 108,
+      "of": 42477
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 102.3,
+      "p95": 142.0,
+      "stages_p50": {
+       "bev": 5.44,
+       "cells": 4.4,
+       "geometry": 3.99,
+       "ground": 11.15,
+       "negobs": 23.49,
+       "semantics": 6.2,
+       "stereo": 43.3,
+       "total": 101.45
+      }
+     }
+    },
+    "sequences": [
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.05835,
+      "lethal_rate_off": 0.12682,
+      "positive_rate_off": 0.06749,
+      "n_observed_off_cells": 218584,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 0
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 49,
+       "of": 21188
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 99.4,
+       "p95": 143.5,
+       "stages_p50": {
+        "bev": 5.23,
+        "cells": 4.13,
+        "geometry": 3.84,
+        "ground": 11.52,
+        "negobs": 22.87,
+        "semantics": 6.11,
+        "stereo": 42.22,
+        "total": 98.17
+       }
+      },
+      "seed": 102,
+      "family": "F1_trail",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.23167,
+      "lethal_rate_off": 0.31143,
+      "positive_rate_off": 0.07544,
+      "n_observed_off_cells": 269562,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 0
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 6,
+       "of": 2405
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 120.6,
+       "p95": 187.9,
+       "stages_p50": {
+        "bev": 5.92,
+        "cells": 5.89,
+        "geometry": 4.33,
+        "ground": 11.25,
+        "negobs": 34.35,
+        "semantics": 6.59,
+        "stereo": 48.24,
+        "total": 119.6
+       }
+      },
+      "seed": 106,
+      "family": "F5_lighting",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.02836,
+      "lethal_rate_off": 0.0834,
+      "positive_rate_off": 0.05422,
+      "n_observed_off_cells": 237504,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 334
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 59,
+       "of": 21289
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 103.3,
+       "p95": 139.9,
+       "stages_p50": {
+        "bev": 5.58,
+        "cells": 4.58,
+        "geometry": 4.18,
+        "ground": 10.82,
+        "negobs": 24.03,
+        "semantics": 6.25,
+        "stereo": 44.84,
+        "total": 102.01
+       }
+      },
+      "seed": 120,
+      "family": "F1_trail",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.02711,
+      "lethal_rate_off": 0.05891,
+      "positive_rate_off": 0.03113,
+      "n_observed_off_cells": 241723,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 6
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 0,
+       "of": 5612
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 93.2,
+       "p95": 140.6,
+       "stages_p50": {
+        "bev": 4.73,
+        "cells": 4.22,
+        "geometry": 3.79,
+        "ground": 10.36,
+        "negobs": 21.21,
+        "semantics": 6.2,
+        "stereo": 40.33,
+        "total": 92.07
+       }
+      },
+      "seed": 125,
+      "family": "F6_water_mud",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.01198,
+      "lethal_rate_off": 0.03073,
+      "positive_rate_off": 0.01822,
+      "n_observed_off_cells": 265091,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 0
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 16,
+       "of": 4429
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 96.8,
+       "p95": 131.7,
+       "stages_p50": {
+        "bev": 5.72,
+        "cells": 4.04,
+        "geometry": 4.27,
+        "ground": 11.04,
+        "negobs": 19.87,
+        "semantics": 5.93,
+        "stereo": 44.27,
+        "total": 94.95
+       }
+      },
+      "seed": 101,
+      "family": "F6_water_mud",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 44,
+      "cand_rate_off": 0.02826,
+      "lethal_rate_off": 0.04895,
+      "positive_rate_off": 0.02001,
+      "n_observed_off_cells": 276074,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 487
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 12,
+       "of": 49758
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 2244
+      },
+      "timing_ms": {
+       "p50": 92.6,
+       "p95": 117.0,
+       "stages_p50": {
+        "bev": 5.18,
+        "cells": 3.55,
+        "geometry": 3.51,
+        "ground": 9.31,
+        "negobs": 19.38,
+        "semantics": 5.08,
+        "stereo": 40.07,
+        "total": 90.11
+       }
+      },
+      "seed": 103,
+      "family": "F2_ditch_field",
+      "kind": "approach",
+      "mode": "stereo",
+      "detection": {
+       "r_first_m": 5.05,
+       "r_stable_m": 4.65,
+       "n_frames": 38,
+       "max_range_scored_m": 9.45,
+       "width_m": 0.838,
+       "depth_m": 0.842,
+       "angle_deg": 78.8,
+       "theory_r_det_m": 7.03
+      }
+     },
+     {
+      "n_frames": 58,
+      "cand_rate_off": 0.01633,
+      "lethal_rate_off": 0.05274,
+      "positive_rate_off": 0.03601,
+      "n_observed_off_cells": 363306,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 658
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 0,
+       "of": 75164
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 4002
+      },
+      "timing_ms": {
+       "p50": 92.1,
+       "p95": 108.4,
+       "stages_p50": {
+        "bev": 4.59,
+        "cells": 3.61,
+        "geometry": 3.98,
+        "ground": 9.76,
+        "negobs": 17.78,
+        "semantics": 5.53,
+        "stereo": 40.6,
+        "total": 90.54
+       }
+      },
+      "seed": 121,
+      "family": "F2_ditch_field",
+      "kind": "approach",
+      "mode": "stereo",
+      "detection": {
+       "r_first_m": 4.65,
+       "r_stable_m": 4.25,
+       "n_frames": 51,
+       "max_range_scored_m": 12.05,
+       "width_m": 1.062,
+       "depth_m": 0.639,
+       "angle_deg": 69.1,
+       "theory_r_det_m": 7.86
+      }
+     },
+     {
+      "n_frames": 58,
+      "cand_rate_off": 0.04026,
+      "lethal_rate_off": 0.13215,
+      "positive_rate_off": 0.08681,
+      "n_observed_off_cells": 229591,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 393
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 95,
+       "of": 47360
+      },
+      "ditch_path_certified": {
+       "cells": 6,
+       "of": 2088
+      },
+      "timing_ms": {
+       "p50": 91.5,
+       "p95": 113.1,
+       "stages_p50": {
+        "bev": 4.49,
+        "cells": 3.49,
+        "geometry": 3.72,
+        "ground": 8.47,
+        "negobs": 20.14,
+        "semantics": 5.02,
+        "stereo": 41.52,
+        "total": 89.86
+       }
+      },
+      "seed": 122,
+      "family": "F3_crest_ditch",
+      "kind": "approach",
+      "mode": "stereo",
+      "detection": {
+       "r_first_m": 3.05,
+       "r_stable_m": 0.0,
+       "n_frames": 53,
+       "max_range_scored_m": 12.45,
+       "width_m": 0.627,
+       "depth_m": 0.574,
+       "angle_deg": 90.0,
+       "theory_r_det_m": 6.13
+      }
+     }
+    ]
+   }
+  },
+  "r2_tree": {
+   "stereo": {
+    "pooled": {
+     "n_frames": 365,
+     "cand_rate_off": 0.05352,
+     "lethal_rate_off": 0.06679,
+     "positive_rate_off": 0.01078,
+     "n_observed_off_cells": 2133671,
+     "certified_hazard_in_envelope": {
+      "cells": 13,
+      "of": 1878
+     },
+     "certified_hazard_in_envelope_ditch_cells": 13,
+     "certified_hazard_any": {
+      "cells": 424,
+      "of": 227205
+     },
+     "ditch_path_certified": {
+      "cells": 48,
+      "of": 8334
+     },
+     "timing_ms": {
+      "p50": 95.4,
+      "p95": 118.6,
+      "stages_p50": {
+       "bev": 7.09,
+       "cells": 4.16,
+       "geometry": 3.7,
+       "ground": 9.97,
+       "negobs": 19.76,
+       "semantics": 5.05,
+       "stereo": 40.33,
+       "total": 93.49
+      }
+     }
+    },
+    "pooled_F1": {
+     "n_frames": 82,
+     "cand_rate_off": 0.03998,
+     "lethal_rate_off": 0.05538,
+     "positive_rate_off": 0.01367,
+     "n_observed_off_cells": 462604,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 334
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 117,
+      "of": 42477
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 96.6,
+      "p95": 122.2,
+      "stages_p50": {
+       "bev": 7.39,
+       "cells": 4.31,
+       "geometry": 3.73,
+       "ground": 10.12,
+       "negobs": 20.94,
+       "semantics": 5.11,
+       "stereo": 41.46,
+       "total": 94.74
+      }
+     }
+    },
+    "sequences": [
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.05498,
+      "lethal_rate_off": 0.07452,
+      "positive_rate_off": 0.01744,
+      "n_observed_off_cells": 221642,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 0
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 71,
+       "of": 21188
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 100.6,
+       "p95": 120.1,
+       "stages_p50": {
+        "bev": 7.48,
+        "cells": 4.94,
+        "geometry": 3.69,
+        "ground": 10.24,
+        "negobs": 22.57,
+        "semantics": 5.05,
+        "stereo": 41.52,
+        "total": 99.78
+       }
+      },
+      "seed": 102,
+      "family": "F1_trail",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.24042,
+      "lethal_rate_off": 0.27582,
+      "positive_rate_off": 0.02887,
+      "n_observed_off_cells": 273113,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 0
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 6,
+       "of": 2405
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 106.0,
+       "p95": 125.1,
+       "stages_p50": {
+        "bev": 7.42,
+        "cells": 5.05,
+        "geometry": 3.88,
+        "ground": 9.61,
+        "negobs": 26.09,
+        "semantics": 5.77,
+        "stereo": 40.78,
+        "total": 104.27
+       }
+      },
+      "seed": 106,
+      "family": "F5_lighting",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.02617,
+      "lethal_rate_off": 0.03779,
+      "positive_rate_off": 0.0102,
+      "n_observed_off_cells": 240962,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 334
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 46,
+       "of": 21289
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 94.3,
+       "p95": 122.3,
+       "stages_p50": {
+        "bev": 7.22,
+        "cells": 3.94,
+        "geometry": 3.78,
+        "ground": 9.94,
+        "negobs": 19.08,
+        "semantics": 5.14,
+        "stereo": 41.18,
+        "total": 91.45
+       }
+      },
+      "seed": 120,
+      "family": "F1_trail",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.02424,
+      "lethal_rate_off": 0.02738,
+      "positive_rate_off": 0.00237,
+      "n_observed_off_cells": 247415,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 6
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 0,
+       "of": 5612
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 94.5,
+       "p95": 113.7,
+       "stages_p50": {
+        "bev": 7.22,
+        "cells": 4.05,
+        "geometry": 3.86,
+        "ground": 10.03,
+        "negobs": 19.72,
+        "semantics": 5.1,
+        "stereo": 42.75,
+        "total": 93.3
+       }
+      },
+      "seed": 125,
+      "family": "F6_water_mud",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 41,
+      "cand_rate_off": 0.01142,
+      "lethal_rate_off": 0.01282,
+      "positive_rate_off": 0.00086,
+      "n_observed_off_cells": 270293,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 0
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 18,
+       "of": 4429
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 0
+      },
+      "timing_ms": {
+       "p50": 88.6,
+       "p95": 106.7,
+       "stages_p50": {
+        "bev": 6.64,
+        "cells": 3.77,
+        "geometry": 3.72,
+        "ground": 9.63,
+        "negobs": 16.98,
+        "semantics": 4.61,
+        "stereo": 39.98,
+        "total": 86.87
+       }
+      },
+      "seed": 101,
+      "family": "F6_water_mud",
+      "kind": "drive",
+      "mode": "stereo"
+     },
+     {
+      "n_frames": 44,
+      "cand_rate_off": 0.02512,
+      "lethal_rate_off": 0.02761,
+      "positive_rate_off": 0.00178,
+      "n_observed_off_cells": 281826,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 487
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 16,
+       "of": 49758
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 2244
+      },
+      "timing_ms": {
+       "p50": 96.2,
+       "p95": 111.9,
+       "stages_p50": {
+        "bev": 7.57,
+        "cells": 4.33,
+        "geometry": 3.56,
+        "ground": 10.8,
+        "negobs": 19.74,
+        "semantics": 5.1,
+        "stereo": 39.74,
+        "total": 94.47
+       }
+      },
+      "seed": 103,
+      "family": "F2_ditch_field",
+      "kind": "approach",
+      "mode": "stereo",
+      "detection": {
+       "r_first_m": 5.05,
+       "r_stable_m": 4.65,
+       "n_frames": 38,
+       "max_range_scored_m": 9.45,
+       "width_m": 0.838,
+       "depth_m": 0.842,
+       "angle_deg": 78.8,
+       "theory_r_det_m": 7.03
+      }
+     },
+     {
+      "n_frames": 58,
+      "cand_rate_off": 0.01371,
+      "lethal_rate_off": 0.01844,
+      "positive_rate_off": 0.00413,
+      "n_observed_off_cells": 369561,
+      "certified_hazard_in_envelope": {
+       "cells": 0,
+       "of": 658
+      },
+      "certified_hazard_in_envelope_ditch_cells": 0,
+      "certified_hazard_any": {
+       "cells": 0,
+       "of": 75164
+      },
+      "ditch_path_certified": {
+       "cells": 0,
+       "of": 4002
+      },
+      "timing_ms": {
+       "p50": 94.5,
+       "p95": 114.4,
+       "stages_p50": {
+        "bev": 6.91,
+        "cells": 3.69,
+        "geometry": 3.77,
+        "ground": 10.24,
+        "negobs": 17.98,
+        "semantics": 4.83,
+        "stereo": 39.38,
+        "total": 92.54
+       }
+      },
+      "seed": 121,
+      "family": "F2_ditch_field",
+      "kind": "approach",
+      "mode": "stereo",
+      "detection": {
+       "r_first_m": 4.65,
+       "r_stable_m": 4.25,
+       "n_frames": 51,
+       "max_range_scored_m": 12.05,
+       "width_m": 1.062,
+       "depth_m": 0.639,
+       "angle_deg": 69.1,
+       "theory_r_det_m": 7.86
+      }
+     },
+     {
+      "n_frames": 58,
+      "cand_rate_off": 0.03854,
+      "lethal_rate_off": 0.07308,
+      "positive_rate_off": 0.02595,
+      "n_observed_off_cells": 228859,
+      "certified_hazard_in_envelope": {
+       "cells": 13,
+       "of": 393
+      },
+      "certified_hazard_in_envelope_ditch_cells": 13,
+      "certified_hazard_any": {
+       "cells": 267,
+       "of": 47360
+      },
+      "ditch_path_certified": {
+       "cells": 48,
+       "of": 2088
+      },
+      "timing_ms": {
+       "p50": 90.8,
+       "p95": 112.3,
+       "stages_p50": {
+        "bev": 6.74,
+        "cells": 4.18,
+        "geometry": 3.49,
+        "ground": 8.72,
+        "negobs": 19.66,
+        "semantics": 4.91,
+        "stereo": 40.28,
+        "total": 88.24
+       }
+      },
+      "seed": 122,
+      "family": "F3_crest_ditch",
+      "kind": "approach",
+      "mode": "stereo",
+      "detection": {
+       "r_first_m": 2.85,
+       "r_stable_m": 0.0,
+       "n_frames": 53,
+       "max_range_scored_m": 12.45,
+       "width_m": 0.627,
+       "depth_m": 0.574,
+       "angle_deg": 90.0,
+       "theory_r_det_m": 6.13
+      }
+     }
+    ]
+   }
+  }
+ },
+ "perception_122_ablation": {
+  "what": "stereo DEV 122 approach (cached frames), tree perception with one round-2 change disabled per variant",
+  "tree_default": {
+   "certified_hazard_in_envelope": {
+    "cells": 13,
+    "of": 393
+   },
+   "certified_hazard_in_envelope_ditch_cells": 13,
+   "ditch_path_certified": {
+    "cells": 48,
+    "of": 2088
+   },
+   "detection": {
+    "r_first_m": 2.85,
+    "r_stable_m": 0.0,
+    "n_frames": 53,
+    "max_range_scored_m": 12.45,
+    "width_m": 0.627,
+    "depth_m": 0.574,
+    "angle_deg": 90.0,
+    "theory_r_det_m": 6.13
+   },
+   "cand_rate_off": 0.03854,
+   "lethal_rate_off": 0.07308
+  },
+  "no_k_tau_sigma_relax": {
+   "certified_hazard_in_envelope": {
+    "cells": 13,
+    "of": 393
+   },
+   "certified_hazard_in_envelope_ditch_cells": 13,
+   "ditch_path_certified": {
+    "cells": 48,
+    "of": 2088
+   },
+   "detection": {
+    "r_first_m": 2.85,
+    "r_stable_m": 0.0,
+    "n_frames": 53,
+    "max_range_scored_m": 12.45,
+    "width_m": 0.627,
+    "depth_m": 0.574,
+    "angle_deg": 90.0,
+    "theory_r_det_m": 6.13
+   },
+   "cand_rate_off": 0.04151,
+   "lethal_rate_off": 0.07643
+  },
+  "no_min_obstacle_size": {
+   "certified_hazard_in_envelope": {
+    "cells": 0,
+    "of": 393
+   },
+   "certified_hazard_in_envelope_ditch_cells": 0,
+   "ditch_path_certified": {
+    "cells": 11,
+    "of": 2088
+   },
+   "detection": {
+    "r_first_m": 3.05,
+    "r_stable_m": 0.0,
+    "n_frames": 53,
+    "max_range_scored_m": 12.45,
+    "width_m": 0.627,
+    "depth_m": 0.574,
+    "angle_deg": 90.0,
+    "theory_r_det_m": 6.13
+   },
+   "cand_rate_off": 0.03832,
+   "lethal_rate_off": 0.07871
+  },
+  "no_noise_aware_step": {
+   "certified_hazard_in_envelope": {
+    "cells": 13,
+    "of": 393
+   },
+   "certified_hazard_in_envelope_ditch_cells": 13,
+   "ditch_path_certified": {
+    "cells": 48,
+    "of": 2088
+   },
+   "detection": {
+    "r_first_m": 2.85,
+    "r_stable_m": 0.0,
+    "n_frames": 53,
+    "max_range_scored_m": 12.45,
+    "width_m": 0.627,
+    "depth_m": 0.574,
+    "angle_deg": 90.0,
+    "theory_r_det_m": 6.13
+   },
+   "cand_rate_off": 0.03854,
+   "lethal_rate_off": 0.07308
+  },
+  "no_positive_persistence": {
+   "certified_hazard_in_envelope": {
+    "cells": 13,
+    "of": 393
+   },
+   "certified_hazard_in_envelope_ditch_cells": 13,
+   "ditch_path_certified": {
+    "cells": 44,
+    "of": 2088
+   },
+   "detection": {
+    "r_first_m": 3.05,
+    "r_stable_m": 0.0,
+    "n_frames": 53,
+    "max_range_scored_m": 12.45,
+    "width_m": 0.627,
+    "depth_m": 0.574,
+    "angle_deg": 90.0,
+    "theory_r_det_m": 6.13
+   },
+   "cand_rate_off": 0.03821,
+   "lethal_rate_off": 0.08103
+  }
+ },
+ "ditch_margin": [
+  {
+   "group": "tier0/FULL",
+   "seed": 103,
+   "family": "F2_ditch_field",
+   "outcome": "success",
+   "min_edge_dist_m": 0.37,
+   "speed_at_min_mps": 1.21,
+   "max_speed_within_1m_mps": 1.45
+  },
+  {
+   "group": "tier0/FULL",
+   "seed": 109,
+   "family": "F2_ditch_field",
+   "outcome": "stuck",
+   "min_edge_dist_m": 1.6,
+   "speed_at_min_mps": 1.7,
+   "max_speed_within_1m_mps": null
+  },
+  {
+   "group": "tier0/FULL",
+   "seed": 110,
+   "family": "F3_crest_ditch",
+   "outcome": "stuck",
+   "min_edge_dist_m": 1.53,
+   "speed_at_min_mps": 0.75,
+   "max_speed_within_1m_mps": null
+  },
+  {
+   "group": "tier0/FULL",
+   "seed": 115,
+   "family": "F2_ditch_field",
+   "outcome": "stuck",
+   "min_edge_dist_m": 1.42,
+   "speed_at_min_mps": 0.47,
+   "max_speed_within_1m_mps": null
+  },
+  {
+   "group": "tier0/FULL",
+   "seed": 121,
+   "family": "F2_ditch_field",
+   "outcome": "stuck",
+   "min_edge_dist_m": 0.77,
+   "speed_at_min_mps": 1.66,
+   "max_speed_within_1m_mps": 1.72
+  },
+  {
+   "group": "tier0/FULL",
+   "seed": 122,
+   "family": "F3_crest_ditch",
+   "outcome": "out_of_bounds",
+   "min_edge_dist_m": 0.84,
+   "speed_at_min_mps": 0.06,
+   "max_speed_within_1m_mps": 0.6
+  },
+  {
+   "group": "tier0/FULL",
+   "seed": 127,
+   "family": "F2_ditch_field",
+   "outcome": "success",
+   "min_edge_dist_m": 0.25,
+   "speed_at_min_mps": 1.33,
+   "max_speed_within_1m_mps": 1.7
+  },
+  {
+   "group": "tier0/T1",
+   "seed": 103,
+   "family": "F2_ditch_field",
+   "outcome": "ditch_entry",
+   "min_edge_dist_m": 0.21,
+   "speed_at_min_mps": 0.59,
+   "max_speed_within_1m_mps": 1.83
+  },
+  {
+   "group": "tier0/T1",
+   "seed": 109,
+   "family": "F2_ditch_field",
+   "outcome": "out_of_bounds",
+   "min_edge_dist_m": 0.61,
+   "speed_at_min_mps": 1.81,
+   "max_speed_within_1m_mps": 1.83
+  },
+  {
+   "group": "tier0/T1",
+   "seed": 110,
+   "family": "F3_crest_ditch",
+   "outcome": "ditch_entry",
+   "min_edge_dist_m": 0.3,
+   "speed_at_min_mps": 1.03,
+   "max_speed_within_1m_mps": 1.48
+  },
+  {
+   "group": "tier0/T1",
+   "seed": 115,
+   "family": "F2_ditch_field",
+   "outcome": "stuck",
+   "min_edge_dist_m": 0.36,
+   "speed_at_min_mps": 0.09,
+   "max_speed_within_1m_mps": 1.38
+  },
+  {
+   "group": "tier0/T1",
+   "seed": 121,
+   "family": "F2_ditch_field",
+   "outcome": "ditch_entry",
+   "min_edge_dist_m": 0.36,
+   "speed_at_min_mps": 1.02,
+   "max_speed_within_1m_mps": 1.87
+  },
+  {
+   "group": "tier0/T1",
+   "seed": 122,
+   "family": "F3_crest_ditch",
+   "outcome": "stuck",
+   "min_edge_dist_m": 0.66,
+   "speed_at_min_mps": 0.86,
+   "max_speed_within_1m_mps": 1.46
+  },
+  {
+   "group": "tier0/T1",
+   "seed": 127,
+   "family": "F2_ditch_field",
+   "outcome": "out_of_bounds",
+   "min_edge_dist_m": 1.11,
+   "speed_at_min_mps": 1.81,
+   "max_speed_within_1m_mps": null
+  },
+  {
+   "group": "stereo/FULL",
+   "seed": 103,
+   "family": "F2_ditch_field",
+   "outcome": "success",
+   "min_edge_dist_m": 0.34,
+   "speed_at_min_mps": 0.61,
+   "max_speed_within_1m_mps": 1.76
+  },
+  {
+   "group": "stereo/FULL",
+   "seed": 109,
+   "family": "F2_ditch_field",
+   "outcome": "timeout",
+   "min_edge_dist_m": 0.12,
+   "speed_at_min_mps": 1.35,
+   "max_speed_within_1m_mps": 1.5
+  },
+  {
+   "group": "stereo/FULL",
+   "seed": 110,
+   "family": "F3_crest_ditch",
+   "outcome": "stuck",
+   "min_edge_dist_m": 0.88,
+   "speed_at_min_mps": 0.32,
+   "max_speed_within_1m_mps": 0.75
+  },
+  {
+   "group": "stereo/FULL",
+   "seed": 121,
+   "family": "F2_ditch_field",
+   "outcome": "timeout",
+   "min_edge_dist_m": 0.94,
+   "speed_at_min_mps": 1.11,
+   "max_speed_within_1m_mps": 1.41
+  },
+  {
+   "group": "stereo/FULL",
+   "seed": 122,
+   "family": "F3_crest_ditch",
+   "outcome": "ditch_entry",
+   "min_edge_dist_m": 0.3,
+   "speed_at_min_mps": 1.12,
+   "max_speed_within_1m_mps": 1.54
+  },
+  {
+   "group": "stereo/FULL",
+   "seed": 127,
+   "family": "F2_ditch_field",
+   "outcome": "timeout",
+   "min_edge_dist_m": 0.64,
+   "speed_at_min_mps": -0.05,
+   "max_speed_within_1m_mps": 0.75
+  },
+  {
+   "group": "stereo/T1",
+   "seed": 103,
+   "family": "F2_ditch_field",
+   "outcome": "success",
+   "min_edge_dist_m": 0.46,
+   "speed_at_min_mps": 1.19,
+   "max_speed_within_1m_mps": 1.81
+  },
+  {
+   "group": "stereo/T1",
+   "seed": 110,
+   "family": "F3_crest_ditch",
+   "outcome": "success",
+   "min_edge_dist_m": 0.72,
+   "speed_at_min_mps": 1.87,
+   "max_speed_within_1m_mps": 1.89
+  }
+ ],
+ "verdict": {
+  "value": "NOT_READY",
+  "criteria": "READY = stereo FULL >= 3/6 reach B or arrived_est AND tier0 FULL 0 collisions and 0 ditch entries AND nothing broken",
+  "stereo_6_seed_check": "PASS: DEV 102/103/104/105/106/101 -> success 102, 103, 106; arrived_est 104 (arrived_short 3.40 m); 105 stuck; 101 water = 4/6",
+  "tier0_full_collisions": "FAIL: 1 (DEV 105, F4 moving box, side impact at 1.49 m/s, 2.9 s after trigger)",
+  "tier0_full_ditch": "PASS: 0/30",
+  "nothing_broken": "FAIL: 4/456 tests fail; stereo FULL entered the hidden F3 trench on DEV 122 (holdout seed) and the per-frame ablation traces it to the round-2 min_obstacle_size filter; dead-end memory is not wired into the node"
+ },
+ "golden_runs": {
+  "a_long_stereo_crest_approach": {
+   "run_dir": "results/verify_dev2/stereo/FULL/128",
+   "seed": 128,
+   "family": "F3_crest_ditch (crest-only control; DEV holdout seed)",
+   "sensor": "stereo",
+   "config": "FULL",
+   "window_s": [
+    20.0,
+    28.0
+   ],
+   "full_run": "success at 41.4 s, path 53.5 m (optimal 45.7 m), SPL 0.85, mean speed 1.29 m/s, 0 false stops, no mode changes; 104 debug bundles (every 2nd tick), all with the onboard image",
+   "description": "Cruises at 1.5-1.6 m/s with R_cert 4.2-4.5 m (v_cap at the 2.0 m/s platform limit). Approaching the crest line (GT 1.8 m away at 22.2 s), MPPI's certification cost cuts the commanded speed from 1.57 to 0.06 m/s over 22.0-23.6 s (GT speed 1.60 -> 0.80 m/s); at 24.0 s, 0.2 m from the crest line, visibility collapses and the governor binds (GOV_RVIS, R = 0, v_cap 0; GT 0.43 m/s, 0.09 m/s at 24.6 s). Once the back slope is in view R_cert jumps to 6.5-7.9 m, v_cap returns to 2.0 m/s at 24.4 s and the vehicle accelerates to 1.73 m/s by 27.2 s. Caveat: the slowdown before 24.0 s is MPPI's certification term, not the governor cap (v_cap stays 2.0 until the single 24.0 s tick).",
+   "alternative": "results/verify_dev2/stereo/FULL/103 (F2 ditch field, success at 60.1 s): ditch approach 34.8-37.2 s, the ditch is confirmed only ~1 m ahead of the body origin (R_cert 4.2 m -> 0.3 m at 35.6 s -> 0 at 36.0 s), hard stop with the body origin 0.36-0.44 m from the ditch edge (front bumper at the lip), FWD_CHECK hold 37-44 s, STOP_AND_LOOK 45.2-51.8 s, then on to the goal. It shows a late detection, not a graceful slowdown; do not narrate it as one."
+  },
+  "b_full_vs_t1_pair": {
+   "run_dirs": {
+    "FULL": "results/verify_dev2/tier0/FULL/110",
+    "T1": "results/verify_dev2/tier0/T1/110"
+   },
+   "seed": 110,
+   "family": "F3_crest_ditch (trench hidden on the back slope)",
+   "sensor": "tier0 (stereo pairs show no thesis-direction difference; see stereo_note)",
+   "window_s": {
+    "T1": [
+     12.0,
+     17.1
+    ],
+    "FULL": [
+     14.0,
+     23.0
+    ]
+   },
+   "description": "Same crest, same hidden trench. T1 (unknown-is-free, no negobs, no governor, 2.0 m/s) holds GT 1.85-1.88 m/s until 14.5 s and 1.63-1.76 m/s over the crest line (15.0-16.0 s); FWD_CHECK fires at 16.2 s with the trench edge 1.36 m from the body origin, too late: the front-right wheel enters the trench at 17.04 s (referee ditch_entry). FULL arrives at the crest at 1.3 m/s; at 19.8 s R_cert drops to 2.8 m (v_cap 1.93), at 20.4 s the governor binds on visibility (GOV_RVIS, R = 0, v_cap 0) and GT speed falls 1.26 -> 0.16 m/s by 21.0 s, stopping on the crest line 1.57 m from the trench edge (no ditch entry). Caveat for the narration: FULL does not reach B on this seed; it later ends 'stuck' at the world edge (52 s) because the dead-end memory is not wired into the node. Same-session fee1da9 FULL entered this trench (25.4 s).",
+   "alternative_pair": "tier0 103 (F2 ditch field): FULL reaches B at 40.9 s after threading two ditch gaps at 0.5-0.9 m/s (the slowdown is MPPI; v_cap stays 2.0); T1 holds 1.8 m/s, FWD_CHECK at 24.6 s, front-left wheel in the ditch at 25.52 s.",
+   "stereo_note": "Stereo candidates are weaker. (1) stereo 109 (F2): T1 holds 1.81 m/s toward a ditch (2.31 m away at 10.8 s), FWD_CHECK at 11.4 s, front-left wheel in the ditch at 12.38 s; FULL took a different, slower line and never came close, but it does not reach B either (timeout after 188 m). (2) stereo 117 (F4 boulder): T1 hits the rolling boulder at 14.02 s (1.19 m/s; R_cert fell 2.8 -> 1.5 -> 0 m but T1 ignores the governor); FULL reaches B at 38 s, yet the boulder passed 2.1-2.6 m to its side with v_cap at the platform limit, so the difference is route and timing, not the governor. (3) stereo 116 (F3 crest-only): T1 drives off the terrain edge (out of bounds at 20.5 s, 1.9 m/s); FULL reaches B at 62.8 s; the edge is a simulator boundary. (4) stereo 110: T1 passed the trench gap at 1.88 m/s after a health slowdown and reached B, while FULL stopped 0.89 m short of the trench at the crest (GOV_RCERT 1.8 m at 25.2 s -> GOV_RVIS 0 at 25.8 s) and then deadlocked (FWD_CHECK clr 0.03 m, the look cannot rotate)."
+  },
+  "c_health_mode_change": {
+   "run_dir": "results/verify_dev2/stereo/FULL/100",
+   "seed": 100,
+   "family": "F5_lighting (glare 12.76-18.22 s, dim 35.9-38.9 s, dust 44.0-49.4 s)",
+   "sensor": "stereo",
+   "config": "FULL",
+   "window_s": [
+    11.0,
+    20.0
+   ],
+   "full_run": "success at 75.9 s (path 90.4 m vs optimal 42.5 m: a long detour), 190 debug bundles all with the onboard image",
+   "description": "Glare starts at 12.76 s: VO inliers fall from 276 (12.6 s) to 48 (13.2 s), 20 (13.8 s) and 0 (15.0 s); q drops to 0.40 / 0.31 / 0.02. The supervisor goes NOMINAL -> DEGRADED at 13.6 s (log 'DEGRADED q=0.28'): v_cap 0.19-0.49 m/s, then hop-pause 0, and GT speed falls 1.59 -> 0.94 -> 0.37 -> 0.01 m/s by 16.2 s. VO recovers (inliers 308-357), DEGRADED -> CAUTION at 16.8 s (v_cap 1.0), CAUTION -> NOMINAL at 18.0 s, back to 1.65 m/s by 19.8 s. No FWD_CHECK or governor events in the window, so the slowdown is health only.",
+   "alternatives": "stereo FULL 124 (glare 11.87 s; DEGRADED 12.4 s q=0.23 -> CAUTION 15.8 s -> NOMINAL 17.0 s, but FWD_CHECK also fires 13.2-15.0 s); stereo FULL 106 (glare 19.9 s; CAUTION 20.6-22.4 s and 26.4-28.0 s, v_cap 1.0; the stop at 28.5-30.5 s is a U-turn after a replan, not health)."
+  }
+ },
+ "firewall_checks": {
+  "resident_modules_probe": "python -m metagross.sim.batch --split dev --seeds 102 --max-sim-s 2 --autonomy-target probe_target:probe_main (round-1 red-team probe, PYTHONPATH=scratch) at 07:37: autonomy child __main__ spec = None, resident metagross.sim/eval/train modules = [] (round 1 found 7).",
+  "assertion_in_closed_loop": "autonomy_main asserts no GT module is resident in a spawned child; every verifier run on the working tree (tier0 60, stereo 34 + 12 T1) finished with error = null, so the assertion held.",
+  "mission_id": "autonomy.log shows opaque ids (e.g. 'reset mission c0826ca4' for seed 102), no family / seed.",
+  "guard_noise": "every autonomy.log has 3x 'GUARD: blocked open(\"nul\")' (os.devnull is not on the allow-list); harmless so far but noisy.",
+  "ast_scan": "tests/test_gt_separation.py now resolves relative imports and importlib/__import__ literals (passes in the full suite)."
+ },
+ "lead_change_requests": [
+  "PERCEPTION (safety regression): the round-2 min_obstacle_size filter (pipeline.py floating_points / positive.vertical_extent_m) makes perception certify the hidden F3 trench on DEV 122: on identical cached stereo frames certified_hazard_in_envelope goes 0/393 (fee1da9) -> 13/393 (tree), and back to 0/393 with min_obstacle_size=False; K_TAU_SIGMA, noise_aware_step and positive_persistence have no effect on it (results/verify_dev2/perception_122_ablation.json). In closed loop, stereo FULL 122 re-approached the crest at 1.74 m/s with R_cert 5-6 m and put a wheel in the trench at 54.9 s.",
+  "PERCEPTION: false DITCH_CANDIDATE in stereo is unchanged: cand_rate_off 0.0546 -> 0.0535 on the same cached frames (DEV 106 drive: 0.23 -> 0.24); DEV 102 (F1, no ditches) still has 270 DITCH_CANDIDATE cells in the 0-6 m x +-2 m corridor at t = 0 and the rolling map holds a median 132 confirmed ditch cells.",
+  "metagross/autonomy/node.py (not owned by the verifier): wire the dead-end memory. In reset(): self.dead_ends = DeadEndMemory(). In step(): pass dead_ends=self.dead_ends to self.global_planner.update(...); when dec.dead_end is True, call self.dead_ends.mark(t, pose[:2], DeadEndMemory.frontier_point(...) or lookahead, goal). 0 dead ends were recorded in 106 working-tree runs (no 'dead end' line in any autonomy.log). F2/F3 still fail at the world edge: tier0 FULL 109/110/115/121 stuck at y ~ 1 or ~ 39, 122 out of bounds; stereo FULL 109/121/127 time out after 187-199 m of wandering.",
+  "SUPERVISOR: FWD_CHECK blocks the STOP_AND_LOOK rotation when the footprint is already within the clearance margin (clr 0.00-0.03 m), so the look cannot turn and the vehicle deadlocks (stereo FULL 105: tree 1.3 m + rock 1.7 m; stereo FULL 110 at the crest). Allow in-place rotation that does not reduce clearance, or a short reverse.",
+  "metagross/autonomy/node.py: use planning.governor.LatencyEstimator for the reaction latency (the governor docstring says T_r uses it; node.py still uses its own EMA at node.py:404), or remove the class.",
+  "tests: update the tests/test_perception_pipeline.py fixture to pass positive_persistence=False (as it does for ditch_persistence), and tests/test_plan_units.py::test_supervisor_stop_and_look_then_safe_stop and tests/test_node_closed_loop.py::test_stops_before_ditch_candidate_band to the dead-end rule (or build Supervisor(dead_end_enabled=False)). All 4 pass with those switches (checked by monkeypatching, no file edited).",
+  "Add unit tests for metagross/autonomy/planning/dead_end.py (163 lines) and metagross/autonomy/localization/depth_odom.py (331 lines); none exist. Depth odometry costs 28.9 ms/tick median in tier0 (localizer stage 0.3 -> 28.9 ms).",
+  "Unchanged round-1 issues: water 5/5 tier0 FULL, 3/5 stereo FULL; F4 moving-box side collision (tier0 105); certification never expires outside the FOV while health is NOMINAL (costmap.py untouched).",
+  "The ledger collector (metagross/eval/claims.py) globs only results/*.json, so results/verify_dev2/verify_dev2.json is not collected unless the lead copies it to results/ (e.g. results/verify_dev2.json)."
+ ],
+ "stereo_full_vs_t1_same_seeds": {
+  "FULL": {
+   "success": 8,
+   "ditch": 1,
+   "coll": 0,
+   "water": 0,
+   "oob": 0,
+   "mean_speed": 1.2142875,
+   "outcomes": {
+    "103": "success",
+    "104": "arrived_short",
+    "105": "stuck",
+    "106": "success",
+    "109": "timeout",
+    "110": "stuck",
+    "111": "success",
+    "115": "stuck",
+    "116": "success",
+    "117": "success",
+    "121": "timeout",
+    "122": "ditch_entry",
+    "123": "success",
+    "127": "timeout",
+    "128": "success",
+    "129": "success"
+   }
+  },
+  "T1": {
+   "success": 8,
+   "ditch": 2,
+   "coll": 2,
+   "water": 0,
+   "oob": 2,
+   "mean_speed": 1.4994062499999998,
+   "outcomes": {
+    "103": "success",
+    "104": "stuck",
+    "105": "success",
+    "106": "success",
+    "109": "ditch_entry",
+    "110": "success",
+    "111": "success",
+    "115": "stuck",
+    "116": "out_of_bounds",
+    "117": "collision",
+    "121": "ditch_entry",
+    "122": "collision",
+    "123": "success",
+    "127": "out_of_bounds",
+    "128": "success",
+    "129": "success"
+   }
+  },
+  "seeds": [
+   103,
+   104,
+   105,
+   106,
+   109,
+   110,
+   111,
+   115,
+   116,
+   117,
+   121,
+   122,
+   123,
+   127,
+   128,
+   129
+  ]
+ },
+ "extra_claims": {
+  "tier0_full_baseline_fee1da9_success": {
+   "value": "2/30",
+   "unit": "runs",
+   "note": "tier0 FULL, DEV seeds 100-129: fee1da9 (git archive snapshot run from scratch) vs working tree, each at 2 workers with one stereo worker in parallel (fee1da9 07:29-, working tree 07:02-07:24)"
+  },
+  "tier0_full_tree_success_same_session": {
+   "value": "11/30",
+   "unit": "runs",
+   "note": "tier0 FULL, DEV seeds 100-129: fee1da9 (git archive snapshot run from scratch) vs working tree, each at 2 workers with one stereo worker in parallel (fee1da9 07:29-, working tree 07:02-07:24)"
+  },
+  "perception_ab_stereo_positive_rate_off": {
+   "value": "0.0470 -> 0.0108",
+   "unit": "fraction",
+   "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; share of observed off-hazard cells (> buffer from any GT hazard)"
+  },
+  "perception_ab_stereo_cand_rate_off": {
+   "value": "0.0546 -> 0.0535",
+   "unit": "fraction",
+   "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; share of observed off-hazard cells (> buffer from any GT hazard)"
+  },
+  "perception_ab_stereo_lethal_rate_off": {
+   "value": "0.1032 -> 0.0668",
+   "unit": "fraction",
+   "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; share of observed off-hazard cells (> buffer from any GT hazard)"
+  },
+  "perception_ab_stereo_certified_hazard_in_envelope": {
+   "value": "0/1878 -> 13/1878",
+   "unit": "cells",
+   "note": "results/verify_dev2/_scripts/pd_ab.py: metagross.eval.perception_dev stereo metrics on identical cached DEV frames (drive 102,106,120,125,101; approach 103,121,122), fee1da9 perception copy vs working tree, run back to back 07:42-07:50; GT lethal cells in the path-corridor stopping envelope that perception certifies as ground (all on 122 approach)"
+  },
+  "perception_122_min_obstacle_size_ablation": {
+   "value": "13/393 -> 0/393",
+   "unit": "cells",
+   "note": "results/verify_dev2/_scripts/pd_122.py: DEV 122 stereo approach (cached), tree perception default vs min_obstacle_size=False; certified hazard cells in the stopping envelope (other round-2 switches: no effect)"
+  },
+  "stereo_full_same16_safety_events": {
+   "value": "success 8/16, ditch 1, collisions 0, out-of-bounds 0",
+   "unit": "runs / counts",
+   "note": "stereo FULL vs T1 (unknown_is_free, no negobs, no governor, 2.0 m/s) on the same 16 DEV seeds [103, 104, 105, 106, 109, 110, 111, 115, 116, 117, 121, 122, 123, 127, 128, 129]; referee counts"
+  },
+  "stereo_t1_same16_safety_events": {
+   "value": "success 8/16, ditch 2, collisions 2, out-of-bounds 2",
+   "unit": "runs / counts",
+   "note": "stereo FULL vs T1 (unknown_is_free, no negobs, no governor, 2.0 m/s) on the same 16 DEV seeds [103, 104, 105, 106, 109, 110, 111, 115, 116, 117, 121, 122, 123, 127, 128, 129]; referee counts"
+  }
+ }
+}

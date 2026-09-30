@@ -1,0 +1,158 @@
+{
+  "label": "Tested",
+  "meta": {
+    "trained_on": [
+      "07"
+    ],
+    "tested_on": "05",
+    "label": "VO failure: no pose, or rel. error > 0.1 m or > 1.0 deg per frame",
+    "train_frames": 1100,
+    "train_fail_rate": 0.01818181818181818,
+    "test_frames": 1499,
+    "test_fail_rate": 0.014009339559706471,
+    "auroc_train": 1.0,
+    "auroc_test": 0.9569559894323088,
+    "auroc_test_fallback_model": 0.9531864166505574,
+    "silent_failures_test": 6,
+    "auroc_test_silent_only": 0.8493459630130807,
+    "spearman_pfail_vs_trans_err": 0.26038696026354907,
+    "spearman_p_value": 2.0075127311952096e-24,
+    "strict_label_positives_test": 19,
+    "auroc_test_strict_label": 0.7259924555415843,
+    "created": "2026-09-30T03:26:05",
+    "C": 1.0
+  },
+  "per_kind_test": {
+    "clean": {
+      "frames": 715,
+      "fail_rate": 0.011188811188811189,
+      "mean_p_fail": 0.009829205036513043,
+      "auroc": 0.9991159830268741
+    },
+    "exposure_clip": {
+      "frames": 66,
+      "fail_rate": 0.030303030303030304,
+      "mean_p_fail": 0.03022601466227921,
+      "auroc": 1.0
+    },
+    "gamma_bright": {
+      "frames": 65,
+      "fail_rate": 0.015384615384615385,
+      "mean_p_fail": 4.0553694110222556e-05,
+      "auroc": 0.578125
+    },
+    "gamma_dark": {
+      "frames": 168,
+      "fail_rate": 0.005952380952380952,
+      "mean_p_fail": 0.00012839836767950243,
+      "auroc": 1.0
+    },
+    "haze": {
+      "frames": 104,
+      "fail_rate": 0.038461538461538464,
+      "mean_p_fail": 0.029381751986597923,
+      "auroc": 0.995
+    },
+    "low_light": {
+      "frames": 92,
+      "fail_rate": 0.0,
+      "mean_p_fail": 0.0002120188592861131
+    },
+    "motion_blur": {
+      "frames": 64,
+      "fail_rate": 0.03125,
+      "mean_p_fail": 0.0011668804887265802,
+      "auroc": 0.967741935483871
+    },
+    "smudge": {
+      "frames": 103,
+      "fail_rate": 0.0,
+      "mean_p_fail": 9.203710779186442e-05
+    },
+    "sun_flare": {
+      "frames": 122,
+      "fail_rate": 0.02459016393442623,
+      "mean_p_fail": 0.024555854396784593,
+      "auroc": 1.0
+    }
+  },
+  "gating": {
+    "q_reject": 0.4,
+    "frames_rejected_by_health": 0,
+    "true_failures_rejected": 0,
+    "silent_failures_total": 6,
+    "good_frames_rejected": 0,
+    "good_frames_total": 1478
+  },
+  "drift_test": {
+    "no_gating": {
+      "t_err_pct": 1.4729351405983253,
+      "r_err_deg_per_100m": 0.9661575948669954,
+      "n_segments": 752,
+      "drift_100m_m": 0.9749331845181106,
+      "drift_100m_pct": 0.9749331845181106,
+      "drift_100m_n": 141,
+      "drift_500m_m": 8.9649145014158,
+      "drift_500m_pct": 1.79298290028316,
+      "drift_500m_n": 86,
+      "drift_1000m_m": 9.172862546998939,
+      "drift_1000m_pct": 0.917286254699894,
+      "drift_1000m_n": 17,
+      "ate_rmse_m": 8.732060779871698,
+      "ate_max_m": 16.81681973124063,
+      "final_err_m": 13.898747958010915,
+      "path_length_m": 1128.2750103157546
+    },
+    "health_gating": {
+      "t_err_pct": 1.4729351405983253,
+      "r_err_deg_per_100m": 0.9661575948669954,
+      "n_segments": 752,
+      "drift_100m_m": 0.9749331845181106,
+      "drift_100m_pct": 0.9749331845181106,
+      "drift_100m_n": 141,
+      "drift_500m_m": 8.9649145014158,
+      "drift_500m_pct": 1.79298290028316,
+      "drift_500m_n": 86,
+      "drift_1000m_m": 9.172862546998939,
+      "drift_1000m_pct": 0.917286254699894,
+      "drift_1000m_n": 17,
+      "ate_rmse_m": 8.732060779871698,
+      "ate_max_m": 16.81681973124063,
+      "final_err_m": 13.898747958010915,
+      "path_length_m": 1128.2750103157546
+    },
+    "oracle_gating": {
+      "t_err_pct": 1.4761382495009339,
+      "r_err_deg_per_100m": 0.9788348383948776,
+      "n_segments": 752,
+      "drift_100m_m": 0.9917357388901282,
+      "drift_100m_pct": 0.9917357388901282,
+      "drift_100m_n": 141,
+      "drift_500m_m": 9.028681175800761,
+      "drift_500m_pct": 1.8057362351601522,
+      "drift_500m_n": 86,
+      "drift_1000m_m": 8.7428134979423,
+      "drift_1000m_pct": 0.8742813497942301,
+      "drift_1000m_n": 17,
+      "ate_rmse_m": 8.682329435228203,
+      "ate_max_m": 17.404296263819433,
+      "final_err_m": 13.475286750394343,
+      "path_length_m": 1128.2750103157546
+    }
+  },
+  "coef": {
+    "vo_inliers": -0.4483810026613939,
+    "vo_inlier_ratio": -0.5142124092169914,
+    "vo_reproj_rmse_px": 0.5846093080776078,
+    "vo_coverage": -0.2627223276977579,
+    "vo_track_age": -0.21131927885903953,
+    "vo_hess_min_eig": -0.48525366073203363,
+    "img_lapvar": 0.0740921776880732,
+    "img_sat_frac": -0.05505858557116363,
+    "img_dark_frac": 0.027633102043966653,
+    "img_rms_contrast": 0.04693471192401282,
+    "img_dark_channel": -0.04919874736818303,
+    "disp_density_ground": 0.024717500984658667
+  },
+  "note": "Real KITTI frames with synthetic degradations (metagross.eval.degrade). Drift: camera-only VO, rejected frames bridged with constant velocity."
+}

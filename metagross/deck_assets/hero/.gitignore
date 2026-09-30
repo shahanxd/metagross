@@ -1,0 +1,2 @@
+# Rendered frames + perception outputs cached by scripts/make_hero_visuals.py (~20 MB, regenerable)
+_cache/

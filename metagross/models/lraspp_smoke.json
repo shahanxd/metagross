@@ -1,0 +1,112 @@
+{
+ "name": "LR-ASPP MobileNetV3 SMOKE (300 CPU iters, 800 RUGD-5L imgs, robust aug)",
+ "kind": "direct5",
+ "architecture": "lraspp (torchvision lraspp_mobilenet_v3_large)",
+ "params": 3218818,
+ "input_hw": [
+  256,
+  320
+ ],
+ "input": "input: (1, 3, H, W) float32, RGB, (x/255 - mean) / std",
+ "output": "logits: (1, 5, H, W) float32",
+ "mean": [
+  0.485,
+  0.456,
+  0.406
+ ],
+ "std": [
+  0.229,
+  0.224,
+  0.225
+ ],
+ "classes": {
+  "0": "background/sky",
+  "1": "obstacle",
+  "2": "water/mud",
+  "3": "unstable (grass/dirt)",
+  "4": "stable (asphalt/concrete/gravel path)"
+ },
+ "colors_rgb": {
+  "0": [
+   203,
+   208,
+   214
+  ],
+  "1": [
+   220,
+   50,
+   47
+  ],
+  "2": [
+   20,
+   140,
+   190
+  ],
+  "3": [
+   217,
+   180,
+   58
+  ],
+  "4": [
+   34,
+   160,
+   90
+  ]
+ },
+ "smoke": true,
+ "training": {
+  "data": "rugd5",
+  "aug": "robust",
+  "init": "imagenet",
+  "img_hw": [
+   256,
+   320
+  ],
+  "batch_size": 8,
+  "lr": 0.001,
+  "sched": "poly",
+  "epochs_planned": 3,
+  "best_epoch": 1,
+  "iterations_at_best": 200,
+  "n_train_images": 800,
+  "n_val_images": 240,
+  "train_list_sha": "b68b003e954085fe",
+  "class_weights": [
+   0.5724190473556519,
+   0.14633610844612122,
+   2.6840550899505615,
+   0.14460383355617523,
+   1.4525858163833618
+  ],
+  "device": "cpu",
+  "torch": "2.14.0+cpu"
+ },
+ "val_metrics_at_train_res": {
+  "miou": 0.566830486552733,
+  "pixel_acc": 0.8076489766438802,
+  "false_safe_rate": 0.2524395750037117,
+  "per_class_iou": {
+   "background/sky": 0.7036788220635192,
+   "obstacle": 0.6953989327252807,
+   "water/mud": 0.0,
+   "unstable (grass/dirt)": 0.6532655271044814,
+   "stable (asphalt/concrete/gravel path)": 0.7818091508703838
+  }
+ },
+ "licence": {
+  "code": "torchvision LR-ASPP MobileNetV3-Large architecture (BSD-3-Clause)",
+  "backbone_init": "torchvision ImageNet-1k MobileNetV3-Large weights (BSD-3-Clause distribution; ImageNet data terms apply)",
+  "training_data": "GAIA-URJC RUGD-5Labels-resized / OFFROAD5 (RUGD, RELLIS-3D, GOOSE) mirrors: CC BY-NC-SA 3.0",
+  "weights_use": "research / evaluation only (derived from non-commercial data). A production BEL deployment must retrain with the same pipeline on commercially licensed or own-collected data."
+ },
+ "export": {
+  "opset": 17,
+  "torch": "2.14.0+cpu",
+  "onnxruntime": "1.23.2",
+  "max_abs_logit_diff_vs_torch": 7.62939453125e-06,
+  "argmax_agreement_vs_torch": 1.0,
+  "sha256": "7b3b01310a1fb3262898c0001ff0aa56418c739a12306984d57ba1100a9a43c3",
+  "source_checkpoint": "runs/seg/lraspp_smoke/best.pt",
+  "created_utc": "2026-09-29T21:39:07+00:00"
+ }
+}

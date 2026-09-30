@@ -1,0 +1,2 @@
+[{"name": "FULL", "debug_every_n": 5, "seg_model_path": "models/lraspp_offroad5_cpu.onnx"},
+ {"name": "T1", "unknown_is_free": true, "use_negobs": false, "use_governor": false, "fixed_speed_mps": 2.0, "debug_every_n": 5, "seg_model_path": "models/lraspp_offroad5_cpu.onnx"}]

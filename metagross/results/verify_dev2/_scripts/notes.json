@@ -1,0 +1,54 @@
+{
+ "verdict": {
+  "value": "NOT_READY",
+  "criteria": "READY = stereo FULL >= 3/6 reach B or arrived_est AND tier0 FULL 0 collisions and 0 ditch entries AND nothing broken",
+  "stereo_6_seed_check": "PASS: DEV 102/103/104/105/106/101 -> success 102, 103, 106; arrived_est 104 (arrived_short 3.40 m); 105 stuck; 101 water = 4/6",
+  "tier0_full_collisions": "FAIL: 1 (DEV 105, F4 moving box, side impact at 1.49 m/s, 2.9 s after trigger)",
+  "tier0_full_ditch": "PASS: 0/30",
+  "nothing_broken": "FAIL: 4/456 tests fail; stereo FULL entered the hidden F3 trench on DEV 122 (holdout seed) and the per-frame ablation traces it to the round-2 min_obstacle_size filter; dead-end memory is not wired into the node"
+ },
+ "golden_runs": {
+  "a_long_stereo_crest_approach": {
+   "run_dir": "results/verify_dev2/stereo/FULL/128",
+   "seed": 128, "family": "F3_crest_ditch (crest-only control; DEV holdout seed)", "sensor": "stereo", "config": "FULL",
+   "window_s": [20.0, 28.0],
+   "full_run": "success at 41.4 s, path 53.5 m (optimal 45.7 m), SPL 0.85, mean speed 1.29 m/s, 0 false stops, no mode changes; 104 debug bundles (every 2nd tick), all with the onboard image",
+   "description": "Cruises at 1.5-1.6 m/s with R_cert 4.2-4.5 m (v_cap at the 2.0 m/s platform limit). Approaching the crest line (GT 1.8 m away at 22.2 s), MPPI's certification cost cuts the commanded speed from 1.57 to 0.06 m/s over 22.0-23.6 s (GT speed 1.60 -> 0.80 m/s); at 24.0 s, 0.2 m from the crest line, visibility collapses and the governor binds (GOV_RVIS, R = 0, v_cap 0; GT 0.43 m/s, 0.09 m/s at 24.6 s). Once the back slope is in view R_cert jumps to 6.5-7.9 m, v_cap returns to 2.0 m/s at 24.4 s and the vehicle accelerates to 1.73 m/s by 27.2 s. Caveat: the slowdown before 24.0 s is MPPI's certification term, not the governor cap (v_cap stays 2.0 until the single 24.0 s tick).",
+   "alternative": "results/verify_dev2/stereo/FULL/103 (F2 ditch field, success at 60.1 s): ditch approach 34.8-37.2 s, the ditch is confirmed only ~1 m ahead of the body origin (R_cert 4.2 m -> 0.3 m at 35.6 s -> 0 at 36.0 s), hard stop with the body origin 0.36-0.44 m from the ditch edge (front bumper at the lip), FWD_CHECK hold 37-44 s, STOP_AND_LOOK 45.2-51.8 s, then on to the goal. It shows a late detection, not a graceful slowdown; do not narrate it as one."
+  },
+  "b_full_vs_t1_pair": {
+   "run_dirs": {"FULL": "results/verify_dev2/tier0/FULL/110", "T1": "results/verify_dev2/tier0/T1/110"},
+   "seed": 110, "family": "F3_crest_ditch (trench hidden on the back slope)", "sensor": "tier0 (stereo pairs show no thesis-direction difference; see stereo_note)",
+   "window_s": {"T1": [12.0, 17.1], "FULL": [14.0, 23.0]},
+   "description": "Same crest, same hidden trench. T1 (unknown-is-free, no negobs, no governor, 2.0 m/s) holds GT 1.85-1.88 m/s until 14.5 s and 1.63-1.76 m/s over the crest line (15.0-16.0 s); FWD_CHECK fires at 16.2 s with the trench edge 1.36 m from the body origin, too late: the front-right wheel enters the trench at 17.04 s (referee ditch_entry). FULL arrives at the crest at 1.3 m/s; at 19.8 s R_cert drops to 2.8 m (v_cap 1.93), at 20.4 s the governor binds on visibility (GOV_RVIS, R = 0, v_cap 0) and GT speed falls 1.26 -> 0.16 m/s by 21.0 s, stopping on the crest line 1.57 m from the trench edge (no ditch entry). Caveat for the narration: FULL does not reach B on this seed; it later ends 'stuck' at the world edge (52 s) because the dead-end memory is not wired into the node. Same-session fee1da9 FULL entered this trench (25.4 s).",
+   "alternative_pair": "tier0 103 (F2 ditch field): FULL reaches B at 40.9 s after threading two ditch gaps at 0.5-0.9 m/s (the slowdown is MPPI; v_cap stays 2.0); T1 holds 1.8 m/s, FWD_CHECK at 24.6 s, front-left wheel in the ditch at 25.52 s.",
+   "stereo_note": "Stereo candidates are weaker. (1) stereo 109 (F2): T1 holds 1.81 m/s toward a ditch (2.31 m away at 10.8 s), FWD_CHECK at 11.4 s, front-left wheel in the ditch at 12.38 s; FULL took a different, slower line and never came close, but it does not reach B either (timeout after 188 m). (2) stereo 117 (F4 boulder): T1 hits the rolling boulder at 14.02 s (1.19 m/s; R_cert fell 2.8 -> 1.5 -> 0 m but T1 ignores the governor); FULL reaches B at 38 s, yet the boulder passed 2.1-2.6 m to its side with v_cap at the platform limit, so the difference is route and timing, not the governor. (3) stereo 116 (F3 crest-only): T1 drives off the terrain edge (out of bounds at 20.5 s, 1.9 m/s); FULL reaches B at 62.8 s; the edge is a simulator boundary. (4) stereo 110: T1 passed the trench gap at 1.88 m/s after a health slowdown and reached B, while FULL stopped 0.89 m short of the trench at the crest (GOV_RCERT 1.8 m at 25.2 s -> GOV_RVIS 0 at 25.8 s) and then deadlocked (FWD_CHECK clr 0.03 m, the look cannot rotate)."
+  },
+  "c_health_mode_change": {
+   "run_dir": "results/verify_dev2/stereo/FULL/100",
+   "seed": 100, "family": "F5_lighting (glare 12.76-18.22 s, dim 35.9-38.9 s, dust 44.0-49.4 s)", "sensor": "stereo", "config": "FULL",
+   "window_s": [11.0, 20.0],
+   "full_run": "success at 75.9 s (path 90.4 m vs optimal 42.5 m: a long detour), 190 debug bundles all with the onboard image",
+   "description": "Glare starts at 12.76 s: VO inliers fall from 276 (12.6 s) to 48 (13.2 s), 20 (13.8 s) and 0 (15.0 s); q drops to 0.40 / 0.31 / 0.02. The supervisor goes NOMINAL -> DEGRADED at 13.6 s (log 'DEGRADED q=0.28'): v_cap 0.19-0.49 m/s, then hop-pause 0, and GT speed falls 1.59 -> 0.94 -> 0.37 -> 0.01 m/s by 16.2 s. VO recovers (inliers 308-357), DEGRADED -> CAUTION at 16.8 s (v_cap 1.0), CAUTION -> NOMINAL at 18.0 s, back to 1.65 m/s by 19.8 s. No FWD_CHECK or governor events in the window, so the slowdown is health only.",
+   "alternatives": "stereo FULL 124 (glare 11.87 s; DEGRADED 12.4 s q=0.23 -> CAUTION 15.8 s -> NOMINAL 17.0 s, but FWD_CHECK also fires 13.2-15.0 s); stereo FULL 106 (glare 19.9 s; CAUTION 20.6-22.4 s and 26.4-28.0 s, v_cap 1.0; the stop at 28.5-30.5 s is a U-turn after a replan, not health)."
+  }
+ },
+ "firewall_checks": {
+  "resident_modules_probe": "python -m metagross.sim.batch --split dev --seeds 102 --max-sim-s 2 --autonomy-target probe_target:probe_main (round-1 red-team probe, PYTHONPATH=scratch) at 07:37: autonomy child __main__ spec = None, resident metagross.sim/eval/train modules = [] (round 1 found 7).",
+  "assertion_in_closed_loop": "autonomy_main asserts no GT module is resident in a spawned child; every verifier run on the working tree (tier0 60, stereo 34 + 12 T1) finished with error = null, so the assertion held.",
+  "mission_id": "autonomy.log shows opaque ids (e.g. 'reset mission c0826ca4' for seed 102), no family / seed.",
+  "guard_noise": "every autonomy.log has 3x 'GUARD: blocked open(\"nul\")' (os.devnull is not on the allow-list); harmless so far but noisy.",
+  "ast_scan": "tests/test_gt_separation.py now resolves relative imports and importlib/__import__ literals (passes in the full suite)."
+ },
+ "lead_change_requests": [
+  "PERCEPTION (safety regression): the round-2 min_obstacle_size filter (pipeline.py floating_points / positive.vertical_extent_m) makes perception certify the hidden F3 trench on DEV 122: on identical cached stereo frames certified_hazard_in_envelope goes 0/393 (fee1da9) -> 13/393 (tree), and back to 0/393 with min_obstacle_size=False; K_TAU_SIGMA, noise_aware_step and positive_persistence have no effect on it (results/verify_dev2/perception_122_ablation.json). In closed loop, stereo FULL 122 re-approached the crest at 1.74 m/s with R_cert 5-6 m and put a wheel in the trench at 54.9 s.",
+  "PERCEPTION: false DITCH_CANDIDATE in stereo is unchanged: cand_rate_off 0.0546 -> 0.0535 on the same cached frames (DEV 106 drive: 0.23 -> 0.24); DEV 102 (F1, no ditches) still has 270 DITCH_CANDIDATE cells in the 0-6 m x +-2 m corridor at t = 0 and the rolling map holds a median 132 confirmed ditch cells.",
+  "metagross/autonomy/node.py (not owned by the verifier): wire the dead-end memory. In reset(): self.dead_ends = DeadEndMemory(). In step(): pass dead_ends=self.dead_ends to self.global_planner.update(...); when dec.dead_end is True, call self.dead_ends.mark(t, pose[:2], DeadEndMemory.frontier_point(...) or lookahead, goal). 0 dead ends were recorded in 106 working-tree runs (no 'dead end' line in any autonomy.log). F2/F3 still fail at the world edge: tier0 FULL 109/110/115/121 stuck at y ~ 1 or ~ 39, 122 out of bounds; stereo FULL 109/121/127 time out after 187-199 m of wandering.",
+  "SUPERVISOR: FWD_CHECK blocks the STOP_AND_LOOK rotation when the footprint is already within the clearance margin (clr 0.00-0.03 m), so the look cannot turn and the vehicle deadlocks (stereo FULL 105: tree 1.3 m + rock 1.7 m; stereo FULL 110 at the crest). Allow in-place rotation that does not reduce clearance, or a short reverse.",
+  "metagross/autonomy/node.py: use planning.governor.LatencyEstimator for the reaction latency (the governor docstring says T_r uses it; node.py still uses its own EMA at node.py:404), or remove the class.",
+  "tests: update the tests/test_perception_pipeline.py fixture to pass positive_persistence=False (as it does for ditch_persistence), and tests/test_plan_units.py::test_supervisor_stop_and_look_then_safe_stop and tests/test_node_closed_loop.py::test_stops_before_ditch_candidate_band to the dead-end rule (or build Supervisor(dead_end_enabled=False)). All 4 pass with those switches (checked by monkeypatching, no file edited).",
+  "Add unit tests for metagross/autonomy/planning/dead_end.py (163 lines) and metagross/autonomy/localization/depth_odom.py (331 lines); none exist. Depth odometry costs 28.9 ms/tick median in tier0 (localizer stage 0.3 -> 28.9 ms).",
+  "Unchanged round-1 issues: water 5/5 tier0 FULL, 3/5 stereo FULL; F4 moving-box side collision (tier0 105); certification never expires outside the FOV while health is NOMINAL (costmap.py untouched).",
+  "The ledger collector (metagross/eval/claims.py) globs only results/*.json, so results/verify_dev2/verify_dev2.json is not collected unless the lead copies it to results/ (e.g. results/verify_dev2.json)."
+ ]
+}

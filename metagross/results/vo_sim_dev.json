@@ -1,0 +1,585 @@
+{
+  "label": "Simulated",
+  "drives": [
+    {
+      "seed": 100,
+      "family": "F5_lighting",
+      "frames": 260,
+      "photometric": {
+        "path_m": 41.386706481233695,
+        "end_err_m": 3.3404705892893194,
+        "drift_pct": 8.071361249303605,
+        "max_err_m": 3.385156168269304,
+        "vo_fail_frames": 5,
+        "vo_failure_label_frames": 11,
+        "terr_median_mm": 1.0323031538969538
+      },
+      "no_photometric": {
+        "path_m": 41.386706481233695,
+        "end_err_m": 3.8024865168652515,
+        "drift_pct": 9.187700206561358,
+        "max_err_m": 3.9020725255799977,
+        "vo_fail_frames": 7,
+        "vo_failure_label_frames": 12,
+        "terr_median_mm": 1.081424246605753
+      }
+    },
+    {
+      "seed": 101,
+      "family": "F6_water_mud",
+      "frames": 139,
+      "photometric": {
+        "path_m": 49.90768277312184,
+        "end_err_m": 0.3072436438964067,
+        "drift_pct": 0.6156239416947547,
+        "max_err_m": 0.3072436438964067,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.9399629506691076
+      },
+      "no_photometric": {
+        "path_m": 49.90768277312184,
+        "end_err_m": 0.3201863071002657,
+        "drift_pct": 0.6415571497394875,
+        "max_err_m": 0.3201863071002657,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.915587441436614
+      }
+    },
+    {
+      "seed": 102,
+      "family": "F1_trail",
+      "frames": 242,
+      "photometric": {
+        "path_m": 44.84692959305964,
+        "end_err_m": 0.14792023017545922,
+        "drift_pct": 0.32983357281687986,
+        "max_err_m": 0.14792023017545922,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.5986815773325961
+      },
+      "no_photometric": {
+        "path_m": 44.84692959305964,
+        "end_err_m": 0.14792023017545922,
+        "drift_pct": 0.32983357281687986,
+        "max_err_m": 0.14792023017545922,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.5986815773325961
+      }
+    },
+    {
+      "seed": 103,
+      "family": "F2_ditch_field",
+      "frames": 168,
+      "photometric": {
+        "path_m": 46.215749488665985,
+        "end_err_m": 0.19666056679639604,
+        "drift_pct": 0.4255271611350268,
+        "max_err_m": 0.19666056679639604,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.7335332630937762
+      },
+      "no_photometric": {
+        "path_m": 46.215749488665985,
+        "end_err_m": 0.19490133401717155,
+        "drift_pct": 0.4217205956271886,
+        "max_err_m": 0.19490133401717155,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.7139891604834568
+      }
+    },
+    {
+      "seed": 104,
+      "family": "F3_crest_ditch",
+      "frames": 137,
+      "photometric": {
+        "path_m": 50.657846974792434,
+        "end_err_m": 0.22567487379104095,
+        "drift_pct": 0.4454884825708004,
+        "max_err_m": 0.22567487379104095,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.4667959189790687
+      },
+      "no_photometric": {
+        "path_m": 50.657846974792434,
+        "end_err_m": 0.28634273732295445,
+        "drift_pct": 0.5652485338854607,
+        "max_err_m": 0.28634273732295445,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.6605428033826766
+      }
+    },
+    {
+      "seed": 105,
+      "family": "F4_sudden_obstacle",
+      "frames": 262,
+      "photometric": {
+        "path_m": 47.863748874890774,
+        "end_err_m": 0.36147302400190895,
+        "drift_pct": 0.7552125199109445,
+        "max_err_m": 0.36147302400190895,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6025457145700143
+      },
+      "no_photometric": {
+        "path_m": 47.863748874890774,
+        "end_err_m": 0.36147302400190895,
+        "drift_pct": 0.7552125199109445,
+        "max_err_m": 0.36147302400190895,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6025457145700143
+      }
+    },
+    {
+      "seed": 106,
+      "family": "F5_lighting",
+      "frames": 307,
+      "photometric": {
+        "path_m": 40.70184364494716,
+        "end_err_m": 0.2652037372064559,
+        "drift_pct": 0.6515767185385939,
+        "max_err_m": 0.2652037372064559,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.8989106912119197
+      },
+      "no_photometric": {
+        "path_m": 40.70184364494716,
+        "end_err_m": 1.30326874996681,
+        "drift_pct": 3.201989475797619,
+        "max_err_m": 1.30326874996681,
+        "vo_fail_frames": 4,
+        "vo_failure_label_frames": 4,
+        "terr_median_mm": 0.864691247674167
+      }
+    },
+    {
+      "seed": 107,
+      "family": "F6_water_mud",
+      "frames": 141,
+      "photometric": {
+        "path_m": 50.875400859901454,
+        "end_err_m": 0.2584321820622702,
+        "drift_pct": 0.507970802576927,
+        "max_err_m": 0.2584321820622702,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 2.2783665723036473
+      },
+      "no_photometric": {
+        "path_m": 50.875400859901454,
+        "end_err_m": 0.2621080764620995,
+        "drift_pct": 0.5151960909042893,
+        "max_err_m": 0.2625706694409816,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 2.1313133779950997
+      }
+    },
+    {
+      "seed": 108,
+      "family": "F1_trail",
+      "frames": 217,
+      "photometric": {
+        "path_m": 41.55821717470331,
+        "end_err_m": 0.1701569928187341,
+        "drift_pct": 0.4094424746456869,
+        "max_err_m": 0.1701569928187341,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6537229866899287
+      },
+      "no_photometric": {
+        "path_m": 41.55821717470331,
+        "end_err_m": 0.1701569928187341,
+        "drift_pct": 0.4094424746456869,
+        "max_err_m": 0.1701569928187341,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6537229866899287
+      }
+    },
+    {
+      "seed": 109,
+      "family": "F2_ditch_field",
+      "frames": 218,
+      "photometric": {
+        "path_m": 60.29523248299797,
+        "end_err_m": 0.28236946735323026,
+        "drift_pct": 0.4683114331350372,
+        "max_err_m": 0.28236946735323026,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.9488372227292329
+      },
+      "no_photometric": {
+        "path_m": 60.29523248299797,
+        "end_err_m": 0.2810845967819143,
+        "drift_pct": 0.4661804676865197,
+        "max_err_m": 0.2810845967819143,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.9779930901567041
+      }
+    },
+    {
+      "seed": 110,
+      "family": "F3_crest_ditch",
+      "frames": 147,
+      "photometric": {
+        "path_m": 54.09161245087481,
+        "end_err_m": 0.38641355902894675,
+        "drift_pct": 0.7143687191426984,
+        "max_err_m": 0.38641355902894675,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.7899260738522627
+      },
+      "no_photometric": {
+        "path_m": 54.09161245087481,
+        "end_err_m": 0.3639191294789612,
+        "drift_pct": 0.6727829195505441,
+        "max_err_m": 0.3639191294789612,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.9867967232689125
+      }
+    },
+    {
+      "seed": 111,
+      "family": "F4_sudden_obstacle",
+      "frames": 274,
+      "photometric": {
+        "path_m": 51.422737370321926,
+        "end_err_m": 0.32253289624915016,
+        "drift_pct": 0.6272184499366937,
+        "max_err_m": 0.32253289624915016,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6064775314187991
+      },
+      "no_photometric": {
+        "path_m": 51.422737370321926,
+        "end_err_m": 0.33644704224993194,
+        "drift_pct": 0.6542768033272937,
+        "max_err_m": 0.33644704224993194,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6165535673182244
+      }
+    },
+    {
+      "seed": 112,
+      "family": "F5_lighting",
+      "frames": 243,
+      "photometric": {
+        "path_m": 47.199711476827325,
+        "end_err_m": 0.5338035494178772,
+        "drift_pct": 1.1309466365699032,
+        "max_err_m": 0.5338035494178772,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.1265267408652204
+      },
+      "no_photometric": {
+        "path_m": 47.199711476827325,
+        "end_err_m": 5.954200209002568,
+        "drift_pct": 12.614908063422762,
+        "max_err_m": 5.954200209002568,
+        "vo_fail_frames": 2,
+        "vo_failure_label_frames": 2,
+        "terr_median_mm": 1.1968186118717505
+      }
+    },
+    {
+      "seed": 113,
+      "family": "F6_water_mud",
+      "frames": 119,
+      "photometric": {
+        "path_m": 43.873966393882796,
+        "end_err_m": 4.57788792658888,
+        "drift_pct": 10.434178404319423,
+        "max_err_m": 4.57788792658888,
+        "vo_fail_frames": 1,
+        "vo_failure_label_frames": 1,
+        "terr_median_mm": 1.948204497267875
+      },
+      "no_photometric": {
+        "path_m": 43.873966393882796,
+        "end_err_m": 4.566528908071856,
+        "drift_pct": 10.40828829350736,
+        "max_err_m": 4.566528908071856,
+        "vo_fail_frames": 1,
+        "vo_failure_label_frames": 1,
+        "terr_median_mm": 1.846844402834865
+      }
+    },
+    {
+      "seed": 114,
+      "family": "F1_trail",
+      "frames": 253,
+      "photometric": {
+        "path_m": 46.6839139116615,
+        "end_err_m": 0.16680446773244129,
+        "drift_pct": 0.357306090590605,
+        "max_err_m": 0.16680446773244129,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.780915497279341
+      },
+      "no_photometric": {
+        "path_m": 46.6839139116615,
+        "end_err_m": 0.16754081204587515,
+        "drift_pct": 0.35888338831852734,
+        "max_err_m": 0.16754081204587515,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.7840380781474552
+      }
+    },
+    {
+      "seed": 115,
+      "family": "F2_ditch_field",
+      "frames": 203,
+      "photometric": {
+        "path_m": 57.75098329197756,
+        "end_err_m": 0.35641867690987505,
+        "drift_pct": 0.6171646898337516,
+        "max_err_m": 0.35641867690987505,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.9521892941999553
+      },
+      "no_photometric": {
+        "path_m": 57.75098329197756,
+        "end_err_m": 0.3574278140065663,
+        "drift_pct": 0.6189120836254544,
+        "max_err_m": 0.3574278140065663,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.9377680434966873
+      }
+    },
+    {
+      "seed": 116,
+      "family": "F3_crest_ditch",
+      "frames": 132,
+      "photometric": {
+        "path_m": 48.82994768543874,
+        "end_err_m": 0.2747183617879298,
+        "drift_pct": 0.5626022037903018,
+        "max_err_m": 0.2747183617879298,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.9267339093981095
+      },
+      "no_photometric": {
+        "path_m": 48.82994768543874,
+        "end_err_m": 0.27998384925700653,
+        "drift_pct": 0.5733855196009122,
+        "max_err_m": 0.27998384925700653,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.9197809844552802
+      }
+    },
+    {
+      "seed": 117,
+      "family": "F4_sudden_obstacle",
+      "frames": 245,
+      "photometric": {
+        "path_m": 46.143348080270506,
+        "end_err_m": 0.18236051016143032,
+        "drift_pct": 0.3952043311729305,
+        "max_err_m": 0.18236051016143032,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6526558615582181
+      },
+      "no_photometric": {
+        "path_m": 46.143348080270506,
+        "end_err_m": 0.18236051016143032,
+        "drift_pct": 0.3952043311729305,
+        "max_err_m": 0.18236051016143032,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6526558615582181
+      }
+    },
+    {
+      "seed": 118,
+      "family": "F5_lighting",
+      "frames": 247,
+      "photometric": {
+        "path_m": 52.14056054351627,
+        "end_err_m": 0.4350517755692517,
+        "drift_pct": 0.8343826208123702,
+        "max_err_m": 0.4350517755692517,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 1.390639216790045
+      },
+      "no_photometric": {
+        "path_m": 52.14056054351627,
+        "end_err_m": 4.456560237389471,
+        "drift_pct": 8.547204308764664,
+        "max_err_m": 4.456560237389471,
+        "vo_fail_frames": 5,
+        "vo_failure_label_frames": 5,
+        "terr_median_mm": 1.3887324098420264
+      }
+    },
+    {
+      "seed": 120,
+      "family": "F1_trail",
+      "frames": 272,
+      "photometric": {
+        "path_m": 50.672391576223546,
+        "end_err_m": 0.17778612804393543,
+        "drift_pct": 0.35085403020005884,
+        "max_err_m": 0.17778612804393543,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.645462707248477
+      },
+      "no_photometric": {
+        "path_m": 50.672391576223546,
+        "end_err_m": 0.19044681236446814,
+        "drift_pct": 0.37583939980016534,
+        "max_err_m": 0.19044681236446814,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.6648120599740561
+      }
+    },
+    {
+      "seed": 123,
+      "family": "F4_sudden_obstacle",
+      "frames": 279,
+      "photometric": {
+        "path_m": 52.16196862738259,
+        "end_err_m": 0.6212222766865337,
+        "drift_pct": 1.1909486797252915,
+        "max_err_m": 0.6212222766865337,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.5964099857401943
+      },
+      "no_photometric": {
+        "path_m": 52.16196862738259,
+        "end_err_m": 0.6212222766865337,
+        "drift_pct": 1.1909486797252915,
+        "max_err_m": 0.6212222766865337,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 0,
+        "terr_median_mm": 0.5964099857401943
+      }
+    },
+    {
+      "seed": 124,
+      "family": "F5_lighting",
+      "frames": 337,
+      "photometric": {
+        "path_m": 45.61481287340928,
+        "end_err_m": 1.0695996298050758,
+        "drift_pct": 2.344851512979874,
+        "max_err_m": 1.0695996298050758,
+        "vo_fail_frames": 0,
+        "vo_failure_label_frames": 2,
+        "terr_median_mm": 1.0114699737392685
+      },
+      "no_photometric": {
+        "path_m": 45.61481287340928,
+        "end_err_m": 2.5471139698899106,
+        "drift_pct": 5.583962334688709,
+        "max_err_m": 2.5471139698899106,
+        "vo_fail_frames": 4,
+        "vo_failure_label_frames": 7,
+        "terr_median_mm": 1.0187741279381692
+      }
+    }
+  ],
+  "summary": {
+    "photometric": {
+      "drives": 22,
+      "path_m": 1070.8953126301012,
+      "median_drift_pct": 0.6163943157642531,
+      "mean_drift_pct": 1.4654715784273706,
+      "vo_failure_label_frames": 14
+    },
+    "no_photometric": {
+      "drives": 22,
+      "path_m": 1070.8953126301012,
+      "median_drift_pct": 0.6302346166824709,
+      "mean_drift_pct": 2.6585762369581833,
+      "vo_failure_label_frames": 31
+    }
+  },
+  "timing_replay": {
+    "frames": 4820,
+    "localizer_ms_median": 65.92245000138064,
+    "localizer_ms_p95": 179.15528999510576,
+    "vo_ms_median": 55.832900001405505,
+    "vo_ms_p95": 165.69025499666168
+  },
+  "localizer_timing_paired": {
+    "seeds": [
+      102,
+      103,
+      100
+    ],
+    "frames_per_config": 447,
+    "opencv_threads": 2,
+    "previous": {
+      "localizer_ms_median": 76.94099999935133,
+      "localizer_ms_p95": 171.07261000273866,
+      "localizer_ms_mean": 88.86161744957232,
+      "vo_ms_median": 65.87909999507247,
+      "vo_ms_p95": 158.36299000293363
+    },
+    "current": {
+      "localizer_ms_median": 58.39900000137277,
+      "localizer_ms_p95": 123.97548999942956,
+      "localizer_ms_mean": 67.87928970933591,
+      "vo_ms_median": 49.41110000072513,
+      "vo_ms_p95": 114.08318000176223
+    },
+    "note": "Shared 4-core laptop with 5 other agents running: absolute ms are inflated vs an idle machine (integration log: 23 / 41 ms median / p95); the paired previous-vs-current ratio is the result.",
+    "health_image_features": {
+      "seed": 102,
+      "frame": 50,
+      "reps": 200,
+      "previous_ms": 6.836540000003879,
+      "current_image_features_ms": 5.54513949999091,
+      "values_identical": true
+    }
+  },
+  "method": "VO-only (no wheels/gyro) chained frame-to-frame relative poses vs GT camera poses; frames without a VO pose bridged with the last VO motion; drift = end-point error / GT path length.",
+  "claims": [
+    {
+      "id": "vo_sim_dev_median_drift_pct",
+      "value": "0.62",
+      "unit": "%",
+      "label": "Simulated",
+      "source": "results/vo_sim_dev.json#summary.photometric.median_drift_pct",
+      "note": "VO-only end-point drift, median over 22 rendered DEV drives (1071 m)"
+    },
+    {
+      "id": "localizer_p95_ms_sim_paired",
+      "value": "171.1 -> 124.0",
+      "unit": "ms",
+      "label": "Simulated",
+      "source": "results/vo_sim_dev.json#localizer_timing_paired",
+      "note": "stereo-mode Localizer.update p95, previous vs current VO config, paired on the same rendered DEV frames on a loaded shared laptop (ratio is the result)"
+    }
+  ]
+}

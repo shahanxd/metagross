@@ -1,0 +1,51 @@
+{
+ "machine": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.10.0",
+  "numpy": "2.2.6"
+ },
+ "omp_num_threads": "2",
+ "cv2_threads": 2,
+ "open_loop": {
+  "seed": 102,
+  "family": "F1_trail",
+  "frames_rendered": 60,
+  "tier0_frame_ms": {
+   "n": 60,
+   "mean": 55.941,
+   "median": 50.005,
+   "p95": 104.937,
+   "max": 115.81
+  },
+  "physics_step_ms": {
+   "n": 600,
+   "mean": 0.444,
+   "median": 0.359,
+   "p95": 0.915,
+   "max": 1.503
+  },
+  "stopped_by": null
+ },
+ "episode": {
+  "target": "test_sim_runner:dummy_autonomy_main",
+  "max_sim_s": 60.0,
+  "wall_s": 20.636,
+  "success": false,
+  "failure_type": "collision",
+  "time": 42.36,
+  "path_length": 38.824,
+  "n_frames": 212,
+  "sensor_ms_mean": 79.4019,
+  "sensor_breakdown_ms": {
+   "terrain": 27.9427,
+   "objects": 40.5385,
+   "post": 9.4879,
+   "output": 1.2759,
+   "total": 79.2451
+  },
+  "physics_ms_per_step": 0.4937,
+  "compute_ms_mean": 0.2679
+ }
+}

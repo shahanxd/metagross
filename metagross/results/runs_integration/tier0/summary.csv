@@ -1,0 +1,11 @@
+config,seed,family,split,success,failure_type,time,path_length,spl,optimal_path_length,min_clearance,final_error,ditch_entries,collisions,water_entries,mean_speed,false_stops,n_frames,compute_ms_mean,sensor_ms_mean,wall_time_s,error
+FULL,100,F5_lighting,dev,False,stuck,20.02,0.202,0.0,42.5398,,42.374,0,0,0,0.0101,1,101,73.1016,48.1156,16.251,
+FULL,101,F6_water_mud,dev,False,stuck,20.02,0.207,0.0,50.9856,2.89,49.201,0,0,0,0.0104,1,101,70.7381,42.0905,15.8,
+FULL,102,F1_trail,dev,False,stuck,20.02,0.43,0.0,45.724,2.9393,44.594,0,0,0,0.0215,2,101,74.3938,49.6306,17.564,
+FULL,103,F2_ditch_field,dev,False,stuck,20.02,0.502,0.0,46.9857,3.7441,40.819,0,0,0,0.0251,3,101,71.6898,40.7459,15.887,
+FULL,104,F3_crest_ditch,dev,False,stuck,20.02,0.437,0.0,51.5665,,51.465,0,0,0,0.0218,2,101,76.8028,34.1281,16.246,
+FULL,105,F4_sudden_obstacle,dev,False,stuck,20.02,0.423,0.0,49.0303,,48.726,0,0,0,0.0211,3,101,73.2661,50.7946,17.478,
+TYPICAL,103,F2_ditch_field,dev,False,stuck,25.04,2.971,0.0,46.9857,3.8366,40.503,0,0,0,0.1187,1,126,62.114,41.9749,18.668,
+TYPICAL,104,F3_crest_ditch,dev,False,stuck,24.04,2.612,0.0,51.5665,,51.932,0,0,0,0.1087,1,121,63.325,42.4965,18.413,
+TYPICAL,109,F2_ditch_field,dev,False,stuck,26.04,5.052,0.0,60.8993,2.8638,37.041,0,0,0,0.194,1,131,61.808,47.2935,20.703,
+TYPICAL,110,F3_crest_ditch,dev,False,stuck,24.04,3.479,0.0,55.0726,1.9251,53.306,0,0,0,0.1447,2,121,62.4135,49.1126,19.146,

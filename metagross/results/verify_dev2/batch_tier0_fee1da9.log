@@ -1,0 +1,47 @@
+
+30 September 2026 07:29:20
+
+
+python.exe : 2026-09-30 07:29:21,741 INFO __main__: 30 jobs, 0 already done, 30 to run on 2 workers
+At line:1 char:597
++ ... ascii $log; & "D:\Downloads\sih again\metagross\.venv\Scripts\python. ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:2...un on 2 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:29:48,281 INFO __main__: done FULL seed 101: success=False failure=water_entry
+2026-09-30 07:30:17,767 INFO __main__: done FULL seed 100: success=False failure=stuck
+2026-09-30 07:31:01,056 INFO __main__: done FULL seed 102: success=False failure=stuck
+2026-09-30 07:31:24,064 INFO __main__: done FULL seed 103: success=False failure=stuck
+2026-09-30 07:32:11,296 INFO __main__: done FULL seed 104: success=False failure=stuck
+2026-09-30 07:32:21,694 INFO __main__: done FULL seed 105: success=False failure=stuck
+2026-09-30 07:32:34,149 INFO __main__: done FULL seed 107: success=False failure=water_entry
+2026-09-30 07:32:56,943 INFO __main__: done FULL seed 106: success=False failure=stuck
+2026-09-30 07:33:10,037 INFO __main__: done FULL seed 108: success=True failure=None
+2026-09-30 07:33:39,574 INFO __main__: done FULL seed 110: success=False failure=ditch_entry
+2026-09-30 07:33:55,327 INFO __main__: done FULL seed 109: success=False failure=stuck
+2026-09-30 07:34:40,638 INFO __main__: done FULL seed 111: success=False failure=stuck
+2026-09-30 07:34:51,560 INFO __main__: done FULL seed 112: success=False failure=stuck
+2026-09-30 07:34:59,356 INFO __main__: done FULL seed 113: success=False failure=water_entry
+2026-09-30 07:35:46,927 INFO __main__: done FULL seed 115: success=False failure=stuck
+2026-09-30 07:35:49,348 INFO __main__: done FULL seed 114: success=False failure=stuck
+2026-09-30 07:36:44,662 INFO __main__: done FULL seed 117: success=False failure=stuck
+2026-09-30 07:36:47,280 INFO __main__: done FULL seed 116: success=False failure=stuck
+2026-09-30 07:37:03,510 INFO __main__: done FULL seed 119: success=False failure=water_entry
+2026-09-30 07:38:17,493 INFO __main__: done FULL seed 120: success=False failure=stuck
+2026-09-30 07:38:35,273 INFO __main__: done FULL seed 118: success=False failure=stuck
+2026-09-30 07:39:14,921 INFO __main__: done FULL seed 122: success=False failure=ditch_entry
+2026-09-30 07:39:44,515 INFO __main__: done FULL seed 121: success=False failure=stuck
+2026-09-30 07:40:09,371 INFO __main__: done FULL seed 123: success=False failure=stuck
+2026-09-30 07:40:21,765 INFO __main__: done FULL seed 125: success=False failure=water_entry
+2026-09-30 07:40:40,617 INFO __main__: done FULL seed 124: success=False failure=stuck
+2026-09-30 07:41:02,737 INFO __main__: done FULL seed 126: success=True failure=None
+2026-09-30 07:41:20,906 INFO __main__: done FULL seed 127: success=False failure=stuck
+2026-09-30 07:41:54,459 INFO __main__: done FULL seed 129: success=False failure=stuck
+2026-09-30 07:42:01,609 INFO __main__: done FULL seed 128: success=False failure=stuck
+2026-09-30 07:42:01,915 INFO __main__: summary: 30 rows -> D:\Downloads\sih 
+again\metagross\results\verify_dev2\tier0_fee1da9\summary.csv
+
+30 September 2026 07:42:02
+
+

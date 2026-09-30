@@ -1,0 +1,32 @@
+﻿python.exe : 2026-09-30 06:06:07,614 INFO __main__: 24 jobs, 0 already done, 24 to run on 2 workers
+At line:1 char:428
++ ... ; Get-Date; & .\.venv\Scripts\python.exe -m metagross.sim.batch --spl ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 06:0...un on 2 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 06:06:28,949 INFO __main__: done FULL seed 101: success=False failure=water_entry
+2026-09-30 06:06:53,593 INFO __main__: done FULL seed 100: success=False failure=stuck
+2026-09-30 06:07:27,172 INFO __main__: done FULL seed 102: success=False failure=stuck
+2026-09-30 06:07:42,752 INFO __main__: done FULL seed 103: success=False failure=stuck
+2026-09-30 06:08:03,079 INFO __main__: done FULL seed 105: success=False failure=collision
+2026-09-30 06:08:19,432 INFO __main__: done FULL seed 104: success=False failure=stuck
+2026-09-30 06:08:31,123 INFO __main__: done FULL seed 107: success=False failure=water_entry
+2026-09-30 06:08:41,581 INFO __main__: done FULL seed 106: success=False failure=stuck
+2026-09-30 06:09:00,937 INFO __main__: done FULL seed 108: success=True failure=None
+2026-09-30 06:09:20,759 INFO __main__: done FULL seed 109: success=False failure=stuck
+2026-09-30 06:09:42,250 INFO __main__: done FULL seed 110: success=False failure=stuck
+2026-09-30 06:10:11,781 INFO __main__: done FULL seed 111: success=False failure=stuck
+2026-09-30 06:10:23,668 INFO __main__: done TYPICAL seed 100: success=False failure=stuck
+2026-09-30 06:10:23,708 INFO __main__: done TYPICAL seed 101: success=False failure=water_entry
+2026-09-30 06:10:57,085 INFO __main__: done TYPICAL seed 102: success=False failure=collision
+2026-09-30 06:11:15,685 INFO __main__: done TYPICAL seed 103: success=False failure=stuck
+2026-09-30 06:11:41,106 INFO __main__: done TYPICAL seed 105: success=False failure=collision
+2026-09-30 06:11:45,757 INFO __main__: done TYPICAL seed 104: success=False failure=stuck
+2026-09-30 06:11:59,040 INFO __main__: done TYPICAL seed 107: success=False failure=water_entry
+2026-09-30 06:12:09,641 INFO __main__: done TYPICAL seed 106: success=True failure=None
+2026-09-30 06:12:24,064 INFO __main__: done TYPICAL seed 108: success=True failure=None
+2026-09-30 06:12:31,555 INFO __main__: done TYPICAL seed 109: success=False failure=out_of_bounds
+2026-09-30 06:12:45,832 INFO __main__: done TYPICAL seed 110: success=False failure=out_of_bounds
+2026-09-30 06:12:59,052 INFO __main__: done TYPICAL seed 111: success=False failure=stuck
+2026-09-30 06:12:59,356 INFO __main__: summary: 24 rows -> results\verify_dev\tier0\summary.csv

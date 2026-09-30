@@ -1,0 +1,118 @@
+{
+ "what": "stereo DEV 122 approach (cached frames), tree perception with one round-2 change disabled per variant",
+ "tree_default": {
+  "certified_hazard_in_envelope": {
+   "cells": 13,
+   "of": 393
+  },
+  "certified_hazard_in_envelope_ditch_cells": 13,
+  "ditch_path_certified": {
+   "cells": 48,
+   "of": 2088
+  },
+  "detection": {
+   "r_first_m": 2.85,
+   "r_stable_m": 0.0,
+   "n_frames": 53,
+   "max_range_scored_m": 12.45,
+   "width_m": 0.627,
+   "depth_m": 0.574,
+   "angle_deg": 90.0,
+   "theory_r_det_m": 6.13
+  },
+  "cand_rate_off": 0.03854,
+  "lethal_rate_off": 0.07308
+ },
+ "no_k_tau_sigma_relax": {
+  "certified_hazard_in_envelope": {
+   "cells": 13,
+   "of": 393
+  },
+  "certified_hazard_in_envelope_ditch_cells": 13,
+  "ditch_path_certified": {
+   "cells": 48,
+   "of": 2088
+  },
+  "detection": {
+   "r_first_m": 2.85,
+   "r_stable_m": 0.0,
+   "n_frames": 53,
+   "max_range_scored_m": 12.45,
+   "width_m": 0.627,
+   "depth_m": 0.574,
+   "angle_deg": 90.0,
+   "theory_r_det_m": 6.13
+  },
+  "cand_rate_off": 0.04151,
+  "lethal_rate_off": 0.07643
+ },
+ "no_min_obstacle_size": {
+  "certified_hazard_in_envelope": {
+   "cells": 0,
+   "of": 393
+  },
+  "certified_hazard_in_envelope_ditch_cells": 0,
+  "ditch_path_certified": {
+   "cells": 11,
+   "of": 2088
+  },
+  "detection": {
+   "r_first_m": 3.05,
+   "r_stable_m": 0.0,
+   "n_frames": 53,
+   "max_range_scored_m": 12.45,
+   "width_m": 0.627,
+   "depth_m": 0.574,
+   "angle_deg": 90.0,
+   "theory_r_det_m": 6.13
+  },
+  "cand_rate_off": 0.03832,
+  "lethal_rate_off": 0.07871
+ },
+ "no_noise_aware_step": {
+  "certified_hazard_in_envelope": {
+   "cells": 13,
+   "of": 393
+  },
+  "certified_hazard_in_envelope_ditch_cells": 13,
+  "ditch_path_certified": {
+   "cells": 48,
+   "of": 2088
+  },
+  "detection": {
+   "r_first_m": 2.85,
+   "r_stable_m": 0.0,
+   "n_frames": 53,
+   "max_range_scored_m": 12.45,
+   "width_m": 0.627,
+   "depth_m": 0.574,
+   "angle_deg": 90.0,
+   "theory_r_det_m": 6.13
+  },
+  "cand_rate_off": 0.03854,
+  "lethal_rate_off": 0.07308
+ },
+ "no_positive_persistence": {
+  "certified_hazard_in_envelope": {
+   "cells": 13,
+   "of": 393
+  },
+  "certified_hazard_in_envelope_ditch_cells": 13,
+  "ditch_path_certified": {
+   "cells": 44,
+   "of": 2088
+  },
+  "detection": {
+   "r_first_m": 3.05,
+   "r_stable_m": 0.0,
+   "n_frames": 53,
+   "max_range_scored_m": 12.45,
+   "width_m": 0.627,
+   "depth_m": 0.574,
+   "angle_deg": 90.0,
+   "theory_r_det_m": 6.13
+  },
+  "cand_rate_off": 0.03821,
+  "lethal_rate_off": 0.08103
+ }
+}

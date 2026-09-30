@@ -1,0 +1,11 @@
+config,seed,family,split,success,failure_type,time,path_length,spl,optimal_path_length,min_clearance,final_error,ditch_entries,collisions,water_entries,mean_speed,false_stops,n_frames,compute_ms_mean,sensor_ms_mean,wall_time_s,error
+NO-NEG,103,F2_ditch_field,dev,False,stuck,64.04,52.261,0.0,46.9857,1.287,2.662,0,0,0,0.8161,1,321,102.6521,88.6894,71.977,
+NO-NEG,109,F2_ditch_field,dev,False,stuck,54.02,34.746,0.0,60.8993,3.666,32.948,0,0,0,0.6432,1,271,92.294,54.1787,49.785,
+NO-NEG,115,F2_ditch_field,dev,False,stuck,55.02,44.569,0.0,58.7338,1.995,30.857,0,0,0,0.81,2,276,86.3843,45.7985,44.936,
+NO-NEG,121,F2_ditch_field,dev,False,stuck,89.02,90.927,0.0,60.3807,1.2571,35.425,0,0,0,1.0214,1,446,91.6643,54.122,77.22,
+NO-NEG,127,F2_ditch_field,dev,False,stuck,70.04,68.484,0.0,54.446,1.334,50.722,0,0,0,0.9778,1,351,88.9562,54.7234,61.564,
+NO-NEG,104,F3_crest_ditch,dev,False,out_of_bounds,59.7,47.273,0.0,51.5665,1.2413,27.502,0,0,0,0.7918,2,299,84.5327,47.2115,48.669,
+NO-NEG,110,F3_crest_ditch,dev,False,stuck,83.04,66.786,0.0,55.0726,2.2897,2.181,0,0,0,0.8043,2,416,90.1614,46.2919,67.132,
+NO-NEG,116,F3_crest_ditch,dev,False,stuck,72.04,64.605,0.0,50.0715,1.675,2.456,0,0,0,0.8968,2,361,81.486,39.8004,52.428,
+NO-NEG,122,F3_crest_ditch,dev,False,stuck,58.02,46.605,0.0,46.1555,1.5877,32.191,0,0,0,0.8033,1,291,64.9376,47.1101,41.247,
+NO-NEG,128,F3_crest_ditch,dev,False,stuck,52.02,44.582,0.0,45.6677,2.9033,4.12,0,0,0,0.857,1,261,59.3216,40.7024,32.679,

@@ -1,0 +1,14 @@
+{
+ "mission_id": "F4_sudden_obstacle-123",
+ "goal_xy_a": [
+  52.6935,
+  4.9184
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 192.3,
+ "goal_sigma_m": 0.8445,
+ "goal_entry": {
+  "range_m": 52.9226,
+  "bearing_deg": 5.3325
+ }
+}

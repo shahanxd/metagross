@@ -1,0 +1,26 @@
+{
+  "label": "Tested",
+  "sequence": "07",
+  "frames": 150,
+  "resolution": [
+    1226,
+    370
+  ],
+  "runs": {
+    "2": {
+      "disparity_ms_mean": 142.41968187926986,
+      "total_ms_mean": 168.28391610741642,
+      "klt_ms_mean": 20.46298040531346,
+      "pnp_ms_mean": 2.1195452704764524,
+      "fps_vo": 5.942338537936657
+    },
+    "4": {
+      "disparity_ms_mean": 125.09479932911849,
+      "total_ms_mean": 152.74237852384206,
+      "klt_ms_mean": 21.135869594513064,
+      "pnp_ms_mean": 2.7018898651747163,
+      "fps_vo": 6.546971506299457
+    }
+  },
+  "note": "shared 4-core/8-thread laptop CPU (Iris Xe laptop, other users' jobs running)"
+}

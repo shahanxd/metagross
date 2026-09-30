@@ -1,0 +1,76 @@
+
+30 September 2026 07:02:44
+
+
+python.exe : 2026-09-30 07:02:45,772 INFO __main__: 60 jobs, 0 already done, 60 to run on 2 workers
+At line:1 char:440
++ ... _tier0.log; & .\.venv\Scripts\python.exe -m metagross.sim.batch --spl ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:0...un on 2 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:03:12,534 INFO __main__: done FULL seed 101: success=False failure=water_entry
+2026-09-30 07:03:29,047 INFO __main__: done FULL seed 100: success=True failure=None
+2026-09-30 07:04:06,092 INFO __main__: done FULL seed 102: success=False failure=arrived_short
+2026-09-30 07:04:22,471 INFO __main__: done FULL seed 103: success=True failure=None
+2026-09-30 07:04:58,474 INFO __main__: done FULL seed 105: success=False failure=collision
+2026-09-30 07:05:17,741 INFO __main__: done FULL seed 104: success=False failure=arrived_short
+2026-09-30 07:05:37,558 INFO __main__: done FULL seed 107: success=False failure=water_entry
+2026-09-30 07:05:39,319 INFO __main__: done FULL seed 106: success=True failure=None
+2026-09-30 07:06:21,616 INFO __main__: done FULL seed 108: success=True failure=None
+2026-09-30 07:06:48,238 INFO __main__: done FULL seed 109: success=False failure=stuck
+2026-09-30 07:07:26,625 INFO __main__: done FULL seed 110: success=False failure=stuck
+2026-09-30 07:07:40,683 INFO __main__: done FULL seed 111: success=True failure=None
+2026-09-30 07:08:00,208 INFO __main__: done FULL seed 113: success=False failure=water_entry
+2026-09-30 07:08:11,882 INFO __main__: done FULL seed 112: success=False failure=arrived_short
+2026-09-30 07:08:48,820 INFO __main__: done FULL seed 114: success=True failure=None
+2026-09-30 07:09:26,713 INFO __main__: done FULL seed 115: success=False failure=stuck
+2026-09-30 07:09:40,380 INFO __main__: done FULL seed 116: success=False failure=arrived_short
+2026-09-30 07:10:10,805 INFO __main__: done FULL seed 117: success=True failure=None
+2026-09-30 07:10:29,406 INFO __main__: done FULL seed 119: success=False failure=water_entry
+2026-09-30 07:10:32,250 INFO __main__: done FULL seed 118: success=True failure=None
+2026-09-30 07:11:19,175 INFO __main__: done FULL seed 120: success=True failure=None
+2026-09-30 07:11:33,972 INFO __main__: done FULL seed 121: success=False failure=stuck
+2026-09-30 07:12:26,866 INFO __main__: done FULL seed 123: success=False failure=arrived_short
+2026-09-30 07:12:48,137 INFO __main__: done FULL seed 122: success=False failure=out_of_bounds
+2026-09-30 07:13:03,281 INFO __main__: done FULL seed 125: success=False failure=water_entry
+2026-09-30 07:13:11,789 INFO __main__: done FULL seed 124: success=False failure=arrived_short
+2026-09-30 07:13:57,077 INFO __main__: done FULL seed 126: success=False failure=arrived_short
+2026-09-30 07:14:42,538 INFO __main__: done FULL seed 127: success=True failure=None
+2026-09-30 07:14:47,809 INFO __main__: done FULL seed 128: success=True failure=None
+2026-09-30 07:15:16,921 INFO __main__: done T1 seed 100: success=True failure=None
+2026-09-30 07:15:28,409 INFO __main__: done FULL seed 129: success=False failure=arrived_short
+2026-09-30 07:15:33,679 INFO __main__: done T1 seed 101: success=False failure=water_entry
+2026-09-30 07:16:08,808 INFO __main__: done T1 seed 103: success=False failure=ditch_entry
+2026-09-30 07:16:08,878 INFO __main__: done T1 seed 102: success=True failure=None
+2026-09-30 07:16:48,065 INFO __main__: done T1 seed 105: success=True failure=None
+2026-09-30 07:16:52,167 INFO __main__: done T1 seed 104: success=False failure=arrived_short
+2026-09-30 07:17:06,966 INFO __main__: done T1 seed 107: success=False failure=water_entry
+2026-09-30 07:17:21,157 INFO __main__: done T1 seed 106: success=True failure=None
+2026-09-30 07:17:50,515 INFO __main__: done T1 seed 108: success=True failure=None
+2026-09-30 07:17:54,055 INFO __main__: done T1 seed 109: success=False failure=out_of_bounds
+2026-09-30 07:18:14,054 INFO __main__: done T1 seed 110: success=False failure=ditch_entry
+2026-09-30 07:18:33,568 INFO __main__: done T1 seed 111: success=True failure=None
+2026-09-30 07:18:50,373 INFO __main__: done T1 seed 113: success=False failure=water_entry
+2026-09-30 07:18:50,980 INFO __main__: done T1 seed 112: success=True failure=None
+2026-09-30 07:19:27,269 INFO __main__: done T1 seed 114: success=True failure=None
+2026-09-30 07:19:35,805 INFO __main__: done T1 seed 115: success=False failure=stuck
+2026-09-30 07:20:04,636 INFO __main__: done T1 seed 116: success=True failure=None
+2026-09-30 07:20:12,961 INFO __main__: done T1 seed 117: success=False failure=arrived_short
+2026-09-30 07:20:27,636 INFO __main__: done T1 seed 119: success=False failure=water_entry
+2026-09-30 07:20:43,492 INFO __main__: done T1 seed 118: success=True failure=None
+2026-09-30 07:21:09,553 INFO __main__: done T1 seed 120: success=True failure=None
+2026-09-30 07:21:36,676 INFO __main__: done T1 seed 121: success=False failure=ditch_entry
+2026-09-30 07:22:05,419 INFO __main__: done T1 seed 122: success=False failure=stuck
+2026-09-30 07:22:17,392 INFO __main__: done T1 seed 123: success=True failure=None
+2026-09-30 07:22:30,288 INFO __main__: done T1 seed 125: success=False failure=water_entry
+2026-09-30 07:22:38,735 INFO __main__: done T1 seed 124: success=True failure=None
+2026-09-30 07:23:03,095 INFO __main__: done T1 seed 127: success=False failure=out_of_bounds
+2026-09-30 07:23:10,030 INFO __main__: done T1 seed 126: success=True failure=None
+2026-09-30 07:23:43,394 INFO __main__: done T1 seed 128: success=True failure=None
+2026-09-30 07:23:57,965 INFO __main__: done T1 seed 129: success=True failure=None
+2026-09-30 07:23:58,696 INFO __main__: summary: 60 rows -> results\verify_dev2\tier0\summary.csv
+
+30 September 2026 07:23:58
+
+

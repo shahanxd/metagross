@@ -1,0 +1,14 @@
+{
+ "mission_id": "cc950acf",
+ "goal_xy_a": [
+  51.1023,
+  6.9036
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 188.9,
+ "goal_sigma_m": 1.4,
+ "goal_entry": {
+  "range_m": 51.5665,
+  "bearing_deg": 7.6937
+ }
+}

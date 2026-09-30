@@ -1,0 +1,73 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 55.02,
+ "path_length": 50.178,
+ "spl": 0.0,
+ "optimal_path_length": 49.0303,
+ "min_clearance": 0.9867,
+ "final_error": 4.446,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.912,
+ "false_stops": 1,
+ "stops": [
+  {
+   "t": 36.0,
+   "duration_s": 19.0,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "FULL",
+  "unknown_is_free": false,
+  "use_negobs": true,
+  "use_governor": true,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": null,
+  "speed_cap_mps": null,
+  "debug_every_n": 5,
+  "seg_model_path": "models/lraspp_smoke.onnx",
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 105,
+ "family": "F4_sudden_obstacle",
+ "split": "dev",
+ "sha256": "25972700a3543cbb87beabf11202a744b8ee16062e46f334ea6c5a73531757ec",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 276,
+ "n_telemetry": 92,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 110.0107,
+ "compute_ms_p95": 155.8705,
+ "sensor_ms_mean": 62.2077,
+ "physics_ms_per_step": 0.7174,
+ "sensor_breakdown_ms": {
+  "terrain": 24.6652,
+  "objects": 26.4373,
+  "post": 9.6499,
+  "output": 1.2335,
+  "total": 61.986
+ },
+ "wall_time_s": 57.624,
+ "error": null,
+ "machine": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.10.0",
+  "numpy": "2.2.6"
+ }
+}

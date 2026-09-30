@@ -1,0 +1,14 @@
+{
+ "mission_id": "F6_water_mud-119",
+ "goal_xy_a": [
+  41.2564,
+  0.9369
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 163.2,
+ "goal_sigma_m": 0.6397,
+ "goal_entry": {
+  "range_m": 41.267,
+  "bearing_deg": 1.3009
+ }
+}

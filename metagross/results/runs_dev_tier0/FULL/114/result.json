@@ -1,0 +1,73 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 54.02,
+ "path_length": 47.23,
+ "spl": 0.0,
+ "optimal_path_length": 47.6073,
+ "min_clearance": 1.4204,
+ "final_error": 3.301,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.8743,
+ "false_stops": 1,
+ "stops": [
+  {
+   "t": 34.28,
+   "duration_s": 19.72,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "FULL",
+  "unknown_is_free": false,
+  "use_negobs": true,
+  "use_governor": true,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": null,
+  "speed_cap_mps": null,
+  "debug_every_n": 5,
+  "seg_model_path": null,
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 114,
+ "family": "F1_trail",
+ "split": "dev",
+ "sha256": "0cc31415cfa094afb6b5c5b4c3e12071316ff5e2291aeb463361b0bdde326813",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 271,
+ "n_telemetry": 91,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 116.2925,
+ "compute_ms_p95": 159.768,
+ "sensor_ms_mean": 63.972,
+ "physics_ms_per_step": 0.4203,
+ "sensor_breakdown_ms": {
+  "terrain": 20.9267,
+  "objects": 32.2204,
+  "post": 9.5038,
+  "output": 1.1807,
+  "total": 63.8317
+ },
+ "wall_time_s": 56.477,
+ "error": null,
+ "machine": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.10.0",
+  "numpy": "2.2.6"
+ }
+}

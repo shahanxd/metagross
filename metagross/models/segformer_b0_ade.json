@@ -1,0 +1,30 @@
+{
+ "name": "SegFormer-B0 ADE20K (zero-shot, mapped to 5 classes)",
+ "kind": "ade150",
+ "input_hw": [
+  320,
+  416
+ ],
+ "mean": [
+  0.485,
+  0.456,
+  0.406
+ ],
+ "std": [
+  0.229,
+  0.224,
+  0.225
+ ],
+ "output": "logits (1, 150, H/4, W/4), ADE20K SceneParse150 ids",
+ "classes": {
+  "0": "background/sky",
+  "1": "obstacle",
+  "2": "water/mud",
+  "3": "unstable (grass/dirt)",
+  "4": "stable (asphalt/concrete/gravel path)"
+ },
+ "class_mapping": "metagross.autonomy.perception.semantics.ADE20K_TO_SEM5 (unlisted ADE ids -> obstacle)",
+ "source": "https://huggingface.co/Xenova/segformer-b0-finetuned-ade-512-512 (onnx/model.onnx); weights nvidia/segformer-b0-finetuned-ade-512-512",
+ "licence": "NVIDIA Source Code License for SegFormer (non-commercial, research/evaluation only). NOT for deployment.",
+ "training_data": "ADE20K (no off-road training); used zero-shot as a research baseline"
+}

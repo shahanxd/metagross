@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>METAGROSS Operator Console</title>
+<!--
+  METAGROSS operator console (SIH26126). Static, self-contained: no build step, no CDN.
+  Data in:  window.consoleReset(mission), window.pushTelemetry(packet)  (codec.to_jsonable format)
+            or replay a telemetry.jsonl: drag-drop onto the page, or ?replay=<url>&mission=<url>
+  Data out: window.onOperatorCommand(cmd) hook + 'operator-command' CustomEvent on window.
+  ?deterministic=1 hides the wall clock and disables animation (stable screenshots).
+-->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand"><span class="mark"><span></span></span><span class="word">METAGROSS</span></div>
+    <div class="sep"></div>
+    <div class="kv"><span class="k">MISSION</span><span class="v mono" id="mission-id">—</span></div>
+    <span class="badge badge-deny" title="No GNSS used or available">GNSS: DENIED</span>
+    <span class="badge" id="replay-badge" hidden>REPLAY</span>
+    <div class="spacer"></div>
+    <div class="link" id="link">
+      <span class="k">LINK</span>
+      <span class="v mono" id="link-kbps">— kbps</span>
+      <span class="v mono" id="link-loss">loss —</span>
+      <span class="v mono" id="link-lat">lat —</span>
+      <span class="dot" id="link-dot"></span>
+    </div>
+    <div class="sep"></div>
+    <div class="kv"><span class="k">MISSION TIME</span><span class="v mono big" id="clock-mission">T+00:00.0</span></div>
+    <div class="kv" id="wall-wrap"><span class="k">LOCAL</span><span class="v mono" id="clock-wall">--:--:--</span></div>
+  </header>
+
+  <section id="banner" data-mode="HOLD">
+    <div class="mode-chip" id="mode-chip">HOLD</div>
+    <div class="reason">
+      <span class="k">REASON</span>
+      <span class="v mono" id="mode-reason">Awaiting mission</span>
+    </div>
+    <div class="spacer"></div>
+    <div class="kv right"><span class="k">IN MODE</span><span class="v mono" id="mode-since">0.0 s</span></div>
+    <div class="kv right"><span class="k">DIST TO B</span><span class="v mono" id="dist-goal">—</span></div>
+  </section>
+
+  <main id="main">
+    <section class="panel" id="map-panel">
+      <div class="panel-h">
+        <span class="title">EGO COSTMAP</span>
+        <span class="sub">64 × 64 · 0.25 m · 4-bit · track-up</span>
+        <div class="spacer"></div>
+        <div class="seg" id="zoom">
+          <button data-extent="16">16 m</button><button data-extent="24" class="on">24 m</button><button data-extent="48">48 m</button>
+        </div>
+      </div>
+      <div class="map-wrap"><canvas id="map"></canvas></div>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <aside id="side">
+      <section class="panel">
+        <div class="panel-h"><span class="title">SPEED GOVERNOR</span><span class="sub">v ≤ v_cap(R_cert)</span></div>
+        <div class="metric">
+          <div class="row"><span class="k">SPEED / v_cap</span><span class="v mono" id="speed-val">— / — m/s</span></div>
+          <div class="bar" id="speed-bar"><div class="fill"></div><div class="marker"></div></div>
+          <div class="ticks mono" id="speed-ticks"></div>
+        </div>
+        <div class="metric">
+          <div class="row"><span class="k">R_CERT</span><span class="v mono" id="rcert-val">— m</span></div>
+          <div class="bar accent" id="rcert-bar"><div class="fill"></div></div>
+          <div class="ticks mono" id="rcert-ticks"></div>
+        </div>
+        <canvas id="spark" height="64"></canvas>
+        <div class="spark-legend"><span class="sw sw-v"></span>speed <span class="sw sw-cap"></span>v_cap <span class="muted">· last 60 s</span></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h"><span class="title">LOCALISATION INTEGRITY</span><span class="sub">visual RAIM</span></div>
+        <div class="gauge-row">
+          <svg id="q-gauge" viewBox="0 0 120 70" aria-label="integrity q gauge">
+            <path class="g-track" d="M10 62 A50 50 0 0 1 110 62"></path>
+            <path class="g-fill" id="q-arc" d="M10 62 A50 50 0 0 1 110 62"></path>
+            <text x="60" y="52" class="g-val mono" id="q-text">—</text>
+            <text x="60" y="66" class="g-lab">q = 1 − p_fail</text>
+          </svg>
+          <div class="tiles">
+            <div class="tile"><span class="k">p_fail</span><span class="v mono" id="pfail-val">—</span></div>
+            <div class="tile"><span class="k">POSITION σ</span><span class="v mono" id="sigma-val">—</span></div>
+            <div class="tile"><span class="k">VO</span><span class="v mono" id="vo-val">—</span></div>
+            <div class="tile"><span class="k">SLIP</span><span class="v mono" id="slip-val">—</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h"><span class="title">DOWNLINK</span><span class="sub">2 Hz costmap packets, no video</span></div>
+        <div class="tiles four">
+          <div class="tile"><span class="k">PACKETS</span><span class="v mono" id="pk-n">0</span></div>
+          <div class="tile"><span class="k">LAST</span><span class="v mono" id="pk-last">— B</span></div>
+          <div class="tile"><span class="k">MEAN</span><span class="v mono" id="pk-mean">— B</span></div>
+          <div class="tile"><span class="k">LOST</span><span class="v mono" id="pk-lost">0</span></div>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer id="bottom">
+    <section class="panel" id="log-panel">
+      <div class="panel-h"><span class="title">EVENT LOG</span><span class="sub">mode changes and operator commands</span></div>
+      <ol id="log"></ol>
+    </section>
+    <section class="panel" id="controls">
+      <div class="panel-h"><span class="title">COMMAND</span><span class="sub" id="cmd-status">no command sent</span></div>
+      <div class="btns">
+        <button class="btn go" data-action="GO">GO</button>
+        <button class="btn" data-action="HOLD">HOLD</button>
+        <button class="btn" data-action="RESUME">RESUME</button>
+        <button class="btn estop" data-action="ESTOP">E-STOP</button>
+      </div>
+    </section>
+  </footer>
+  <div id="drop-hint" hidden>Drop telemetry.jsonl (and optionally mission.json) to replay</div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

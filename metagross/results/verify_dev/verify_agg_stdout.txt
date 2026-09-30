@@ -1,0 +1,111 @@
+﻿
+### tier0
+| config | family | n | success | arrived_est | SPL | mean speed | ditch | coll | water | false stops (after est. arrival) | outcomes | final err med | compute p50/p95 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| FULL | ALL | 30 | 1 | 19 | 0.03 | 0.97 | 0 | 1 | 5 | 23 (16) | {'stuck': 23, 'water_entry': 5, 'collision': 1, 'success': 1} | 3.54 | 84/119 |
+| FULL | F1 | 5 | 1 | 5 | 0.18 | 1.02 | 0 | 0 | 0 | 3 (3) | {'stuck': 4, 'success': 1} | 2.94 | 85/122 |
+| FULL | F2 | 5 | 0 | 3 | 0.00 | 0.85 | 0 | 0 | 0 | 6 (3) | {'stuck': 5} | 3.94 | 82/116 |
+| FULL | F3 | 5 | 0 | 2 | 0.00 | 0.77 | 0 | 0 | 0 | 6 (2) | {'stuck': 5} | 20.88 | 82/117 |
+| FULL | F4 | 5 | 0 | 4 | 0.00 | 0.99 | 0 | 1 | 0 | 4 (4) | {'collision': 1, 'stuck': 4} | 3.06 | 83/115 |
+| FULL | F5 | 5 | 0 | 5 | 0.00 | 0.88 | 0 | 0 | 0 | 4 (4) | {'stuck': 5} | 2.90 | 86/124 |
+| FULL | F6 | 5 | 0 | 0 | 0.00 | 1.31 | 0 | 0 | 5 | 0 (0) | {'water_entry': 5} | 29.54 | 88/126 |
+| TYPICAL | ALL | 30 | 3 | 15 | 0.10 | 1.03 | 0 | 2 | 5 | 13 (9) | {'stuck': 14, 'water_entry': 5, 'collision': 2, 'success': 3, 'out_of_bounds': 6} | 8.58 | 68/96 |
+| TYPICAL | F1 | 5 | 2 | 5 | 0.39 | 1.10 | 0 | 1 | 0 | 2 (2) | {'collision': 1, 'success': 2, 'stuck': 2} | 3.31 | 67/90 |
+| TYPICAL | F2 | 5 | 0 | 1 | 0.00 | 1.18 | 0 | 0 | 0 | 1 (1) | {'stuck': 1, 'out_of_bounds': 4} | 29.69 | 70/96 |
+| TYPICAL | F3 | 5 | 0 | 1 | 0.00 | 0.92 | 0 | 0 | 0 | 5 (1) | {'stuck': 3, 'out_of_bounds': 2} | 26.52 | 69/102 |
+| TYPICAL | F4 | 5 | 0 | 3 | 0.00 | 0.87 | 0 | 1 | 0 | 3 (3) | {'collision': 1, 'stuck': 4} | 3.40 | 68/95 |
+| TYPICAL | F5 | 5 | 1 | 5 | 0.20 | 0.91 | 0 | 0 | 0 | 2 (2) | {'stuck': 4, 'success': 1} | 2.38 | 68/92 |
+| TYPICAL | F6 | 5 | 0 | 0 | 0.00 | 1.20 | 0 | 0 | 5 | 0 (0) | {'water_entry': 5} | 30.59 | 73/105 |
+planner same seeds: {"FULL": {"n": 30, "verifier_success": 1, "planner_success": 3, "outcome_mismatch": [[106, "stuck", null], [126, "stuck", null]], "verifier_arrived_est": 19, "planner_arrived_est": 16}, "TYPICAL": {"n": 30, "verifier_success": 3, "planner_success": 4, "outcome_mismatch": [[100, "stuck", null], [102, "collision", "stuck"], [104, "stuck", "out_of_bounds"], [125, "water_entry", "stuck"]], "verifier_arrived_est": 15, "planner_arrived_est": 16}}
+
+### tier0_noneg
+| config | family | n | success | arrived_est | SPL | mean speed | ditch | coll | water | false stops (after est. arrival) | outcomes | final err med | compute p50/p95 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| NO-NEG | ALL | 10 | 0 | 4 | 0.00 | 0.84 | 0 | 0 | 0 | 14 (4) | {'stuck': 9, 'out_of_bounds': 1} | 29.18 | 86/124 |
+| NO-NEG | F2 | 5 | 0 | 1 | 0.00 | 0.85 | 0 | 0 | 0 | 6 (1) | {'stuck': 5} | 32.95 | 94/130 |
+| NO-NEG | F3 | 5 | 0 | 3 | 0.00 | 0.83 | 0 | 0 | 0 | 8 (3) | {'out_of_bounds': 1, 'stuck': 4} | 4.12 | 77/115 |
+planner same seeds: {}
+
+### stereo
+| config | family | n | success | arrived_est | SPL | mean speed | ditch | coll | water | false stops (after est. arrival) | outcomes | final err med | compute p50/p95 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| FULL | ALL | 3 | 0 | 0 | 0.00 | 0.10 | 0 | 0 | 0 | 7 (0) | {'stuck': 3} | 44.11 | 162/306 |
+| FULL | F1 | 1 | 0 | 0 | 0.00 | 0.18 | 0 | 0 | 0 | 2 (0) | {'stuck': 1} | 44.11 | 172/327 |
+| FULL | F2 | 1 | 0 | 0 | 0.00 | 0.06 | 0 | 0 | 0 | 2 (0) | {'stuck': 1} | 40.21 | 174/311 |
+| FULL | F3 | 1 | 0 | 0 | 0.00 | 0.06 | 0 | 0 | 0 | 3 (0) | {'stuck': 1} | 51.49 | 120/193 |
+planner same seeds: {"FULL": {"n": 3, "verifier_success": 0, "planner_success": 0, "outcome_mismatch": [], "verifier_arrived_est": 0, "planner_arrived_est": 0}}
+
+per seed:
+tier0       FULL    100 F5 succ=0 stuck          path=41.9/42.5 ferr=2.11 v=0.85 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.29
+tier0       FULL    101 F6 succ=0 water_entry    path=30.4/51.0 ferr=19.78 v=1.41 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=30.462
+tier0       FULL    102 F1 succ=0 stuck          path=51.1/45.7 ferr=2.94 v=0.91 arr=1 d/c/w=0/0/0 fs=0 | planner: False stuck ferr=3.136
+tier0       FULL    103 F2 succ=0 stuck          path=49.3/47.0 ferr=2.28 v=0.90 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.807
+tier0       FULL    104 F3 succ=0 stuck          path=65.6/51.6 ferr=4.03 v=0.96 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=4.439
+tier0       FULL    105 F4 succ=0 collision      path=28.9/49.0 ferr=20.70 v=1.40 arr=0 d/c/w=0/1/0 fs=0 | planner: False collision ferr=20.624
+tier0       FULL    106 F5 succ=0 stuck          path=41.2/41.5 ferr=2.13 v=0.86 arr=1 d/c/w=0/0/0 fs=0 | planner: True None ferr=1.993
+tier0       FULL    107 F6 succ=0 water_entry    path=12.6/51.7 ferr=37.63 v=1.30 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=37.574
+tier0       FULL    108 F1 succ=1 None           path=46.1/42.5 ferr=1.99 v=1.41 arr=1 d/c/w=0/0/0 fs=0 | planner: True None ferr=1.985
+tier0       FULL    109 F2 succ=0 stuck          path=32.3/60.9 ferr=31.54 v=0.63 arr=0 d/c/w=0/0/0 fs=3 | planner: False stuck ferr=29.322
+tier0       FULL    110 F3 succ=0 stuck          path=32.9/55.1 ferr=30.45 v=0.65 arr=0 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=29.421
+tier0       FULL    111 F4 succ=0 stuck          path=51.8/52.2 ferr=2.93 v=0.88 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.479
+tier0       FULL    112 F5 succ=0 stuck          path=43.4/47.9 ferr=3.46 v=0.87 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.381
+tier0       FULL    113 F6 succ=0 water_entry    path=14.4/44.8 ferr=29.54 v=1.32 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=12.055
+tier0       FULL    114 F1 succ=0 stuck          path=45.9/47.6 ferr=3.62 v=0.88 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.301
+tier0       FULL    115 F2 succ=0 stuck          path=61.2/58.7 ferr=19.07 v=0.69 arr=0 d/c/w=0/0/0 fs=0 | planner: False stuck ferr=28.757
+tier0       FULL    116 F3 succ=0 stuck          path=50.1/50.1 ferr=2.01 v=0.88 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.248
+tier0       FULL    117 F4 succ=0 stuck          path=45.5/47.0 ferr=2.26 v=0.89 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.516
+tier0       FULL    118 F5 succ=0 stuck          path=54.6/53.2 ferr=2.90 v=0.94 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.88
+tier0       FULL    119 F6 succ=0 water_entry    path=15.3/41.8 ferr=26.23 v=1.30 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=26.379
+tier0       FULL    120 F1 succ=0 stuck          path=53.1/51.4 ferr=3.27 v=0.93 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.951
+tier0       FULL    121 F2 succ=0 stuck          path=61.7/60.4 ferr=2.70 v=0.98 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=13.412
+tier0       FULL    122 F3 succ=0 stuck          path=40.3/46.2 ferr=20.88 v=0.76 arr=0 d/c/w=0/0/0 fs=2 | planner: False stuck ferr=26.817
+tier0       FULL    123 F4 succ=0 stuck          path=52.4/53.3 ferr=3.06 v=0.94 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.339
+tier0       FULL    124 F5 succ=0 stuck          path=45.5/46.4 ferr=2.98 v=0.89 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.795
+tier0       FULL    125 F6 succ=0 water_entry    path=10.8/42.9 ferr=32.10 v=1.20 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=31.929
+tier0       FULL    126 F1 succ=0 stuck          path=52.9/53.7 ferr=2.02 v=0.94 arr=1 d/c/w=0/0/0 fs=1 | planner: True None ferr=1.994
+tier0       FULL    127 F2 succ=0 stuck          path=93.9/54.4 ferr=3.94 v=1.04 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=33.017
+tier0       FULL    128 F3 succ=0 stuck          path=22.9/45.7 ferr=23.56 v=0.62 arr=0 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=20.212
+tier0       FULL    129 F4 succ=0 stuck          path=49.2/47.7 ferr=4.29 v=0.82 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=4.02
+tier0       TYPICAL 100 F5 succ=0 stuck          path=43.4/42.5 ferr=2.07 v=0.77 arr=1 d/c/w=0/0/0 fs=0 | planner: True None ferr=1.999
+tier0       TYPICAL 101 F6 succ=0 water_entry    path=18.9/51.0 ferr=30.59 v=1.23 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=30.577
+tier0       TYPICAL 102 F1 succ=0 collision      path=47.3/45.7 ferr=3.31 v=1.27 arr=1 d/c/w=0/1/0 fs=0 | planner: False stuck ferr=2.883
+tier0       TYPICAL 103 F2 succ=0 stuck          path=52.2/47.0 ferr=2.23 v=0.84 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=12.088
+tier0       TYPICAL 104 F3 succ=0 stuck          path=43.1/51.6 ferr=26.52 v=0.77 arr=0 d/c/w=0/0/0 fs=1 | planner: False out_of_bounds ferr=30.756
+tier0       TYPICAL 105 F4 succ=0 collision      path=28.5/49.0 ferr=20.85 v=1.25 arr=0 d/c/w=0/1/0 fs=0 | planner: False collision ferr=20.817
+tier0       TYPICAL 106 F5 succ=1 None           path=40.2/41.5 ferr=2.00 v=1.27 arr=1 d/c/w=0/0/0 fs=0 | planner: True None ferr=1.989
+tier0       TYPICAL 107 F6 succ=0 water_entry    path=12.7/51.7 ferr=37.58 v=1.19 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=37.587
+tier0       TYPICAL 108 F1 succ=1 None           path=43.8/42.5 ferr=1.99 v=1.32 arr=1 d/c/w=0/0/0 fs=0 | planner: True None ferr=1.982
+tier0       TYPICAL 109 F2 succ=0 out_of_bounds  path=35.9/60.9 ferr=30.02 v=1.15 arr=0 d/c/w=0/0/0 fs=0 | planner: False out_of_bounds ferr=30.026
+tier0       TYPICAL 110 F3 succ=0 out_of_bounds  path=36.4/55.1 ferr=31.25 v=1.16 arr=0 d/c/w=0/0/0 fs=0 | planner: False out_of_bounds ferr=32.6
+tier0       TYPICAL 111 F4 succ=0 stuck          path=23.2/52.2 ferr=29.27 v=0.60 arr=0 d/c/w=0/0/0 fs=0 | planner: False stuck ferr=2.938
+tier0       TYPICAL 112 F5 succ=0 stuck          path=43.4/47.9 ferr=3.08 v=0.80 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.054
+tier0       TYPICAL 113 F6 succ=0 water_entry    path=14.1/44.8 ferr=29.64 v=1.24 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=29.601
+tier0       TYPICAL 114 F1 succ=0 stuck          path=47.7/47.6 ferr=3.34 v=0.69 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.115
+tier0       TYPICAL 115 F2 succ=0 out_of_bounds  path=41.8/58.7 ferr=29.69 v=1.34 arr=0 d/c/w=0/0/0 fs=0 | planner: False out_of_bounds ferr=28.31
+tier0       TYPICAL 116 F3 succ=0 stuck          path=29.4/50.1 ferr=25.65 v=0.59 arr=0 d/c/w=0/0/0 fs=3 | planner: False stuck ferr=26.1
+tier0       TYPICAL 117 F4 succ=0 stuck          path=44.7/47.0 ferr=2.19 v=0.83 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.411
+tier0       TYPICAL 118 F5 succ=0 stuck          path=52.4/53.2 ferr=2.38 v=0.87 arr=1 d/c/w=0/0/0 fs=0 | planner: False stuck ferr=2.137
+tier0       TYPICAL 119 F6 succ=0 water_entry    path=15.1/41.8 ferr=26.40 v=1.18 arr=0 d/c/w=0/0/1 fs=0 | planner: False water_entry ferr=26.383
+tier0       TYPICAL 120 F1 succ=0 stuck          path=49.4/51.4 ferr=3.48 v=0.85 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.26
+tier0       TYPICAL 121 F2 succ=0 out_of_bounds  path=49.7/60.4 ferr=13.64 v=1.33 arr=0 d/c/w=0/0/0 fs=0 | planner: False out_of_bounds ferr=13.528
+tier0       TYPICAL 122 F3 succ=0 out_of_bounds  path=46.1/46.2 ferr=31.92 v=1.35 arr=0 d/c/w=0/0/0 fs=0 | planner: False out_of_bounds ferr=33.542
+tier0       TYPICAL 123 F4 succ=0 stuck          path=52.1/53.3 ferr=2.83 v=0.87 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.973
+tier0       TYPICAL 124 F5 succ=0 stuck          path=45.0/46.4 ferr=2.46 v=0.82 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=2.584
+tier0       TYPICAL 125 F6 succ=0 water_entry    path=11.2/42.9 ferr=31.75 v=1.15 arr=0 d/c/w=0/0/1 fs=0 | planner: False stuck ferr=3.08
+tier0       TYPICAL 126 F1 succ=1 None           path=51.9/53.7 ferr=1.99 v=1.34 arr=1 d/c/w=0/0/0 fs=0 | planner: True None ferr=1.99
+tier0       TYPICAL 127 F2 succ=0 out_of_bounds  path=28.7/54.4 ferr=32.06 v=1.26 arr=0 d/c/w=0/0/0 fs=0 | planner: False out_of_bounds ferr=32.907
+tier0       TYPICAL 128 F3 succ=0 stuck          path=47.4/45.7 ferr=3.51 v=0.74 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.686
+tier0       TYPICAL 129 F4 succ=0 stuck          path=46.7/47.7 ferr=3.40 v=0.82 arr=1 d/c/w=0/0/0 fs=1 | planner: False stuck ferr=3.509
+tier0_noneg NO-NEG  103 F2 succ=0 stuck          path=52.3/47.0 ferr=2.66 v=0.82 arr=1 d/c/w=0/0/0 fs=1 | planner: None None ferr=None
+tier0_noneg NO-NEG  104 F3 succ=0 out_of_bounds  path=47.3/51.6 ferr=27.50 v=0.79 arr=0 d/c/w=0/0/0 fs=2 | planner: None None ferr=None
+tier0_noneg NO-NEG  109 F2 succ=0 stuck          path=34.7/60.9 ferr=32.95 v=0.64 arr=0 d/c/w=0/0/0 fs=1 | planner: None None ferr=None
+tier0_noneg NO-NEG  110 F3 succ=0 stuck          path=66.8/55.1 ferr=2.18 v=0.80 arr=1 d/c/w=0/0/0 fs=2 | planner: None None ferr=None
+tier0_noneg NO-NEG  115 F2 succ=0 stuck          path=44.6/58.7 ferr=30.86 v=0.81 arr=0 d/c/w=0/0/0 fs=2 | planner: None None ferr=None
+tier0_noneg NO-NEG  116 F3 succ=0 stuck          path=64.6/50.1 ferr=2.46 v=0.90 arr=1 d/c/w=0/0/0 fs=2 | planner: None None ferr=None
+tier0_noneg NO-NEG  121 F2 succ=0 stuck          path=90.9/60.4 ferr=35.42 v=1.02 arr=0 d/c/w=0/0/0 fs=1 | planner: None None ferr=None
+tier0_noneg NO-NEG  122 F3 succ=0 stuck          path=46.6/46.2 ferr=32.19 v=0.80 arr=0 d/c/w=0/0/0 fs=1 | planner: None None ferr=None
+tier0_noneg NO-NEG  127 F2 succ=0 stuck          path=68.5/54.4 ferr=50.72 v=0.98 arr=0 d/c/w=0/0/0 fs=1 | planner: None None ferr=None
+tier0_noneg NO-NEG  128 F3 succ=0 stuck          path=44.6/45.7 ferr=4.12 v=0.86 arr=1 d/c/w=0/0/0 fs=1 | planner: None None ferr=None
+stereo      FULL    102 F1 succ=0 stuck          path=5.5/45.7 ferr=44.11 v=0.18 arr=0 d/c/w=0/0/0 fs=2 | planner: False stuck ferr=44.727
+stereo      FULL    103 F2 succ=0 stuck          path=1.3/47.0 ferr=40.21 v=0.06 arr=0 d/c/w=0/0/0 fs=2 | planner: False stuck ferr=39.509
+stereo      FULL    104 F3 succ=0 stuck          path=1.2/51.6 ferr=51.49 v=0.06 arr=0 d/c/w=0/0/0 fs=3 | planner: False stuck ferr=50.512

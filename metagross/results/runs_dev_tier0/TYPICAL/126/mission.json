@@ -1,0 +1,14 @@
+{
+ "mission_id": "F1_trail-126",
+ "goal_xy_a": [
+  52.5548,
+  -4.0981
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 191.8,
+ "goal_sigma_m": 0.5212,
+ "goal_entry": {
+  "range_m": 52.7144,
+  "bearing_deg": -4.4587
+ }
+}

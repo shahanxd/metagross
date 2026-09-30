@@ -1,0 +1,1469 @@
+{
+ "before": {
+  "tier0": {
+   "pooled": {
+    "n_frames": 382,
+    "cand_rate_off": 0.25749,
+    "lethal_rate_off": 0.26166,
+    "positive_rate_off": 0.00409,
+    "n_observed_off_cells": 2410589,
+    "certified_hazard_in_envelope": {
+     "cells": 195,
+     "of": 2846
+    },
+    "certified_hazard_in_envelope_ditch_cells": 59,
+    "certified_hazard_any": {
+     "cells": 37654,
+     "of": 281078
+    },
+    "ditch_path_certified": {
+     "cells": 1136,
+     "of": 10712
+    },
+    "timing_ms": {
+     "p50": 66.2,
+     "p95": 92.8,
+     "stages_p50": {
+      "bev": 7.34,
+      "cells": 5.67,
+      "geometry": 5.34,
+      "ground": 13.97,
+      "negobs": 29.69,
+      "semantics": 0.02,
+      "stereo": 0.01,
+      "total": 64.36
+     }
+    }
+   },
+   "pooled_F1": {
+    "n_frames": 123,
+    "cand_rate_off": 0.23179,
+    "lethal_rate_off": 0.24182,
+    "positive_rate_off": 0.00998,
+    "n_observed_off_cells": 781007,
+    "certified_hazard_in_envelope": {
+     "cells": 136,
+     "of": 972
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 10170,
+     "of": 48287
+    },
+    "ditch_path_certified": {
+     "cells": 0,
+     "of": 0
+    },
+    "timing_ms": {
+     "p50": 60.4,
+     "p95": 83.8,
+     "stages_p50": {
+      "bev": 6.63,
+      "cells": 5.36,
+      "geometry": 5.13,
+      "ground": 12.79,
+      "negobs": 27.03,
+      "semantics": 0.01,
+      "stereo": 0.01,
+      "total": 59.04
+     }
+    }
+   },
+   "sequences": [
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.21651,
+     "lethal_rate_off": 0.22609,
+     "positive_rate_off": 0.00951,
+     "n_observed_off_cells": 234287,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 4533,
+      "of": 21188
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 61.0,
+      "p95": 90.2,
+      "stages_p50": {
+       "bev": 6.63,
+       "cells": 4.91,
+       "geometry": 4.53,
+       "ground": 12.48,
+       "negobs": 25.08,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 59.71
+      }
+     },
+     "seed": 102,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.24627,
+     "lethal_rate_off": 0.26366,
+     "positive_rate_off": 0.0173,
+     "n_observed_off_cells": 229531,
+     "certified_hazard_in_envelope": {
+      "cells": 121,
+      "of": 946
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 4374,
+      "of": 22205
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 70.7,
+      "p95": 98.2,
+      "stages_p50": {
+       "bev": 7.65,
+       "cells": 6.39,
+       "geometry": 5.68,
+       "ground": 15.47,
+       "negobs": 31.47,
+       "semantics": 0.02,
+       "stereo": 0.01,
+       "total": 69.43
+      }
+     },
+     "seed": 108,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.23259,
+     "lethal_rate_off": 0.23764,
+     "positive_rate_off": 0.00503,
+     "n_observed_off_cells": 317189,
+     "certified_hazard_in_envelope": {
+      "cells": 15,
+      "of": 26
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 1263,
+      "of": 4894
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 55.1,
+      "p95": 68.7,
+      "stages_p50": {
+       "bev": 5.84,
+       "cells": 4.7,
+       "geometry": 3.89,
+       "ground": 12.24,
+       "negobs": 24.52,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 53.72
+      }
+     },
+     "seed": 114,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.29596,
+     "lethal_rate_off": 0.29876,
+     "positive_rate_off": 0.00263,
+     "n_observed_off_cells": 278324,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 318,
+      "of": 3859
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 58.8,
+      "p95": 83.6,
+      "stages_p50": {
+       "bev": 6.23,
+       "cells": 5.41,
+       "geometry": 4.72,
+       "ground": 12.0,
+       "negobs": 27.12,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 57.17
+      }
+     },
+     "seed": 104,
+     "family": "F3_crest_ditch",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 44,
+     "cand_rate_off": 0.21792,
+     "lethal_rate_off": 0.21952,
+     "positive_rate_off": 0.00157,
+     "n_observed_off_cells": 308617,
+     "certified_hazard_in_envelope": {
+      "cells": 14,
+      "of": 487
+     },
+     "certified_hazard_in_envelope_ditch_cells": 14,
+     "certified_hazard_any": {
+      "cells": 5852,
+      "of": 49758
+     },
+     "ditch_path_certified": {
+      "cells": 293,
+      "of": 2244
+     },
+     "timing_ms": {
+      "p50": 69.1,
+      "p95": 87.4,
+      "stages_p50": {
+       "bev": 7.69,
+       "cells": 5.94,
+       "geometry": 5.61,
+       "ground": 15.51,
+       "negobs": 30.68,
+       "semantics": 0.02,
+       "stereo": 0.01,
+       "total": 66.86
+      }
+     },
+     "seed": 103,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 9.45,
+      "r_stable_m": 6.25,
+      "n_frames": 38,
+      "max_range_scored_m": 9.45,
+      "width_m": 0.838,
+      "depth_m": 0.842,
+      "angle_deg": 78.8,
+      "theory_r_det_m": 7.03
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.25807,
+     "lethal_rate_off": 0.25874,
+     "positive_rate_off": 0.00063,
+     "n_observed_off_cells": 357469,
+     "certified_hazard_in_envelope": {
+      "cells": 11,
+      "of": 570
+     },
+     "certified_hazard_in_envelope_ditch_cells": 11,
+     "certified_hazard_any": {
+      "cells": 13183,
+      "of": 82034
+     },
+     "ditch_path_certified": {
+      "cells": 294,
+      "of": 3480
+     },
+     "timing_ms": {
+      "p50": 66.2,
+      "p95": 91.9,
+      "stages_p50": {
+       "bev": 7.29,
+       "cells": 5.58,
+       "geometry": 5.51,
+       "ground": 15.1,
+       "negobs": 29.23,
+       "semantics": 0.02,
+       "stereo": 0.01,
+       "total": 64.09
+      }
+     },
+     "seed": 109,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 10.45,
+      "r_stable_m": 8.85,
+      "n_frames": 52,
+      "max_range_scored_m": 12.25,
+      "width_m": 1.036,
+      "depth_m": 0.866,
+      "angle_deg": 85.2,
+      "theory_r_det_m": 7.77
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.31116,
+     "lethal_rate_off": 0.3114,
+     "positive_rate_off": 0.00015,
+     "n_observed_off_cells": 418587,
+     "certified_hazard_in_envelope": {
+      "cells": 10,
+      "of": 361
+     },
+     "certified_hazard_in_envelope_ditch_cells": 10,
+     "certified_hazard_any": {
+      "cells": 6887,
+      "of": 41929
+     },
+     "ditch_path_certified": {
+      "cells": 438,
+      "of": 2204
+     },
+     "timing_ms": {
+      "p50": 79.4,
+      "p95": 103.5,
+      "stages_p50": {
+       "bev": 8.26,
+       "cells": 6.09,
+       "geometry": 6.11,
+       "ground": 16.2,
+       "negobs": 36.24,
+       "semantics": 0.02,
+       "stereo": 0.01,
+       "total": 76.32
+      }
+     },
+     "seed": 115,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 9.75,
+      "r_stable_m": 7.35,
+      "n_frames": 52,
+      "max_range_scored_m": 12.35,
+      "width_m": 0.662,
+      "depth_m": 0.701,
+      "angle_deg": 80.2,
+      "theory_r_det_m": 6.29
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.25339,
+     "lethal_rate_off": 0.25566,
+     "positive_rate_off": 0.00209,
+     "n_observed_off_cells": 266585,
+     "certified_hazard_in_envelope": {
+      "cells": 24,
+      "of": 456
+     },
+     "certified_hazard_in_envelope_ditch_cells": 24,
+     "certified_hazard_any": {
+      "cells": 1244,
+      "of": 55211
+     },
+     "ditch_path_certified": {
+      "cells": 111,
+      "of": 2784
+     },
+     "timing_ms": {
+      "p50": 67.8,
+      "p95": 82.6,
+      "stages_p50": {
+       "bev": 7.6,
+       "cells": 5.52,
+       "geometry": 5.07,
+       "ground": 12.61,
+       "negobs": 31.62,
+       "semantics": 0.02,
+       "stereo": 0.01,
+       "total": 64.92
+      }
+     },
+     "seed": 110,
+     "family": "F3_crest_ditch",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 2.95,
+      "r_stable_m": 2.95,
+      "n_frames": 52,
+      "max_range_scored_m": 12.35,
+      "width_m": 0.823,
+      "depth_m": 0.799,
+      "angle_deg": 90.0,
+      "theory_r_det_m": 6.98
+     }
+    }
+   ]
+  },
+  "meta": {
+   "time": "2026-09-30 05:48:06",
+   "modes": [
+    "tier0",
+    "stereo"
+   ],
+   "semantics": true,
+   "perception_module": "perc_before.pipeline",
+   "stopping_envelope_m": 3.433,
+   "off_hazard_buffer_m": 0.5,
+   "detect_fraction": 0.5,
+   "note": "DEV seeds only; wall-clock on a shared 4-core laptop"
+  },
+  "stereo": {
+   "pooled": {
+    "n_frames": 85,
+    "cand_rate_off": 0.22829,
+    "lethal_rate_off": 0.26836,
+    "positive_rate_off": 0.03928,
+    "n_observed_off_cells": 516147,
+    "certified_hazard_in_envelope": {
+     "cells": 18,
+     "of": 487
+    },
+    "certified_hazard_in_envelope_ditch_cells": 18,
+    "certified_hazard_any": {
+     "cells": 18340,
+     "of": 70946
+    },
+    "ditch_path_certified": {
+     "cells": 707,
+     "of": 2244
+    },
+    "timing_ms": {
+     "p50": 142.9,
+     "p95": 206.5,
+     "stages_p50": {
+      "bev": 8.13,
+      "cells": 6.78,
+      "geometry": 5.65,
+      "ground": 15.87,
+      "negobs": 29.99,
+      "semantics": 8.72,
+      "stereo": 56.19,
+      "total": 141.76
+     }
+    }
+   },
+   "pooled_F1": {
+    "n_frames": 41,
+    "cand_rate_off": 0.2361,
+    "lethal_rate_off": 0.30138,
+    "positive_rate_off": 0.06434,
+    "n_observed_off_cells": 229294,
+    "certified_hazard_in_envelope": {
+     "cells": 0,
+     "of": 0
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 4734,
+     "of": 21188
+    },
+    "ditch_path_certified": {
+     "cells": 0,
+     "of": 0
+    },
+    "timing_ms": {
+     "p50": 143.4,
+     "p95": 201.7,
+     "stages_p50": {
+      "bev": 8.24,
+      "cells": 6.96,
+      "geometry": 5.65,
+      "ground": 15.79,
+      "negobs": 30.39,
+      "semantics": 8.86,
+      "stereo": 56.88,
+      "total": 142.53
+     }
+    }
+   },
+   "sequences": [
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.2361,
+     "lethal_rate_off": 0.30138,
+     "positive_rate_off": 0.06434,
+     "n_observed_off_cells": 229294,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 4734,
+      "of": 21188
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 143.4,
+      "p95": 201.7,
+      "stages_p50": {
+       "bev": 8.24,
+       "cells": 6.96,
+       "geometry": 5.65,
+       "ground": 15.79,
+       "negobs": 30.39,
+       "semantics": 8.86,
+       "stereo": 56.88,
+       "total": 142.53
+      }
+     },
+     "seed": 102,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 44,
+     "cand_rate_off": 0.22204,
+     "lethal_rate_off": 0.24196,
+     "positive_rate_off": 0.01925,
+     "n_observed_off_cells": 286853,
+     "certified_hazard_in_envelope": {
+      "cells": 18,
+      "of": 487
+     },
+     "certified_hazard_in_envelope_ditch_cells": 18,
+     "certified_hazard_any": {
+      "cells": 13606,
+      "of": 49758
+     },
+     "ditch_path_certified": {
+      "cells": 707,
+      "of": 2244
+     },
+     "timing_ms": {
+      "p50": 141.7,
+      "p95": 208.1,
+      "stages_p50": {
+       "bev": 7.86,
+       "cells": 6.7,
+       "geometry": 5.59,
+       "ground": 15.97,
+       "negobs": 29.66,
+       "semantics": 8.49,
+       "stereo": 56.08,
+       "total": 141.44
+      }
+     },
+     "seed": 103,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 9.05,
+      "r_stable_m": 5.25,
+      "n_frames": 38,
+      "max_range_scored_m": 9.45,
+      "width_m": 0.838,
+      "depth_m": 0.842,
+      "angle_deg": 78.8,
+      "theory_r_det_m": 7.03
+     }
+    }
+   ]
+  }
+ },
+ "after": {
+  "tier0": {
+   "pooled": {
+    "n_frames": 382,
+    "cand_rate_off": 0.00191,
+    "lethal_rate_off": 0.00619,
+    "positive_rate_off": 0.0042,
+    "n_observed_off_cells": 2348329,
+    "certified_hazard_in_envelope": {
+     "cells": 25,
+     "of": 2846
+    },
+    "certified_hazard_in_envelope_ditch_cells": 8,
+    "certified_hazard_any": {
+     "cells": 1002,
+     "of": 281078
+    },
+    "ditch_path_certified": {
+     "cells": 94,
+     "of": 10712
+    },
+    "timing_ms": {
+     "p50": 43.2,
+     "p95": 65.2,
+     "stages_p50": {
+      "bev": 4.49,
+      "cells": 3.33,
+      "geometry": 3.53,
+      "ground": 9.0,
+      "negobs": 19.28,
+      "semantics": 0.01,
+      "stereo": 0.01,
+      "total": 42.0
+     }
+    }
+   },
+   "pooled_F1": {
+    "n_frames": 123,
+    "cand_rate_off": 0.0013,
+    "lethal_rate_off": 0.01158,
+    "positive_rate_off": 0.01023,
+    "n_observed_off_cells": 762094,
+    "certified_hazard_in_envelope": {
+     "cells": 17,
+     "of": 972
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 311,
+     "of": 48287
+    },
+    "ditch_path_certified": {
+     "cells": 0,
+     "of": 0
+    },
+    "timing_ms": {
+     "p50": 50.1,
+     "p95": 72.0,
+     "stages_p50": {
+      "bev": 5.92,
+      "cells": 4.27,
+      "geometry": 4.39,
+      "ground": 11.13,
+      "negobs": 21.18,
+      "semantics": 0.01,
+      "stereo": 0.01,
+      "total": 49.17
+     }
+    }
+   },
+   "sequences": [
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.00409,
+     "lethal_rate_off": 0.01395,
+     "positive_rate_off": 0.00979,
+     "n_observed_off_cells": 227630,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 86,
+      "of": 21188
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 49.0,
+      "p95": 62.0,
+      "stages_p50": {
+       "bev": 5.88,
+       "cells": 3.64,
+       "geometry": 4.61,
+       "ground": 10.5,
+       "negobs": 20.93,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 47.63
+      }
+     },
+     "seed": 102,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.00026,
+     "lethal_rate_off": 0.01818,
+     "positive_rate_off": 0.01783,
+     "n_observed_off_cells": 222705,
+     "certified_hazard_in_envelope": {
+      "cells": 17,
+      "of": 946
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 104,
+      "of": 22205
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 52.6,
+      "p95": 67.5,
+      "stages_p50": {
+       "bev": 6.48,
+       "cells": 4.25,
+       "geometry": 4.56,
+       "ground": 11.21,
+       "negobs": 21.18,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 50.97
+      }
+     },
+     "seed": 108,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.0,
+     "lethal_rate_off": 0.00514,
+     "positive_rate_off": 0.00512,
+     "n_observed_off_cells": 311759,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 26
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 121,
+      "of": 4894
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 52.2,
+      "p95": 74.2,
+      "stages_p50": {
+       "bev": 5.53,
+       "cells": 5.07,
+       "geometry": 4.29,
+       "ground": 12.06,
+       "negobs": 21.45,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 50.81
+      }
+     },
+     "seed": 114,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.00055,
+     "lethal_rate_off": 0.00343,
+     "positive_rate_off": 0.00271,
+     "n_observed_off_cells": 270347,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 0,
+      "of": 3859
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 39.6,
+      "p95": 46.1,
+      "stages_p50": {
+       "bev": 3.86,
+       "cells": 2.91,
+       "geometry": 3.2,
+       "ground": 7.56,
+       "negobs": 18.48,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 38.67
+      }
+     },
+     "seed": 104,
+     "family": "F3_crest_ditch",
+     "kind": "drive",
+     "mode": "tier0"
+    },
+    {
+     "n_frames": 44,
+     "cand_rate_off": 0.00018,
+     "lethal_rate_off": 0.0018,
+     "positive_rate_off": 0.00158,
+     "n_observed_off_cells": 305469,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 487
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 1,
+      "of": 49758
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 2244
+     },
+     "timing_ms": {
+      "p50": 38.8,
+      "p95": 69.2,
+      "stages_p50": {
+       "bev": 4.3,
+       "cells": 2.83,
+       "geometry": 3.26,
+       "ground": 9.04,
+       "negobs": 17.5,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 38.21
+      }
+     },
+     "seed": 103,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 7.85,
+      "r_stable_m": 6.65,
+      "n_frames": 38,
+      "max_range_scored_m": 9.45,
+      "width_m": 0.838,
+      "depth_m": 0.842,
+      "angle_deg": 78.8,
+      "theory_r_det_m": 7.03
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.00144,
+     "lethal_rate_off": 0.00213,
+     "positive_rate_off": 0.00065,
+     "n_observed_off_cells": 345677,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 570
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 16,
+      "of": 82034
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 3480
+     },
+     "timing_ms": {
+      "p50": 40.9,
+      "p95": 56.9,
+      "stages_p50": {
+       "bev": 4.67,
+       "cells": 3.38,
+       "geometry": 3.06,
+       "ground": 8.43,
+       "negobs": 19.32,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 39.79
+      }
+     },
+     "seed": 109,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 8.65,
+      "r_stable_m": 6.85,
+      "n_frames": 52,
+      "max_range_scored_m": 12.25,
+      "width_m": 1.036,
+      "depth_m": 0.866,
+      "angle_deg": 85.2,
+      "theory_r_det_m": 7.77
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.00476,
+     "lethal_rate_off": 0.005,
+     "positive_rate_off": 0.00015,
+     "n_observed_off_cells": 403482,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 361
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 0,
+      "of": 41929
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 2204
+     },
+     "timing_ms": {
+      "p50": 44.8,
+      "p95": 54.8,
+      "stages_p50": {
+       "bev": 4.13,
+       "cells": 3.21,
+       "geometry": 3.47,
+       "ground": 8.48,
+       "negobs": 21.05,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 43.02
+      }
+     },
+     "seed": 115,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 6.35,
+      "r_stable_m": 5.95,
+      "n_frames": 52,
+      "max_range_scored_m": 12.35,
+      "width_m": 0.662,
+      "depth_m": 0.701,
+      "angle_deg": 80.2,
+      "theory_r_det_m": 6.29
+     }
+    },
+    {
+     "n_frames": 58,
+     "cand_rate_off": 0.00332,
+     "lethal_rate_off": 0.00563,
+     "positive_rate_off": 0.00213,
+     "n_observed_off_cells": 261260,
+     "certified_hazard_in_envelope": {
+      "cells": 8,
+      "of": 456
+     },
+     "certified_hazard_in_envelope_ditch_cells": 8,
+     "certified_hazard_any": {
+      "cells": 674,
+      "of": 55211
+     },
+     "ditch_path_certified": {
+      "cells": 94,
+      "of": 2784
+     },
+     "timing_ms": {
+      "p50": 35.1,
+      "p95": 51.5,
+      "stages_p50": {
+       "bev": 3.56,
+       "cells": 2.71,
+       "geometry": 3.03,
+       "ground": 7.27,
+       "negobs": 15.41,
+       "semantics": 0.01,
+       "stereo": 0.01,
+       "total": 33.63
+      }
+     },
+     "seed": 110,
+     "family": "F3_crest_ditch",
+     "kind": "approach",
+     "mode": "tier0",
+     "detection": {
+      "r_first_m": 2.75,
+      "r_stable_m": 2.75,
+      "n_frames": 52,
+      "max_range_scored_m": 12.35,
+      "width_m": 0.823,
+      "depth_m": 0.799,
+      "angle_deg": 90.0,
+      "theory_r_det_m": 6.98
+     }
+    }
+   ]
+  },
+  "stereo": {
+   "pooled": {
+    "n_frames": 85,
+    "cand_rate_off": 0.04155,
+    "lethal_rate_off": 0.08336,
+    "positive_rate_off": 0.04099,
+    "n_observed_off_cells": 494658,
+    "certified_hazard_in_envelope": {
+     "cells": 0,
+     "of": 487
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 61,
+     "of": 70946
+    },
+    "ditch_path_certified": {
+     "cells": 0,
+     "of": 2244
+    },
+    "timing_ms": {
+     "p50": 77.4,
+     "p95": 98.3,
+     "stages_p50": {
+      "bev": 3.74,
+      "cells": 2.83,
+      "geometry": 3.54,
+      "ground": 8.18,
+      "negobs": 16.01,
+      "semantics": 3.88,
+      "stereo": 33.11,
+      "total": 75.89
+     }
+    }
+   },
+   "pooled_F1": {
+    "n_frames": 41,
+    "cand_rate_off": 0.05835,
+    "lethal_rate_off": 0.12682,
+    "positive_rate_off": 0.06749,
+    "n_observed_off_cells": 218584,
+    "certified_hazard_in_envelope": {
+     "cells": 0,
+     "of": 0
+    },
+    "certified_hazard_in_envelope_ditch_cells": 0,
+    "certified_hazard_any": {
+     "cells": 49,
+     "of": 21188
+    },
+    "ditch_path_certified": {
+     "cells": 0,
+     "of": 0
+    },
+    "timing_ms": {
+     "p50": 80.1,
+     "p95": 99.1,
+     "stages_p50": {
+      "bev": 3.79,
+      "cells": 2.93,
+      "geometry": 3.73,
+      "ground": 8.42,
+      "negobs": 16.05,
+      "semantics": 3.92,
+      "stereo": 33.49,
+      "total": 78.79
+     }
+    }
+   },
+   "sequences": [
+    {
+     "n_frames": 41,
+     "cand_rate_off": 0.05835,
+     "lethal_rate_off": 0.12682,
+     "positive_rate_off": 0.06749,
+     "n_observed_off_cells": 218584,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 0
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 49,
+      "of": 21188
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 0
+     },
+     "timing_ms": {
+      "p50": 80.1,
+      "p95": 99.1,
+      "stages_p50": {
+       "bev": 3.79,
+       "cells": 2.93,
+       "geometry": 3.73,
+       "ground": 8.42,
+       "negobs": 16.05,
+       "semantics": 3.92,
+       "stereo": 33.49,
+       "total": 78.79
+      }
+     },
+     "seed": 102,
+     "family": "F1_trail",
+     "kind": "drive",
+     "mode": "stereo"
+    },
+    {
+     "n_frames": 44,
+     "cand_rate_off": 0.02826,
+     "lethal_rate_off": 0.04895,
+     "positive_rate_off": 0.02001,
+     "n_observed_off_cells": 276074,
+     "certified_hazard_in_envelope": {
+      "cells": 0,
+      "of": 487
+     },
+     "certified_hazard_in_envelope_ditch_cells": 0,
+     "certified_hazard_any": {
+      "cells": 12,
+      "of": 49758
+     },
+     "ditch_path_certified": {
+      "cells": 0,
+      "of": 2244
+     },
+     "timing_ms": {
+      "p50": 76.3,
+      "p95": 95.2,
+      "stages_p50": {
+       "bev": 3.68,
+       "cells": 2.79,
+       "geometry": 3.13,
+       "ground": 8.0,
+       "negobs": 15.97,
+       "semantics": 3.69,
+       "stereo": 32.89,
+       "total": 74.46
+      }
+     },
+     "seed": 103,
+     "family": "F2_ditch_field",
+     "kind": "approach",
+     "mode": "stereo",
+     "detection": {
+      "r_first_m": 5.05,
+      "r_stable_m": 4.65,
+      "n_frames": 38,
+      "max_range_scored_m": 9.45,
+      "width_m": 0.838,
+      "depth_m": 0.842,
+      "angle_deg": 78.8,
+      "theory_r_det_m": 7.03
+     }
+    }
+   ]
+  },
+  "meta": {
+   "time": "2026-09-30 06:00:21",
+   "modes": [
+    "tier0",
+    "stereo"
+   ],
+   "semantics": true,
+   "perception_module": "metagross.autonomy.perception.pipeline",
+   "stopping_envelope_m": 3.433,
+   "off_hazard_buffer_m": 0.5,
+   "detect_fraction": 0.5,
+   "note": "DEV seeds only; wall-clock on a shared 4-core laptop"
+  }
+ },
+ "timing_ab_stereo": {
+  "before": {
+   "n": 85,
+   "p50_ms": 78.7,
+   "p95_ms": 111.4,
+   "mean_ms": 85.6
+  },
+  "after": {
+   "n": 85,
+   "p50_ms": 81.0,
+   "p95_ms": 107.7,
+   "mean_ms": 84.2
+  },
+  "meta": {
+   "time": "2026-09-30 06:01:09",
+   "frames": "cached DEV stereo 102 drive + 103 approach",
+   "method": "interleaved A/B in one process, wall clock of Perception.process incl. SGBM and segmenter (1/3 rate)",
+   "note": "shared 4-core laptop with other agents running; absolute values load dependent"
+  }
+ },
+ "claims": [
+  {
+   "id": "perc_dev_tier0_F1_offhazard_ditch_cand_pct_before",
+   "value": 23.18,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.pooled_F1.cand_rate_off",
+   "note": "DEV F1 trail frames (tier0), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, before the perception fix"
+  },
+  {
+   "id": "perc_dev_tier0_F1_offhazard_lethal_pct_before",
+   "value": 24.18,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.pooled_F1.lethal_rate_off",
+   "note": "DEV F1 (tier0), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, before"
+  },
+  {
+   "id": "perc_dev_tier0_ditch_path_cells_certified_pct_before",
+   "value": 10.6,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.pooled.ditch_path_certified",
+   "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (tier0), 1136 of 10712; before"
+  },
+  {
+   "id": "perc_dev_tier0_certified_hazard_cells_in_envelope_before",
+   "value": 195,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.pooled.certified_hazard_in_envelope.cells",
+   "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 382 DEV frames (tier0), of 2846, before"
+  },
+  {
+   "id": "perc_dev_tier0_F1_offhazard_ditch_cand_pct_after",
+   "value": 0.13,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.pooled_F1.cand_rate_off",
+   "note": "DEV F1 trail frames (tier0), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, after the perception fix"
+  },
+  {
+   "id": "perc_dev_tier0_F1_offhazard_lethal_pct_after",
+   "value": 1.16,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.pooled_F1.lethal_rate_off",
+   "note": "DEV F1 (tier0), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, after"
+  },
+  {
+   "id": "perc_dev_tier0_ditch_path_cells_certified_pct_after",
+   "value": 0.88,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.pooled.ditch_path_certified",
+   "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (tier0), 94 of 10712; after"
+  },
+  {
+   "id": "perc_dev_tier0_certified_hazard_cells_in_envelope_after",
+   "value": 25,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.pooled.certified_hazard_in_envelope.cells",
+   "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 382 DEV frames (tier0), of 2846, after"
+  },
+  {
+   "id": "perc_dev_stereo_F1_offhazard_ditch_cand_pct_before",
+   "value": 23.61,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.stereo.pooled_F1.cand_rate_off",
+   "note": "DEV F1 trail frames (stereo), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, before the perception fix"
+  },
+  {
+   "id": "perc_dev_stereo_F1_offhazard_lethal_pct_before",
+   "value": 30.14,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.stereo.pooled_F1.lethal_rate_off",
+   "note": "DEV F1 (stereo), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, before"
+  },
+  {
+   "id": "perc_dev_stereo_ditch_path_cells_certified_pct_before",
+   "value": 31.51,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.stereo.pooled.ditch_path_certified",
+   "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (stereo), 707 of 2244; before"
+  },
+  {
+   "id": "perc_dev_stereo_certified_hazard_cells_in_envelope_before",
+   "value": 18,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.stereo.pooled.certified_hazard_in_envelope.cells",
+   "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 85 DEV frames (stereo), of 487, before"
+  },
+  {
+   "id": "perc_dev_stereo_F1_offhazard_ditch_cand_pct_after",
+   "value": 5.83,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.stereo.pooled_F1.cand_rate_off",
+   "note": "DEV F1 trail frames (stereo), share of observed cells >0.5 m from any GT hazard labelled DITCH_CANDIDATE, after the perception fix"
+  },
+  {
+   "id": "perc_dev_stereo_F1_offhazard_lethal_pct_after",
+   "value": 12.68,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.stereo.pooled_F1.lethal_rate_off",
+   "note": "DEV F1 (stereo), off-hazard observed cells labelled POSITIVE/DEPRESSION/DITCH_CANDIDATE, after"
+  },
+  {
+   "id": "perc_dev_stereo_ditch_path_cells_certified_pct_after",
+   "value": 0.0,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.stereo.pooled.ditch_path_certified",
+   "note": "GT ditch cells on the path corridor certified as ground (any range), summed over DEV approach frames (stereo), 0 of 2244; after"
+  },
+  {
+   "id": "perc_dev_stereo_certified_hazard_cells_in_envelope_after",
+   "value": 0,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.stereo.pooled.certified_hazard_in_envelope.cells",
+   "note": "GT lethal cells in the path corridor within the 2 m/s stopping envelope certified as ground, summed over 85 DEV frames (stereo), of 487, after"
+  },
+  {
+   "id": "perc_dev_tier0_ditch103_r_stable_m_before",
+   "value": 6.25,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.sequences[seed=103].detection.r_stable_m",
+   "note": "DEV seed 103 ditch w=0.838 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; before"
+  },
+  {
+   "id": "perc_dev_tier0_ditch103_r_stable_m_after",
+   "value": 6.65,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.sequences[seed=103].detection.r_stable_m",
+   "note": "DEV seed 103 ditch w=0.838 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; after"
+  },
+  {
+   "id": "perc_dev_tier0_ditch109_r_stable_m_before",
+   "value": 8.85,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.sequences[seed=109].detection.r_stable_m",
+   "note": "DEV seed 109 ditch w=1.036 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.77 m; before"
+  },
+  {
+   "id": "perc_dev_tier0_ditch109_r_stable_m_after",
+   "value": 6.85,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.sequences[seed=109].detection.r_stable_m",
+   "note": "DEV seed 109 ditch w=1.036 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.77 m; after"
+  },
+  {
+   "id": "perc_dev_tier0_ditch115_r_stable_m_before",
+   "value": 7.35,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.sequences[seed=115].detection.r_stable_m",
+   "note": "DEV seed 115 ditch w=0.662 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.29 m; before"
+  },
+  {
+   "id": "perc_dev_tier0_ditch115_r_stable_m_after",
+   "value": 5.95,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.sequences[seed=115].detection.r_stable_m",
+   "note": "DEV seed 115 ditch w=0.662 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.29 m; after"
+  },
+  {
+   "id": "perc_dev_tier0_ditch110_r_stable_m_before",
+   "value": 2.95,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.tier0.sequences[seed=110].detection.r_stable_m",
+   "note": "DEV seed 110 ditch w=0.823 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.98 m; before"
+  },
+  {
+   "id": "perc_dev_tier0_ditch110_r_stable_m_after",
+   "value": 2.75,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.tier0.sequences[seed=110].detection.r_stable_m",
+   "note": "DEV seed 110 ditch w=0.823 m (tier0): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 6.98 m; after"
+  },
+  {
+   "id": "perc_dev_stereo_ditch103_r_stable_m_before",
+   "value": 5.25,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#before.stereo.sequences[seed=103].detection.r_stable_m",
+   "note": "DEV seed 103 ditch w=0.838 m (stereo): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; before"
+  },
+  {
+   "id": "perc_dev_stereo_ditch103_r_stable_m_after",
+   "value": 4.65,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#after.stereo.sequences[seed=103].detection.r_stable_m",
+   "note": "DEV seed 103 ditch w=0.838 m (stereo): farthest camera->near-lip range from which every nearer frame has >=50 % of path cells flagged; theory r_det 7.03 m; after"
+  },
+  {
+   "id": "perc_dev_stereo_perception_p95_ms_before",
+   "value": 111.4,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#timing_ab_stereo.before.p95_ms",
+   "note": "interleaved A/B, Perception.process wall clock incl. SGBM + segmenter at 1/3 rate, 85 DEV stereo frames, shared loaded laptop; before"
+  },
+  {
+   "id": "perc_dev_stereo_perception_p50_ms_before",
+   "value": 78.7,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#timing_ab_stereo.before.p50_ms",
+   "note": "as above, median; before"
+  },
+  {
+   "id": "perc_dev_stereo_perception_p95_ms_after",
+   "value": 107.7,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#timing_ab_stereo.after.p95_ms",
+   "note": "interleaved A/B, Perception.process wall clock incl. SGBM + segmenter at 1/3 rate, 85 DEV stereo frames, shared loaded laptop; after"
+  },
+  {
+   "id": "perc_dev_stereo_perception_p50_ms_after",
+   "value": 81.0,
+   "label": "Simulated",
+   "source": "results/perception_dev.json#timing_ab_stereo.after.p50_ms",
+   "note": "as above, median; after"
+  }
+ ],
+ "notes": [
+  "before = frozen copy of commit e2cbefd perception (git show -> results/raw/perception/_before/perc_before), after = working tree; both run back-to-back by metagross.eval.perception_dev on identical DEV frames (tier0 rendered deterministically, stereo from results/raw/perception/stereo_*.npz).",
+  "before detection ranges are inflated by false alarms: with 22-31 % of off-hazard observed cells flagged, path cells were 'detected' at ranges beyond the Matthies-Rankin limit (e.g. r_first 10.45 m for a 1.04 m ditch whose theory range is 7.77 m).",
+  "timings in the before/after sections were taken minutes apart under different background load (5 other agents on a 4-core laptop); the fair speed comparison is timing_ab_stereo (interleaved A/B in one process).",
+  "seed 110 (F3): the ditch lies just beyond a crest and is detected only at ~2.8 m; its cells are the ditch cells certified inside the 2 m/s envelope in tier0 (safety gap: certification assumes flat ground ahead).",
+  "the other certified hazard cells in the tier0 envelope are GT rock-footprint rim cells (seed 108) more than CERT_CLEARANCE_M = 0.3 m from any POSITIVE cell (low ellipsoid rims measured as ground)."
+ ],
+ "timing_ab_stereo_history": [
+  {
+   "time": "05:34",
+   "code": "after without the fast median",
+   "before": {
+    "p50_ms": 198.7,
+    "p95_ms": 322.2
+   },
+   "after": {
+    "p50_ms": 195.3,
+    "p95_ms": 290.5
+   }
+  },
+  {
+   "time": "05:40",
+   "code": "after without the fast median",
+   "before": {
+    "p50_ms": 174.5,
+    "p95_ms": 252.6
+   },
+   "after": {
+    "p50_ms": 174.6,
+    "p95_ms": 258.5
+   }
+  },
+  {
+   "time": "05:54",
+   "code": "final negobs, CERT_CLEARANCE_M 0.2",
+   "before": {
+    "p50_ms": 123.8,
+    "p95_ms": 184.0
+   },
+   "after": {
+    "p50_ms": 119.6,
+    "p95_ms": 160.7
+   }
+  },
+  {
+   "time": "2026-09-30 06:01:09",
+   "code": "final",
+   "before": {
+    "p50_ms": 78.7,
+    "p95_ms": 111.4
+   },
+   "after": {
+    "p50_ms": 81.0,
+    "p95_ms": 107.7
+   }
+  }
+ ]
+}

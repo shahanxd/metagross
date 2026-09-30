@@ -1,0 +1,73 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 51.02,
+ "path_length": 43.418,
+ "spl": 0.0,
+ "optimal_path_length": 47.9095,
+ "min_clearance": 1.9114,
+ "final_error": 3.313,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.851,
+ "false_stops": 1,
+ "stops": [
+  {
+   "t": 31.28,
+   "duration_s": 19.72,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "FULL",
+  "unknown_is_free": false,
+  "use_negobs": true,
+  "use_governor": true,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": null,
+  "speed_cap_mps": null,
+  "debug_every_n": 5,
+  "seg_model_path": "models/lraspp_smoke.onnx",
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 112,
+ "family": "F5_lighting",
+ "split": "dev",
+ "sha256": "6a14275b31f04219bf544eef526e2eaec411df1d63ee4a19f6c6b1cfed2d6ad2",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 256,
+ "n_telemetry": 86,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 121.6443,
+ "compute_ms_p95": 164.6479,
+ "sensor_ms_mean": 65.8998,
+ "physics_ms_per_step": 0.4566,
+ "sensor_breakdown_ms": {
+  "terrain": 26.3112,
+  "objects": 26.3826,
+  "post": 11.644,
+  "output": 1.408,
+  "total": 65.7459
+ },
+ "wall_time_s": 56.227,
+ "error": null,
+ "machine": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.10.0",
+  "numpy": "2.2.6"
+ }
+}

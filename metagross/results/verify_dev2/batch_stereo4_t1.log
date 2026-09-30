@@ -1,0 +1,31 @@
+
+30 September 2026 07:55:42
+
+
+python.exe : 2026-09-30 07:55:43,599 INFO __main__: 12 jobs, 0 already done, 12 to run on 2 workers
+At line:1 char:445
++ ... eo4_t1.log; & .\.venv\Scripts\python.exe -m metagross.sim.batch --spl ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:5...un on 2 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:56:11,855 INFO __main__: done T1 seed 109: success=False failure=ditch_entry
+2026-09-30 07:57:03,094 INFO __main__: done T1 seed 115: success=False failure=stuck
+D:\Downloads\sih again\metagross\metagross\autonomy\perception\ground.py:214: RuntimeWarning: invalid value 
+encountered in subtract
+  c = P[:, 0, 2] - a * P[:, 0, 0] - b * P[:, 0, 1]
+2026-09-30 07:57:44,608 INFO __main__: done T1 seed 122: success=False failure=collision
+2026-09-30 07:57:57,733 INFO __main__: done T1 seed 121: success=False failure=ditch_entry
+2026-09-30 07:58:33,944 INFO __main__: done T1 seed 116: success=False failure=out_of_bounds
+2026-09-30 07:59:18,734 INFO __main__: done T1 seed 127: success=False failure=out_of_bounds
+2026-09-30 07:59:23,450 INFO __main__: done T1 seed 128: success=True failure=None
+2026-09-30 08:00:12,424 INFO __main__: done T1 seed 105: success=True failure=None
+2026-09-30 08:00:19,778 INFO __main__: done T1 seed 111: success=True failure=None
+2026-09-30 08:00:41,500 INFO __main__: done T1 seed 117: success=False failure=collision
+2026-09-30 08:01:12,043 INFO __main__: done T1 seed 123: success=True failure=None
+2026-09-30 08:01:25,332 INFO __main__: done T1 seed 129: success=True failure=None
+2026-09-30 08:01:25,507 INFO __main__: summary: 12 rows -> results\verify_dev2\stereo\summary.csv
+
+30 September 2026 08:01:25
+
+

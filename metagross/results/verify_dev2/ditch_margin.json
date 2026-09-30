@@ -1,0 +1,200 @@
+[
+ {
+  "group": "tier0/FULL",
+  "seed": 103,
+  "family": "F2_ditch_field",
+  "outcome": "success",
+  "min_edge_dist_m": 0.37,
+  "speed_at_min_mps": 1.21,
+  "max_speed_within_1m_mps": 1.45
+ },
+ {
+  "group": "tier0/FULL",
+  "seed": 109,
+  "family": "F2_ditch_field",
+  "outcome": "stuck",
+  "min_edge_dist_m": 1.6,
+  "speed_at_min_mps": 1.7,
+  "max_speed_within_1m_mps": null
+ },
+ {
+  "group": "tier0/FULL",
+  "seed": 110,
+  "family": "F3_crest_ditch",
+  "outcome": "stuck",
+  "min_edge_dist_m": 1.53,
+  "speed_at_min_mps": 0.75,
+  "max_speed_within_1m_mps": null
+ },
+ {
+  "group": "tier0/FULL",
+  "seed": 115,
+  "family": "F2_ditch_field",
+  "outcome": "stuck",
+  "min_edge_dist_m": 1.42,
+  "speed_at_min_mps": 0.47,
+  "max_speed_within_1m_mps": null
+ },
+ {
+  "group": "tier0/FULL",
+  "seed": 121,
+  "family": "F2_ditch_field",
+  "outcome": "stuck",
+  "min_edge_dist_m": 0.77,
+  "speed_at_min_mps": 1.66,
+  "max_speed_within_1m_mps": 1.72
+ },
+ {
+  "group": "tier0/FULL",
+  "seed": 122,
+  "family": "F3_crest_ditch",
+  "outcome": "out_of_bounds",
+  "min_edge_dist_m": 0.84,
+  "speed_at_min_mps": 0.06,
+  "max_speed_within_1m_mps": 0.6
+ },
+ {
+  "group": "tier0/FULL",
+  "seed": 127,
+  "family": "F2_ditch_field",
+  "outcome": "success",
+  "min_edge_dist_m": 0.25,
+  "speed_at_min_mps": 1.33,
+  "max_speed_within_1m_mps": 1.7
+ },
+ {
+  "group": "tier0/T1",
+  "seed": 103,
+  "family": "F2_ditch_field",
+  "outcome": "ditch_entry",
+  "min_edge_dist_m": 0.21,
+  "speed_at_min_mps": 0.59,
+  "max_speed_within_1m_mps": 1.83
+ },
+ {
+  "group": "tier0/T1",
+  "seed": 109,
+  "family": "F2_ditch_field",
+  "outcome": "out_of_bounds",
+  "min_edge_dist_m": 0.61,
+  "speed_at_min_mps": 1.81,
+  "max_speed_within_1m_mps": 1.83
+ },
+ {
+  "group": "tier0/T1",
+  "seed": 110,
+  "family": "F3_crest_ditch",
+  "outcome": "ditch_entry",
+  "min_edge_dist_m": 0.3,
+  "speed_at_min_mps": 1.03,
+  "max_speed_within_1m_mps": 1.48
+ },
+ {
+  "group": "tier0/T1",
+  "seed": 115,
+  "family": "F2_ditch_field",
+  "outcome": "stuck",
+  "min_edge_dist_m": 0.36,
+  "speed_at_min_mps": 0.09,
+  "max_speed_within_1m_mps": 1.38
+ },
+ {
+  "group": "tier0/T1",
+  "seed": 121,
+  "family": "F2_ditch_field",
+  "outcome": "ditch_entry",
+  "min_edge_dist_m": 0.36,
+  "speed_at_min_mps": 1.02,
+  "max_speed_within_1m_mps": 1.87
+ },
+ {
+  "group": "tier0/T1",
+  "seed": 122,
+  "family": "F3_crest_ditch",
+  "outcome": "stuck",
+  "min_edge_dist_m": 0.66,
+  "speed_at_min_mps": 0.86,
+  "max_speed_within_1m_mps": 1.46
+ },
+ {
+  "group": "tier0/T1",
+  "seed": 127,
+  "family": "F2_ditch_field",
+  "outcome": "out_of_bounds",
+  "min_edge_dist_m": 1.11,
+  "speed_at_min_mps": 1.81,
+  "max_speed_within_1m_mps": null
+ },
+ {
+  "group": "stereo/FULL",
+  "seed": 103,
+  "family": "F2_ditch_field",
+  "outcome": "success",
+  "min_edge_dist_m": 0.34,
+  "speed_at_min_mps": 0.61,
+  "max_speed_within_1m_mps": 1.76
+ },
+ {
+  "group": "stereo/FULL",
+  "seed": 109,
+  "family": "F2_ditch_field",
+  "outcome": "timeout",
+  "min_edge_dist_m": 0.12,
+  "speed_at_min_mps": 1.35,
+  "max_speed_within_1m_mps": 1.5
+ },
+ {
+  "group": "stereo/FULL",
+  "seed": 110,
+  "family": "F3_crest_ditch",
+  "outcome": "stuck",
+  "min_edge_dist_m": 0.88,
+  "speed_at_min_mps": 0.32,
+  "max_speed_within_1m_mps": 0.75
+ },
+ {
+  "group": "stereo/FULL",
+  "seed": 121,
+  "family": "F2_ditch_field",
+  "outcome": "timeout",
+  "min_edge_dist_m": 0.94,
+  "speed_at_min_mps": 1.11,
+  "max_speed_within_1m_mps": 1.41
+ },
+ {
+  "group": "stereo/FULL",
+  "seed": 122,
+  "family": "F3_crest_ditch",
+  "outcome": "ditch_entry",
+  "min_edge_dist_m": 0.3,
+  "speed_at_min_mps": 1.12,
+  "max_speed_within_1m_mps": 1.54
+ },
+ {
+  "group": "stereo/FULL",
+  "seed": 127,
+  "family": "F2_ditch_field",
+  "outcome": "timeout",
+  "min_edge_dist_m": 0.64,
+  "speed_at_min_mps": -0.05,
+  "max_speed_within_1m_mps": 0.75
+ },
+ {
+  "group": "stereo/T1",
+  "seed": 103,
+  "family": "F2_ditch_field",
+  "outcome": "success",
+  "min_edge_dist_m": 0.46,
+  "speed_at_min_mps": 1.19,
+  "max_speed_within_1m_mps": 1.81
+ },
+ {
+  "group": "stereo/T1",
+  "seed": 110,
+  "family": "F3_crest_ditch",
+  "outcome": "success",
+  "min_edge_dist_m": 0.72,
+  "speed_at_min_mps": 1.87,
+  "max_speed_within_1m_mps": 1.89
+ }
+]

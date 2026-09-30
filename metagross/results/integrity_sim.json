@@ -1,0 +1,952 @@
+{
+  "label": "Simulated",
+  "what": "VO integrity monitor on rendered DEV stereo drives (ThreeRenderer, scripted oracle-path drives, real World physics / lighting events / dynamic obstacles); onboard Perception SGBM + Localizer replayed offline on the cached frames.",
+  "seeds": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    120,
+    123,
+    124
+  ],
+  "families": [
+    "F1_trail",
+    "F2_ditch_field",
+    "F3_crest_ditch",
+    "F4_sudden_obstacle",
+    "F5_lighting",
+    "F6_water_mud"
+  ],
+  "holdout_family": "F5_lighting",
+  "kitti_train_seq": "07",
+  "kitti_holdout_seq": "05",
+  "vo_failure_label": "no pose, or per-frame relative error > 0.1 m or > 1.0 deg vs GT",
+  "nominal_definition": "no lighting event active, no triggered dynamic obstacle within 5.0 m in the FOV, and > 1.0 s after either",
+  "false_alarm_definition": "onset (supervisor hysteresis replayed) on a nominal frame with no VO failure in the preceding 1.0 s",
+  "thresholds": {
+    "caution_q_le": 0.7,
+    "degraded_q_le": 0.4
+  },
+  "frames_total": 4842,
+  "synthetic_degradation_seeds": [
+    102,
+    103,
+    109,
+    114
+  ],
+  "synthetic_degradation_note": "metagross.eval.degrade segments (same generator as the KITTI study) applied to rendered DEV frames; never used for fitting",
+  "models": {
+    "kitti_only": {
+      "kitti_trained_on": [
+        "05"
+      ],
+      "kitti_holdout_seq": "07",
+      "auroc_kitti_holdout": 1.0,
+      "auroc_kitti07": 1.0,
+      "auroc_kitti05": 0.9725819962626457,
+      "auroc_kitti_note": "degraded KITTI (real images, synthetic degradations); only sequences the model was not trained on are held-out",
+      "auroc_dev_F5_lighting_holdout": 0.9955836314847942,
+      "auroc_dev_all": 0.9986921110516617,
+      "dev_all": {
+        "nominal_minutes": 14.35,
+        "nominal_frames": 4305,
+        "nominal_frac_q_le_caution_0p7": 0.0009291521486643438,
+        "nominal_frac_q_le_degraded_0p4": 0.00023228803716608595,
+        "nominal_caution_onsets": 1,
+        "nominal_degraded_onsets": 1,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.06968641114982578,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.34843205574912894,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 4820,
+        "vo_failure_frames": 14,
+        "auroc_vo_failure": 0.9986921110516617,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9977111943404079,
+        "events_total": 19,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 3,
+        "events_with_vo_failure_flagged_degraded": 2,
+        "events_flagged_caution": 4
+      },
+      "dev_F5_lighting_holdout": {
+        "nominal_minutes": 3.15,
+        "nominal_frames": 945,
+        "nominal_frac_q_le_caution_0p7": 0.0,
+        "nominal_frac_q_le_degraded_0p4": 0.0,
+        "nominal_caution_onsets": 0,
+        "nominal_degraded_onsets": 0,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.0,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.0,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 1389,
+        "vo_failure_frames": 13,
+        "auroc_vo_failure": 0.9955836314847942,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9928234011627907,
+        "events_total": 15,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 3,
+        "events_with_vo_failure_flagged_degraded": 2,
+        "events_flagged_caution": 4
+      },
+      "events": [
+        {
+          "seed": 100,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 12.8,
+          "dur_s": 5.6,
+          "vo_fail_frames": 8,
+          "vo_terr_max_m": 0.9145992405767633,
+          "q_min": 0.1452469551585875,
+          "max_level": 2
+        },
+        {
+          "seed": 100,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 36.0,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.007682708256820734,
+          "q_min": 0.8439462675414313,
+          "max_level": 0
+        },
+        {
+          "seed": 100,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 44.2,
+          "dur_s": 5.4,
+          "vo_fail_frames": 3,
+          "vo_terr_max_m": 0.006650422344449386,
+          "q_min": 0.08831559544621087,
+          "max_level": 2
+        },
+        {
+          "seed": 105,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 27.4,
+          "dur_s": 3.2,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0026224883219412125,
+          "q_min": 0.9985145085780913,
+          "max_level": 0
+        },
+        {
+          "seed": 106,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 20.0,
+          "dur_s": 7.6,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.010255566593090765,
+          "q_min": 0.9648078200917043,
+          "max_level": 0
+        },
+        {
+          "seed": 106,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 28.0,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.006239530359369443,
+          "q_min": 0.9943276709117966,
+          "max_level": 0
+        },
+        {
+          "seed": 106,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 54.2,
+          "dur_s": 4.8,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.018682320124425597,
+          "q_min": 0.9371644863376103,
+          "max_level": 0
+        },
+        {
+          "seed": 111,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 21.8,
+          "dur_s": 2.4,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0010511421926041817,
+          "q_min": 0.9984501514233045,
+          "max_level": 0
+        },
+        {
+          "seed": 112,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 13.4,
+          "dur_s": 5.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.009909643591559322,
+          "q_min": 0.9560386480865368,
+          "max_level": 0
+        },
+        {
+          "seed": 112,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 25.8,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.01441926484318399,
+          "q_min": 0.9469004439876726,
+          "max_level": 0
+        },
+        {
+          "seed": 112,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 40.0,
+          "dur_s": 5.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0029999195175985107,
+          "q_min": 0.9986998945066863,
+          "max_level": 0
+        },
+        {
+          "seed": 117,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 19.4,
+          "dur_s": 1.6,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.00420779023315972,
+          "q_min": 0.9835828540374556,
+          "max_level": 0
+        },
+        {
+          "seed": 118,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 10.6,
+          "dur_s": 4.2,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.04107325673664934,
+          "q_min": 0.3969536193701887,
+          "max_level": 2
+        },
+        {
+          "seed": 118,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 22.6,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0035280397784677965,
+          "q_min": 0.9967069028794481,
+          "max_level": 0
+        },
+        {
+          "seed": 118,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 39.8,
+          "dur_s": 6.8,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.004503767730147268,
+          "q_min": 0.9948237065120787,
+          "max_level": 0
+        },
+        {
+          "seed": 123,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 35.6,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.001409597943666678,
+          "q_min": 0.9981006020492851,
+          "max_level": 0
+        },
+        {
+          "seed": 124,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 12.0,
+          "dur_s": 7.2,
+          "vo_fail_frames": 2,
+          "vo_terr_max_m": 0.26486373811177844,
+          "q_min": 0.4635897138957926,
+          "max_level": 1
+        },
+        {
+          "seed": 124,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 36.8,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0023040713818615393,
+          "q_min": 0.9992262720619514,
+          "max_level": 0
+        },
+        {
+          "seed": 124,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 56.2,
+          "dur_s": 7.8,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.01033630425722224,
+          "q_min": 0.8770702656238856,
+          "max_level": 0
+        }
+      ],
+      "coef": [
+        0.14352907520921301,
+        -0.6228638311985861,
+        0.15389897050940005,
+        -0.6875743022416525,
+        0.23098489444030537,
+        -0.9796104202816511,
+        -0.10808355004999116,
+        -0.34264923521796187,
+        -0.33198179318472665,
+        -0.5154374581274509,
+        -0.2953641484733328,
+        0.7824980744167161
+      ],
+      "intercept": -7.35365377826247,
+      "meta": {
+        "trained_on": [
+          "05"
+        ],
+        "tested_on": "07",
+        "label": "VO failure: no pose, or rel. error > 0.1 m or > 1.0 deg per frame",
+        "train_frames": 1499,
+        "train_fail_rate": 0.014009339559706471,
+        "test_frames": 1100,
+        "test_fail_rate": 0.01818181818181818,
+        "auroc_train": 0.9725819962626457,
+        "auroc_test": 1.0,
+        "auroc_test_fallback_model": 1.0,
+        "silent_failures_test": 0,
+        "auroc_test_silent_only": null,
+        "spearman_pfail_vs_trans_err": 0.11970043412817283,
+        "spearman_p_value": 8.033842524603502e-05,
+        "strict_label_positives_test": 3,
+        "auroc_test_strict_label": 0.9712163416898794,
+        "created": "2026-09-30T03:26:10",
+        "C": 1.0
+      },
+      "dev_synthetic_degradations": {
+        "frames": 877,
+        "vo_failure_frames": 11,
+        "auroc": 1.0,
+        "per_kind": {
+          "gamma_bright": {
+            "segments": 2,
+            "segments_vo_failed": 0,
+            "flagged_caution": 0,
+            "flagged_degraded": 0,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "gamma_dark": {
+            "segments": 3,
+            "segments_vo_failed": 2,
+            "flagged_caution": 2,
+            "flagged_degraded": 2,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "haze": {
+            "segments": 3,
+            "segments_vo_failed": 3,
+            "flagged_caution": 3,
+            "flagged_degraded": 3,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "motion_blur": {
+            "segments": 1,
+            "segments_vo_failed": 0,
+            "flagged_caution": 0,
+            "flagged_degraded": 0,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "smudge": {
+            "segments": 2,
+            "segments_vo_failed": 1,
+            "flagged_caution": 1,
+            "flagged_degraded": 1,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "sun_flare": {
+            "segments": 2,
+            "segments_vo_failed": 2,
+            "flagged_caution": 2,
+            "flagged_degraded": 2,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "low_light": {
+            "segments": 1,
+            "segments_vo_failed": 0,
+            "flagged_caution": 0,
+            "flagged_degraded": 0,
+            "flagged_caution_without_vo_failure": 0
+          }
+        },
+        "segments_vo_failed": 8,
+        "segments_vo_failed_flagged_caution": 8
+      }
+    },
+    "retrained_kitti07_sim": {
+      "kitti_trained_on": [
+        "07"
+      ],
+      "kitti_holdout_seq": "05",
+      "auroc_kitti_holdout": 0.9541207552032992,
+      "auroc_kitti07": 1.0,
+      "auroc_kitti05": 0.9541207552032992,
+      "auroc_kitti_note": "degraded KITTI (real images, synthetic degradations); only sequences the model was not trained on are held-out",
+      "auroc_dev_F5_lighting_holdout": 0.9955836314847942,
+      "auroc_dev_all": 0.9987515605493134,
+      "dev_all": {
+        "nominal_minutes": 14.35,
+        "nominal_frames": 4305,
+        "nominal_frac_q_le_caution_0p7": 0.0009291521486643438,
+        "nominal_frac_q_le_degraded_0p4": 0.00023228803716608595,
+        "nominal_caution_onsets": 1,
+        "nominal_degraded_onsets": 1,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.06968641114982578,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.34843205574912894,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 4820,
+        "vo_failure_frames": 14,
+        "auroc_vo_failure": 0.9987515605493134,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9978152309612984,
+        "events_total": 19,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 2,
+        "events_with_vo_failure_flagged_degraded": 2,
+        "events_flagged_caution": 2
+      },
+      "dev_F5_lighting_holdout": {
+        "nominal_minutes": 3.15,
+        "nominal_frames": 945,
+        "nominal_frac_q_le_caution_0p7": 0.0,
+        "nominal_frac_q_le_degraded_0p4": 0.0,
+        "nominal_caution_onsets": 0,
+        "nominal_degraded_onsets": 0,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.0,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.0,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 1389,
+        "vo_failure_frames": 13,
+        "auroc_vo_failure": 0.9955836314847942,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9928234011627907,
+        "events_total": 15,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 2,
+        "events_with_vo_failure_flagged_degraded": 2,
+        "events_flagged_caution": 2
+      },
+      "events": [
+        {
+          "seed": 100,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 12.8,
+          "dur_s": 5.6,
+          "vo_fail_frames": 8,
+          "vo_terr_max_m": 0.9145992405767633,
+          "q_min": 0.3000371510236046,
+          "max_level": 2
+        },
+        {
+          "seed": 100,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 36.0,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.007682708256820734,
+          "q_min": 0.9978565209416435,
+          "max_level": 0
+        },
+        {
+          "seed": 100,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 44.2,
+          "dur_s": 5.4,
+          "vo_fail_frames": 3,
+          "vo_terr_max_m": 0.006650422344449386,
+          "q_min": 0.09095206133332956,
+          "max_level": 2
+        },
+        {
+          "seed": 105,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 27.4,
+          "dur_s": 3.2,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0026224883219412125,
+          "q_min": 0.9999750460848019,
+          "max_level": 0
+        },
+        {
+          "seed": 106,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 20.0,
+          "dur_s": 7.6,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.010255566593090765,
+          "q_min": 0.9998476208082654,
+          "max_level": 0
+        },
+        {
+          "seed": 106,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 28.0,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.006239530359369443,
+          "q_min": 0.9999089235245687,
+          "max_level": 0
+        },
+        {
+          "seed": 106,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 54.2,
+          "dur_s": 4.8,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.018682320124425597,
+          "q_min": 0.9994536357610211,
+          "max_level": 0
+        },
+        {
+          "seed": 111,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 21.8,
+          "dur_s": 2.4,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0010511421926041817,
+          "q_min": 0.999989288929314,
+          "max_level": 0
+        },
+        {
+          "seed": 112,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 13.4,
+          "dur_s": 5.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.009909643591559322,
+          "q_min": 0.9998073298687057,
+          "max_level": 0
+        },
+        {
+          "seed": 112,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 25.8,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.01441926484318399,
+          "q_min": 0.9996392496308956,
+          "max_level": 0
+        },
+        {
+          "seed": 112,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 40.0,
+          "dur_s": 5.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0029999195175985107,
+          "q_min": 0.9999540997832314,
+          "max_level": 0
+        },
+        {
+          "seed": 117,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 19.4,
+          "dur_s": 1.6,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.00420779023315972,
+          "q_min": 0.9999486922236787,
+          "max_level": 0
+        },
+        {
+          "seed": 118,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 10.6,
+          "dur_s": 4.2,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.04107325673664934,
+          "q_min": 0.9970337819385987,
+          "max_level": 0
+        },
+        {
+          "seed": 118,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 22.6,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0035280397784677965,
+          "q_min": 0.999928977032227,
+          "max_level": 0
+        },
+        {
+          "seed": 118,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 39.8,
+          "dur_s": 6.8,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.004503767730147268,
+          "q_min": 0.9998134426805276,
+          "max_level": 0
+        },
+        {
+          "seed": 123,
+          "family": "F4_sudden_obstacle",
+          "kind": "obstacle",
+          "t0_s": 35.6,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.001409597943666678,
+          "q_min": 0.9999789567174103,
+          "max_level": 0
+        },
+        {
+          "seed": 124,
+          "family": "F5_lighting",
+          "kind": "glare",
+          "t0_s": 12.0,
+          "dur_s": 7.2,
+          "vo_fail_frames": 2,
+          "vo_terr_max_m": 0.26486373811177844,
+          "q_min": 0.9979859728663822,
+          "max_level": 0
+        },
+        {
+          "seed": 124,
+          "family": "F5_lighting",
+          "kind": "dim",
+          "t0_s": 36.8,
+          "dur_s": 3.0,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.0023040713818615393,
+          "q_min": 0.9999497777356299,
+          "max_level": 0
+        },
+        {
+          "seed": 124,
+          "family": "F5_lighting",
+          "kind": "dust",
+          "t0_s": 56.2,
+          "dur_s": 7.8,
+          "vo_fail_frames": 0,
+          "vo_terr_max_m": 0.01033630425722224,
+          "q_min": 0.9991229476146242,
+          "max_level": 0
+        }
+      ],
+      "coef": [
+        -0.28110513990037045,
+        -0.3447769597277714,
+        0.4912746348100505,
+        -0.17924056898538862,
+        -0.07981495441189448,
+        -0.3232589649946033,
+        0.0900233408696863,
+        0.09611113745792774,
+        0.0666510326672634,
+        0.1204802506013853,
+        -0.017571163562371317,
+        -0.12120555098692354
+      ],
+      "intercept": -10.945336152045174,
+      "meta": {},
+      "dev_synthetic_degradations": {
+        "frames": 877,
+        "vo_failure_frames": 11,
+        "auroc": 1.0,
+        "per_kind": {
+          "gamma_bright": {
+            "segments": 2,
+            "segments_vo_failed": 0,
+            "flagged_caution": 0,
+            "flagged_degraded": 0,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "gamma_dark": {
+            "segments": 3,
+            "segments_vo_failed": 2,
+            "flagged_caution": 2,
+            "flagged_degraded": 2,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "haze": {
+            "segments": 3,
+            "segments_vo_failed": 3,
+            "flagged_caution": 3,
+            "flagged_degraded": 3,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "motion_blur": {
+            "segments": 1,
+            "segments_vo_failed": 0,
+            "flagged_caution": 0,
+            "flagged_degraded": 0,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "smudge": {
+            "segments": 2,
+            "segments_vo_failed": 1,
+            "flagged_caution": 1,
+            "flagged_degraded": 1,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "sun_flare": {
+            "segments": 2,
+            "segments_vo_failed": 2,
+            "flagged_caution": 2,
+            "flagged_degraded": 2,
+            "flagged_caution_without_vo_failure": 0
+          },
+          "low_light": {
+            "segments": 1,
+            "segments_vo_failed": 0,
+            "flagged_caution": 0,
+            "flagged_degraded": 0,
+            "flagged_caution_without_vo_failure": 0
+          }
+        },
+        "segments_vo_failed": 8,
+        "segments_vo_failed_flagged_caution": 8
+      }
+    }
+  },
+  "ema_ablation": {
+    "kitti_only": {
+      "alpha_down_0.7": {
+        "nominal_minutes": 14.35,
+        "nominal_frames": 4305,
+        "nominal_frac_q_le_caution_0p7": 0.0009291521486643438,
+        "nominal_frac_q_le_degraded_0p4": 0.00023228803716608595,
+        "nominal_caution_onsets": 1,
+        "nominal_degraded_onsets": 1,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.06968641114982578,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.34843205574912894,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 4820,
+        "vo_failure_frames": 14,
+        "auroc_vo_failure": 0.9986921110516617,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9977111943404079,
+        "events_total": 19,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 3,
+        "events_with_vo_failure_flagged_degraded": 2,
+        "events_flagged_caution": 4
+      },
+      "alpha_down_0.55": {
+        "nominal_minutes": 14.35,
+        "nominal_frames": 4305,
+        "nominal_frac_q_le_caution_0p7": 0.0006968641114982578,
+        "nominal_frac_q_le_degraded_0p4": 0.0,
+        "nominal_caution_onsets": 1,
+        "nominal_degraded_onsets": 0,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.06968641114982578,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.0,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 4820,
+        "vo_failure_frames": 14,
+        "auroc_vo_failure": 0.9986921110516617,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9977111943404079,
+        "events_total": 19,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 3,
+        "events_with_vo_failure_flagged_degraded": 2,
+        "events_flagged_caution": 4
+      }
+    },
+    "retrained_kitti07_sim": {
+      "alpha_down_0.7": {
+        "nominal_minutes": 14.35,
+        "nominal_frames": 4305,
+        "nominal_frac_q_le_caution_0p7": 0.0009291521486643438,
+        "nominal_frac_q_le_degraded_0p4": 0.00023228803716608595,
+        "nominal_caution_onsets": 1,
+        "nominal_degraded_onsets": 1,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.06968641114982578,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.34843205574912894,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 4820,
+        "vo_failure_frames": 14,
+        "auroc_vo_failure": 0.9987515605493134,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9978152309612984,
+        "events_total": 19,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 2,
+        "events_with_vo_failure_flagged_degraded": 2,
+        "events_flagged_caution": 2
+      },
+      "alpha_down_0.55": {
+        "nominal_minutes": 14.35,
+        "nominal_frames": 4305,
+        "nominal_frac_q_le_caution_0p7": 0.0006968641114982578,
+        "nominal_frac_q_le_degraded_0p4": 0.0,
+        "nominal_caution_onsets": 1,
+        "nominal_degraded_onsets": 0,
+        "nominal_caution_false_alarms": 0,
+        "nominal_degraded_false_alarms": 0,
+        "caution_onsets_per_min": 0.06968641114982578,
+        "caution_false_alarms_per_min": 0.0,
+        "degraded_onsets_per_5min": 0.0,
+        "degraded_false_alarms_per_5min": 0.0,
+        "frames_scored": 4820,
+        "vo_failure_frames": 14,
+        "auroc_vo_failure": 0.9987515605493134,
+        "silent_failure_frames": 8,
+        "auroc_silent_only": 0.9978152309612984,
+        "events_total": 19,
+        "events_with_vo_failure": 3,
+        "events_with_vo_failure_flagged_caution": 2,
+        "events_with_vo_failure_flagged_degraded": 1,
+        "events_flagged_caution": 2
+      }
+    }
+  },
+  "onboard_model": "kitti_only",
+  "claims": [
+    {
+      "id": "integrity_sim_nominal_minutes",
+      "value": "14.3",
+      "unit": "min",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.dev_all.nominal_minutes",
+      "note": "nominal rendered DEV driving scored (22 drives, DEV seeds only)"
+    },
+    {
+      "id": "integrity_sim_degraded_per_5min",
+      "value": "0.35",
+      "unit": "/5 min",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.dev_all.degraded_onsets_per_5min",
+      "note": "DEGRADED onsets (q<=0.4, supervisor hysteresis) in nominal DEV driving, model 'kitti_only'"
+    },
+    {
+      "id": "integrity_sim_degraded_false_per_5min",
+      "value": "0.00",
+      "unit": "/5 min",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.dev_all.degraded_false_alarms_per_5min",
+      "note": "DEGRADED onsets without any VO failure in the preceding 1 s (false alarms)"
+    },
+    {
+      "id": "integrity_sim_caution_false_per_min",
+      "value": "0.00",
+      "unit": "/min",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.dev_all.caution_false_alarms_per_min",
+      "note": "CAUTION onsets (q<=0.7) without VO failure in nominal DEV driving"
+    },
+    {
+      "id": "integrity_sim_events_vo_fail_flagged",
+      "value": "3/3",
+      "unit": "",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.dev_all",
+      "note": "lighting / sudden-obstacle events in which VO actually failed that drove q to CAUTION or below"
+    },
+    {
+      "id": "integrity_sim_auroc_dev",
+      "value": "0.999",
+      "unit": "",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.auroc_dev_all",
+      "note": "per-frame AUROC of p_fail vs GT VO failure, all rendered DEV frames (14 failure frames, 8 silent; silent-only AUROC 0.998)"
+    },
+    {
+      "id": "integrity_sim_auroc_dev_holdout",
+      "value": "0.996",
+      "unit": "",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.auroc_dev_F5_lighting_holdout",
+      "note": "held-out DEV family F5_lighting (never used for fitting)"
+    },
+    {
+      "id": "integrity_onboard_auroc_kitti_holdout",
+      "value": "1.000",
+      "unit": "",
+      "label": "Tested",
+      "source": "results/integrity_sim.json#models.kitti_only.auroc_kitti_holdout",
+      "note": "onboard model on held-out degraded KITTI 07 (real images, synthetic degradations; see results/integrity.json for its silent-failure count)"
+    },
+    {
+      "id": "integrity_sim_auroc_synthetic_degradations",
+      "value": "1.000",
+      "unit": "",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.dev_synthetic_degradations.auroc",
+      "note": "rendered DEV frames with synthetic degradation segments (flare, low light, blur, ...)"
+    },
+    {
+      "id": "integrity_sim_synth_segments_flagged",
+      "value": "8/8",
+      "unit": "",
+      "label": "Simulated",
+      "source": "results/integrity_sim.json#models.kitti_only.dev_synthetic_degradations",
+      "note": "synthetic degradation segments with a VO failure that drove q to CAUTION or below"
+    }
+  ]
+}

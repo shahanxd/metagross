@@ -1,0 +1,14 @@
+{
+ "mission_id": "F3_crest_ditch-110",
+ "goal_xy_a": [
+  53.3106,
+  -4.9461
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 193.8,
+ "goal_sigma_m": 0.5673,
+ "goal_entry": {
+  "range_m": 53.5396,
+  "bearing_deg": -5.3006
+ }
+}

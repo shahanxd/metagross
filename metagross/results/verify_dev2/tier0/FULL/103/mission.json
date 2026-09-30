@@ -1,0 +1,14 @@
+{
+ "mission_id": "ff052732",
+ "goal_xy_a": [
+  40.7381,
+  -3.7438
+ ],
+ "success_radius_m": 2.0,
+ "timeout_s": 162.3,
+ "goal_sigma_m": 0.6349,
+ "goal_entry": {
+  "range_m": 40.9098,
+  "bearing_deg": -5.2506
+ }
+}

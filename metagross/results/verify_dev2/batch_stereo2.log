@@ -1,0 +1,32 @@
+
+30 September 2026 07:14:01
+
+
+python.exe : 2026-09-30 07:14:03,170 INFO __main__: 4 jobs, 0 already done, 4 to run on 1 workers
+At line:1 char:442
++ ... tereo2.log; & .\.venv\Scripts\python.exe -m metagross.sim.batch --spl ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:1...un on 1 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:15:42,021 INFO __main__: done T1 seed 103: success=True failure=None
+2026-09-30 07:17:07,081 INFO __main__: done T1 seed 110: success=True failure=None
+2026-09-30 07:18:39,066 INFO __main__: done T1 seed 104: success=False failure=stuck
+2026-09-30 07:19:39,001 INFO __main__: done T1 seed 106: success=True failure=None
+2026-09-30 07:19:39,210 INFO __main__: summary: 4 rows -> results\verify_dev2\stereo\summary.csv
+python.exe : 2026-09-30 07:19:41,594 INFO __main__: 4 jobs, 0 already done, 4 to run on 1 workers
+At line:1 char:731
++ ... tereo2.log; & .\.venv\Scripts\python.exe -m metagross.sim.batch --spl ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-09-30 07:1...un on 1 workers:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-09-30 07:21:19,876 INFO __main__: done FULL seed 110: success=False failure=stuck
+2026-09-30 07:23:11,271 INFO __main__: done FULL seed 122: success=False failure=ditch_entry
+2026-09-30 07:27:11,425 INFO __main__: done FULL seed 121: success=False failure=timeout
+2026-09-30 07:28:36,546 INFO __main__: done FULL seed 120: success=True failure=None
+2026-09-30 07:28:36,664 INFO __main__: summary: 4 rows -> results\verify_dev2\stereo\summary.csv
+
+30 September 2026 07:28:36
+
+

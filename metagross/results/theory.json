@@ -1,0 +1,151 @@
+{
+  "label": "Estimated",
+  "detail": "analytic model",
+  "params": {
+    "fx_px": 440.4422145507756,
+    "n_px": 6.0,
+    "cam_height_m": 0.9,
+    "brake_decel_mps2": 1.5,
+    "t_reaction_s": 0.6,
+    "margin_m": 0.5,
+    "v_platform_mps": 2.0,
+    "baseline_m": 0.12,
+    "sigma_d_px": 0.25,
+    "design_ditch_w_m": 0.3,
+    "max_range_m": 12.0,
+    "ifov_mrad": 2.2704454000167527,
+    "theta_min_mrad": 13.622672400100516
+  },
+  "ditch_detection": [
+    {
+      "width_m": 0.3,
+      "cam_height_m": 0.9,
+      "r_det_m": 4.304,
+      "exact_angle_at_r_det_mrad": 13.087,
+      "v_safe_mps": 2.596
+    },
+    {
+      "width_m": 0.5,
+      "cam_height_m": 0.9,
+      "r_det_m": 5.503,
+      "exact_angle_at_r_det_mrad": 13.296,
+      "v_safe_mps": 3.077
+    },
+    {
+      "width_m": 0.8,
+      "cam_height_m": 0.9,
+      "r_det_m": 6.881,
+      "exact_angle_at_r_det_mrad": 13.416,
+      "v_safe_mps": 3.567
+    },
+    {
+      "width_m": 1.0,
+      "cam_height_m": 0.9,
+      "r_det_m": 7.643,
+      "exact_angle_at_r_det_mrad": 13.457,
+      "v_safe_mps": 3.816
+    }
+  ],
+  "positive_detection": [
+    {
+      "height_m": 0.3,
+      "r_det_m": 22.022
+    }
+  ],
+  "stopping": [
+    {
+      "v_mps": 1.0,
+      "d_stop_m": 1.433,
+      "min_mast_h_for_design_ditch_m": 0.113
+    },
+    {
+      "v_mps": 2.0,
+      "d_stop_m": 3.033,
+      "min_mast_h_for_design_ditch_m": 0.459
+    }
+  ],
+  "envelope": {
+    "h_range_m": [
+      0.4,
+      1.6
+    ],
+    "w_range_m": [
+      0.2,
+      1.2
+    ],
+    "n": 121,
+    "v_min_mps": 1.607,
+    "v_max_mps": 4.859,
+    "v_ours_mps": 2.596,
+    "v_ours_capped_mps": 2.0,
+    "frac_grid_below_platform_cap": 0.0148,
+    "frac_grid_below_bel_rsp": 0.0,
+    "bel_rsp_max_mps": 1.0
+  },
+  "stereo": [
+    {
+      "z_m": 2.0,
+      "sigma_z_m": 0.0189,
+      "sigma_z_oakd_lite_m": 0.0303
+    },
+    {
+      "z_m": 4.0,
+      "sigma_z_m": 0.0757,
+      "sigma_z_oakd_lite_m": 0.1211
+    },
+    {
+      "z_m": 6.0,
+      "sigma_z_m": 0.1703,
+      "sigma_z_oakd_lite_m": 0.2725
+    },
+    {
+      "z_m": 8.0,
+      "sigma_z_m": 0.3027,
+      "sigma_z_oakd_lite_m": 0.4844
+    },
+    {
+      "z_m": 10.0,
+      "sigma_z_m": 0.473,
+      "sigma_z_oakd_lite_m": 0.7568
+    },
+    {
+      "z_m": 12.0,
+      "sigma_z_m": 0.6811,
+      "sigma_z_oakd_lite_m": 1.0898
+    }
+  ],
+  "claims": [
+    {
+      "claim": "A 0.3 m ditch is first resolvable at 4.3 m from a 0.9 m mast",
+      "value": "4.30 m",
+      "label": "Estimated",
+      "source": "results/theory.json#ditch_detection"
+    },
+    {
+      "claim": "A 0.3 m rock is resolvable at 22.0 m (1/R vs 1/R^2)",
+      "value": "22.0 m",
+      "label": "Estimated",
+      "source": "results/theory.json#positive_detection"
+    },
+    {
+      "claim": "Stopping distance from 2 m/s (a=1.5 m/s^2, T_r=0.6 s, B=0.5 m)",
+      "value": "3.03 m",
+      "label": "Estimated",
+      "source": "results/theory.json#stopping"
+    },
+    {
+      "claim": "Safe-speed envelope at our mast/design ditch (before 2 m/s platform cap)",
+      "value": "2.60 m/s",
+      "label": "Estimated",
+      "source": "results/theory.json#envelope"
+    }
+  ],
+  "figures": [
+    "deck_assets\\theory\\ditch_detectability.png",
+    "deck_assets\\theory\\ditch_detectability.svg",
+    "deck_assets\\theory\\safe_speed_envelope.png",
+    "deck_assets\\theory\\safe_speed_envelope.svg",
+    "deck_assets\\theory\\stereo_depth_error.png",
+    "deck_assets\\theory\\stereo_depth_error.svg"
+  ]
+}

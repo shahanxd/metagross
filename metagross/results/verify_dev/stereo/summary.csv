@@ -1,0 +1,4 @@
+config,seed,family,split,success,failure_type,time,path_length,spl,optimal_path_length,min_clearance,final_error,ditch_entries,collisions,water_entries,mean_speed,false_stops,n_frames,compute_ms_mean,sensor_ms_mean,wall_time_s,error
+FULL,102,F1_trail,dev,False,stuck,30.02,5.452,0.0,45.724,1.53,44.11,0,0,0,0.1816,2,151,190.9006,99.7524,65.488,
+FULL,103,F2_ditch_field,dev,False,stuck,22.04,1.278,0.0,46.9857,3.8656,40.208,0,0,0,0.058,2,111,187.8994,104.8453,54.188,
+FULL,104,F3_crest_ditch,dev,False,stuck,20.02,1.153,0.0,51.5665,,51.491,0,0,0,0.0576,3,101,131.3156,73.5671,36.178,

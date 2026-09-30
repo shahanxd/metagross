@@ -1,0 +1,27 @@
+{
+  "label": "Tested",
+  "sequence": "07",
+  "frames": 150,
+  "resolution": [
+    640,
+    370
+  ],
+  "opencv_threads": 2,
+  "mode": "camera-only Localizer.update (VO + integrity + EKF), disparity supplied",
+  "predict_ms_mean": 0.1447248321332056,
+  "vo_ms_mean": 25.763162415900076,
+  "vo_disparity_ms_mean": 0.007302012916063677,
+  "health_ms_mean": 4.999883221435023,
+  "ekf_ms_mean": 0.3790543621699732,
+  "total_ms_mean": 31.750191946272917,
+  "predict_ms_p95": 0.2314599987585097,
+  "vo_ms_p95": 36.50154000060866,
+  "vo_disparity_ms_p95": 0.014179998834151773,
+  "health_ms_p95": 7.633759998134337,
+  "ekf_ms_p95": 0.44905999966431404,
+  "total_ms_p95": 43.41975999705028,
+  "sgbm_ms_mean_not_in_localizer": 75.95424765133808,
+  "hz_localizer_only": 31.495872582193563,
+  "vo_accept_rate": 1.0,
+  "note": "shared 4-core laptop CPU with other jobs running; SGBM is perception's cost onboard"
+}

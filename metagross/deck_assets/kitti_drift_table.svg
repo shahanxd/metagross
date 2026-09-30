@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="768pt" height="288pt" viewBox="0 0 768 288" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 288 
+L 768 288 
+L 768 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 42.24 239.04 
+L 349.44 239.04 
+L 349.44 48.96 
+L 42.24 48.96 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #0f172a" transform="translate(79.884046 247.995078)">KITTI 00*</text>
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #0f172a" transform="translate(83.004749 256.075156)">2.91 km</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #0f172a" transform="translate(180.919688 247.995078)">KITTI 05</text>
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #0f172a" transform="translate(182.170664 256.075156)">2.21 km</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #0f172a" transform="translate(280.154743 247.995078)">KITTI 07</text>
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #0f172a" transform="translate(283.665095 256.075156)">695 m</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_4">
+      <path d="M 42.24 239.04 
+L 349.44 239.04 
+" clip-path="url(#p0d740dffea)" style="fill: none; stroke: #eef2f6; stroke-width: 0.6; stroke-linecap: round"/>
+     </g>
+     <g id="line2d_5">
+      <defs>
+       <path id="me0a8915870" d="M 0 0 
+L -3 0 
+" style="stroke: #e2e8f0; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#me0a8915870" x="42.24" y="239.04" style="fill: #e2e8f0; stroke: #e2e8f0; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="35.74" y="241.767539" transform="rotate(-0 35.74 241.767539)">0.0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_6">
+      <path d="M 42.24 210.156326 
+L 349.44 210.156326 
+" clip-path="url(#p0d740dffea)" style="fill: none; stroke: #eef2f6; stroke-width: 0.6; stroke-linecap: round"/>
+     </g>
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#me0a8915870" x="42.24" y="210.156326" style="fill: #e2e8f0; stroke: #e2e8f0; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="35.74" y="212.883865" transform="rotate(-0 35.74 212.883865)">0.5</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8">
+      <path d="M 42.24 181.272652 
+L 349.44 181.272652 
+" clip-path="url(#p0d740dffea)" style="fill: none; stroke: #eef2f6; stroke-width: 0.6; stroke-linecap: round"/>
+     </g>
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#me0a8915870" x="42.24" y="181.272652" style="fill: #e2e8f0; stroke: #e2e8f0; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="35.74" y="184.000191" transform="rotate(-0 35.74 184.000191)">1.0</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_10">
+      <path d="M 42.24 152.388978 
+L 349.44 152.388978 
+" clip-path="url(#p0d740dffea)" style="fill: none; stroke: #eef2f6; stroke-width: 0.6; stroke-linecap: round"/>
+     </g>
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#me0a8915870" x="42.24" y="152.388978" style="fill: #e2e8f0; stroke: #e2e8f0; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="35.74" y="155.116517" transform="rotate(-0 35.74 155.116517)">1.5</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_12">
+      <path d="M 42.24 123.505303 
+L 349.44 123.505303 
+" clip-path="url(#p0d740dffea)" style="fill: none; stroke: #eef2f6; stroke-width: 0.6; stroke-linecap: round"/>
+     </g>
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#me0a8915870" x="42.24" y="123.505303" style="fill: #e2e8f0; stroke: #e2e8f0; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="35.74" y="126.232843" transform="rotate(-0 35.74 126.232843)">2.0</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_14">
+      <path d="M 42.24 94.621629 
+L 349.44 94.621629 
+" clip-path="url(#p0d740dffea)" style="fill: none; stroke: #eef2f6; stroke-width: 0.6; stroke-linecap: round"/>
+     </g>
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#me0a8915870" x="42.24" y="94.621629" style="fill: #e2e8f0; stroke: #e2e8f0; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="35.74" y="97.349168" transform="rotate(-0 35.74 97.349168)">2.5</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_16">
+      <path d="M 42.24 65.737955 
+L 349.44 65.737955 
+" clip-path="url(#p0d740dffea)" style="fill: none; stroke: #eef2f6; stroke-width: 0.6; stroke-linecap: round"/>
+     </g>
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#me0a8915870" x="42.24" y="65.737955" style="fill: #e2e8f0; stroke: #e2e8f0; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="35.74" y="68.465494" transform="rotate(-0 35.74 68.465494)">3.0</text>
+     </g>
+    </g>
+    <g id="text_11">
+     <text style="font-size: 8.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #475569" x="18.376797" y="144" transform="rotate(-90 18.376797 144)">Drift, % of segment length</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 42.24 239.04 
+L 42.24 48.96 
+" style="fill: none; stroke: #e2e8f0; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 42.24 239.04 
+L 349.44 239.04 
+" style="fill: none; stroke: #e2e8f0; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 57.6 239.04 
+L 82.374194 239.04 
+L 82.374194 156.065686 
+L 57.6 156.065686 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #93b4f5; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 84.356129 239.04 
+L 109.130323 239.04 
+L 109.130323 94.029725 
+L 84.356129 94.029725 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #1d4ed8; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 111.112258 239.04 
+L 135.886452 239.04 
+L 135.886452 115.492559 
+L 111.112258 115.492559 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #0b1f4b; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 156.696774 239.04 
+L 181.470968 239.04 
+L 181.470968 181.790716 
+L 156.696774 181.790716 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #93b4f5; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 183.452903 239.04 
+L 208.227097 239.04 
+L 208.227097 132.527838 
+L 183.452903 132.527838 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #1d4ed8; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 210.209032 239.04 
+L 234.983226 239.04 
+L 234.983226 151.288896 
+L 210.209032 151.288896 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #0b1f4b; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 255.793548 239.04 
+L 280.567742 239.04 
+L 280.567742 164.631012 
+L 255.793548 164.631012 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #93b4f5; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 282.549677 239.04 
+L 307.323871 239.04 
+L 307.323871 83.236721 
+L 282.549677 83.236721 
+z
+" clip-path="url(#p0d740dffea)" style="fill: #1d4ed8; stroke: #ffffff; stroke-width: 0.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 6.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #94a3b8" transform="translate(313.992434 227.819445)">drive</text>
+    <text style="font-size: 6.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #94a3b8" transform="translate(311.619427 234.822179)">&lt; 1 km</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="69.987097" y="152.25382" transform="rotate(-0 69.987097 152.25382)">1.44</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="96.743226" y="90.217859" transform="rotate(-0 96.743226 90.217859)">2.51</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="123.499355" y="111.680694" transform="rotate(-0 123.499355 111.680694)">2.14</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="169.083871" y="177.97885" transform="rotate(-0 169.083871 177.97885)">0.99</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="195.84" y="128.715972" transform="rotate(-0 195.84 128.715972)">1.84</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="222.596129" y="147.47703" transform="rotate(-0 222.596129 147.47703)">1.52</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="268.180645" y="160.819147" transform="rotate(-0 268.180645 160.819147)">1.29</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 7.5px; font-family: 'Consolas'; text-anchor: middle; fill: #0f172a" x="294.936774" y="79.424856" transform="rotate(-0 294.936774 79.424856)">2.70</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_13">
+     <path d="M 47.49 43.140469 
+L 55.74 43.140469 
+L 55.74 35.940469 
+L 47.49 35.940469 
+z
+" style="fill: #93b4f5; stroke: #93b4f5; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_21">
+     <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #475569" x="61.74" y="42.090469" transform="rotate(-0 61.74 42.090469)">100 m segments</text>
+    </g>
+    <g id="patch_14">
+     <path d="M 130.622813 43.140469 
+L 138.872813 43.140469 
+L 138.872813 35.940469 
+L 130.622813 35.940469 
+z
+" style="fill: #1d4ed8; stroke: #1d4ed8; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_22">
+     <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #475569" x="144.872813" y="42.090469" transform="rotate(-0 144.872813 42.090469)">500 m segments</text>
+    </g>
+    <g id="patch_15">
+     <path d="M 214.831406 43.140469 
+L 223.081406 43.140469 
+L 223.081406 35.940469 
+L 214.831406 35.940469 
+z
+" style="fill: #0b1f4b; stroke: #0b1f4b; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_23">
+     <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #475569" x="229.081406" y="42.090469" transform="rotate(-0 229.081406 42.090469)">1000 m segments</text>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="line2d_18">
+    <path d="M 384 61.632 
+L 756.48 61.632 
+" style="fill: none; stroke: #475569; stroke-width: 0.8; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_19">
+    <path d="M 384 91.872 
+L 756.48 91.872 
+" style="fill: none; stroke: #e2e8f0; stroke-width: 0.6; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_20">
+    <path d="M 384 122.112 
+L 756.48 122.112 
+" style="fill: none; stroke: #e2e8f0; stroke-width: 0.6; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_21">
+    <path d="M 384 152.352 
+L 756.48 152.352 
+" style="fill: none; stroke: #e2e8f0; stroke-width: 0.6; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_22">
+    <path d="M 384 152.352 
+L 756.48 152.352 
+" style="fill: none; stroke: #475569; stroke-width: 0.8; stroke-linecap: round"/>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #475569" x="384" y="49.517461" transform="rotate(-0 384 49.517461)">Sequence</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="495.744" y="49.480547" transform="rotate(-0 495.744 49.480547)">Drive</text>
+   </g>
+   <g id="text_26">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="544.1664" y="49.480547" transform="rotate(-0 544.1664 49.480547)">Frames</text>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="601.9008" y="49.480547" transform="rotate(-0 601.9008 49.480547)">t_err %</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="678.2592" y="49.480547" transform="rotate(-0 678.2592 49.480547)">r_err °/100 m</text>
+   </g>
+   <g id="text_29">
+    <text style="font-weight: 700; font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #475569" x="756.48" y="49.480547" transform="rotate(-0 756.48 49.480547)">VO fails</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 8.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0f172a" x="384" y="78.973953" transform="rotate(-0 384 78.973953)">KITTI 00*</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="495.744" y="78.833836" transform="rotate(-0 495.744 78.833836)">2.91 km</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="544.1664" y="78.833836" transform="rotate(-0 544.1664 78.833836)">3440</text>
+   </g>
+   <g id="text_33">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="601.9008" y="78.860398" transform="rotate(-0 601.9008 78.860398)">2.11</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="678.2592" y="78.833836" transform="rotate(-0 678.2592 78.833836)">0.81</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="756.48" y="78.833836" transform="rotate(-0 756.48 78.833836)">0</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 8.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0f172a" x="384" y="109.213953" transform="rotate(-0 384 109.213953)">KITTI 05</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="495.744" y="109.073836" transform="rotate(-0 495.744 109.073836)">2.21 km</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="544.1664" y="109.073836" transform="rotate(-0 544.1664 109.073836)">2761</text>
+   </g>
+   <g id="text_39">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="601.9008" y="109.100398" transform="rotate(-0 601.9008 109.100398)">1.53</text>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="678.2592" y="109.073836" transform="rotate(-0 678.2592 109.073836)">0.68</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="756.48" y="109.073836" transform="rotate(-0 756.48 109.073836)">0</text>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 8.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0f172a" x="384" y="139.453953" transform="rotate(-0 384 139.453953)">KITTI 07</text>
+   </g>
+   <g id="text_43">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="495.744" y="139.313836" transform="rotate(-0 495.744 139.313836)">695 m</text>
+   </g>
+   <g id="text_44">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="544.1664" y="139.313836" transform="rotate(-0 544.1664 139.313836)">1101</text>
+   </g>
+   <g id="text_45">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="601.9008" y="139.340398" transform="rotate(-0 601.9008 139.340398)">2.05</text>
+   </g>
+   <g id="text_46">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="678.2592" y="139.313836" transform="rotate(-0 678.2592 139.313836)">1.28</text>
+   </g>
+   <g id="text_47">
+    <text style="font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="756.48" y="139.313836" transform="rotate(-0 756.48 139.313836)">0</text>
+   </g>
+   <g id="text_48">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0f172a" x="384" y="169.751063" transform="rotate(-0 384 169.751063)">All (pooled)</text>
+   </g>
+   <g id="text_49">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="495.744" y="169.580398" transform="rotate(-0 495.744 169.580398)">5.81 km</text>
+   </g>
+   <g id="text_50">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="544.1664" y="169.580398" transform="rotate(-0 544.1664 169.580398)">7302</text>
+   </g>
+   <g id="text_51">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="601.9008" y="169.580398" transform="rotate(-0 601.9008 169.580398)">1.87</text>
+   </g>
+   <g id="text_52">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="678.2592" y="169.580398" transform="rotate(-0 678.2592 169.580398)">0.79</text>
+   </g>
+   <g id="text_53">
+    <text style="font-weight: 700; font-size: 8.5px; font-family: 'Consolas'; text-anchor: end; fill: #0f172a" x="756.48" y="169.580398" transform="rotate(-0 756.48 169.580398)">0</text>
+   </g>
+   <g id="text_54">
+    <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #475569" transform="translate(384 200.398547)">t_err / r_err: KITTI protocol, mean over all 100-800 m segments (start every 10 frames);</text>
+    <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #475569" transform="translate(384 210.583898)">pooled = all segments of all sequences averaged together. VO fails: frames where VO</text>
+    <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #475569" transform="translate(384 220.76925)">rejected the estimate (bridged at constant velocity).</text>
+   </g>
+  </g>
+  <g id="text_55">
+   <text style="font-weight: 700; font-size: 12px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #0f172a" x="11.52" y="16.425" transform="rotate(-0 11.52 16.425)">Segment drift on real KITTI drives, camera-only stereo VO</text>
+  </g>
+  <g id="text_56">
+   <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #94a3b8" transform="translate(11.52 271.449375)">Drift = mean end-point translation error of all segments of that length ÷ length. Frame-to-frame VO (SGBM + KLT + PnP-RANSAC), no loop closure, no bundle adjustment, no wheel/IMU input.</text>
+   <text style="font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; fill: #94a3b8" transform="translate(11.52 280.706016)">*00: frames 1101-4540 (the downloaded mirror's first 1101 frames are not 00).</text>
+  </g>
+  <g id="text_57">
+   <g id="patch_16">
+    <path d="M 582.03 16.879687 
+L 753.105 16.879687 
+Q 759.105 16.879687 759.105 10.879687 
+L 759.105 10.575 
+Q 759.105 4.575 753.105 4.575 
+L 582.03 4.575 
+Q 576.03 4.575 576.03 10.575 
+L 576.03 10.879687 
+Q 576.03 16.879687 582.03 16.879687 
+z
+" style="fill: #ffffff; stroke: #0f766e; stroke-width: 0.9; stroke-linejoin: miter"/>
+   </g>
+   <text style="font-weight: 700; font-size: 7.5px; font-family: 'Inter', 'Segoe UI', 'Arial', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #0f766e" x="756.48" y="12.720703" transform="rotate(-0 756.48 12.720703)">Tested · KITTI odometry, camera-only stereo VO</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0d740dffea">
+   <rect x="42.24" y="48.96" width="307.2" height="190.08"/>
+  </clipPath>
+ </defs>
+</svg>

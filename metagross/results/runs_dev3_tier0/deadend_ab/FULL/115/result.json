@@ -1,0 +1,85 @@
+{
+ "success": false,
+ "failure_type": "stuck",
+ "time": 57.02,
+ "path_length": 46.576,
+ "spl": 0.0,
+ "optimal_path_length": 58.7338,
+ "min_clearance": 3.1434,
+ "final_error": 28.597,
+ "ditch_entries": 0,
+ "collisions": 0,
+ "water_entries": 0,
+ "mean_speed": 0.8168,
+ "false_stops": 3,
+ "stops": [
+  {
+   "t": 38.28,
+   "duration_s": 2.62,
+   "justified": false,
+   "reason": "none"
+  },
+  {
+   "t": 41.24,
+   "duration_s": 2.86,
+   "justified": false,
+   "reason": "none"
+  },
+  {
+   "t": 44.84,
+   "duration_s": 12.16,
+   "justified": false,
+   "reason": "none"
+  }
+ ],
+ "config": {
+  "name": "FULL",
+  "unknown_is_free": false,
+  "use_negobs": true,
+  "use_governor": true,
+  "use_health": true,
+  "use_semantics": true,
+  "use_wheel_odom": true,
+  "fixed_speed_mps": null,
+  "speed_cap_mps": null,
+  "debug_every_n": 5,
+  "seg_model_path": "models/lraspp_offroad5_cpu.onnx",
+  "seg_threads": 2,
+  "launch_apron_m": 2.0,
+  "seed": 0,
+  "fixed_latency_s": null,
+  "stub_perception": false,
+  "stub_localizer": false,
+  "debug_image_every_n": 2
+ },
+ "seed": 115,
+ "family": "F2_ditch_field",
+ "split": "dev",
+ "sha256": "4a639c3b75a4a37f7063461ab7952db5247ad95764fc368bbec53a43fa721ae9",
+ "sensor_mode": "tier0",
+ "camera_hz": 5.0,
+ "noise_seed": 0,
+ "n_frames": 286,
+ "n_telemetry": 96,
+ "n_cmd_timeouts": 0,
+ "compute_ms_mean": 102.1897,
+ "compute_ms_p95": 166.3026,
+ "sensor_ms_mean": 36.3789,
+ "physics_ms_per_step": 0.3084,
+ "sensor_breakdown_ms": {
+  "terrain": 16.5056,
+  "objects": 12.0203,
+  "post": 6.7919,
+  "output": 0.9384,
+  "total": 36.2561
+ },
+ "wall_time_s": 47.659,
+ "error": null,
+ "machine": {
+  "platform": "Windows-10-10.0.26200-SP0",
+  "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+  "cpu_count": 8,
+  "python": "3.10.0",
+  "numpy": "2.2.6"
+ }
+}

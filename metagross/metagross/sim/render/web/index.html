@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>METAGROSS stereo renderer</title>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+</script>
+<style>html, body { margin: 0; background: #000; } canvas { display: block; }</style>
+</head>
+<body>
+<canvas id="c" width="16" height="16"></canvas>
+<script>
+  // Surface module-load failures to the bridge instead of hanging until timeout.
+  window.addEventListener('error', (e) => { window.__mgError = String(e.message || e); });
+  window.addEventListener('unhandledrejection', (e) => { window.__mgError = String(e.reason || e); });
+</script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
