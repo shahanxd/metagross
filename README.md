@@ -42,7 +42,7 @@ results file next to every number they quote.
 | Stereo renderer realism (SGBM on rendered images) | **Simulated** | `results/renderer_bench.json` |
 | Closed-loop A to B driving | **Simulated** (tier-0 depth sensor, no images): held-out EVAL seeds 0-59, FULL 33/60 reached B, TYPICAL baseline 31/60; DEV 100-129 FULL 20/30. A first EVAL run on a regressed commit (17/60) is kept and disclosed | `docs/EVAL_PREREGISTRATION.md`, `results/closed_loop_eval.json`, `results/closed_loop_dev.json` |
 | Detectability and safe-speed envelope | **Estimated** (closed-form geometry) | `results/theory.json` |
-| Trained off-road deploy segmenter (OFFROAD5, GPU) | **Proposed**: training scripts exist (`aws/`); no trained model is in `models/` yet | `aws/README.md` |
+| Trained off-road deploy segmenter (OFFROAD5, GPU) | **Proposed**: training script exists (`scripts/train_seg_gpu.ps1`, laptop GPU); no trained model is in `models/` yet | `docs/PIPELINE_STATUS.md` |
 | Operator console and narrow-band link | Implemented and unit-tested (codec, link emulator, replay console); not tested over a real radio | `tests/test_plan_link.py`, `operator_ui/` |
 | Real vehicle, real camera, embedded computer | **Proposed**; nothing has run on hardware | `docs/QA.md` (field-test plan) |
 
@@ -131,9 +131,9 @@ Rules for contributors (human or agent) are in [CLAUDE.md](CLAUDE.md): never tun
 | `metagross/autonomy/` | Onboard stack: `perception/` (SGBM stereo, ground model, missing-ground detector, BEV, segmentation), `localization/` (stereo VO, integrity monitor, EKF, slip), `planning/` (rolling map, costmap, global planner, speed governor, MPPI), `safety/` (supervisor), `control/` (skid-steer mixer), `link/` (telemetry codec, link emulator), `node.py`, `process.py` |
 | `metagross/sim/` | Ground-truth owner: scenario generator, terrain, vehicle model, Tier-0 depth sensor, referee, world, runner, batch runner; `render/` holds the Three.js stereo renderer and its Playwright bridge |
 | `metagross/eval/` | Offline evaluation: KITTI VO, trajectory metrics, integrity training, segmentation metrics, analytic theory, plot style, claims ledger, `results_md.py` |
-| `metagross/train/` | Segmentation training and ONNX export (GPU box; CPU smoke mode) |
+| `metagross/train/` | Segmentation training and ONNX export (laptop GPU; CPU smoke mode) |
 | `scripts/` | Data download, scenario generation, renderer benchmark, perception demo, hero visuals, demo data |
-| `aws/` | One-command GPU training of the terrain segmenter |
+| `aws/` | Former AWS GPU training path (dropped; reference only). GPU training: `scripts/train_seg_gpu.ps1` |
 | `operator_ui/` | Static operator console (no build step, no CDN) |
 | `video/` | Replay, dashboard compositor, cards, encoder for the demo video |
 | `deck_assets/` | Figures and diagrams for the slides; `deck_assets/slots/` holds slot-sized images |

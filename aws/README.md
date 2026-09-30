@@ -1,5 +1,8 @@
 # Terrain-segmenter training on an AWS GPU box
 
+> **Not in use (2026-10-01).** The team dropped AWS; the segmenter is trained on the laptop GPU with
+> `scripts/train_seg_gpu.ps1` (see `docs/PIPELINE_STATUS.md`). This folder is kept for reference only.
+
 One command sets up a fresh Ubuntu 22.04/24.04 NVIDIA instance, downloads the data and trains two LR-ASPP models
 in parallel: CLEAN vs ROBUST augmentation. It then exports ONNX and writes evaluation JSONs and figures.
 
