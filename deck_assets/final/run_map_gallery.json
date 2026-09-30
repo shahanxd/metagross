@@ -4,8 +4,8 @@
  "generator": "deck_assets/final/src/runs_map.py",
  "provenance_status": "numbers on the figure: per-family reached-B rates (registered rows closed_loop_eval_tier0_<CFG>_<FAMILY>_success) and lighting windows (scenario inputs). Per-seed times are deliberately not drawn (not registered).",
  "text_on_figure": {
-  "note": "Hand-picked seeds: one FULL success per family, so this is not a success rate. Not shown: F4 Sudden obstacle (reached B: FULL 2/10, TYPICAL 5/10) and F6 Water / mud (reached B: FULL 1/10, TYPICAL 0/10).",
-  "provenance": "Simulated \u00b7 tier-0 synthetic depth sensor, no images: glare and dimming act only as depth dropout and noise \u00b7 held-out EVAL seeds 24, 37, 2, 4 \u00b7 results/runs_eval_tier0, results/closed_loop_eval.json, results/claims.csv"
+  "note": "Hand-picked: one FULL success per family, not a success rate. Not shown: F4 sudden obstacle (reached B: FULL 2/10, TYPICAL 5/10), F6 water / mud (reached B: FULL 1/10, TYPICAL 0/10).",
+  "provenance": "Simulated \u00b7 tier-0 depth sensor, no images \u00b7 held-out EVAL seeds 24, 37, 2, 4 \u00b7 results/runs_eval_tier0, results/claims.csv"
  },
  "numbers": [
   {
@@ -84,13 +84,15 @@
    "what": "seed 4 lighting window glare",
    "value": "5.1-10.8 s",
    "source": "data/scenarios/eval/4.json lighting.events (scenario input, not a result)",
-   "claim_id": null
+   "claim_id": null,
+   "drawn_as": "bracket along FULL's path from t0 to min(t1, arrival); label 'glare' (no number on the figure)"
   },
   {
    "what": "seed 4 lighting window dim",
    "value": "31.5-34.5 s",
    "source": "data/scenarios/eval/4.json lighting.events (scenario input, not a result)",
-   "claim_id": null
+   "claim_id": null,
+   "drawn_as": "bracket along FULL's path from t0 to min(t1, arrival); label 'dimming' (no number on the figure)"
   }
  ],
  "per_seed_outcomes_drawn": [
@@ -652,7 +654,8 @@
      "t1_s": 10.7796,
      "gain": 1.8281,
      "drawn_until_s": 10.7796,
-     "bracket_side": 1.0
+     "bracket_side": 1.0,
+     "label_on_figure": "glare"
     },
     {
      "type": "dim",
@@ -660,7 +663,8 @@
      "t1_s": 34.529,
      "gain": 0.4,
      "drawn_until_s": 34.18,
-     "bracket_side": 1.0
+     "bracket_side": 1.0,
+     "label_on_figure": "dimming"
     }
    ],
    "label_placement": [
@@ -688,9 +692,9 @@
     {
      "name": "light dim",
      "placed": true,
-     "covered_cells": 32,
-     "covered_driveover_cells": 5,
-     "leader_cost": 30.0
+     "covered_cells": 0,
+     "covered_driveover_cells": 0,
+     "leader_cost": 0.0
     }
    ]
   }

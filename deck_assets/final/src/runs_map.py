@@ -358,10 +358,6 @@ def trench_crossings(run: dict, world: dict) -> list[dict]:
     return sorted(out, key=lambda d: d["t_s"])
 
 
-def n_trenches(world: dict) -> int:
-    return sum(h["type"] == "ditch" for h in world["scn"].get("hazards", []))
-
-
 # =============================================================================================
 # text measurement and wrapping
 # =============================================================================================
@@ -764,8 +760,7 @@ def end_marker(ax, occ: Occ, run: dict, small: bool = False) -> tuple[float, flo
 
 
 SB_LEN_M = 10.0
-SB_W_IN = 1.55  # footer scale bar + north arrow block width
-SB_H_IN = 0.30
+SB_H_IN = 0.30  # height of the header scale-bar block (in)
 
 
 def scale_bar_width_in() -> float:
@@ -1294,12 +1289,11 @@ def fig_gallery(name: str) -> dict:
     fams_shown = [f for _, f in GALLERY]
     rates = {f: {c: family_success(c, f) for c in ("FULL", "TYPICAL")} for f in FAMILY_TXT}
     not_shown = [f for f in FAMILY_TXT if f not in fams_shown]
-    note = ("Hand-picked seeds: one FULL success per family, so this is not a success rate. Not shown: " +
-            " and ".join(f"{FAMILY_TXT[f]} (reached B: FULL {rates[f]['FULL']['k']}/10, TYPICAL "
-                         f"{rates[f]['TYPICAL']['k']}/10)" for f in not_shown) + ".")
-    prov = ("Simulated · tier-0 synthetic depth sensor, no images: glare and dimming act only as depth dropout and "
-            f"noise · held-out EVAL seeds {', '.join(str(s) for s, _ in GALLERY)} · {RUNS}, "
-            "results/closed_loop_eval.json, " + CLAIMS_CSV)
+    note = ("Hand-picked: one FULL success per family, not a success rate. Not shown: " +
+            ", ".join(f"{FAMILY_TXT[f].split(' ', 1)[0]} {FAMILY_TXT[f].split(' ', 1)[1].lower()} (reached B: FULL "
+                      f"{rates[f]['FULL']['k']}/10, TYPICAL {rates[f]['TYPICAL']['k']}/10)" for f in not_shown) + ".")
+    prov = ("Simulated · tier-0 depth sensor, no images · held-out EVAL seeds "
+            f"{', '.join(str(s) for s, _ in GALLERY)} · {RUNS}, {CLAIMS_CSV}")
     note_lines = wrap(note, FS_NOTE, W - 0.05)
     prov_lines = wrap(prov, FS_PROV, W - 0.05)
     # which end states occur, for the legend
@@ -1341,13 +1335,16 @@ def fig_gallery(name: str) -> dict:
                 continue  # event starts after FULL's arrival
             anc, side, nrm = lighting_bracket(ax, occ, full, t0, min(t1, full["time"]))
             ang = math.degrees(math.atan2(nrm[1], nrm[0]))
-            place_text(ax, occ, [f"{EVENT_WORD[ev['type']]} {t0:.1f}-{t1:.1f} s",
-                                 f"{EVENT_WORD[ev['type']]}\n{t0:.1f}-{t1:.1f} s"], anc,
-                       ring([1.8, 3.0, 4.5, 6.0, 8.0],
-                            [ang + d for d in (0, 30, -30, 60, -60, 90, -90, 120, -120, 150, -150, 180)]),
-                       fs=FS_MAPLAB, name=f"light {ev['type']}", shrink=0.3)
+            w = EVENT_WORD[ev["type"]]
+            # one word on the map (the event windows are listed in the sidecar and the slide caption)
+            placed = place_text(ax, occ, [w], anc,
+                                ring([1.8, 3.0, 4.5, 6.0, 8.0, 10.0],
+                                     [ang + d for d in (0, 30, -30, 60, -60, 90, -90, 120, -120, 150, -150, 180)]),
+                                fs=FS_MAPLAB, name=f"light {ev['type']}", shrink=0.3, end_pad=0.5)
+            label_text = placed["txt"].replace("\n", " ") if placed else None
             light_marks.append({"type": ev["type"], "t0_s": t0, "t1_s": t1, "gain": ev["gain"],
-                                "drawn_until_s": min(t1, full["time"]), "bracket_side": side})
+                                "drawn_until_s": min(t1, full["time"]), "bracket_side": side,
+                                "label_on_figure": label_text})
         r = rates[fam]
         t_title = FAMILY_TXT[fam]
         fig.text((x_in + 0.01) / W, (y_in + PANEL_H_IN + 0.31) / H, t_title, fontsize=13, fontweight="bold",
@@ -1389,14 +1386,17 @@ def fig_gallery(name: str) -> dict:
               "source": "results/closed_loop_eval.json (= summary.csv count)", "claim_id": rates[f][c]["claim_ids"][0]}
              for f in FAMILY_TXT for c in ("FULL", "TYPICAL")]
             + [{"what": f"seed {p['seed']} lighting window {e['type']}", "value": f"{e['t0_s']:.1f}-{e['t1_s']:.1f} s",
-                "source": f"{SCEN}/{p['seed']}.json lighting.events (scenario input, not a result)", "claim_id": None}
+                "source": f"{SCEN}/{p['seed']}.json lighting.events (scenario input, not a result)", "claim_id": None,
+                "drawn_as": f"bracket along FULL's path from t0 to min(t1, arrival); label '{e['label_on_figure']}' "
+                            "(no number on the figure)"}
                for p in panels for e in p["lighting_events_drawn"]]),
         "per_seed_outcomes_drawn": [
             {"seed": p["seed"], "family": p["family"], "FULL": p["outcome"], "TYPICAL": p["typical_same_seed"]["outcome"],
              "source": f"{SUMMARY} rows FULL,{p['seed']} and TYPICAL,{p['seed']}"} for p in panels],
         "panels": panels,
         "selection": ("Hand-picked, one FULL success per family for F1, F2, F3, F5 (F4 sudden obstacle and F6 water / "
-                      "mud are not shown; FULL reached B on 2/10 and 1/10 of them). FULL reached B on F1 seeds "
+                      f"mud are not shown; FULL reached B on {rates['F4_sudden_obstacle']['FULL']['k']}/10 and "
+                      f"{rates['F6_water_mud']['FULL']['k']}/10 of them). FULL reached B on F1 seeds "
                       + ", ".join(str(int(r_["seed"])) for r_ in SUM_ROWS if r_["config_name"] == "FULL"
                                   and r_["family"] == "F1_trail" and r_["success"] == "True")
                       + "; F2 seeds " + ", ".join(str(int(r_["seed"])) for r_ in SUM_ROWS if r_["config_name"] == "FULL"
