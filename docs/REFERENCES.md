@@ -16,7 +16,7 @@ How this list was checked (30 Sep 2026): every title, author list, venue, year a
 7.  Howard et al., ICCV'19: MobileNetV3 + LR-ASPP light segmentation head
 8.  Guan et al., RA-L'22 (GA-Nav): navigability-grouped terrain classes on RUGD/RELLIS-3D
 9.  RUGD (IROS'19) + RELLIS-3D (ICRA'21) + GOOSE (ICRA'24) -> GAIA-URJC OFFROAD5 5-class set
-10. Geiger et al., CVPR'12 (KITTI odometry) + Wang et al., IROS'20 (TartanAir): VO evaluation
+10. Geiger et al., CVPR'12 (KITTI odometry): VO evaluation; Wang et al., IROS'20 (TartanAir): proposed, not used yet
 11. DGCA AC 1/2023 + Lok Sabha 20-Mar-2025: 465 GPS interference/spoofing cases, Amritsar/Jammu
 12. BEL Robotic Surveillance Platform: waypoint-nav UGV, max 3.6 km/h, which is the baseline we extend
 ```
@@ -45,7 +45,7 @@ How this list was checked (30 Sep 2026): every title, author list, venue, year a
 - [Maimone07] M. Maimone, Y. Cheng, L. Matthies, "Two years of visual odometry on the Mars Exploration Rovers," Journal of Field Robotics, vol. 24, no. 3, pp. 169–186, 2007. https://doi.org/10.1002/rob.20184 (JPL PDF: https://www-robotics.jpl.nasa.gov/media/documents/rob-06-0081.R4.pdf). Flight-proven stereo VO with no GNSS, used to detect slip. It is the precedent for pairing VO with an integrity and slip check.
 - [Furgale10] P. Furgale, T. D. Barfoot, "Visual teach and repeat for long-range rover autonomy," Journal of Field Robotics, vol. 27, no. 5, pp. 534–560, 2010. https://doi.org/10.1002/rob.20342. Long-range route following with a stereo camera as the only sensor and no GPS, which is the precedent for stereo-only waypoint following.
 - [Schmidt25] F. Schmidt, C. Blessing, M. Enzweiler, A. Valada, "Visual-inertial SLAM for unstructured outdoor environments: Benchmarking the benefits and computational costs of loop closing," Journal of Field Robotics, vol. 42, no. 7, pp. 3726–3747, 2025. https://doi.org/10.1002/rob.22581 (arXiv: https://arxiv.org/abs/2408.01716). It benchmarks ORB-SLAM3, VINS-Fusion, OpenVINS, Kimera, SVO Pro, HFNet-SLAM and AirSLAM in natural terrain, including on embedded compute. This informs our choice of drift versus compute (VO plus an integrity monitor rather than full loop-closing SLAM).
-- [TartanAir20] W. Wang, D. Zhu, X. Wang, Y. Hu, Y. Qiu, C. Wang, Y. Hu, A. Kapoor, S. Scherer, "TartanAir: A dataset to push the limits of visual SLAM," IEEE/RSJ IROS 2020, pp. 4909–4916, 2020. https://doi.org/10.1109/IROS45743.2020.9341801 (arXiv: https://arxiv.org/abs/2003.14338). Photo-realistic synthetic stereo with hard motion, lighting and weather, used to stress-test our VO.
+- [TartanAir20] W. Wang, D. Zhu, X. Wang, Y. Hu, Y. Qiu, C. Wang, Y. Hu, A. Kapoor, S. Scherer, "TartanAir: A dataset to push the limits of visual SLAM," IEEE/RSJ IROS 2020, pp. 4909–4916, 2020. https://doi.org/10.1109/IROS45743.2020.9341801 (arXiv: https://arxiv.org/abs/2003.14338). Photo-realistic synthetic stereo with hard motion, lighting and weather; proposed as a future VO stress test (not downloaded or used yet).
 
 ## D. Planning and control
 

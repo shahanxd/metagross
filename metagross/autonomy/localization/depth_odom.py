@@ -6,7 +6,7 @@ an optional fallback when stereo VO fails. It measures *ground* motion from scen
 longitudinal slip.
 
 Method (dense direct alignment on inverse depth, projective data association, cf. DIFODO,
-Jaimez & Gonzalez-Jimenez, ICRA 2015):
+Jaimez & Gonzalez-Jimenez, IEEE T-RO 2015):
 
 1. Working map: the disparity at the sensor's native resolution (Tier-0 maps are x2
    nearest-upsampled, so ``decimate = 2`` recovers the native 320 x 200 map), smoothed by
