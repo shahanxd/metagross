@@ -6,15 +6,15 @@ results file, run `python -m metagross.eval.claims`, then `python -m metagross.e
 Every number shown on a slide or in the video must appear here with its label and source.
 Other documents may cite a results file directly; they name the file next to the number.
 
-Ledger sha256: `e4fda7575393d66e2a1a033436c569867d61e70d764357eab43424a7640ae745`
+Ledger sha256: `d856ae5a6954af54864c8b5127ea72f9a2f6b5adcb0ef5293f6db4cce759355b`
 
 | label | claims |
 |---|---:|
 | [Tested](#tested) | 89 |
-| [Simulated](#simulated) | 268 |
+| [Simulated](#simulated) | 271 |
 | [Estimated](#estimated) | 5 |
 | [Proposed](#proposed) | 1 |
-| total | 363 |
+| total | 366 |
 
 ## Tested
 
@@ -291,6 +291,9 @@ Measured by us inside the simulator (rendered or synthetic sensor data).
 | closed_loop_tier0_TYPICAL_final_error_p50_p90 | 1.998 / 31.747 m |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT distance to B at episode end | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.final_error_median_m](../results/closed_loop_dev.json) |
 | closed_loop_tier0_TYPICAL_success | 16/30 |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; success = true goal within the mission success radius | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.success_rate](../results/closed_loop_dev.json) |
 | console_eval_s044_seq38_dist_to_b_m | 24.9 | m | operator-console replay frame on the deck (t = 22.8 s): distance from the stack's pose estimate to B | [results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.pose + mission.json#goal_xy_a](../results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl) |
+| example_eval_ditch_entries_FULL_F3_crest_ditch | 2 | runs | EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entries_by_family.FULL.F3_crest_ditch](../results/example_runs_eval.json) |
+| example_eval_ditch_entries_TYPICAL_F2_ditch_field | 1 | runs | EVAL closed loop run 2, tier0; runs of 10 in family F2_ditch_field whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F2_ditch_field](../results/example_runs_eval.json) |
+| example_eval_ditch_entries_TYPICAL_F3_crest_ditch | 1 | runs | EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F3_crest_ditch](../results/example_runs_eval.json) |
 | example_eval_ditch_entry_seeds_FULL | 14, 26 | seeds | EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entry_seeds.FULL](../results/example_runs_eval.json) |
 | example_eval_ditch_entry_seeds_TYPICAL | 7, 38 | seeds | EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entry_seeds.TYPICAL](../results/example_runs_eval.json) |
 | example_eval_s038_crest_drop_m | 1.2 | m | EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; scenario input (data/scenarios/eval/38.json): height lost past the crest | [results/example_runs_eval.json#pair.hazards[0].drop](../results/example_runs_eval.json) |

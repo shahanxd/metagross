@@ -64,14 +64,25 @@ def test_ditch_entry_seeds_per_config() -> None:
     assert ex.ditch_entry_seeds(rows) == {"FULL": [14, 26], "TYPICAL": [38]}
 
 
+def test_ditch_entries_by_family_counts() -> None:
+    rows = [{"config_name": "FULL", "seed": "26", "family": "F3_crest_ditch", "failure_type": "ditch_entry"},
+            {"config_name": "FULL", "seed": "14", "family": "F3_crest_ditch", "failure_type": "ditch_entry"},
+            {"config_name": "FULL", "seed": "3", "family": "F2_ditch_field", "failure_type": "collision"},
+            {"config_name": "TYPICAL", "seed": "7", "family": "F2_ditch_field", "failure_type": "ditch_entry"},
+            {"config_name": "TYPICAL", "seed": "38", "family": "F3_crest_ditch", "failure_type": "ditch_entry"}]
+    assert ex.ditch_entries_by_family(rows) == {"FULL": {"F3_crest_ditch": 2},
+                                                "TYPICAL": {"F2_ditch_field": 1, "F3_crest_ditch": 1}}
+
+
 def test_claim_rows_are_simulated_and_sourced() -> None:
     doc = {"pair": {"seed": 38, "family": "F3_crest_ditch", "outcome": {"FULL": "success", "TYPICAL": "ditch_entry"},
                     "end_time_s": {"FULL": 33.02, "TYPICAL": 22.26},
                     "full_confirmation": {"t_s": 18.2, "n_confirmed_cells": 44, "n_on_gt_trench": 44,
                                           "range_to_nearest_cell_m": 3.17, "gt_speed_min_next3s_mps": 0.665,
                                           "gov_binding_counts": {"platform": 15}, "max_abs_cmd_w_rad_s": 1.2}},
-           "ditch_entry_seeds": {"FULL": [14, 26]}}
+           "ditch_entry_seeds": {"FULL": [14, 26]}, "ditch_entries_by_family": {"FULL": {"F3_crest_ditch": 2}}}
     rows = {r["id"]: r for r in ex.claims(doc)}
+    assert rows["example_eval_ditch_entries_FULL_F3_crest_ditch"]["value"] == "2"
     assert rows["example_eval_s038_full_reached_b_s"]["value"] == "33.0"
     assert rows["example_eval_s038_typical_end_s"]["value"] == "22.3"
     assert rows["example_eval_s038_full_trench_confirmed_range_m"]["value"] == "3.2"

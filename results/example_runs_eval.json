@@ -51,6 +51,15 @@
    38
   ]
  },
+ "ditch_entries_by_family": {
+  "FULL": {
+   "F3_crest_ditch": 2
+  },
+  "TYPICAL": {
+   "F2_ditch_field": 1,
+   "F3_crest_ditch": 1
+  }
+ },
  "claims": [
   {
    "id": "example_eval_s038_full_reached_b_s",
@@ -138,6 +147,30 @@
    "unit": "seeds",
    "source": "results/example_runs_eval.json#ditch_entry_seeds.TYPICAL",
    "note": "EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_ditch_entries_FULL_F3_crest_ditch",
+   "value": "2",
+   "unit": "runs",
+   "source": "results/example_runs_eval.json#ditch_entries_by_family.FULL.F3_crest_ditch",
+   "note": "EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_ditch_entries_TYPICAL_F2_ditch_field",
+   "value": "1",
+   "unit": "runs",
+   "source": "results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F2_ditch_field",
+   "note": "EVAL closed loop run 2, tier0; runs of 10 in family F2_ditch_field whose referee failure type is ditch_entry",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_ditch_entries_TYPICAL_F3_crest_ditch",
+   "value": "1",
+   "unit": "runs",
+   "source": "results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F3_crest_ditch",
+   "note": "EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry",
    "label": "Simulated"
   }
  ]

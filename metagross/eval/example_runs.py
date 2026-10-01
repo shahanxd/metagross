@@ -65,6 +65,16 @@ def ditch_entry_seeds(rows: Iterable[dict]) -> dict[str, list[int]]:
     return {k: sorted(v) for k, v in sorted(out.items())}
 
 
+def ditch_entries_by_family(rows: Iterable[dict]) -> dict[str, dict[str, int]]:
+    """Runs whose referee failure type is ``ditch_entry``, counted per config and scenario family."""
+    out: dict[str, dict[str, int]] = {}
+    for r in rows:
+        if r.get("failure_type") == "ditch_entry":
+            fam = out.setdefault(r["config_name"], {})
+            fam[r["family"]] = fam.get(r["family"], 0) + 1
+    return {k: dict(sorted(v.items())) for k, v in sorted(out.items())}
+
+
 def first_confirmation(ticks: Iterable[Tick], start_xy: tuple[float, float], start_yaw: float,
                        dist_to_trench: Callable[[np.ndarray, np.ndarray], np.ndarray],
                        tol_m: float = MATCH_TOL_M, min_cells: int = MIN_MATCHED_CELLS) -> Optional[dict]:
@@ -208,6 +218,12 @@ def claims(doc: dict) -> list[dict]:
         rows.append({"id": f"example_eval_ditch_entry_seeds_{cfg}", "value": ", ".join(str(x) for x in seeds),
                      "unit": "seeds", "source": f"{src}#ditch_entry_seeds.{cfg}",
                      "note": "EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry"})
+    for cfg, fams in doc.get("ditch_entries_by_family", {}).items():
+        for fam, n in fams.items():
+            rows.append({"id": f"example_eval_ditch_entries_{cfg}_{fam}", "value": str(n), "unit": "runs",
+                         "source": f"{src}#ditch_entries_by_family.{cfg}.{fam}",
+                         "note": f"EVAL closed loop run 2, tier0; runs of 10 in family {fam} whose referee failure "
+                                 "type is ditch_entry"})
     return [{**r, "label": "Simulated"} for r in rows]
 
 
@@ -215,7 +231,8 @@ def build(runs: Path = RUNS, scen_dir: Path = SCEN, seed: int = HEADLINE_SEED) -
     doc = {"what": __doc__.strip().splitlines()[0], "label": "Simulated (tier-0 synthetic depth sensor, no images)",
            "inputs": str(runs.relative_to(REPO)) if runs.is_relative_to(REPO) else str(runs),
            "pair": headline_pair(seed, runs, scen_dir),
-           "ditch_entry_seeds": ditch_entry_seeds(_summary(runs))}
+           "ditch_entry_seeds": ditch_entry_seeds(_summary(runs)),
+           "ditch_entries_by_family": ditch_entries_by_family(_summary(runs))}
     doc["claims"] = claims(doc)
     return doc
 

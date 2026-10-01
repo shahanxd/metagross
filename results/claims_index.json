@@ -1415,6 +1415,30 @@
   "source": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.pose + mission.json#goal_xy_a",
   "note": "operator-console replay frame on the deck (t = 22.8 s): distance from the stack's pose estimate to B"
  },
+ "example_eval_ditch_entries_FULL_F3_crest_ditch": {
+  "id": "example_eval_ditch_entries_FULL_F3_crest_ditch",
+  "value": "2",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#ditch_entries_by_family.FULL.F3_crest_ditch",
+  "note": "EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry"
+ },
+ "example_eval_ditch_entries_TYPICAL_F2_ditch_field": {
+  "id": "example_eval_ditch_entries_TYPICAL_F2_ditch_field",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F2_ditch_field",
+  "note": "EVAL closed loop run 2, tier0; runs of 10 in family F2_ditch_field whose referee failure type is ditch_entry"
+ },
+ "example_eval_ditch_entries_TYPICAL_F3_crest_ditch": {
+  "id": "example_eval_ditch_entries_TYPICAL_F3_crest_ditch",
+  "value": "1",
+  "unit": "runs",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F3_crest_ditch",
+  "note": "EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry"
+ },
  "example_eval_ditch_entry_seeds_FULL": {
   "id": "example_eval_ditch_entry_seeds_FULL",
   "value": "14, 26",
