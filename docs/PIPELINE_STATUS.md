@@ -24,7 +24,7 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 | 1 | Stereo depth (SGBM) | RUNS IN LOOP (stereo mode) | Rendered DEV 102: 69-73 % valid disparity, 24-50 ms |
 | 2 | Ground model, BEV map, positive obstacles, certification | RUNS IN LOOP (both modes) | Stage timings in `autonomy/timings.csv`; unit tests |
 | 3 | Missing-ground (ditch) detector | RUNS IN LOOP (both modes) | DITCH_CANDIDATE cells in both modes; 0 ditch entries in 30 DEV runs |
-| 4 | **Terrain segmenter (ML)** | **BUILT, NOT IN LOOP**: no trained weights exist, so the node runs without semantics | The train → ONNX export → `Segmenter` chain was verified on CPU with a toy dataset and once on an AWS L4 GPU (2-epoch dry run). The deploy model (OFFROAD5) was never trained; next: the full SageMaker run on `ml.g6.24xlarge` (laptop fallback `scripts/train_seg_gpu.ps1`). In tier-0 there are no images, so it cannot run there. |
+| 4 | **Terrain segmenter (ML)** | **TRAINED, NOT IN LOOP**: deploy weights exist since 2026-10-01 but are not wired into the closed loop yet | SageMaker job `metagross-seg-20261001-055202` (`ml.g4dn.12xlarge`, 4x T4, fp16), 40/40 epochs, 1.05 billable h. OFFROAD5 test (n=2405) mIoU 0.825 (clean aug) / 0.800 (robust aug), false-safe 3.8 % / 3.9 %; RUGD-5L test (n=733) 0.768 / 0.761 (`results/seg_lraspp_offroad5_*.json`). Water is the weak class (RUGD-5L val water IoU 0.02 / 0.00). The ONNX files are git-ignored: they sit in `models/` of the machine that fetched them and on S3 under the job's `checkpoints/out/`. CPU latency on the laptop is not measured yet. In tier-0 there are no images, so it cannot run there. |
 | 5 | Semantic fusion (WATER cells) | BUILT, NOT IN LOOP | Needs item 4 and images. WATER was never produced in any closed-loop run. |
 | 6 | Stereo visual odometry | RUNS IN LOOP (stereo mode only) | Rendered DEV 102: 0.34 % drift over 13.5 m. KITTI 00/05/07: 1.53-2.11 % (`results/kitti_*.json`, measured on another machine; KITTI is not reachable from this container) |
 | 7 | Depth odometry (tier-0) | RUNS IN LOOP (tier-0) | DEV drives: along-track error 6.3 % → 1.5 % (median). No unit tests yet. |
@@ -44,12 +44,13 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 | EVAL closed loop: FULL 33/60, TYPICAL 31/60 | tier-0 (no images, so no segmenter and no VO) | Simulated |
 | DEV closed loop: FULL 20/30 | tier-0 | Simulated |
 | KITTI VO drift 1.53-2.11 % | real images | Tested (other machine) |
+| Segmenter mIoU, deploy model (`seg_clean_*`, `seg_robust_*`): OFFROAD5 test 0.825 / 0.800, RUGD-5L test 0.768 / 0.761 | real RUGD + RELLIS-3D images, offline | Tested (accuracy only; not yet in the loop, latency not yet measured) |
 | Segmenter mIoU (`seg_smoke`, `seg_zeroshot`, `seg_cpu`) | real RUGD images | Tested, but the models are smoke or zero-shot runs, not the deploy model |
 | Ditch visibility range 4.3 m, speed envelope | analytic | Estimated |
 
 ## Gaps to close for a fully built end-to-end pipeline
-1. **Train the terrain segmenter on a GPU**: SageMaker training job on `ml.g6.24xlarge` (4x L4), commands below;
-   fallback: the laptop GPU (RTX 3050 Laptop, 4 GB) with `scripts/train_seg_gpu.ps1`. This enables water and obstacle semantics in the loop.
+1. ~~**Train the terrain segmenter on a GPU**~~ Done 2026-10-01 on SageMaker (row 4). Left: measure its CPU latency on
+   the laptop, pick clean vs robust for deployment, and wire it into the loop (enables water and obstacle semantics).
 2. **Run the closed loop in stereo mode on the laptop GPU**, so that SGBM, VO, the integrity monitor and the
    segmenter all run on rendered images. The published numbers are tier-0 only.
 3. **Connect the operator console live**, with a telemetry stream from the running episode and operator commands
@@ -57,24 +58,26 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 4. Make the node fail loudly when the segmenter is missing, and record `impl` in `result.json`.
 
 ## Next steps (handoff, 2026-10-01)
-- **Back on AWS (2026-10-01).** The account with free credits has a SageMaker **`ml.g6.24xlarge` for training job
-  usage = 1 in ap-southeast-2** (4x NVIDIA L4 24 GB, 96 vCPU): the clean and robust runs each get a GPU. (The main
-  account has `ml.g6.12xlarge` and smaller GPU training quotas in us-east-1 as an alternative.) One SageMaker dry run already
-  completed (2026-09-30, `ml.g6.16xlarge` = 1x L4 in another account, 2 epochs on 512 images, 0.24 billable hours):
-  setup, download, training, ONNX export and evaluation all ran on a real GPU. Its numbers are a pipeline check, not
-  results, and were not committed.
-- **Full SageMaker run** (credentials only in the environment settings, never in chat or git):
-  1. Environment: `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` of an IAM user in that account and
-     `AWS_DEFAULT_REGION=ap-southeast-2`; a new session picks them up.
-  2. `python aws/ec2_run.py check --backend sagemaker`: SageMaker API ok, training quota >= 1, and the Free/Paid
-     plan with remaining credits (the Free plan stops the account when credits run out).
-  3. `python aws/ec2_run.py launch --backend sagemaker --job seg --max-hours 11` (40 epochs, batch 32, 320x416, AMP;
-     training stops at a DEADLINE ~1 h before the cap so export + evaluation still run; 11 h keeps the worst case
-     inside the account's credits). Follow with `status`, or live in CloudWatch `/aws/sagemaker/TrainingJobs`.
-  4. `python aws/ec2_run.py fetch --backend sagemaker --job seg`: `models/lraspp_offroad5_{clean,robust}.onnx`
-     + sidecars, `results/seg_lraspp_offroad5_*.json`, figures. Measure CPU latency on the laptop (`aws/README.md`
-     section 3) and register the JSON's `claims` rows as **Tested**.
-- **Fallback: train the segmenter on the laptop** (PowerShell, repo root). The script uses its own venv `.venv-gpu` with CUDA
+- **Segmenter trained on SageMaker (2026-10-01).** Account with free credits, ap-southeast-2. The 4-GPU L4/A10G
+  sizes (`ml.g6.24xlarge`, `ml.g6.12xlarge`, `ml.g5.12xlarge`) and `ml.g6.16xlarge` sat in "waiting for capacity"
+  for 15-35 min each; `ml.g4dn.12xlarge` (4x T4) got an instance within seconds. The first T4 job failed at step 1
+  because torch reports emulated bf16 on Turing and cuDNN has no bf16 engine for MobileNetV3's convs; fixed in
+  `train_seg.amp_dtype_for_cuda` (bf16 only on sm_80+, else fp16 + GradScaler) and in the setup CUDA sanity check.
+  The relaunch (`metagross-seg-20261001-055202`) trained both runs for 40 epochs at ~70 s/epoch (0.24 s/it, batch 32,
+  320x416) and exported + evaluated them: 1.05 billable hours in total. Best checkpoints: clean epoch 31, robust
+  epoch 32 (1-based) by val mIoU. Results: `results/seg_lraspp_offroad5_{clean,robust}_{offroad5,rugd5}.json`,
+  figures `deck_assets/seg_lraspp_offroad5_*`, sidecars `models/lraspp_offroad5_{clean,robust}.json`, training
+  metrics `runs/seg/lraspp_offroad5_{clean,robust}/metrics.json`; 24 rows `seg_{clean,robust}_*` in
+  `results/claims.csv` (Tested). Note: the test splits score higher than val (OFFROAD5 test 0.825 vs val 0.739,
+  clean) because the splits differ in source mix; quote test numbers with their split and n.
+- **Next for the segmenter:**
+  1. Copy `models/lraspp_offroad5_{clean,robust}.onnx` to the laptop (or re-run
+     `python aws/ec2_run.py fetch --backend sagemaker --job seg --name metagross-seg-20261001-055202` there) and
+     measure CPU latency (`aws/README.md` section 3); register the latency rows.
+  2. Choose the deploy model: clean scores higher on every test split; the onboard `Segmenter` loads
+     `lraspp_offroad5_robust.onnx` first. Decide on DEV data, not EVAL seeds.
+  3. Wire it into the stereo-mode loop (WATER cells, item 5).
+- **Laptop GPU training (fallback, no longer needed for the deploy model)** (PowerShell, repo root). The script uses its own venv `.venv-gpu` with CUDA
   torch and leaves the CPU `.venv` untouched:
   1. `powershell -ExecutionPolicy Bypass -File scripts\train_seg_gpu.ps1 -Setup`: CUDA torch, dependencies, CUDA
      check, unit tests, OFFROAD5 (~8.5 GB) + RUGD-5L (~2.1 GB) download into `data/`.

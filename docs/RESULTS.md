@@ -6,15 +6,15 @@ results file, run `python -m metagross.eval.claims`, then `python -m metagross.e
 Every number shown on a slide or in the video must appear here with its label and source.
 Other documents may cite a results file directly; they name the file next to the number.
 
-Ledger sha256: `d856ae5a6954af54864c8b5127ea72f9a2f6b5adcb0ef5293f6db4cce759355b`
+Ledger sha256: `6259be92e5d37cd6abd631b79b79a4fd4a0eeaf361aa631cb6a34ac84a9023cb`
 
 | label | claims |
 |---|---:|
-| [Tested](#tested) | 89 |
+| [Tested](#tested) | 113 |
 | [Simulated](#simulated) | 271 |
 | [Estimated](#estimated) | 5 |
 | [Proposed](#proposed) | 1 |
-| total | 366 |
+| total | 390 |
 
 ## Tested
 
@@ -48,6 +48,18 @@ Measured by us on real data (real images, real hardware timing).
 | kitti_pooled_r_err_deg100m | 0.79 | deg/100 m | KITTI 00 (frames 1101-4540) + 05 + 07, camera-only stereo VO; KITTI protocol pooled over 4525 segments of 100-800 m | [results/kitti_summary.json#pooled.r_err_deg_per_100m](../results/kitti_summary.json) |
 | kitti_pooled_t_err_pct | 1.87 | % | KITTI 00 (frames 1101-4540) + 05 + 07, camera-only stereo VO; KITTI protocol pooled over 4525 segments of 100-800 m | [results/kitti_summary.json#pooled.t_err_pct](../results/kitti_summary.json) |
 | localizer_hz_640 | 31.5 | Hz | Localizer.update at 640 px with shared disparity, i5-1135G7 | [results/localizer_timing.json#hz_localizer_only](../results/localizer_timing.json) |
+| seg_clean_offroad5_test_false_safe_rate | 0.0381 |  | LR-ASPP (clean aug), OFFROAD5 | [results/seg_lraspp_offroad5_clean_offroad5.json](../results/seg_lraspp_offroad5_clean_offroad5.json) |
+| seg_clean_offroad5_test_miou | 0.8252 |  | LR-ASPP (clean aug), OFFROAD5 | [results/seg_lraspp_offroad5_clean_offroad5.json](../results/seg_lraspp_offroad5_clean_offroad5.json) |
+| seg_clean_offroad5_test_pixel_acc | 0.9422 |  | LR-ASPP (clean aug), OFFROAD5 | [results/seg_lraspp_offroad5_clean_offroad5.json](../results/seg_lraspp_offroad5_clean_offroad5.json) |
+| seg_clean_offroad5_val_false_safe_rate | 0.1542 |  | LR-ASPP (clean aug), OFFROAD5 | [results/seg_lraspp_offroad5_clean_offroad5.json](../results/seg_lraspp_offroad5_clean_offroad5.json) |
+| seg_clean_offroad5_val_miou | 0.7389 |  | LR-ASPP (clean aug), OFFROAD5 | [results/seg_lraspp_offroad5_clean_offroad5.json](../results/seg_lraspp_offroad5_clean_offroad5.json) |
+| seg_clean_offroad5_val_pixel_acc | 0.8702 |  | LR-ASPP (clean aug), OFFROAD5 | [results/seg_lraspp_offroad5_clean_offroad5.json](../results/seg_lraspp_offroad5_clean_offroad5.json) |
+| seg_clean_rugd5_test_false_safe_rate | 0.0226 |  | LR-ASPP (clean aug), RUGD-5L | [results/seg_lraspp_offroad5_clean_rugd5.json](../results/seg_lraspp_offroad5_clean_rugd5.json) |
+| seg_clean_rugd5_test_miou | 0.7677 |  | LR-ASPP (clean aug), RUGD-5L | [results/seg_lraspp_offroad5_clean_rugd5.json](../results/seg_lraspp_offroad5_clean_rugd5.json) |
+| seg_clean_rugd5_test_pixel_acc | 0.9432 |  | LR-ASPP (clean aug), RUGD-5L | [results/seg_lraspp_offroad5_clean_rugd5.json](../results/seg_lraspp_offroad5_clean_rugd5.json) |
+| seg_clean_rugd5_val_false_safe_rate | 0.1954 |  | LR-ASPP (clean aug), RUGD-5L | [results/seg_lraspp_offroad5_clean_rugd5.json](../results/seg_lraspp_offroad5_clean_rugd5.json) |
+| seg_clean_rugd5_val_miou | 0.6181 |  | LR-ASPP (clean aug), RUGD-5L | [results/seg_lraspp_offroad5_clean_rugd5.json](../results/seg_lraspp_offroad5_clean_rugd5.json) |
+| seg_clean_rugd5_val_pixel_acc | 0.8449 |  | LR-ASPP (clean aug), RUGD-5L | [results/seg_lraspp_offroad5_clean_rugd5.json](../results/seg_lraspp_offroad5_clean_rugd5.json) |
 | seg_cpu_latency_threads_2_ms | 63.49 |  | LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back | [results/seg_cpu.json](../results/seg_cpu.json) |
 | seg_cpu_latency_threads_4_ms | 84.91 |  | LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; Segmenter.__call__ median on this laptop; shared laptop CPU (other jobs may be running): compare latencies only within one measurement session, e.g. seg_eval --latency-only on both models back to back | [results/seg_cpu.json](../results/seg_cpu.json) |
 | seg_cpu_test_false_hazard_rate | 0.046 | fraction | LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L test (n=733), label resolution | [results/seg_cpu.json](../results/seg_cpu.json) |
@@ -95,6 +107,18 @@ Measured by us on real data (real images, real hardware timing).
 | seg_cpu_val_obstacle_to_stable_rate | 0.0033 | fraction | LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution | [results/seg_cpu.json](../results/seg_cpu.json) |
 | seg_cpu_val_pixel_acc | 0.8292 |  | LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL | [results/seg_cpu.json](../results/seg_cpu.json) |
 | seg_cpu_val_water_to_stable_rate | 0.0 | fraction | LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution | [results/seg_cpu.json](../results/seg_cpu.json) |
+| seg_robust_offroad5_test_false_safe_rate | 0.0392 |  | LR-ASPP (robust aug), OFFROAD5 | [results/seg_lraspp_offroad5_robust_offroad5.json](../results/seg_lraspp_offroad5_robust_offroad5.json) |
+| seg_robust_offroad5_test_miou | 0.7998 |  | LR-ASPP (robust aug), OFFROAD5 | [results/seg_lraspp_offroad5_robust_offroad5.json](../results/seg_lraspp_offroad5_robust_offroad5.json) |
+| seg_robust_offroad5_test_pixel_acc | 0.9353 |  | LR-ASPP (robust aug), OFFROAD5 | [results/seg_lraspp_offroad5_robust_offroad5.json](../results/seg_lraspp_offroad5_robust_offroad5.json) |
+| seg_robust_offroad5_val_false_safe_rate | 0.1656 |  | LR-ASPP (robust aug), OFFROAD5 | [results/seg_lraspp_offroad5_robust_offroad5.json](../results/seg_lraspp_offroad5_robust_offroad5.json) |
+| seg_robust_offroad5_val_miou | 0.7181 |  | LR-ASPP (robust aug), OFFROAD5 | [results/seg_lraspp_offroad5_robust_offroad5.json](../results/seg_lraspp_offroad5_robust_offroad5.json) |
+| seg_robust_offroad5_val_pixel_acc | 0.864 |  | LR-ASPP (robust aug), OFFROAD5 | [results/seg_lraspp_offroad5_robust_offroad5.json](../results/seg_lraspp_offroad5_robust_offroad5.json) |
+| seg_robust_rugd5_test_false_safe_rate | 0.0259 |  | LR-ASPP (robust aug), RUGD-5L | [results/seg_lraspp_offroad5_robust_rugd5.json](../results/seg_lraspp_offroad5_robust_rugd5.json) |
+| seg_robust_rugd5_test_miou | 0.7614 |  | LR-ASPP (robust aug), RUGD-5L | [results/seg_lraspp_offroad5_robust_rugd5.json](../results/seg_lraspp_offroad5_robust_rugd5.json) |
+| seg_robust_rugd5_test_pixel_acc | 0.9417 |  | LR-ASPP (robust aug), RUGD-5L | [results/seg_lraspp_offroad5_robust_rugd5.json](../results/seg_lraspp_offroad5_robust_rugd5.json) |
+| seg_robust_rugd5_val_false_safe_rate | 0.2112 |  | LR-ASPP (robust aug), RUGD-5L | [results/seg_lraspp_offroad5_robust_rugd5.json](../results/seg_lraspp_offroad5_robust_rugd5.json) |
+| seg_robust_rugd5_val_miou | 0.5985 |  | LR-ASPP (robust aug), RUGD-5L | [results/seg_lraspp_offroad5_robust_rugd5.json](../results/seg_lraspp_offroad5_robust_rugd5.json) |
+| seg_robust_rugd5_val_pixel_acc | 0.837 |  | LR-ASPP (robust aug), RUGD-5L | [results/seg_lraspp_offroad5_robust_rugd5.json](../results/seg_lraspp_offroad5_robust_rugd5.json) |
 | seg_smoke_latency_threads_2_ms | 31.1 |  | Segmenter.__call__ median on this laptop | [results/seg_smoke.json](../results/seg_smoke.json) |
 | seg_smoke_latency_threads_4_ms | 26.68 |  | Segmenter.__call__ median on this laptop | [results/seg_smoke.json](../results/seg_smoke.json) |
 | seg_smoke_test_false_safe_rate | 0.0434 |  | SMOKE LR-ASPP (300 CPU iters, 800 RUGD-5L imgs) | [results/seg_smoke.json](../results/seg_smoke.json) |
@@ -290,7 +314,7 @@ Measured by us inside the simulator (rendered or synthetic sensor data).
 | closed_loop_tier0_TYPICAL_drive_speed | 1.25 m/s |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT path / time until estimated arrival or episode end | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.drive_speed_mps](../results/closed_loop_dev.json) |
 | closed_loop_tier0_TYPICAL_final_error_p50_p90 | 1.998 / 31.747 m |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT distance to B at episode end | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.final_error_median_m](../results/closed_loop_dev.json) |
 | closed_loop_tier0_TYPICAL_success | 16/30 |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; success = true goal within the mission success radius | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.success_rate](../results/closed_loop_dev.json) |
-| console_eval_s044_seq38_dist_to_b_m | 24.9 | m | operator-console replay frame on the deck (t = 22.8 s): distance from the stack's pose estimate to B | [results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.pose + mission.json#goal_xy_a](../results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl) |
+| console_eval_s044_seq38_dist_to_b_m | 24.9 | m | operator-console replay frame on the deck (t = 22.8 s): distance from the stack's pose estimate to B | results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.pose + mission.json#goal_xy_a |
 | example_eval_ditch_entries_FULL_F3_crest_ditch | 2 | runs | EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entries_by_family.FULL.F3_crest_ditch](../results/example_runs_eval.json) |
 | example_eval_ditch_entries_TYPICAL_F2_ditch_field | 1 | runs | EVAL closed loop run 2, tier0; runs of 10 in family F2_ditch_field whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F2_ditch_field](../results/example_runs_eval.json) |
 | example_eval_ditch_entries_TYPICAL_F3_crest_ditch | 1 | runs | EVAL closed loop run 2, tier0; runs of 10 in family F3_crest_ditch whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entries_by_family.TYPICAL.F3_crest_ditch](../results/example_runs_eval.json) |

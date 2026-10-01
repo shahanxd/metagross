@@ -1,0 +1,116 @@
+{
+ "name": "LR-ASPP MobileNetV3 OFFROAD5 (robust aug)",
+ "kind": "direct5",
+ "architecture": "lraspp (torchvision lraspp_mobilenet_v3_large)",
+ "params": 3218818,
+ "input_hw": [
+  320,
+  416
+ ],
+ "input": "input: (1, 3, H, W) float32, RGB, (x/255 - mean) / std",
+ "output": "logits: (1, 5, H, W) float32",
+ "mean": [
+  0.485,
+  0.456,
+  0.406
+ ],
+ "std": [
+  0.229,
+  0.224,
+  0.225
+ ],
+ "classes": {
+  "0": "background/sky",
+  "1": "obstacle",
+  "2": "water/mud",
+  "3": "unstable (grass/dirt)",
+  "4": "stable (asphalt/concrete/gravel path)"
+ },
+ "colors_rgb": {
+  "0": [
+   203,
+   208,
+   214
+  ],
+  "1": [
+   220,
+   50,
+   47
+  ],
+  "2": [
+   20,
+   140,
+   190
+  ],
+  "3": [
+   217,
+   180,
+   58
+  ],
+  "4": [
+   34,
+   160,
+   90
+  ]
+ },
+ "smoke": false,
+ "training": {
+  "data": "offroad5",
+  "aug": "robust",
+  "init": "imagenet",
+  "img_hw": [
+   320,
+   416
+  ],
+  "batch_size": 32,
+  "lr": 0.0006,
+  "sched": "poly",
+  "epochs_planned": 40,
+  "best_epoch": 31,
+  "iterations_at_best": 8064,
+  "iterations_planned": 10080,
+  "partial": true,
+  "sampling": "uniform",
+  "repeat_factor_sampling": null,
+  "n_train_images": 8081,
+  "n_val_images": 2907,
+  "train_list_sha": "242287d136444986",
+  "class_weights": [
+   0.3899114429950714,
+   0.21167199313640594,
+   2.0579872131347656,
+   0.20962119102478027,
+   2.130808115005493
+  ],
+  "device": "cuda",
+  "torch": "2.10.0+cu130"
+ },
+ "val_metrics_at_train_res": {
+  "miou": 0.7106285084235747,
+  "pixel_acc": 0.8603296440455399,
+  "false_safe_rate": 0.17302061051459955,
+  "per_class_iou": {
+   "background/sky": 0.8809559948557744,
+   "obstacle": 0.7765656165380973,
+   "water/mud": 0.42717761300798535,
+   "unstable (grass/dirt)": 0.701326525533982,
+   "stable (asphalt/concrete/gravel path)": 0.7671167921820349
+  }
+ },
+ "licence": {
+  "code": "torchvision LR-ASPP MobileNetV3-Large architecture (BSD-3-Clause)",
+  "backbone_init": "torchvision ImageNet-1k MobileNetV3-Large weights (BSD-3-Clause distribution; ImageNet data terms apply)",
+  "training_data": "GAIA-URJC RUGD-5Labels-resized / OFFROAD5 (RUGD, RELLIS-3D, GOOSE) mirrors: CC BY-NC-SA 3.0",
+  "weights_use": "research / evaluation only (derived from non-commercial data). A production BEL deployment must retrain with the same pipeline on commercially licensed or own-collected data."
+ },
+ "export": {
+  "opset": 17,
+  "torch": "2.10.0+cu130",
+  "onnxruntime": "1.29.0",
+  "max_abs_logit_diff_vs_torch": 1.621246337890625e-05,
+  "argmax_agreement_vs_torch": 1.0,
+  "sha256": "ac54e5a6aabeed696c61714fb21affe0f5d5dacb3ae841673169edb526415182",
+  "source_checkpoint": "runs/seg/lraspp_offroad5_robust/best.pt",
+  "created_utc": "2026-10-01T06:50:44+00:00"
+ }
+}
