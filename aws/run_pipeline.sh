@@ -8,6 +8,8 @@
 #                 DEADLINE= (optional local wall-clock stop, 'HH:MM' or 'YYYY-MM-DDTHH:MM'; the runs
 #                            validate + checkpoint and stop, then export/eval proceed on best.pt)
 #                 RUN_TEACHER=0 (1 = also run aws/teacher_dinov2.py after the main runs)
+# With two or more GPUs visible (e.g. ml.g6.24xlarge: 4x L4) and CUDA_VISIBLE_DEVICES unset, the clean run is
+# pinned to GPU 0 and the robust run to GPU 1; with one GPU both share it, as before.
 set -uo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -28,14 +30,18 @@ SAMPLING="${SAMPLING:-uniform}"
 DEADLINE="${DEADLINE:-}"
 LOG_DIR="$REPO_DIR/logs"
 mkdir -p "$LOG_DIR"
+NGPU="$(nvidia-smi -L 2>/dev/null | grep -c '^GPU ' || true)"
 
-echo "[$(date)] EPOCHS=$EPOCHS BS=$BS IMG=$IMG LR=$LR WORKERS=$WORKERS (per run) TRAIN_SUBSET=$TRAIN_SUBSET SAMPLING=$SAMPLING DEADLINE=${DEADLINE:-none}"
+echo "[$(date)] EPOCHS=$EPOCHS BS=$BS IMG=$IMG LR=$LR WORKERS=$WORKERS (per run) TRAIN_SUBSET=$TRAIN_SUBSET SAMPLING=$SAMPLING DEADLINE=${DEADLINE:-none} GPUS=${NGPU:-0}"
 
 train_run() {  # $1 = aug policy (clean | robust); everything else identical between the two runs
   local aug="$1" name="lraspp_offroad5_$1"
-  local extra=()
+  local extra=() pin=()
   [ -n "$DEADLINE" ] && extra+=(--deadline "$DEADLINE")
-  OMP_NUM_THREADS=2 python -m metagross.train.train_seg \
+  if [ -z "${CUDA_VISIBLE_DEVICES:-}" ] && [ "${NGPU:-0}" -ge 2 ]; then
+    if [ "$aug" = robust ]; then pin=(CUDA_VISIBLE_DEVICES=1); else pin=(CUDA_VISIBLE_DEVICES=0); fi
+  fi
+  env ${pin[@]+"${pin[@]}"} OMP_NUM_THREADS=2 python -m metagross.train.train_seg \
     --model lraspp --data offroad5 --data-root "$DATA_DIR/offroad5" --aug "$aug" --init imagenet \
     --epochs "$EPOCHS" --bs "$BS" --lr "$LR" --img "$IMG" --amp --workers "$WORKERS" \
     --train-subset "$TRAIN_SUBSET" --sampling "$SAMPLING" --out "runs/seg/$name" --resume "${extra[@]}" \

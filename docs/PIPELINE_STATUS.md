@@ -24,7 +24,7 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 | 1 | Stereo depth (SGBM) | RUNS IN LOOP (stereo mode) | Rendered DEV 102: 69-73 % valid disparity, 24-50 ms |
 | 2 | Ground model, BEV map, positive obstacles, certification | RUNS IN LOOP (both modes) | Stage timings in `autonomy/timings.csv`; unit tests |
 | 3 | Missing-ground (ditch) detector | RUNS IN LOOP (both modes) | DITCH_CANDIDATE cells in both modes; 0 ditch entries in 30 DEV runs |
-| 4 | **Terrain segmenter (ML)** | **BUILT, NOT IN LOOP**: no trained weights exist, so the node runs without semantics | The train → ONNX export → `Segmenter` chain was verified on CPU with a toy dataset. The deploy model (OFFROAD5, GPU) was never trained. In tier-0 there are no images, so it cannot run there. |
+| 4 | **Terrain segmenter (ML)** | **BUILT, NOT IN LOOP**: no trained weights exist, so the node runs without semantics | The train → ONNX export → `Segmenter` chain was verified on CPU with a toy dataset and once on an AWS L4 GPU (2-epoch dry run). The deploy model (OFFROAD5) was never trained; next: `scripts/train_seg_gpu.ps1` on the laptop GPU. In tier-0 there are no images, so it cannot run there. |
 | 5 | Semantic fusion (WATER cells) | BUILT, NOT IN LOOP | Needs item 4 and images. WATER was never produced in any closed-loop run. |
 | 6 | Stereo visual odometry | RUNS IN LOOP (stereo mode only) | Rendered DEV 102: 0.34 % drift over 13.5 m. KITTI 00/05/07: 1.53-2.11 % (`results/kitti_*.json`, measured on another machine; KITTI is not reachable from this container) |
 | 7 | Depth odometry (tier-0) | RUNS IN LOOP (tier-0) | DEV drives: along-track error 6.3 % → 1.5 % (median). No unit tests yet. |
@@ -48,22 +48,31 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 | Ditch visibility range 4.3 m, speed envelope | analytic | Estimated |
 
 ## Gaps to close for a fully built end-to-end pipeline
-1. **Train the terrain segmenter on a GPU** (`python aws/ec2_run.py launch --job seg`). This enables water and obstacle
-   semantics in the loop.
-2. **Run the closed loop in stereo mode on the GPU box**, so that SGBM, VO, the integrity monitor and the segmenter
-   all run on rendered images. The published numbers are tier-0 only.
+1. **Train the terrain segmenter on the laptop GPU** (RTX 3050 Laptop, 4 GB) with `scripts/train_seg_gpu.ps1`
+   (commands below). This enables water and obstacle semantics in the loop.
+2. **Run the closed loop in stereo mode on the laptop GPU**, so that SGBM, VO, the integrity monitor and the
+   segmenter all run on rendered images. The published numbers are tier-0 only.
 3. **Connect the operator console live**, with a telemetry stream from the running episode and operator commands
    back to the autonomy.
 4. Make the node fail loudly when the segmenter is missing, and record `impl` in `result.json`.
 
-## Next steps (handoff, 2026-09-30)
-- AWS credentials are set in the environment settings (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
-  `AWS_DEFAULT_REGION`), but they only reach a newly started session. Check them with
-  `aws sts get-caller-identity`.
-- Approved quota: **SageMaker training job, `ml.g6.24xlarge`, 1 instance, ap-south-1** (4x NVIDIA L4, 96 vCPU).
-  - Plan: add a SageMaker backend to `aws/ec2_run.py`. It runs `aws/jobs/seg.sh` as a training job in an AWS PyTorch
-    GPU container, with the code tarball on S3 and outputs to S3.
-  - The EC2 G-instance quota is unchecked. The stereo-mode loop needs a GPU plus a browser, so check the EC2 quota
-    first and fall back to the same SageMaker instance type.
-- Order: (1) train the segmenter, (2) fetch the ONNX files and wire them into the loop, (3) run the stereo-mode
-  DEV/EVAL loop on the GPU, (4) connect the live console. After that, the video and slides.
+## Next steps (handoff, 2026-10-01)
+- **AWS is dropped.** GPU work now runs on the team's Windows laptop. `aws/` stays in the repo for reference only.
+  Before it was dropped, one SageMaker dry run did complete (2026-09-30, `ml.g6.16xlarge` = 1x L4, 2 epochs on
+  512 images, 0.24 billable hours): setup, download, training, ONNX export and evaluation all ran on a real GPU.
+  Its numbers are a pipeline check, not results, and were not committed.
+- **Train the segmenter on the laptop** (PowerShell, repo root). The script uses its own venv `.venv-gpu` with CUDA
+  torch and leaves the CPU `.venv` untouched:
+  1. `powershell -ExecutionPolicy Bypass -File scripts\train_seg_gpu.ps1 -Setup`: CUDA torch, dependencies, CUDA
+     check, unit tests, OFFROAD5 (~8.5 GB) + RUGD-5L (~2.1 GB) download into `data/`.
+  2. `... -Bench`: 100-step timing run; prints s/step and the projected hours. Timing only.
+  3. `... -Launch`: detached, resumable training of `lraspp_offroad5_robust` (25 epochs x 1000 steps, batch 8,
+     320x416, mixed precision). A watcher keeps Windows awake and runs the finish step when training ends.
+     `... -Status` shows progress. Re-running `-Launch` after an interruption resumes from `last.pt`.
+  4. Finish (automatic, or `... ` with no switch): ONNX export to `models/lraspp_offroad5_robust.onnx` (the first
+     file the onboard `Segmenter` looks for), evaluation on OFFROAD5 and RUGD-5L val + test with laptop-CPU latency,
+     `results/seg_lraspp_offroad5_robust_{offroad5,rugd5}.json` and figures in `deck_assets/`. Register the
+     JSON's `claims` rows in `results/claims.csv` as **Tested**.
+  5. Optional ablation: `-Launch -Aug clean`, then finish with `-Aug clean`.
+- Then: (2) wire the ONNX model into the loop; (3) run the stereo-mode DEV/EVAL loop on the laptop GPU;
+  (4) connect the live console. After that, the video and slides.

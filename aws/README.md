@@ -1,5 +1,8 @@
 # Terrain-segmenter training on an AWS GPU box
 
+> **Not in use (2026-10-01).** The team dropped AWS; the segmenter is trained on the laptop GPU with
+> `scripts/train_seg_gpu.ps1` (see `docs/PIPELINE_STATUS.md`). This folder is kept for reference only.
+
 One command sets up a fresh Ubuntu 22.04/24.04 NVIDIA instance, downloads the data and trains two LR-ASPP models
 in parallel: CLEAN vs ROBUST augmentation. It then exports ONNX and writes evaluation JSONs and figures.
 
@@ -7,7 +10,65 @@ in parallel: CLEAN vs ROBUST augmentation. It then exports ONNX and writes evalu
 `AWS_DEFAULT_REGION` in the environment, run `python aws/ec2_run.py check`, then
 `python aws/ec2_run.py launch --job seg`. The instance uploads logs to S3 every 2 min, uploads the outputs, and
 terminates itself. Use `status`, `fetch` and `cleanup` to follow it, collect the results and remove everything. The
-manual SSH route below still works.
+manual SSH route below still works. `pip install -e ".[aws]"` installs boto3.
+
+## SageMaker training job (`--backend sagemaker`)
+
+The approved GPU quota is a SageMaker one: `ml.g6.16xlarge` for training job usage = 1 in **us-east-1** (1x NVIDIA L4
+24 GB, 64 vCPU; seen in the Service Quotas console on 2026-10-01), so set `AWS_DEFAULT_REGION=us-east-1`. The same
+account also has `ml.g6.24xlarge` for *notebook instance* usage, which training jobs cannot use. `--backend sagemaker`
+runs the same `aws/jobs/seg.sh` as a SageMaker training job in the AWS PyTorch GPU container
+(`pytorch-training:2.10.0-gpu-py313-cu130-ubuntu22.04-sagemaker`; `--image` and `--type` override):
+
+```bash
+python aws/ec2_run.py check --backend sagemaker            # identity, SageMaker API reachable?, training quota
+# 1) dry run of the whole chain on the real instance (2 epochs on 512 images; hard cap 1.5 h)
+python aws/ec2_run.py launch --backend sagemaker --job seg --max-hours 1.5 --env EPOCHS=2 TRAIN_SUBSET=512
+python aws/ec2_run.py status --backend sagemaker --job seg  # job state + tail of logs/ (copied to S3 every 2 min)
+python aws/ec2_run.py fetch  --backend sagemaker --job seg  # models/, results/, deck_assets/, runs/aws/logs/
+# 2) the real run (40 epochs by default; training stops at a DEADLINE ~1 h before the cap, then export + eval)
+python aws/ec2_run.py launch --backend sagemaker --job seg --max-hours 12
+python aws/ec2_run.py terminate --backend sagemaker --job seg   # StopTrainingJob; outputs so far are kept
+```
+
+How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
+
+- **Code** goes up as the same `git archive HEAD` tarball (commit first) and arrives as the `code` input channel. Shell
+  scripts are archived with LF endings whatever the local `core.autocrlf` (`.gitattributes` pins `*.sh` to LF), and the
+  launcher refuses a tarball with CRLF scripts. The container entrypoint unpacks it and runs
+  `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with `SYSTEM_TORCH=1` (the container's CUDA torch
+  is reused when it sees the GPU, so normally no torch download) and the datasets and venv on the instance's local
+  NVMe.
+- **GPUs**: on `ml.g6.16xlarge` (one L4) the clean and robust runs share the GPU, as on any single-GPU box. With two
+  or more GPUs (e.g. `--type ml.g6.24xlarge`, 4x L4, if that training quota is granted), `run_pipeline.sh` puts the
+  clean run on GPU 0 and the robust run on GPU 1; `train_seg` has no multi-GPU mode, so further GPUs stay idle.
+- **Time cap**: `--max-hours` becomes `MaxRuntimeInSeconds`. Unless `DEADLINE` is passed, the entry script sets one
+  at max-hours minus a margin (runtime/8, clamped to 15-60 min), so training checkpoints and stops in time for the
+  ONNX export and evaluation.
+- **Logs**: `logs/` is copied to the job's checkpoint path on S3 every 2 min (`status` shows it). The job output,
+  `logs/pipeline.log` and the tagged `logs/train_*.log` also stream to CloudWatch (`/aws/sagemaker/TrainingJobs`),
+  where the job's metric definitions are set up to pick per-epoch val mIoU into `clean:val_miou` /
+  `robust:val_miou` (the regexes are unit-tested on a sample log line, not yet seen on SageMaker).
+- **Outputs**: the `JOB_OUTPUTS` globs are copied to `<checkpoints>/out/` (what `fetch` downloads) and to
+  `/opt/ml/model` (`model.tar.gz`, the fallback once the job has ended). `fetch` writes only paths that match those
+  globs (both backends), so a job cannot drop, say, `tests/conftest.py` into the local repo. A job that exits 0 without `models/lraspp_offroad5_*.onnx` is marked
+  Failed (rc 4), and the failure reason carries the tail of the job log.
+- **Resume**: `runs/` lives on the checkpoint path, so `launch ... --resume-from <earlier job name>` continues both
+  runs from their `last.pt`. The launcher first checks that the earlier job left a `last.pt` on S3 (an empty channel
+  would fail only after the instance is provisioned).
+- **AWS resources**: bucket `metagross-<account>-<region>` (shared with EC2), prefix `jobs/seg/sagemaker/<job name>/`;
+  execution role `metagross-sagemaker-role` (S3 `jobs/*/sagemaker/*` in that bucket and only while the bucket belongs
+  to this account, the job's CloudWatch logs and metrics, pulls from the image's ECR repository only). Because the
+  bucket name is predictable, both backends check its owner (`ExpectedBucketOwner`) before using it. `--env` refuses secret-looking names, because training-job environment
+  variables are readable by anyone with `sagemaker:DescribeTrainingJob`. `cleanup` stops jobs and deletes the role.
+- **Permissions the account needs**, for the calling user and, at run time, the execution role: `sagemaker`
+  training-job create/describe/list/stop, S3 create-bucket/put/get/list on the bucket, `iam` create/put/get/pass on
+  the role, CloudWatch Logs, ECR pull, and (for `check` only) Service Quotas read. An AWS Organizations service
+  control policy that denies any of these blocks the job whatever the IAM policies say; `check --backend sagemaker`
+  and `launch` report such a denial explicitly.
+
+Not yet verified on AWS: this backend has only been unit-tested with a fake AWS session plus a local run of the
+entry script (see `tests/test_aws_sagemaker.py`). The first launch should be the dry run above.
 
 ## 0. Instance
 

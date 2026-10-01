@@ -13,8 +13,10 @@
 # idempotent and training resumes from runs/seg/<name>/last.pt.
 #
 # Env overrides: TORCH_INDEX (skip auto-selection), PYTHON, VENV, DATA_DIR, SKIP_DATA=1,
-# STRICT_TESTS=1 (abort on a failing unit test; default: warn and continue), plus the
-# run_pipeline.sh tunables (EPOCHS, BS, IMG, LR, WORKERS, TRAIN_SUBSET, SAMPLING, DEADLINE).
+# STRICT_TESTS=1 (abort on a failing unit test; default: warn and continue), SYSTEM_TORCH=1
+# (venv with --system-site-packages; reuse the interpreter's torch/torchvision when they
+# see the GPU, as in the AWS PyTorch containers SageMaker runs), plus the run_pipeline.sh
+# tunables (EPOCHS, BS, IMG, LR, WORKERS, TRAIN_SUBSET, SAMPLING, DEADLINE).
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -26,6 +28,9 @@ sed -i 's/\r$//' aws/run_pipeline.sh aws/fetch_results.sh
 VENV="${VENV:-$REPO_DIR/.venv-aws}"
 DATA_DIR="${DATA_DIR:-$REPO_DIR/data}"
 PY="${PYTHON:-python3}"
+SYSTEM_TORCH="${SYSTEM_TORCH:-0}"
+SUDO="sudo"; [ "$(id -u)" = "0" ] && SUDO=""   # containers run as root, often without sudo
+VENV_ARGS=(); [ "$SYSTEM_TORCH" = "1" ] && VENV_ARGS=(--system-site-packages)
 LOG_DIR="$REPO_DIR/logs"
 mkdir -p "$LOG_DIR" "$DATA_DIR" models results deck_assets runs/seg
 
@@ -74,13 +79,13 @@ say "compute capability ${COMPUTE_CAP:-unknown}, driver CUDA ${DRIVER_CUDA:-unkn
 say "Python venv at $VENV"
 if [ ! -x "$VENV/bin/python" ] || ! "$VENV/bin/python" -m pip --version >/dev/null 2>&1; then
   [ -f "$VENV/pyvenv.cfg" ] && rm -rf "$VENV"   # half-created venv from a failed earlier attempt
-  if ! "$PY" -m venv "$VENV" 2>"$LOG_DIR/venv.err"; then
+  if ! "$PY" -m venv ${VENV_ARGS[@]+"${VENV_ARGS[@]}"} "$VENV" 2>"$LOG_DIR/venv.err"; then
     cat "$LOG_DIR/venv.err" >&2
     PYVER="$("$PY" -c 'import sys; print(f"{sys.version_info[0]}.{sys.version_info[1]}")')"
-    sudo apt-get update -y
-    sudo apt-get install -y python3-venv python3-pip "python${PYVER}-venv" || sudo apt-get install -y python3-venv python3-pip
+    $SUDO apt-get update -y
+    $SUDO apt-get install -y python3-venv python3-pip "python${PYVER}-venv" || $SUDO apt-get install -y python3-venv python3-pip
     [ -f "$VENV/pyvenv.cfg" ] && rm -rf "$VENV"
-    "$PY" -m venv "$VENV"
+    "$PY" -m venv ${VENV_ARGS[@]+"${VENV_ARGS[@]}"} "$VENV"
   fi
 fi
 # shellcheck disable=SC1091
@@ -88,8 +93,14 @@ source "$VENV/bin/activate"
 python -m pip install --upgrade pip wheel >/dev/null
 
 # ------------------------------------------------------------------ 4. torch + deps
-say "Installing torch (CUDA wheels from $TORCH_INDEX) and dependencies"
-python -m pip install torch torchvision --index-url "$TORCH_INDEX"
+if [ "$SYSTEM_TORCH" = "1" ] && python -c "import torch, torchvision; assert torch.cuda.is_available()" 2>/dev/null; then
+  say "SYSTEM_TORCH=1: using the interpreter's torch $(python -c 'import torch; print(torch.__version__)'); installing dependencies"
+else
+  say "Installing torch (CUDA wheels from $TORCH_INDEX) and dependencies"
+  # With --system-site-packages pip would count the interpreter's (unusable) torch as installed: force the venv copy.
+  TORCH_PIP_ARGS=(); [ "$SYSTEM_TORCH" = "1" ] && TORCH_PIP_ARGS=(--ignore-installed)
+  python -m pip install ${TORCH_PIP_ARGS[@]+"${TORCH_PIP_ARGS[@]}"} torch torchvision --index-url "$TORCH_INDEX"
+fi
 python -m pip install -r aws/requirements-gpu.txt
 
 # ------------------------------------------------------------------ 5. CUDA sanity

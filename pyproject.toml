@@ -19,7 +19,8 @@ dependencies = [
 train = ["torch", "torchvision", "onnx", "transformers", "huggingface_hub", "requests", "Pillow"]
 render = ["playwright"]
 media = ["imageio", "imageio-ffmpeg", "edge-tts", "Pillow"]
-dev = ["pytest"]
+aws = ["boto3"]    # aws/ec2_run.py (EC2 / SageMaker GPU jobs)
+dev = ["pytest", "boto3"]
 
 [build-system]
 requires = ["setuptools>=64"]

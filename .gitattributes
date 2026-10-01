@@ -1,0 +1,2 @@
+# Shell scripts run on Linux GPU boxes and SageMaker containers: keep them LF on every checkout (Windows included).
+*.sh text eol=lf

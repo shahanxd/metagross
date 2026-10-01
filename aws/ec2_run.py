@@ -1,18 +1,23 @@
-"""Run a GPU job on EC2 from anywhere with AWS API access (no SSH, no browser).
+"""Run a GPU job on EC2 or SageMaker from anywhere with AWS API access (no SSH, no browser).
 
 The machine is fire-and-forget: code goes up as a tarball on S3, the instance runs one job script
 (``aws/jobs/<job>.sh``) under ``user-data``, streams its logs to S3 every two minutes, uploads the
 job's outputs and then powers off (shutdown behaviour = terminate). A hard wall-clock cap
 (``--max-hours``) powers it off even if the job hangs.
 
+``--backend sagemaker`` runs the same job script as a SageMaker training job instead (default
+``ml.g6.16xlarge``, AWS PyTorch GPU container; see ``aws/sagemaker_backend.py``): same bucket,
+same outputs, same ``fetch`` destinations, with the hard cap as ``MaxRuntimeInSeconds``.
+
 Commands::
 
-    python aws/ec2_run.py check                       # credentials, region, GPU quota, AMI
+    python aws/ec2_run.py check [--backend sagemaker]  # credentials, region, GPU quota, AMI / API + image
     python aws/ec2_run.py launch --job seg [--type g5.2xlarge] [--max-hours 12] [--env EPOCHS=40 ...]
-    python aws/ec2_run.py status --job seg            # instance state + tail of the remote logs
-    python aws/ec2_run.py fetch --job seg             # copy the job outputs into the repo
-    python aws/ec2_run.py terminate --job seg
-    python aws/ec2_run.py cleanup                     # delete bucket, role, profile, security group
+    python aws/ec2_run.py launch --backend sagemaker --job seg [--type ml.g6.16xlarge] [--resume-from NAME]
+    python aws/ec2_run.py status --job seg [--backend sagemaker]   # state + tail of the remote logs
+    python aws/ec2_run.py fetch --job seg [--backend sagemaker]    # copy the job outputs into the repo
+    python aws/ec2_run.py terminate --job seg [--backend sagemaker]
+    python aws/ec2_run.py cleanup                     # delete bucket, roles, profile, security group
 
 Credentials come from the environment (AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_DEFAULT_REGION).
 Resources are tagged ``project=metagross`` and named ``metagross-*``.
@@ -34,6 +39,8 @@ from pathlib import Path
 import boto3
 from botocore.exceptions import ClientError
 
+import sagemaker_backend as smb  # aws/ is sys.path[0] when this file runs as a script
+
 LOG = logging.getLogger("ec2_run")
 REPO = Path(__file__).resolve().parents[1]
 GIT_ROOT = REPO.parent if (REPO.parent / ".git").exists() else REPO
@@ -44,6 +51,7 @@ SG_NAME = "metagross-no-inbound"
 # Deep Learning Base OSS Nvidia Driver GPU AMI (Ubuntu 22.04): driver + CUDA preinstalled, AWS CLI present.
 AMI_PARAM = "/aws/service/deeplearning/ami/x86_64/base-oss-nvidia-driver-gpu-ubuntu-22.04/latest/ami-id"
 G_QUOTA_CODE = "L-DB2E81BA"  # Running On-Demand G and VT instances (vCPUs)
+DEFAULT_TYPE = {"ec2": "g5.2xlarge", "sagemaker": smb.DEFAULT_INSTANCE}
 VCPUS = {"g5.xlarge": 4, "g5.2xlarge": 8, "g5.4xlarge": 16, "g5.8xlarge": 32, "g6.2xlarge": 8, "g6.4xlarge": 16,
          "g4dn.2xlarge": 8, "g4dn.4xlarge": 16}
 
@@ -91,7 +99,7 @@ shutdown -h now
 def session():
     region = os.environ.get("AWS_DEFAULT_REGION") or os.environ.get("AWS_REGION")
     if not region:
-        sys.exit("AWS_DEFAULT_REGION is not set (e.g. ap-south-1)")
+        sys.exit("AWS_DEFAULT_REGION is not set (e.g. us-east-1)")
     return boto3.session.Session(region_name=region)
 
 
@@ -100,22 +108,30 @@ def bucket_name(s) -> str:
     return f"metagross-{acct}-{s.region_name}"
 
 
-def check(s) -> dict:
+def identity(s) -> dict:
     ident = s.client("sts").get_caller_identity()
-    out = {"account": ident["Account"], "arn": ident["Arn"], "region": s.region_name}
+    return {"account": ident["Account"], "arn": ident["Arn"], "region": s.region_name}
+
+
+def check(s) -> dict:
+    out = identity(s)
     try:
         q = s.client("service-quotas").get_service_quota(ServiceCode="ec2", QuotaCode=G_QUOTA_CODE)
         out["g_vt_on_demand_vcpu_quota"] = q["Quota"]["Value"]
     except ClientError as exc:
-        out["g_vt_on_demand_vcpu_quota"] = f"unknown ({exc.response['Error']['Code']})"
-    out["ami"] = s.client("ssm").get_parameter(Name=AMI_PARAM)["Parameter"]["Value"]
+        out["g_vt_on_demand_vcpu_quota"] = f"unknown ({smb.describe_denial(exc)})"
+    try:
+        out["ami"] = s.client("ssm").get_parameter(Name=AMI_PARAM)["Parameter"]["Value"]
+    except ClientError as exc:
+        out["ami"] = f"unknown ({smb.describe_denial(exc)})"
     return out
 
 
 def ensure_bucket(s, name: str) -> None:
     s3 = s.client("s3")
-    try:
-        s3.head_bucket(Bucket=name)
+    account = s.client("sts").get_caller_identity()["Account"]
+    try:  # the name is predictable: a same-named bucket owned by another account must not count as ours
+        s3.head_bucket(Bucket=name, ExpectedBucketOwner=account)
         return
     except ClientError:
         pass
@@ -162,15 +178,20 @@ def ensure_sg(s) -> str:
 
 
 def code_tarball() -> bytes:
-    """``git archive HEAD`` of the repo (committed files only: no data, venvs or run folders)."""
+    """``git archive HEAD`` of the repo (committed files only: no data, venvs or run folders). Line endings are
+    taken as committed (LF), whatever the local ``core.autocrlf``: CRLF shell scripts do not run on Linux."""
     rel = REPO.relative_to(GIT_ROOT).as_posix() if REPO != GIT_ROOT else ""
     tree = f"HEAD:{rel}" if rel else "HEAD"
-    raw = subprocess.run(["git", "-C", str(GIT_ROOT), "archive", "--format=tar.gz", tree],
-                         check=True, capture_output=True).stdout
-    with tarfile.open(fileobj=io.BytesIO(raw), mode="r:gz") as tf:  # sanity: the job script must be in it
+    raw = subprocess.run(["git", "-C", str(GIT_ROOT), "-c", "core.autocrlf=false", "-c", "core.eol=lf", "archive",
+                          "--format=tar.gz", tree], check=True, capture_output=True).stdout
+    with tarfile.open(fileobj=io.BytesIO(raw), mode="r:gz") as tf:  # sanity: job scripts present, LF endings
         names = tf.getnames()
+        crlf = [m.name for m in tf.getmembers() if m.isfile() and m.name.endswith(".sh")
+                and b"\r\n" in tf.extractfile(m).read()]
     if not any(n.startswith("aws/jobs/") for n in names):
         sys.exit("aws/jobs/ is not committed: commit it first (the instance runs the committed tree)")
+    if crlf:
+        sys.exit(f"shell scripts committed with CRLF line endings (bash on the instance cannot run them): {crlf}")
     return raw
 
 
@@ -187,6 +208,8 @@ def launch(s, job: str, itype: str, max_hours: float, env: list[str], disk_gb: i
     if instances(s, job):
         sys.exit(f"a {job} instance is already running: {[i['InstanceId'] for i in instances(s, job)]}")
     info = check(s)
+    if info["ami"].startswith("unknown"):
+        sys.exit(f"cannot resolve the GPU AMI: {info['ami']}")
     quota = info["g_vt_on_demand_vcpu_quota"]
     if isinstance(quota, float) and quota < VCPUS.get(itype, 0):
         sys.exit(f"G/VT on-demand vCPU quota is {quota:.0f} < {VCPUS[itype]} needed by {itype}: request an increase")
@@ -222,6 +245,29 @@ def launch(s, job: str, itype: str, max_hours: float, env: list[str], disk_gb: i
     return iid
 
 
+def launch_sagemaker(s, job: str, itype: str, max_hours: float, env: list[str], volume_gb: int,
+                     image: str | None, resume_from: str | None) -> str:
+    """Same job as :func:`launch`, as a SageMaker training job (see ``aws/sagemaker_backend.py``)."""
+    if job not in JOB_OUTPUTS:
+        sys.exit(f"unknown job {job!r}; known: {sorted(JOB_OUTPUTS)}")
+    try:  # validate everything (env, image, --max-hours, --resume-from) before any AWS resource is touched
+        sm_env = smb.validate_env(env)
+        image = image or smb.image_uri(s.region_name)
+        smb.ecr_repository_arn(image)
+        smb.create_training_job_request(name="metagross-dry-run", job=job, role_arn="arn:aws:iam::0:role/dry-run",
+                                        bucket="dry-run", image=image, instance_type=itype, volume_gb=volume_gb,
+                                        max_hours=max_hours, env=sm_env, output_globs=JOB_OUTPUTS[job],
+                                        resume_from=resume_from)
+    except ValueError as exc:
+        sys.exit(str(exc))
+    smb.preflight(s, job)  # exits on an SCP / IAM denial or a job already in progress
+    bucket = bucket_name(s)
+    ensure_bucket(s, bucket)
+    return smb.launch(s, job=job, bucket=bucket, tarball=code_tarball(), output_globs=JOB_OUTPUTS[job],
+                      instance_type=itype, image=image, max_hours=max_hours, volume_gb=volume_gb, env=sm_env,
+                      resume_from=resume_from)
+
+
 def status(s, job: str, tail: int = 25) -> None:
     ins = instances(s, job, states=("pending", "running", "stopping", "stopped", "shutting-down", "terminated"))
     for i in sorted(ins, key=lambda i: i["LaunchTime"])[-3:]:
@@ -249,7 +295,10 @@ def fetch(s, job: str) -> list[Path]:
     for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix=prefix):
         for obj in page.get("Contents", []):
             rel = obj["Key"][len(prefix):]
-            dest = REPO / ("runs/aws/" + rel if rel.startswith("logs/") else rel)
+            if not smb.matches_globs(rel, JOB_OUTPUTS[job]):
+                LOG.warning("skipping undeclared output %s", obj["Key"])
+                continue
+            dest = smb.output_dest(REPO, rel)
             dest.parent.mkdir(parents=True, exist_ok=True)
             s3.download_file(bucket, obj["Key"], str(dest))
             got.append(dest)
@@ -267,6 +316,7 @@ def terminate(s, job: str) -> None:
 
 
 def cleanup(s) -> None:
+    smb.cleanup(s, JOB_OUTPUTS)
     for job in JOB_OUTPUTS:
         terminate(s, job)
     iam = s.client("iam")
@@ -296,33 +346,54 @@ def cleanup(s) -> None:
     LOG.info("cleanup done")
 
 
-def main(argv: list[str] | None = None) -> None:
+def build_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("check")
-    p = sub.add_parser("launch")
+    backend = argparse.ArgumentParser(add_help=False)
+    backend.add_argument("--backend", choices=sorted(DEFAULT_TYPE), default="ec2")
+    c = sub.add_parser("check", parents=[backend])
+    c.add_argument("--type", default=None, help="sagemaker: instance type whose training quota to read")
+    p = sub.add_parser("launch", parents=[backend])
     p.add_argument("--job", default="seg")
-    p.add_argument("--type", default="g5.2xlarge")
+    p.add_argument("--type", default=None, help=f"default: {DEFAULT_TYPE['ec2']} (ec2), {DEFAULT_TYPE['sagemaker']} "
+                                                "(sagemaker)")
     p.add_argument("--max-hours", type=float, default=12.0)
-    p.add_argument("--disk-gb", type=int, default=150)
+    p.add_argument("--disk-gb", type=int, default=150, help="EBS root volume (ec2) / ML storage volume (sagemaker; "
+                                                             "instances with local NVMe such as ml.g6 use that instead)")
     p.add_argument("--env", nargs="*", default=[], help="KEY=VALUE passed to the job script")
+    p.add_argument("--image", default=None, help="sagemaker: training image URI (default: AWS PyTorch DLC "
+                                                 f"{smb.DLC_REPO}:{smb.DEFAULT_IMAGE_TAG})")
+    p.add_argument("--resume-from", default=None, help="sagemaker: earlier training job whose runs/ (last.pt) the "
+                                                       "new job continues from")
     for name in ("status", "fetch", "terminate"):
-        q = sub.add_parser(name)
+        q = sub.add_parser(name, parents=[backend])
         q.add_argument("--job", default="seg")
+        q.add_argument("--name", default=None, help="sagemaker: training job name (default: the newest for --job)")
     sub.add_parser("cleanup")
-    a = ap.parse_args(argv)
+    return ap
+
+
+def main(argv: list[str] | None = None) -> None:
+    a = build_parser().parse_args(argv)
+    if getattr(a, "job", None) is not None and a.job not in JOB_OUTPUTS:
+        sys.exit(f"unknown job {a.job!r}; known: {sorted(JOB_OUTPUTS)}")
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     s = session()
+    sm = getattr(a, "backend", "ec2") == "sagemaker"
     if a.cmd == "check":
-        print(json.dumps(check(s), indent=1))
+        info = {**identity(s), **smb.check(s, a.type or DEFAULT_TYPE["sagemaker"])} if sm else check(s)
+        print(json.dumps(info, indent=1, default=str))
+    elif a.cmd == "launch" and sm:
+        launch_sagemaker(s, a.job, a.type or DEFAULT_TYPE["sagemaker"], a.max_hours, a.env, a.disk_gb, a.image,
+                         a.resume_from)
     elif a.cmd == "launch":
-        launch(s, a.job, a.type, a.max_hours, a.env, a.disk_gb)
+        launch(s, a.job, a.type or DEFAULT_TYPE["ec2"], a.max_hours, a.env, a.disk_gb)
     elif a.cmd == "status":
-        status(s, a.job)
+        smb.status(s, a.job, a.name) if sm else status(s, a.job)
     elif a.cmd == "fetch":
-        fetch(s, a.job)
+        smb.fetch(s, a.job, REPO, JOB_OUTPUTS[a.job], a.name) if sm else fetch(s, a.job)
     elif a.cmd == "terminate":
-        terminate(s, a.job)
+        smb.stop(s, a.job, a.name) if sm else terminate(s, a.job)
     elif a.cmd == "cleanup":
         cleanup(s)
 
