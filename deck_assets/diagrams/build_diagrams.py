@@ -56,6 +56,10 @@ LOG = logging.getLogger("build_diagrams")
 OUT_DIR = Path(__file__).resolve().parent
 
 T = ps.TOKENS
+# Telemetry goes out on the control tick that follows each 1/TELEMETRY_HZ timer expiry, so the real
+# period is a whole number of ticks: every 3rd 5 Hz tick = 0.6 s (median 0.6 s in the EVAL logs,
+# results/deck_extras.json#closed_loop_eval_tier0_FULL_telemetry_period_s).
+TELEMETRY_PERIOD_S = math.ceil(D.CAMERA_HZ_BATCH / D.TELEMETRY_HZ) / D.CAMERA_HZ_BATCH
 C = {s: ps.CELL_HEX[s] for s in CellState}
 MODE = ps.MODE_COLORS
 FONT = "Inter, 'Segoe UI', Arial, sans-serif"
@@ -835,7 +839,7 @@ def slot_how_it_works() -> Svg:
         ("SENSE", [f"Stereo pair, {FACTS['cam_hz']}", "Wheel encoders + gyro"]),
         ("SEE", ["SGBM stereo depth", "Ground model", "5 terrain classes"]),
         ("KNOW THE UNSEEN", ["Seen-ground map", "Missing-ground detector"]),
-        ("LOCALIZE", ["Stereo visual odometry", "Integrity monitor → q", "Wheel / gyro EKF"]),
+        ("LOCALISE", ["Stereo visual odometry", "Integrity monitor → q", "Wheel / gyro EKF"]),
         ("DECIDE", ["MPPI planner", "Seen-distance governor", "Safety supervisor"]),
         ("ACT", ["Skid-steer mixer", "(v, ω) → wheel rad/s", "Rate limits + watchdog"]),
     ]
@@ -849,10 +853,10 @@ def slot_how_it_works() -> Svg:
         y = y0 + 92
         for row in rows:
             s.circle(x + 25, y - 5.5, 3.2, fill=T["accent"])
-            s.text(x + 37, y, row, size=16)
-            y += 24
+            s.text(x + 37, y, row, size=18)
+            y += 26
         if core:
-            s.text(x + 20, y, "Unknown is never free", size=16, weight=700, fill=T["accent"])
+            s.text(x + 20, y, "Unknown is never free", size=17, weight=700, fill=T["accent"])
         if i < 5:
             arrow_h(s, x + cw + 5, x + cw + gap - 5, y0 + 116)
     _slot_how_glyphs(s, xs, y0 + 160, cw)
@@ -871,18 +875,18 @@ def slot_how_it_works() -> Svg:
         for c, ch_ in enumerate(row):
             s.rect(gx + 4 + c * 10, gy + 2 + r * 10, 9, 9, fill=code[ch_], rx=1.5)
     tx, base = gx + 68 + 20, sy + sh / 2 + 6.5
-    s.text(tx, base - 0.5, "LINK", size=14, weight=700, fill=T["text_muted"], ls=1.2)
-    tx += measure("LINK", 14, 700, ls=1.2) + 14
-    main = f"{FACTS['telemetry_hz']} costmap → operator console"
+    s.text(tx, base - 0.5, "LINK", size=16, weight=700, fill=T["text_secondary"], ls=1.2)
+    tx += measure("LINK", 16, 700, ls=1.2) + 14
+    main = f"costmap every {TELEMETRY_PERIOD_S:g} s → console replay"
     s.text(tx, base, main, size=18, weight=700, fill=T["navy"])
     tx += measure(main, 18, 700) + 16
-    s.text(tx, base, f"{FACTS['link_kbps']} radio, not video", size=16, fill=T["text_secondary"])
+    s.text(tx, base, f"{D.LINK_KBPS:g} kbit/s link, not video", size=16, fill=T["text_secondary"])
 
     hx = xs[3]
     hw = xs[5] + cw - hx
     s.card(hx, sy, hw, sh, fill=T["surface"], stroke=T["border"], rx=12)
-    s.text(hx + 20, base - 0.5, "HEALTH MODE", size=14, weight=700, fill=T["text_muted"], ls=1.2)
-    cx = hx + 20 + measure("HEALTH MODE", 14, 700, ls=1.2) + 18
+    s.text(hx + 20, base - 0.5, "MODES", size=16, weight=700, fill=T["text_secondary"], ls=1.2)
+    cx = hx + 20 + measure("MODES", 16, 700, ls=1.2) + 16
     modes = [("NOMINAL", "NOMINAL"), ("CAUTION", "CAUTION"), ("DEGRADED", "DEGRADED"),
              ("STOP_AND_LOOK", "STOP-AND-LOOK"), ("SAFE_STOP", "SAFE-STOP")]
     ph = 34
@@ -911,7 +915,7 @@ def _slot_how_glyphs(s: Svg, xs: list[int], vy: float, cw: int) -> None:
         s.rect(cx - 28, vy, 56, 36, fill=T["bg"], stroke=T["text_secondary"], sw=1.6, rx=8)
         s.circle(cx, vy + 18, 10, fill=T["surface"], stroke=T["accent"], sw=2)
         s.circle(cx, vy + 18, 4, fill=T["accent"])
-        s.text(cx, vy + 56, lab, size=14, weight=700, fill=T["text_muted"], anchor="middle")
+        s.text(cx, vy + 56, lab, size=16, weight=700, fill=T["text_secondary"], anchor="middle")
     gy, gw = vy + 68, measure("GNSS", 15, 700) + 24
     s.rect(x + 26, gy, gw, 28, fill=T["bg"], stroke=T["text_secondary"], sw=1.4, rx=14)
     s.text(x + 26 + gw / 2, gy + 19.5, "GNSS", size=15, weight=700, fill=T["text_secondary"], anchor="middle")
@@ -925,7 +929,7 @@ def _slot_how_glyphs(s: Svg, xs: list[int], vy: float, cw: int) -> None:
           f'<stop offset="0" stop-color="{T["navy"]}"/><stop offset="1" stop-color="#DBE6FE"/></linearGradient>'
           f'<clipPath id="slotseg"><rect x="{x + cw - 24 - bw}" y="{vy}" width="{bw}" height="{bh}" rx="6"/></clipPath></defs>')
     s.rect(x + 24, vy, bw, bh, fill="url(#slotdisp)", rx=6)
-    s.text(x + 24 + bw / 2, vy + bh + 22, "depth", size=14, fill=T["text_secondary"], anchor="middle")
+    s.text(x + 24 + bw / 2, vy + bh + 22, "depth", size=16, fill=T["text_secondary"], anchor="middle")
     sx = x + cw - 24 - bw
     s.raw('<g clip-path="url(#slotseg)">')
     s.rect(sx, vy, bw, bh, fill=C[CellState.UNSEEN])
@@ -934,7 +938,7 @@ def _slot_how_glyphs(s: Svg, xs: list[int], vy: float, cw: int) -> None:
     s.raw(f'<ellipse cx="{sx + 14}" cy="{vy + 50}" rx="13" ry="6" fill="{C[CellState.WATER]}"/>')
     s.rect(sx + 74, vy + 12, 16, 17, fill=C[CellState.POSITIVE], rx=3)
     s.raw("</g>")
-    s.text(sx + bw / 2, vy + bh + 22, "5 classes", size=14, fill=T["text_secondary"], anchor="middle")
+    s.text(sx + bw / 2, vy + bh + 22, "5 classes", size=16, fill=T["text_secondary"], anchor="middle")
 
     # 3 KNOW THE UNSEEN: mini seen-ground map + key
     x = xs[2]
@@ -951,9 +955,9 @@ def _slot_how_glyphs(s: Svg, xs: list[int], vy: float, cw: int) -> None:
     key = [("seen ground", CellState.GROUND), ("unseen", CellState.UNSEEN), ("ditch", CellState.DITCH_CANDIDATE),
            ("crest", CellState.CREST_SHADOW)]
     for k, (lab, st) in enumerate(key):
-        kx, ky = x + 150, vy - 4 + k * 23
+        kx, ky = x + 144, vy - 4 + k * 24
         s.swatch(kx, ky, C[st], size=14, rx=3)
-        s.text(kx + 21, ky + 12, lab, size=14, fill=T["text_secondary"])
+        s.text(kx + 20, ky + 12.5, lab, size=16, fill=T["text_secondary"])
 
     # 4 LOCALIZE: VO track with growing uncertainty ellipses
     x = xs[3]
@@ -963,14 +967,14 @@ def _slot_how_glyphs(s: Svg, xs: list[int], vy: float, cw: int) -> None:
         s.raw(f'<ellipse cx="{px}" cy="{py}" rx="{5 + 2.6 * k:.1f}" ry="{3.5 + 1.5 * k:.1f}" fill="{T["vo_blue"]}" '
               f'fill-opacity="0.10" stroke="{T["vo_blue"]}" stroke-width="1"/>')
         s.circle(px, py, 3.4, fill=T["vo_blue"])
-    s.text(x + 22, vy + 94, "q gates VO trust + speed", size=15)
+    s.text(x + 22, vy + 94, "q gates VO trust + speed", size=16)
 
     # 5 DECIDE: seen-distance governor inequality
     x = xs[4]
     s.rect(x + 20, vy, cw - 40, 62, fill=T["surface"], stroke=T["border"], rx=10)
     s.text(x + cw / 2, vy + 26, "v²/2a + v·T_r + B", size=16, mono=True, anchor="middle")
     s.text(x + cw / 2, vy + 50, "≤ R_cert", size=16, mono=True, anchor="middle", fill=T["accent"], weight=700)
-    s.text(x + 22, vy + 94, "stop inside seen ground", size=15)
+    s.text(x + 22, vy + 94, "stop inside seen ground", size=16)
 
     # 6 ACT: top-down skid-steer glyph with wheel-speed arrows
     x = xs[5]
@@ -1068,7 +1072,7 @@ def slot_missing_ground() -> Svg:
     # callouts
     s.text(lip - 10, g_y + 26, "near lip", size=18, weight=700, anchor="end")
     s.text((lip + far) / 2, depth_y - 10, "never observed", size=18, weight=700, anchor="middle")
-    s.lines(far + 12, g_y + 30, ["far wall seen", "below the lip"], size=18, lh=22, fill=mag, weight=700)
+    s.lines(far + 12, g_y + 30, ["far wall", "seen below", "the lip"], size=18, lh=22, fill=mag, weight=700)
 
     # ---------------------------------------------------------------- right: one image column
     ix, iw = 740, 438
@@ -1103,15 +1107,16 @@ def slot_missing_ground() -> Svg:
     u_lip = next(u for u in us if ground_range(u) >= r_lip)
     ja, jb = to_px(u_lip, r_lip), to_px(u_lip, r_lip + w_d)
     s.line(ja[0] - 14, ja[1] + 2, ja[0] - 14, jb[1] + 4, stroke=T["text"], sw=1.6, arrow=True)
-    s.lines(ja[0] - 24, (ja[1] + jb[1]) / 2 - 2, ["range", "jump ≈ w"], size=18, lh=21, anchor="end", weight=700)
+    s.lines(ja[0] - 42, (ja[1] + jb[1]) / 2 - 2, ["range", "jump ≈ w"], size=18, lh=21, anchor="end", weight=700)
     u_last = max(u for u in us if r_lip <= ground_range(u) < r_lip + w_d)  # last far-wall row
     s.text(to_px(u_last, 0)[0] - 2, jb[1] - 14, "far wall: flat range", size=17, fill=mag, weight=700, anchor="end")
-    legend = [(mag, "Ditch", "far wall near lip height"),
+    legend = [(green, "Ground", "range rises smoothly"),
+              (mag, "Ditch", "far wall near lip height"),
               (C[CellState.CREST_SHADOW], "Crest", "ground reappears far below"),
               (grey, "Unseen", "never observed, never free")]
     why_x = ix + 50 + max(measure(name, 18, 700) for _, name, _ in legend) + 12  # shared column
     for k, (col, name, why) in enumerate(legend):
-        yy = ly + 290 + k * 32
+        yy = ly + 282 + k * 28
         s.swatch(ix + 22, yy - 15, col, size=18)
         s.text(ix + 50, yy, name, size=18, weight=700)
         s.text(why_x, yy, why, size=18, fill=T["text_secondary"])
