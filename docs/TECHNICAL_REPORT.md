@@ -556,168 +556,168 @@ Accuracy numbers are deterministic given the same data, code and seeds. Closed-l
 
 ## 11. References
 
-[1] Smart India Hackathon 2026, "Problem Statement SIH26126: Vision Based Autonomous Navigation for Unmanned Ground Vehicle for Outdoor environment," Bharat Electronics Limited (BEL), theme: Smart Automation, category: Software, 2026. [Online]. Available: https://sih.gov.in/ (accessed Sep. 30, 2026).
+[1] Smart India Hackathon 2026, "Problem Statement SIH26126: Vision Based Autonomous Navigation for Unmanned Ground Vehicle for Outdoor environment," Bharat Electronics Limited (BEL), theme: Smart Automation, category: Software, 2026. [Online]. Available: [https://sih.gov.in/](https://sih.gov.in/) (accessed Sep. 30, 2026).
 
-[2] Team CODETEYMONS, "METAGROSS: Seen-ground autonomy for GNSS-denied UGV navigation," source code repository (public), 2026. [Online]. Available: https://github.com/shahanxd/metagross
+[2] Team CODETEYMONS, "METAGROSS: Seen-ground autonomy for GNSS-denied UGV navigation," source code repository (public), 2026. [Online]. Available: [https://github.com/shahanxd/metagross](https://github.com/shahanxd/metagross)
 
-[3] METAGROSS, "Claims ledger," results/claims.csv (366 claims on 1 Oct 2026: 89 Tested, 271 Simulated, 5 Estimated, 1 Proposed), in [2], 2026. [Online]. Available: https://github.com/shahanxd/metagross/blob/main/results/claims.csv
+[3] METAGROSS, "Claims ledger," results/claims.csv (366 claims on 1 Oct 2026: 89 Tested, 271 Simulated, 5 Estimated, 1 Proposed), in [2], 2026. [Online]. Available: [https://github.com/shahanxd/metagross/blob/main/results/claims.csv](https://github.com/shahanxd/metagross/blob/main/results/claims.csv)
 
-[4] Directorate General of Civil Aviation, Govt. of India, "ANSS Advisory Circular AC 1 of 2023: GNSS Interference in Airspace," Ref. DGCA-21040/1/2023-ANS, New Delhi, India, Nov. 24, 2023. [Online]. Available: https://images.assettype.com/thefourthonline/2023-11/e7cf9f10-2b3b-44ed-ae92-bbf6223711de/DGCA_CIRCULAR.pdf (copy hosted by The Fourth, not the official DGCA site; accessed Sep. 30, 2026).
+[4] Directorate General of Civil Aviation, Govt. of India, "ANSS Advisory Circular AC 1 of 2023: GNSS Interference in Airspace," Ref. DGCA-21040/1/2023-ANS, New Delhi, India, Nov. 24, 2023. [Online]. Available: [https://images.assettype.com/thefourthonline/2023-11/e7cf9f10-2b3b-44ed-ae92-bbf6223711de/DGCA_CIRCULAR.pdf](https://images.assettype.com/thefourthonline/2023-11/e7cf9f10-2b3b-44ed-ae92-bbf6223711de/DGCA_CIRCULAR.pdf) (copy hosted by The Fourth, not the official DGCA site; accessed Sep. 30, 2026).
 
-[5] Ministry of Civil Aviation (M. Mohol, Minister of State), written reply in Lok Sabha on GPS interference and spoofing in the Amritsar and Jammu border region, Mar. 20, 2025. Reported in: PTI, "Several airlines operating aircraft in, around Amritsar report GPS interference: Govt," ETV Bharat, Mar. 20, 2025. [Online]. Available: https://www.etvbharat.com/en/!bharat/several-airlines-operating-aircraft-in-around-amritsar-report-gps-interference-govt-enn25032004486
+[5] Ministry of Civil Aviation (M. Mohol, Minister of State), written reply in Lok Sabha on GPS interference and spoofing in the Amritsar and Jammu border region, Mar. 20, 2025. Reported in: PTI, "Several airlines operating aircraft in, around Amritsar report GPS interference: Govt," ETV Bharat, Mar. 20, 2025. [Online]. Available: [https://www.etvbharat.com/en/!bharat/several-airlines-operating-aircraft-in-around-amritsar-report-gps-interference-govt-enn25032004486](https://www.etvbharat.com/en/!bharat/several-airlines-operating-aircraft-in-around-amritsar-report-gps-interference-govt-enn25032004486)
 
-[6] Ministry of Civil Aviation (M. Mohol, Minister of State), written reply in Lok Sabha on GPS interference reports, Mar. 12, 2026: 2,354 reports from Nov. 2023 to Dec. 2025 and 623 around Delhi airspace in Jan.–Feb. 2026. Reported in: "Airlines report 623 incidents of GPS spoofing in Delhi airspace during January–February," Zee News, Mar. 12, 2026. [Online]. Available: https://zeenews.india.com/mobility/airlines-report-623-incidents-of-gps-spoofing-in-delhi-airspace-during-january-february-3026222.html
+[6] Ministry of Civil Aviation (M. Mohol, Minister of State), written reply in Lok Sabha on GPS interference reports, Mar. 12, 2026: 2,354 reports from Nov. 2023 to Dec. 2025 and 623 around Delhi airspace in Jan.–Feb. 2026. Reported in: "Airlines report 623 incidents of GPS spoofing in Delhi airspace during January–February," Zee News, Mar. 12, 2026. [Online]. Available: [https://zeenews.india.com/mobility/airlines-report-623-incidents-of-gps-spoofing-in-delhi-airspace-during-january-february-3026222.html](https://zeenews.india.com/mobility/airlines-report-623-incidents-of-gps-spoofing-in-delhi-airspace-during-january-february-3026222.html)
 
-[7] All India Radio News, "Civil Aviation Minister informs Rajya Sabha of GPS spoofing near IGI Airport; DGCA issues SOP," newsonair.gov.in, Dec. 1, 2025. [Online]. Available: https://www.newsonair.gov.in/civil-aviation-minister-informs-rajya-sabha-of-gps-spoofing-near-igi-airport-dgca-issues-sop
+[7] All India Radio News, "Civil Aviation Minister informs Rajya Sabha of GPS spoofing near IGI Airport; DGCA issues SOP," newsonair.gov.in, Dec. 1, 2025. [Online]. Available: [https://www.newsonair.gov.in/civil-aviation-minister-informs-rajya-sabha-of-gps-spoofing-near-igi-airport-dgca-issues-sop](https://www.newsonair.gov.in/civil-aviation-minister-informs-rajya-sabha-of-gps-spoofing-near-igi-airport-dgca-issues-sop)
 
-[8] T. Cozzens, "India's IRNSS-1F satellite fails after atomic clock malfunction," GPS World, Mar. 16, 2026 (quoting ISRO). [Online]. Available: https://www.gpsworld.com/indias-irnss-1f-satellite-fails-after-atomic-clock-malfunction/
+[8] T. Cozzens, "India's IRNSS-1F satellite fails after atomic clock malfunction," GPS World, Mar. 16, 2026 (quoting ISRO). [Online]. Available: [https://www.gpsworld.com/indias-irnss-1f-satellite-fails-after-atomic-clock-malfunction/](https://www.gpsworld.com/indias-irnss-1f-satellite-fails-after-atomic-clock-malfunction/)
 
-[9] Bharat Electronics Ltd., "Robotic Surveillance Platform," product page. [Online]. Available: https://bel-india.in/product/robotic-surveillance-platform/ (accessed Sep. 30, 2026).
+[9] Bharat Electronics Ltd., "Robotic Surveillance Platform," product page. [Online]. Available: [https://bel-india.in/product/robotic-surveillance-platform/](https://bel-india.in/product/robotic-surveillance-platform/) (accessed Sep. 30, 2026).
 
-[10] A. Rankin, A. Huertas, L. Matthies, M. Bajracharya, C. Assad, S. Brennan, P. Bellutta, and G. W. Sherwin, "Unmanned ground vehicle perception using thermal infrared cameras," in Proc. SPIE 8045, Unmanned Systems Technology XIII, 2011, Art. no. 804503, doi: 10.1117/12.884349.
+[10] A. Rankin, A. Huertas, L. Matthies, M. Bajracharya, C. Assad, S. Brennan, P. Bellutta, and G. W. Sherwin, "Unmanned ground vehicle perception using thermal infrared cameras," in Proc. SPIE 8045, Unmanned Systems Technology XIII, 2011, Art. no. 804503, doi: [10.1117/12.884349](https://doi.org/10.1117/12.884349).
 
-[11] Stereolabs Inc., "ZED 2i stereo camera," product page. [Online]. Available: https://www.stereolabs.com/store/products/zed-2i (accessed Sep. 30, 2026).
+[11] Stereolabs Inc., "ZED 2i stereo camera," product page. [Online]. Available: [https://www.stereolabs.com/store/products/zed-2i](https://www.stereolabs.com/store/products/zed-2i) (accessed Sep. 30, 2026).
 
-[12] Luxonis, "OAK-D Lite," hardware documentation. [Online]. Available: https://docs.luxonis.com/hardware/products/OAK-D%20Lite (accessed Sep. 30, 2026).
+[12] Luxonis, "OAK-D Lite," hardware documentation. [Online]. Available: [https://docs.luxonis.com/hardware/products/OAK-D%20Lite](https://docs.luxonis.com/hardware/products/OAK-D%20Lite) (accessed Sep. 30, 2026).
 
-[13] NVIDIA Corp., "Jetson Orin Nano Super Developer Kit," product page. [Online]. Available: https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/ (accessed Sep. 30, 2026).
+[13] NVIDIA Corp., "Jetson Orin Nano Super Developer Kit," product page. [Online]. Available: [https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/) (accessed Sep. 30, 2026).
 
-[14] K. Zuiderveld, "Contrast limited adaptive histogram equalization," in Graphics Gems IV, P. S. Heckbert, Ed. San Diego, CA, USA: Academic Press, 1994, pp. 474–485. [Online]. Available: https://dl.acm.org/doi/10.5555/180895.180940
+[14] K. Zuiderveld, "Contrast limited adaptive histogram equalization," in Graphics Gems IV, P. S. Heckbert, Ed. San Diego, CA, USA: Academic Press, 1994, pp. 474–485. [Online]. Available: [https://dl.acm.org/doi/10.5555/180895.180940](https://dl.acm.org/doi/10.5555/180895.180940)
 
-[15] G. Bradski, "The OpenCV Library," Dr. Dobb's J. Softw. Tools, vol. 25, no. 11, pp. 120–125, Nov. 2000. (Used: opencv-python-headless 5.0.0.93, Apache-2.0.) [Online]. Available: https://opencv.org/
+[15] G. Bradski, "The OpenCV Library," Dr. Dobb's J. Softw. Tools, vol. 25, no. 11, pp. 120–125, Nov. 2000. (Used: opencv-python-headless 5.0.0.93, Apache-2.0.) [Online]. Available: [https://opencv.org/](https://opencv.org/)
 
-[16] H. Hirschmüller, "Stereo processing by semiglobal matching and mutual information," IEEE Trans. Pattern Anal. Mach. Intell., vol. 30, no. 2, pp. 328–341, Feb. 2008, doi: 10.1109/TPAMI.2007.1166.
+[16] H. Hirschmüller, "Stereo processing by semiglobal matching and mutual information," IEEE Trans. Pattern Anal. Mach. Intell., vol. 30, no. 2, pp. 328–341, Feb. 2008, doi: [10.1109/TPAMI.2007.1166](https://doi.org/10.1109/TPAMI.2007.1166).
 
-[17] R. Labayrade, D. Aubert, and J.-P. Tarel, "Real time obstacle detection in stereovision on non flat road geometry through 'v-disparity' representation," in Proc. IEEE Intell. Vehicle Symp. (IV), Versailles, France, 2002, vol. 2, pp. 646–651, doi: 10.1109/IVS.2002.1188024.
+[17] R. Labayrade, D. Aubert, and J.-P. Tarel, "Real time obstacle detection in stereovision on non flat road geometry through 'v-disparity' representation," in Proc. IEEE Intell. Vehicle Symp. (IV), Versailles, France, 2002, vol. 2, pp. 646–651, doi: [10.1109/IVS.2002.1188024](https://doi.org/10.1109/IVS.2002.1188024).
 
-[18] M. A. Fischler and R. C. Bolles, "Random sample consensus: A paradigm for model fitting with applications to image analysis and automated cartography," Commun. ACM, vol. 24, no. 6, pp. 381–395, Jun. 1981, doi: 10.1145/358669.358692.
+[18] M. A. Fischler and R. C. Bolles, "Random sample consensus: A paradigm for model fitting with applications to image analysis and automated cartography," Commun. ACM, vol. 24, no. 6, pp. 381–395, Jun. 1981, doi: [10.1145/358669.358692](https://doi.org/10.1145/358669.358692).
 
-[19] K. Zhang, S.-C. Chen, D. Whitman, M.-L. Shyu, J. Yan, and C. Zhang, "A progressive morphological filter for removing nonground measurements from airborne LIDAR data," IEEE Trans. Geosci. Remote Sens., vol. 41, no. 4, pp. 872–882, Apr. 2003, doi: 10.1109/TGRS.2003.810682.
+[19] K. Zhang, S.-C. Chen, D. Whitman, M.-L. Shyu, J. Yan, and C. Zhang, "A progressive morphological filter for removing nonground measurements from airborne LIDAR data," IEEE Trans. Geosci. Remote Sens., vol. 41, no. 4, pp. 872–882, Apr. 2003, doi: [10.1109/TGRS.2003.810682](https://doi.org/10.1109/TGRS.2003.810682).
 
-[20] A. Howard et al., "Searching for MobileNetV3," in Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV), Seoul, South Korea, 2019, pp. 1314–1324, doi: 10.1109/ICCV.2019.00140.
+[20] A. Howard et al., "Searching for MobileNetV3," in Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV), Seoul, South Korea, 2019, pp. 1314–1324, doi: [10.1109/ICCV.2019.00140](https://doi.org/10.1109/ICCV.2019.00140).
 
-[21] ONNX Runtime developers, "ONNX Runtime," 2021. [Online]. Available: https://onnxruntime.ai/ (used: v1.23.2, MIT).
+[21] ONNX Runtime developers, "ONNX Runtime," 2021. [Online]. Available: [https://onnxruntime.ai/](https://onnxruntime.ai/) (used: v1.23.2, MIT).
 
-[22] T. Guan, D. Kothandaraman, R. Chandra, A. J. Sathyamoorthy, K. Weerakoon, and D. Manocha, "GA-Nav: Efficient terrain segmentation for robot navigation in unstructured outdoor environments," IEEE Robot. Autom. Lett., vol. 7, no. 3, pp. 8138–8145, Jul. 2022, doi: 10.1109/LRA.2022.3187278.
+[22] T. Guan, D. Kothandaraman, R. Chandra, A. J. Sathyamoorthy, K. Weerakoon, and D. Manocha, "GA-Nav: Efficient terrain segmentation for robot navigation in unstructured outdoor environments," IEEE Robot. Autom. Lett., vol. 7, no. 3, pp. 8138–8145, Jul. 2022, doi: [10.1109/LRA.2022.3187278](https://doi.org/10.1109/LRA.2022.3187278).
 
-[23] J. Frey, M. Mattamala, N. Chebrolu, C. Cadena, M. Fallon, and M. Hutter, "Fast traversability estimation for wild visual navigation," in Proc. Robot.: Sci. Syst. (RSS XIX), Daegu, South Korea, 2023, doi: 10.15607/RSS.2023.XIX.054.
+[23] J. Frey, M. Mattamala, N. Chebrolu, C. Cadena, M. Fallon, and M. Hutter, "Fast traversability estimation for wild visual navigation," in Proc. Robot.: Sci. Syst. (RSS XIX), Daegu, South Korea, 2023, doi: [10.15607/RSS.2023.XIX.054](https://doi.org/10.15607/RSS.2023.XIX.054).
 
-[24] X. Meng et al., "TerrainNet: Visual modeling of complex terrain for high-speed, off-road navigation," in Proc. Robot.: Sci. Syst. (RSS XIX), Daegu, South Korea, 2023, doi: 10.15607/RSS.2023.XIX.103.
+[24] X. Meng et al., "TerrainNet: Visual modeling of complex terrain for high-speed, off-road navigation," in Proc. Robot.: Sci. Syst. (RSS XIX), Daegu, South Korea, 2023, doi: [10.15607/RSS.2023.XIX.103](https://doi.org/10.15607/RSS.2023.XIX.103).
 
-[25] S. Triest, M. Sivaprakasam, S. Aich, D. Fan, W. Wang, and S. Scherer, "Velociraptor: Leveraging visual foundation models for label-free, risk-aware off-road navigation," in Proc. 8th Conf. Robot Learn. (CoRL), PMLR, vol. 270, 2025, pp. 4483–4494. [Online]. Available: https://proceedings.mlr.press/v270/triest25a.html
+[25] S. Triest, M. Sivaprakasam, S. Aich, D. Fan, W. Wang, and S. Scherer, "Velociraptor: Leveraging visual foundation models for label-free, risk-aware off-road navigation," in Proc. 8th Conf. Robot Learn. (CoRL), PMLR, vol. 270, 2025, pp. 4483–4494. [Online]. Available: [https://proceedings.mlr.press/v270/triest25a.html](https://proceedings.mlr.press/v270/triest25a.html)
 
-[26] L. Matthies and A. Rankin, "Negative obstacle detection by thermal signature," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), Las Vegas, NV, USA, 2003, vol. 1, pp. 906–913, doi: 10.1109/IROS.2003.1250744.
+[26] L. Matthies and A. Rankin, "Negative obstacle detection by thermal signature," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), Las Vegas, NV, USA, 2003, vol. 1, pp. 906–913, doi: [10.1109/IROS.2003.1250744](https://doi.org/10.1109/IROS.2003.1250744).
 
-[27] A. L. Rankin, A. Huertas, and L. H. Matthies, "Night-time negative obstacle detection for off-road autonomous navigation," in Proc. SPIE 6561, Unmanned Systems Technology IX, 2007, Art. no. 656103, doi: 10.1117/12.720513.
+[27] A. L. Rankin, A. Huertas, and L. H. Matthies, "Night-time negative obstacle detection for off-road autonomous navigation," in Proc. SPIE 6561, Unmanned Systems Technology IX, 2007, Art. no. 656103, doi: [10.1117/12.720513](https://doi.org/10.1117/12.720513).
 
-[28] J. Shi and C. Tomasi, "Good features to track," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Seattle, WA, USA, 1994, pp. 593–600, doi: 10.1109/CVPR.1994.323794.
+[28] J. Shi and C. Tomasi, "Good features to track," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Seattle, WA, USA, 1994, pp. 593–600, doi: [10.1109/CVPR.1994.323794](https://doi.org/10.1109/CVPR.1994.323794).
 
-[29] B. D. Lucas and T. Kanade, "An iterative image registration technique with an application to stereo vision," in Proc. 7th Int. Joint Conf. Artif. Intell. (IJCAI), Vancouver, BC, Canada, 1981, vol. 2, pp. 674–679.
+[29] B. D. Lucas and T. Kanade, "An iterative image registration technique with an application to stereo vision," in Proc. 7th Int. Joint Conf. Artif. Intell. (IJCAI), Vancouver, BC, Canada, 1981, vol. 2, pp. 674–679. [Online]. Available: [https://www.ijcai.org/Proceedings/81-2/Papers/017.pdf](https://www.ijcai.org/Proceedings/81-2/Papers/017.pdf)
 
-[30] J.-Y. Bouguet, "Pyramidal implementation of the Lucas Kanade feature tracker: Description of the algorithm," Intel Corp., Microprocessor Research Labs, Tech. Rep., 2000. [Online]. Available: http://robots.stanford.edu/cs223b04/algo_tracking.pdf
+[30] J.-Y. Bouguet, "Pyramidal implementation of the Lucas Kanade feature tracker: Description of the algorithm," Intel Corp., Microprocessor Research Labs, Tech. Rep., 2000. [Online]. Available: [http://robots.stanford.edu/cs223b04/algo_tracking.pdf](http://robots.stanford.edu/cs223b04/algo_tracking.pdf)
 
-[31] Z. Kalal, K. Mikolajczyk, and J. Matas, "Forward-backward error: Automatic detection of tracking failures," in Proc. 20th Int. Conf. Pattern Recognit. (ICPR), Istanbul, Turkey, 2010, pp. 2756–2759, doi: 10.1109/ICPR.2010.675.
+[31] Z. Kalal, K. Mikolajczyk, and J. Matas, "Forward-backward error: Automatic detection of tracking failures," in Proc. 20th Int. Conf. Pattern Recognit. (ICPR), Istanbul, Turkey, 2010, pp. 2756–2759, doi: [10.1109/ICPR.2010.675](https://doi.org/10.1109/ICPR.2010.675).
 
-[32] T. Ke and S. I. Roumeliotis, "An efficient algebraic solution to the perspective-three-point problem," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Honolulu, HI, USA, 2017, pp. 4618–4626, doi: 10.1109/CVPR.2017.491.
+[32] T. Ke and S. I. Roumeliotis, "An efficient algebraic solution to the perspective-three-point problem," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Honolulu, HI, USA, 2017, pp. 4618–4626, doi: [10.1109/CVPR.2017.491](https://doi.org/10.1109/CVPR.2017.491).
 
-[33] M. Maimone, Y. Cheng, and L. Matthies, "Two years of visual odometry on the Mars Exploration Rovers," J. Field Robot., vol. 24, no. 3, pp. 169–186, Mar. 2007, doi: 10.1002/rob.20184.
+[33] M. Maimone, Y. Cheng, and L. Matthies, "Two years of visual odometry on the Mars Exploration Rovers," J. Field Robot., vol. 24, no. 3, pp. 169–186, Mar. 2007, doi: [10.1002/rob.20184](https://doi.org/10.1002/rob.20184).
 
-[34] C. Campos, R. Elvira, J. J. Gómez Rodríguez, J. M. M. Montiel, and J. D. Tardós, "ORB-SLAM3: An accurate open-source library for visual, visual–inertial, and multimap SLAM," IEEE Trans. Robot., vol. 37, no. 6, pp. 1874–1890, Dec. 2021, doi: 10.1109/TRO.2021.3075644.
+[34] C. Campos, R. Elvira, J. J. Gómez Rodríguez, J. M. M. Montiel, and J. D. Tardós, "ORB-SLAM3: An accurate open-source library for visual, visual–inertial, and multimap SLAM," IEEE Trans. Robot., vol. 37, no. 6, pp. 1874–1890, Dec. 2021, doi: [10.1109/TRO.2021.3075644](https://doi.org/10.1109/TRO.2021.3075644).
 
-[35] F. Schmidt, C. Blessing, M. Enzweiler, and A. Valada, "Visual-inertial SLAM for unstructured outdoor environments: Benchmarking the benefits and computational costs of loop closing," J. Field Robot., vol. 42, no. 7, pp. 3726–3747, 2025, doi: 10.1002/rob.22581.
+[35] F. Schmidt, C. Blessing, M. Enzweiler, and A. Valada, "Visual-inertial SLAM for unstructured outdoor environments: Benchmarking the benefits and computational costs of loop closing," J. Field Robot., vol. 42, no. 7, pp. 3726–3747, 2025, doi: [10.1002/rob.22581](https://doi.org/10.1002/rob.22581).
 
-[36] M. Jaimez and J. Gonzalez-Jimenez, "Fast visual odometry for 3-D range sensors," IEEE Trans. Robot., vol. 31, no. 4, pp. 809–822, Aug. 2015, doi: 10.1109/TRO.2015.2428512.
+[36] M. Jaimez and J. Gonzalez-Jimenez, "Fast visual odometry for 3-D range sensors," IEEE Trans. Robot., vol. 31, no. 4, pp. 809–822, Aug. 2015, doi: [10.1109/TRO.2015.2428512](https://doi.org/10.1109/TRO.2015.2428512).
 
-[37] S. Thrun, W. Burgard, and D. Fox, Probabilistic Robotics. Cambridge, MA, USA: MIT Press, 2005, ISBN 978-0-262-20162-9.
+[37] S. Thrun, W. Burgard, and D. Fox, Probabilistic Robotics. Cambridge, MA, USA: MIT Press, 2005, ISBN 978-0-262-20162-9. [Online]. Available: [https://mitpress.mit.edu/9780262201629/probabilistic-robotics/](https://mitpress.mit.edu/9780262201629/probabilistic-robotics/)
 
-[38] A. Mandow, J. L. Martínez, J. Morales, J. L. Blanco, A. García-Cerezo, and J. González, "Experimental kinematics for wheeled skid-steer mobile robots," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), San Diego, CA, USA, 2007, pp. 1222–1227, doi: 10.1109/IROS.2007.4399139.
+[38] A. Mandow, J. L. Martínez, J. Morales, J. L. Blanco, A. García-Cerezo, and J. González, "Experimental kinematics for wheeled skid-steer mobile robots," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), San Diego, CA, USA, 2007, pp. 1222–1227, doi: [10.1109/IROS.2007.4399139](https://doi.org/10.1109/IROS.2007.4399139).
 
-[39] R. G. Brown, "A baseline GPS RAIM scheme and a note on the equivalence of three RAIM methods," NAVIGATION, J. Inst. Navig., vol. 39, no. 3, pp. 301–316, 1992, doi: 10.1002/j.2161-4296.1992.tb02278.x.
+[39] R. G. Brown, "A baseline GPS RAIM scheme and a note on the equivalence of three RAIM methods," NAVIGATION, J. Inst. Navig., vol. 39, no. 3, pp. 301–316, 1992, doi: [10.1002/j.2161-4296.1992.tb02278.x](https://doi.org/10.1002/j.2161-4296.1992.tb02278.x).
 
-[40] K. He, J. Sun, and X. Tang, "Single image haze removal using dark channel prior," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Miami, FL, USA, 2009, pp. 1956–1963, doi: 10.1109/CVPR.2009.5206515.
+[40] K. He, J. Sun, and X. Tang, "Single image haze removal using dark channel prior," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Miami, FL, USA, 2009, pp. 1956–1963, doi: [10.1109/CVPR.2009.5206515](https://doi.org/10.1109/CVPR.2009.5206515).
 
-[41] F. Pedregosa et al., "Scikit-learn: Machine learning in Python," J. Mach. Learn. Res., vol. 12, pp. 2825–2830, 2011. [Online]. Available: https://www.jmlr.org/papers/v12/pedregosa11a.html
+[41] F. Pedregosa et al., "Scikit-learn: Machine learning in Python," J. Mach. Learn. Res., vol. 12, pp. 2825–2830, 2011. [Online]. Available: [https://www.jmlr.org/papers/v12/pedregosa11a.html](https://www.jmlr.org/papers/v12/pedregosa11a.html)
 
 [42] H. Koschmieder, "Theorie der horizontalen Sichtweite," Beiträge zur Physik der freien Atmosphäre, vol. 12, pp. 33–53, 1924.
 
-[43] J. C. Platt, "Probabilities for SV machines," in Advances in Large-Margin Classifiers, A. J. Smola, P. L. Bartlett, B. Schölkopf, and D. Schuurmans, Eds. Cambridge, MA, USA: MIT Press, 2000, pp. 61–74, doi: 10.7551/mitpress/1113.003.0008. (Widely cited under its preprint title, "Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods," 1999.)
+[43] J. C. Platt, "Probabilities for SV machines," in Advances in Large-Margin Classifiers, A. J. Smola, P. L. Bartlett, B. Schölkopf, and D. Schuurmans, Eds. Cambridge, MA, USA: MIT Press, 2000, pp. 61–74, doi: [10.7551/mitpress/1113.003.0008](https://doi.org/10.7551/mitpress/1113.003.0008). (Widely cited under its preprint title, "Probabilistic outputs for support vector machines and comparisons to regularized likelihood methods," 1999.)
 
-[44] E. W. Dijkstra, "A note on two problems in connexion with graphs," Numer. Math., vol. 1, pp. 269–271, 1959, doi: 10.1007/BF01386390.
+[44] E. W. Dijkstra, "A note on two problems in connexion with graphs," Numer. Math., vol. 1, pp. 269–271, 1959, doi: [10.1007/BF01386390](https://doi.org/10.1007/BF01386390).
 
-[45] S. van der Walt et al., "scikit-image: Image processing in Python," PeerJ, vol. 2, Art. no. e453, 2014, doi: 10.7717/peerj.453.
+[45] S. van der Walt et al., "scikit-image: Image processing in Python," PeerJ, vol. 2, Art. no. e453, 2014, doi: [10.7717/peerj.453](https://doi.org/10.7717/peerj.453).
 
-[46] G. Williams, P. Drews, B. Goldfain, J. M. Rehg, and E. A. Theodorou, "Aggressive driving with model predictive path integral control," in Proc. IEEE Int. Conf. Robot. Autom. (ICRA), Stockholm, Sweden, 2016, pp. 1433–1440, doi: 10.1109/ICRA.2016.7487277.
+[46] G. Williams, P. Drews, B. Goldfain, J. M. Rehg, and E. A. Theodorou, "Aggressive driving with model predictive path integral control," in Proc. IEEE Int. Conf. Robot. Autom. (ICRA), Stockholm, Sweden, 2016, pp. 1433–1440, doi: [10.1109/ICRA.2016.7487277](https://doi.org/10.1109/ICRA.2016.7487277).
 
-[47] A. Savitzky and M. J. E. Golay, "Smoothing and differentiation of data by simplified least squares procedures," Anal. Chem., vol. 36, no. 8, pp. 1627–1639, 1964, doi: 10.1021/ac60214a047.
+[47] A. Savitzky and M. J. E. Golay, "Smoothing and differentiation of data by simplified least squares procedures," Anal. Chem., vol. 36, no. 8, pp. 1627–1639, 1964, doi: [10.1021/ac60214a047](https://doi.org/10.1021/ac60214a047).
 
-[48] G. Williams, B. Goldfain, P. Drews, K. Saigol, J. M. Rehg, and E. A. Theodorou, "Robust sampling based model predictive control with sparse objective information," in Proc. Robot.: Sci. Syst. (RSS XIV), Pittsburgh, PA, USA, 2018, doi: 10.15607/RSS.2018.XIV.042.
+[48] G. Williams, B. Goldfain, P. Drews, K. Saigol, J. M. Rehg, and E. A. Theodorou, "Robust sampling based model predictive control with sparse objective information," in Proc. Robot.: Sci. Syst. (RSS XIV), Pittsburgh, PA, USA, 2018, doi: [10.15607/RSS.2018.XIV.042](https://doi.org/10.15607/RSS.2018.XIV.042).
 
-[49] E. Trevisan and J. Alonso-Mora, "Biased-MPPI: Informing sampling-based model predictive control by fusing ancillary controllers," IEEE Robot. Autom. Lett., vol. 9, no. 6, pp. 5871–5878, Jun. 2024, doi: 10.1109/LRA.2024.3397083.
+[49] E. Trevisan and J. Alonso-Mora, "Biased-MPPI: Informing sampling-based model predictive control by fusing ancillary controllers," IEEE Robot. Autom. Lett., vol. 9, no. 6, pp. 5871–5878, Jun. 2024, doi: [10.1109/LRA.2024.3397083](https://doi.org/10.1109/LRA.2024.3397083).
 
-[50] three.js authors, "three.js: JavaScript 3D library," release r186, 2026, MIT licence. [Online]. Available: https://github.com/mrdoob/three.js/releases/tag/r186
+[50] three.js authors, "three.js: JavaScript 3D library," release r186, 2026, MIT licence. [Online]. Available: [https://github.com/mrdoob/three.js/releases/tag/r186](https://github.com/mrdoob/three.js/releases/tag/r186)
 
-[51] Microsoft, "Playwright for Python," GitHub repository, Apache-2.0. [Online]. Available: https://github.com/microsoft/playwright-python (version not pinned; see pyproject.toml).
+[51] Microsoft, "Playwright for Python," GitHub repository, Apache-2.0. [Online]. Available: [https://github.com/microsoft/playwright-python](https://github.com/microsoft/playwright-python) (version not pinned; see pyproject.toml).
 
-[52] METAGROSS, "EVAL pre-registration and record," docs/EVAL_PREREGISTRATION.md, in [2], 2026 (manifest committed in c14e23f before any EVAL run; run 1 at 3cd62df: FULL 17/60, TYPICAL 15/60, superseded; run 2 at stack commit 45ec399: FULL 33/60, TYPICAL 31/60; protocol deviation disclosed). [Online]. Available: https://github.com/shahanxd/metagross/blob/main/docs/EVAL_PREREGISTRATION.md
+[52] METAGROSS, "EVAL pre-registration and record," docs/EVAL_PREREGISTRATION.md, in [2], 2026 (manifest committed in c14e23f before any EVAL run; run 1 at 3cd62df: FULL 17/60, TYPICAL 15/60, superseded; run 2 at stack commit 45ec399: FULL 33/60, TYPICAL 31/60; protocol deviation disclosed). [Online]. Available: [https://github.com/shahanxd/metagross/blob/main/docs/EVAL_PREREGISTRATION.md](https://github.com/shahanxd/metagross/blob/main/docs/EVAL_PREREGISTRATION.md)
 
-[53] METAGROSS, "Scenario manifest (60 EVAL seeds 0–59, 30 DEV seeds 100–129, SHA-256 per scenario)," results/scenario_manifest.json, in [2], 2026. [Online]. Available: https://github.com/shahanxd/metagross/blob/main/results/scenario_manifest.json
+[53] METAGROSS, "Scenario manifest (60 EVAL seeds 0–59, 30 DEV seeds 100–129, SHA-256 per scenario)," results/scenario_manifest.json, in [2], 2026. [Online]. Available: [https://github.com/shahanxd/metagross/blob/main/results/scenario_manifest.json](https://github.com/shahanxd/metagross/blob/main/results/scenario_manifest.json)
 
-[54] A. Geiger, P. Lenz, and R. Urtasun, "Are we ready for autonomous driving? The KITTI vision benchmark suite," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Providence, RI, USA, 2012, pp. 3354–3361, doi: 10.1109/CVPR.2012.6248074.
+[54] A. Geiger, P. Lenz, and R. Urtasun, "Are we ready for autonomous driving? The KITTI vision benchmark suite," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Providence, RI, USA, 2012, pp. 3354–3361, doi: [10.1109/CVPR.2012.6248074](https://doi.org/10.1109/CVPR.2012.6248074).
 
-[55] A. Geiger, P. Lenz, C. Stiller, and R. Urtasun, "KITTI Visual Odometry / SLAM Evaluation 2012," The KITTI Vision Benchmark Suite, licensed CC BY-NC-SA 3.0. [Online]. Available: https://www.cvlibs.net/datasets/kitti/eval_odometry.php (accessed Sep. 30, 2026).
+[55] A. Geiger, P. Lenz, C. Stiller, and R. Urtasun, "KITTI Visual Odometry / SLAM Evaluation 2012," The KITTI Vision Benchmark Suite, licensed CC BY-NC-SA 3.0. [Online]. Available: [https://www.cvlibs.net/datasets/kitti/eval_odometry.php](https://www.cvlibs.net/datasets/kitti/eval_odometry.php) (accessed Sep. 30, 2026).
 
-[56] H. Zhan, "kitti-odom-eval: KITTI odometry evaluation toolbox," GitHub repository, MIT licence. [Online]. Available: https://github.com/Huangying-Zhan/kitti-odom-eval
+[56] H. Zhan, "kitti-odom-eval: KITTI odometry evaluation toolbox," GitHub repository, MIT licence. [Online]. Available: [https://github.com/Huangying-Zhan/kitti-odom-eval](https://github.com/Huangying-Zhan/kitti-odom-eval)
 
-[57] A. Geiger, J. Ziegler, and C. Stiller, "StereoScan: Dense 3D reconstruction in real-time," in Proc. IEEE Intell. Vehicles Symp. (IV), Baden-Baden, Germany, 2011, pp. 963–968, doi: 10.1109/IVS.2011.5940405.
+[57] A. Geiger, J. Ziegler, and C. Stiller, "StereoScan: Dense 3D reconstruction in real-time," in Proc. IEEE Intell. Vehicles Symp. (IV), Baden-Baden, Germany, 2011, pp. 963–968, doi: [10.1109/IVS.2011.5940405](https://doi.org/10.1109/IVS.2011.5940405).
 
-[58] R. Mur-Artal and J. D. Tardós, "ORB-SLAM2: An open-source SLAM system for monocular, stereo, and RGB-D cameras," IEEE Trans. Robot., vol. 33, no. 5, pp. 1255–1262, Oct. 2017, doi: 10.1109/TRO.2017.2705103.
+[58] R. Mur-Artal and J. D. Tardós, "ORB-SLAM2: An open-source SLAM system for monocular, stereo, and RGB-D cameras," IEEE Trans. Robot., vol. 33, no. 5, pp. 1255–1262, Oct. 2017, doi: [10.1109/TRO.2017.2705103](https://doi.org/10.1109/TRO.2017.2705103).
 
-[59] M. Wigness, S. Eum, J. G. Rogers, D. Han, and H. Kwon, "A RUGD dataset for autonomous navigation and visual perception in unstructured outdoor environments," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), Macau, China, 2019, pp. 5000–5007, doi: 10.1109/IROS40897.2019.8968283.
+[59] M. Wigness, S. Eum, J. G. Rogers, D. Han, and H. Kwon, "A RUGD dataset for autonomous navigation and visual perception in unstructured outdoor environments," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), Macau, China, 2019, pp. 5000–5007, doi: [10.1109/IROS40897.2019.8968283](https://doi.org/10.1109/IROS40897.2019.8968283).
 
-[60] GAIA-URJC, "RUGD-5Labels-resized," Hugging Face dataset, 2025, HF licence tag CC BY-NC-SA 3.0 (the uploader's tag; a relabelled mirror of RUGD [59]). [Online]. Available: https://huggingface.co/datasets/GAIA-URJC/RUGD-5Labels-resized
+[60] GAIA-URJC, "RUGD-5Labels-resized," Hugging Face dataset, 2025, HF licence tag CC BY-NC-SA 3.0 (the uploader's tag; a relabelled mirror of RUGD [59]). [Online]. Available: [https://huggingface.co/datasets/GAIA-URJC/RUGD-5Labels-resized](https://huggingface.co/datasets/GAIA-URJC/RUGD-5Labels-resized)
 
-[61] METAGROSS, "Model card: METAGROSS terrain segmenter," docs/MODEL_CARD.md, in [2], 2026. [Online]. Available: https://github.com/shahanxd/metagross/blob/main/docs/MODEL_CARD.md
+[61] METAGROSS, "Model card: METAGROSS terrain segmenter," docs/MODEL_CARD.md, in [2], 2026. [Online]. Available: [https://github.com/shahanxd/metagross/blob/main/docs/MODEL_CARD.md](https://github.com/shahanxd/metagross/blob/main/docs/MODEL_CARD.md)
 
-[62] E. Xie, W. Wang, Z. Yu, A. Anandkumar, J. M. Alvarez, and P. Luo, "SegFormer: Simple and efficient design for semantic segmentation with transformers," in Advances in Neural Information Processing Systems (NeurIPS), vol. 34, 2021, pp. 12077–12090. [Online]. Available: https://proceedings.neurips.cc/paper/2021/hash/64f1f27bf1b4ec22924fd0acb550c235-Abstract.html
+[62] E. Xie, W. Wang, Z. Yu, A. Anandkumar, J. M. Alvarez, and P. Luo, "SegFormer: Simple and efficient design for semantic segmentation with transformers," in Advances in Neural Information Processing Systems (NeurIPS), vol. 34, 2021, pp. 12077–12090. [Online]. Available: [https://proceedings.neurips.cc/paper/2021/hash/64f1f27bf1b4ec22924fd0acb550c235-Abstract.html](https://proceedings.neurips.cc/paper/2021/hash/64f1f27bf1b4ec22924fd0acb550c235-Abstract.html)
 
-[63] B. Zhou, H. Zhao, X. Puig, S. Fidler, A. Barriuso, and A. Torralba, "Scene parsing through ADE20K dataset," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Honolulu, HI, USA, 2017, pp. 5122–5130, doi: 10.1109/CVPR.2017.544.
+[63] B. Zhou, H. Zhao, X. Puig, S. Fidler, A. Barriuso, and A. Torralba, "Scene parsing through ADE20K dataset," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Honolulu, HI, USA, 2017, pp. 5122–5130, doi: [10.1109/CVPR.2017.544](https://doi.org/10.1109/CVPR.2017.544).
 
-[64] NVIDIA (weights; model card by Hugging Face), "nvidia/segformer-b0-finetuned-ade-512-512," Hugging Face model, licence: other (NVIDIA Source Code License for SegFormer, non-commercial). [Online]. Available: https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512 (accessed Sep. 30, 2026). ONNX export used: Xenova/segformer-b0-finetuned-ade-512-512.
+[64] NVIDIA (weights; model card by Hugging Face), "nvidia/segformer-b0-finetuned-ade-512-512," Hugging Face model, licence: other (NVIDIA Source Code License for SegFormer, non-commercial). [Online]. Available: [https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512](https://huggingface.co/nvidia/segformer-b0-finetuned-ade-512-512) (accessed Sep. 30, 2026). ONNX export used: Xenova/segformer-b0-finetuned-ade-512-512.
 
-[65] J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei, "ImageNet: A large-scale hierarchical image database," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Miami, FL, USA, 2009, pp. 248–255, doi: 10.1109/CVPR.2009.5206848.
+[65] J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. Fei-Fei, "ImageNet: A large-scale hierarchical image database," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), Miami, FL, USA, 2009, pp. 248–255, doi: [10.1109/CVPR.2009.5206848](https://doi.org/10.1109/CVPR.2009.5206848).
 
-[66] A. Paszke, A. Chaurasia, S. Kim, and E. Culurciello, "ENet: A deep neural network architecture for real-time semantic segmentation," arXiv:1606.02147, 2016.
+[66] A. Paszke, A. Chaurasia, S. Kim, and E. Culurciello, "ENet: A deep neural network architecture for real-time semantic segmentation," arXiv:1606.02147, 2016. [Online]. Available: [https://arxiv.org/abs/1606.02147](https://arxiv.org/abs/1606.02147)
 
-[67] F. Milletari, N. Navab, and S.-A. Ahmadi, "V-Net: Fully convolutional neural networks for volumetric medical image segmentation," in Proc. 4th Int. Conf. 3D Vis. (3DV), Stanford, CA, USA, 2016, pp. 565–571, doi: 10.1109/3DV.2016.79.
+[67] F. Milletari, N. Navab, and S.-A. Ahmadi, "V-Net: Fully convolutional neural networks for volumetric medical image segmentation," in Proc. 4th Int. Conf. 3D Vis. (3DV), Stanford, CA, USA, 2016, pp. 565–571, doi: [10.1109/3DV.2016.79](https://doi.org/10.1109/3DV.2016.79).
 
-[68] I. Loshchilov and F. Hutter, "Decoupled weight decay regularization," in Proc. Int. Conf. Learn. Represent. (ICLR), New Orleans, LA, USA, 2019. [Online]. Available: https://openreview.net/forum?id=Bkg6RiCqY7
+[68] I. Loshchilov and F. Hutter, "Decoupled weight decay regularization," in Proc. Int. Conf. Learn. Represent. (ICLR), New Orleans, LA, USA, 2019. [Online]. Available: [https://openreview.net/forum?id=Bkg6RiCqY7](https://openreview.net/forum?id=Bkg6RiCqY7)
 
-[69] A. Gupta, P. Dollár, and R. Girshick, "LVIS: A dataset for large vocabulary instance segmentation," in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), Long Beach, CA, USA, 2019, pp. 5351–5359, doi: 10.1109/CVPR.2019.00550. Repeat-factor sampling: extended version, arXiv:1908.03195, App. B.2.
+[69] A. Gupta, P. Dollár, and R. Girshick, "LVIS: A dataset for large vocabulary instance segmentation," in Proc. IEEE/CVF Conf. Comput. Vis. Pattern Recognit. (CVPR), Long Beach, CA, USA, 2019, pp. 5351–5359, doi: [10.1109/CVPR.2019.00550](https://doi.org/10.1109/CVPR.2019.00550). Repeat-factor sampling: extended version, arXiv:1908.03195, App. B.2.
 
-[70] A. Paszke et al., "PyTorch: An imperative style, high-performance deep learning library," in Advances in Neural Information Processing Systems (NeurIPS), vol. 32, 2019, pp. 8024–8035. [Online]. Available: https://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library
+[70] A. Paszke et al., "PyTorch: An imperative style, high-performance deep learning library," in Advances in Neural Information Processing Systems (NeurIPS), vol. 32, 2019, pp. 8024–8035. [Online]. Available: [https://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library](https://papers.nips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library)
 
-[71] TorchVision maintainers and contributors, "TorchVision: PyTorch's computer vision library," GitHub repository, 2016. [Online]. Available: https://github.com/pytorch/vision (used: v0.29.0, BSD-3-Clause).
+[71] TorchVision maintainers and contributors, "TorchVision: PyTorch's computer vision library," GitHub repository, 2016. [Online]. Available: [https://github.com/pytorch/vision](https://github.com/pytorch/vision) (used: v0.29.0, BSD-3-Clause).
 
-[72] GAIA-URJC, "OFFROAD5," Hugging Face dataset (composition undocumented on the card; per the uploader's related sets, RUGD, RELLIS-3D and GOOSE relabelled to 5 classes), 2025, HF licence tag CC BY-NC-SA 3.0 (the uploader's tag; upstream licences still apply). [Online]. Available: https://huggingface.co/datasets/GAIA-URJC/OFFROAD5
+[72] GAIA-URJC, "OFFROAD5," Hugging Face dataset (composition undocumented on the card; per the uploader's related sets, RUGD, RELLIS-3D and GOOSE relabelled to 5 classes), 2025, HF licence tag CC BY-NC-SA 3.0 (the uploader's tag; upstream licences still apply). [Online]. Available: [https://huggingface.co/datasets/GAIA-URJC/OFFROAD5](https://huggingface.co/datasets/GAIA-URJC/OFFROAD5)
 
-[73] P. Jiang, P. Osteen, M. Wigness, and S. Saripalli, "RELLIS-3D dataset: Data, benchmarks and analysis," in Proc. IEEE Int. Conf. Robot. Autom. (ICRA), Xi'an, China, 2021, pp. 1110–1116, doi: 10.1109/ICRA48506.2021.9561251.
+[73] P. Jiang, P. Osteen, M. Wigness, and S. Saripalli, "RELLIS-3D dataset: Data, benchmarks and analysis," in Proc. IEEE Int. Conf. Robot. Autom. (ICRA), Xi'an, China, 2021, pp. 1110–1116, doi: [10.1109/ICRA48506.2021.9561251](https://doi.org/10.1109/ICRA48506.2021.9561251).
 
-[74] P. Mortimer, R. Hagmanns, M. Granero, T. Luettel, J. Petereit, and H.-J. Wuensche, "The GOOSE dataset for perception in unstructured environments," in Proc. IEEE Int. Conf. Robot. Autom. (ICRA), Yokohama, Japan, 2024, pp. 14838–14844, doi: 10.1109/ICRA57147.2024.10611298.
+[74] P. Mortimer, R. Hagmanns, M. Granero, T. Luettel, J. Petereit, and H.-J. Wuensche, "The GOOSE dataset for perception in unstructured environments," in Proc. IEEE Int. Conf. Robot. Autom. (ICRA), Yokohama, Japan, 2024, pp. 14838–14844, doi: [10.1109/ICRA57147.2024.10611298](https://doi.org/10.1109/ICRA57147.2024.10611298).
 
-[75] M. Oquab et al., "DINOv2: Learning robust visual features without supervision," Trans. Mach. Learn. Res. (TMLR), Jan. 2024. [Online]. Available: https://openreview.net/forum?id=a68SUt6zFt
+[75] M. Oquab et al., "DINOv2: Learning robust visual features without supervision," Trans. Mach. Learn. Res. (TMLR), Jan. 2024. [Online]. Available: [https://openreview.net/forum?id=a68SUt6zFt](https://openreview.net/forum?id=a68SUt6zFt)
 
-[76] Y. Yue, A. Das, F. Engelmann, S. Tang, and J. E. Lenssen, "Improving 2D feature representations by 3D-aware fine-tuning," in Computer Vision – ECCV 2024 (Lecture Notes in Computer Science, vol. 15060). Cham, Switzerland: Springer, 2024, pp. 57–74, doi: 10.1007/978-3-031-72627-9_4.
+[76] Y. Yue, A. Das, F. Engelmann, S. Tang, and J. E. Lenssen, "Improving 2D feature representations by 3D-aware fine-tuning," in Computer Vision – ECCV 2024 (Lecture Notes in Computer Science, vol. 15060). Cham, Switzerland: Springer, 2024, pp. 57–74, doi: [10.1007/978-3-031-72627-9_4](https://doi.org/10.1007/978-3-031-72627-9_4).
 
-[77] G. Varma, A. Subramanian, A. Namboodiri, M. Chandraker, and C. V. Jawahar, "IDD: A dataset for exploring problems of autonomous navigation in unconstrained environments," in Proc. IEEE Winter Conf. Appl. Comput. Vis. (WACV), Waikoloa, HI, USA, 2019, pp. 1743–1751, doi: 10.1109/WACV.2019.00190.
+[77] G. Varma, A. Subramanian, A. Namboodiri, M. Chandraker, and C. V. Jawahar, "IDD: A dataset for exploring problems of autonomous navigation in unconstrained environments," in Proc. IEEE Winter Conf. Appl. Comput. Vis. (WACV), Waikoloa, HI, USA, 2019, pp. 1743–1751, doi: [10.1109/WACV.2019.00190](https://doi.org/10.1109/WACV.2019.00190).
 
-[78] S. Macenski, T. Foote, B. Gerkey, C. Lalancette, and W. Woodall, "Robot Operating System 2: Design, architecture, and uses in the wild," Sci. Robot., vol. 7, no. 66, Art. no. eabm6074, May 2022, doi: 10.1126/scirobotics.abm6074.
+[78] S. Macenski, T. Foote, B. Gerkey, C. Lalancette, and W. Woodall, "Robot Operating System 2: Design, architecture, and uses in the wild," Sci. Robot., vol. 7, no. 66, Art. no. eabm6074, May 2022, doi: [10.1126/scirobotics.abm6074](https://doi.org/10.1126/scirobotics.abm6074).
 
-[79] P. Furgale and T. D. Barfoot, "Visual teach and repeat for long-range rover autonomy," J. Field Robot., vol. 27, no. 5, pp. 534–560, 2010, doi: 10.1002/rob.20342.
+[79] P. Furgale and T. D. Barfoot, "Visual teach and repeat for long-range rover autonomy," J. Field Robot., vol. 27, no. 5, pp. 534–560, 2010, doi: [10.1002/rob.20342](https://doi.org/10.1002/rob.20342).
 
-[80] W. Wang et al., "TartanAir: A dataset to push the limits of visual SLAM," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), Las Vegas, NV, USA (virtual), 2020, pp. 4909–4916, doi: 10.1109/IROS45743.2020.9341801.
+[80] W. Wang et al., "TartanAir: A dataset to push the limits of visual SLAM," in Proc. IEEE/RSJ Int. Conf. Intell. Robots Syst. (IROS), Las Vegas, NV, USA (virtual), 2020, pp. 4909–4916, doi: [10.1109/IROS45743.2020.9341801](https://doi.org/10.1109/IROS45743.2020.9341801).
 
-[81] C. R. Harris et al., "Array programming with NumPy," Nature, vol. 585, no. 7825, pp. 357–362, Sep. 2020, doi: 10.1038/s41586-020-2649-2.
+[81] C. R. Harris et al., "Array programming with NumPy," Nature, vol. 585, no. 7825, pp. 357–362, Sep. 2020, doi: [10.1038/s41586-020-2649-2](https://doi.org/10.1038/s41586-020-2649-2).
 
-[82] P. Virtanen et al., "SciPy 1.0: Fundamental algorithms for scientific computing in Python," Nat. Methods, vol. 17, no. 3, pp. 261–272, Mar. 2020, doi: 10.1038/s41592-019-0686-2.
+[82] P. Virtanen et al., "SciPy 1.0: Fundamental algorithms for scientific computing in Python," Nat. Methods, vol. 17, no. 3, pp. 261–272, Mar. 2020, doi: [10.1038/s41592-019-0686-2](https://doi.org/10.1038/s41592-019-0686-2).
 
-[83] METAGROSS, "Pipeline status (audited status of every component)," docs/PIPELINE_STATUS.md, with generated results in docs/RESULTS.md, in [2], 2026. [Online]. Available: https://github.com/shahanxd/metagross/blob/main/docs/PIPELINE_STATUS.md
+[83] METAGROSS, "Pipeline status (audited status of every component)," docs/PIPELINE_STATUS.md, with generated results in docs/RESULTS.md, in [2], 2026. [Online]. Available: [https://github.com/shahanxd/metagross/blob/main/docs/PIPELINE_STATUS.md](https://github.com/shahanxd/metagross/blob/main/docs/PIPELINE_STATUS.md)
