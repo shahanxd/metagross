@@ -144,6 +144,7 @@ def headline_pair(seed: int = HEADLINE_SEED, runs: Path = RUNS, scen_dir: Path =
     ticks = _load_ticks(runs / "FULL" / f"{seed:03d}")
     det = first_confirmation(ticks, tuple(scn["start"]["xy"]), float(scn["start"]["yaw"]), _trench_distance(scn))
     out: dict = {"seed": seed, "family": scn["family"], "split": scn.get("split"),
+                 "hazards": [{k: h[k] for k in ("type", "drop", "depth", "width") if k in h} for h in scn.get("hazards", [])],
                  "outcome": {cfg: ("success" if r["success"] else r["failure_type"]) for cfg, r in res.items()},
                  "end_time_s": {cfg: float(r["time"]) for cfg, r in res.items()}}
     if det is None:
@@ -176,6 +177,12 @@ def claims(doc: dict) -> list[dict]:
          "source": f"{src}#pair.end_time_s.TYPICAL",
          "note": f"{base}; TYPICAL run ended ({doc['pair']['outcome']['TYPICAL']}) at this time"},
     ]
+    for k, h in enumerate(doc["pair"].get("hazards", [])):
+        for key, fmt, what in (("drop", "{:.1f}", "height lost past the crest"), ("depth", "{:.2f}", "trench depth")):
+            if key in h:
+                rows.append({"id": f"example_eval_s{s:03d}_{h['type']}_{key}_m", "value": fmt.format(h[key]), "unit": "m",
+                             "source": f"{src}#pair.hazards[{k}].{key}",
+                             "note": f"{base}; scenario input (data/scenarios/eval/{s}.json): {what}"})
     conf = doc["pair"].get("full_confirmation")
     if conf:
         rows += [

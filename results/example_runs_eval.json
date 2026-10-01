@@ -6,6 +6,17 @@
   "seed": 38,
   "family": "F3_crest_ditch",
   "split": "eval",
+  "hazards": [
+   {
+    "type": "crest",
+    "drop": 1.1913
+   },
+   {
+    "type": "ditch",
+    "depth": 0.5383,
+    "width": 0.5066
+   }
+  ],
   "outcome": {
    "FULL": "success",
    "TYPICAL": "ditch_entry"
@@ -55,6 +66,22 @@
    "unit": "s",
    "source": "results/example_runs_eval.json#pair.end_time_s.TYPICAL",
    "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; TYPICAL run ended (ditch_entry) at this time",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_crest_drop_m",
+   "value": "1.2",
+   "unit": "m",
+   "source": "results/example_runs_eval.json#pair.hazards[0].drop",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; scenario input (data/scenarios/eval/38.json): height lost past the crest",
+   "label": "Simulated"
+  },
+  {
+   "id": "example_eval_s038_ditch_depth_m",
+   "value": "0.54",
+   "unit": "m",
+   "source": "results/example_runs_eval.json#pair.hazards[1].depth",
+   "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; scenario input (data/scenarios/eval/38.json): trench depth",
    "label": "Simulated"
   },
   {

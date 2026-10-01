@@ -6,15 +6,15 @@ results file, run `python -m metagross.eval.claims`, then `python -m metagross.e
 Every number shown on a slide or in the video must appear here with its label and source.
 Other documents may cite a results file directly; they name the file next to the number.
 
-Ledger sha256: `36f56fc711550e29d991d823651c0c6ba592d8cd8a91a6052e4890916653c5e8`
+Ledger sha256: `e4fda7575393d66e2a1a033436c569867d61e70d764357eab43424a7640ae745`
 
 | label | claims |
 |---|---:|
-| [Tested](#tested) | 85 |
-| [Simulated](#simulated) | 263 |
-| [Estimated](#estimated) | 4 |
+| [Tested](#tested) | 89 |
+| [Simulated](#simulated) | 268 |
+| [Estimated](#estimated) | 5 |
 | [Proposed](#proposed) | 1 |
-| total | 353 |
+| total | 363 |
 
 ## Tested
 
@@ -28,19 +28,23 @@ Measured by us on real data (real images, real hardware timing).
 | kitti00_drift_1000m_pct | 2.14 | % | KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; mean end-point drift over 242 segments of 1000 m (= 21.4 m) | [results/kitti_vo_00.json#drift_1000m_pct](../results/kitti_vo_00.json) |
 | kitti00_drift_100m_pct | 1.44 | % | KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; mean end-point drift over 334 segments of 100 m (= 1.4 m) | [results/kitti_vo_00.json#drift_100m_pct](../results/kitti_vo_00.json) |
 | kitti00_drift_500m_pct | 2.51 | % | KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; mean end-point drift over 298 segments of 500 m (= 12.6 m) | [results/kitti_vo_00.json#drift_500m_pct](../results/kitti_vo_00.json) |
+| kitti00_path_length | 2.91 | km | KITTI 00 ground-truth path length driven (frames 1101-4540) | [results/kitti_vo_00.json#path_length_m](../results/kitti_vo_00.json) |
 | kitti00_r_err_deg100m | 0.81 | deg/100 m | KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; KITTI protocol | [results/kitti_vo_00.json#r_err_deg_per_100m](../results/kitti_vo_00.json) |
 | kitti00_t_err_pct | 2.11 | % | KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; KITTI protocol, mean over 2402 segments of 100-800 m | [results/kitti_vo_00.json#t_err_pct](../results/kitti_vo_00.json) |
 | kitti05_drift_1000m_pct | 1.52 | % | KITTI 05, mean over 1000 m segments | [results/kitti_vo_05.json#drift_1000m_pct](../results/kitti_vo_05.json) |
 | kitti05_drift_100m_pct | 0.99 | % | KITTI 05 | [results/kitti_vo_05.json#drift_100m_pct](../results/kitti_vo_05.json) |
 | kitti05_drift_500m_pct | 1.84 | % | KITTI 05 | [results/kitti_vo_05.json#drift_500m_pct](../results/kitti_vo_05.json) |
+| kitti05_path_length | 2.21 | km | KITTI 05 ground-truth path length driven | [results/kitti_vo_05.json#path_length_m](../results/kitti_vo_05.json) |
 | kitti05_r_err_deg100m | 0.68 | deg/100 m | KITTI 05 | [results/kitti_vo_05.json#r_err_deg_per_100m](../results/kitti_vo_05.json) |
 | kitti05_t_err_pct | 1.53 | % | KITTI 05, camera-only stereo VO, KITTI protocol 100-800 m | [results/kitti_vo_05.json#t_err_pct](../results/kitti_vo_05.json) |
 | kitti07_drift_100m_pct | 1.29 | % | KITTI 07 | [results/kitti_vo_07.json#drift_100m_pct](../results/kitti_vo_07.json) |
 | kitti07_drift_500m_pct | 2.70 | % | KITTI 07 | [results/kitti_vo_07.json#drift_500m_pct](../results/kitti_vo_07.json) |
+| kitti07_path_length | 695 | m | KITTI 07 ground-truth path length driven | [results/kitti_vo_07.json#path_length_m](../results/kitti_vo_07.json) |
 | kitti07_r_err_deg100m | 1.28 | deg/100 m | KITTI 07 | [results/kitti_vo_07.json#r_err_deg_per_100m](../results/kitti_vo_07.json) |
 | kitti07_t_err_pct | 2.05 | % | KITTI 07, camera-only stereo VO | [results/kitti_vo_07.json#t_err_pct](../results/kitti_vo_07.json) |
 | kitti07_t_err_pct_current_vo | 2.037 | % | KITTI 07 with photometric normalisation + KLT 15 px/10 it (previous config 2.048 % in the same run) | [results/kitti_vo_07_check.json#configs.photometric_w15_it10.t_err_pct](../results/kitti_vo_07_check.json) |
 | kitti07_vo_p95_ms_prev_vs_current | 210 -> 167 | ms | full-res KITTI VO excl. SGBM, paired per frame on a loaded shared laptop (ratio is the result) | [results/kitti_vo_07_check.json#configs.*.vo_ms_p95_excl_sgbm](../results/kitti_vo_07_check.json) |
+| kitti_pooled_path_km | 5.81 | km | total KITTI distance over which the pooled 1.87 % segment drift was measured | [results/kitti_vo_00.json#path_length_m + results/kitti_vo_05.json#path_length_m + results/kitti_vo_07.json#path_length_m](../results/kitti_vo_00.json) |
 | kitti_pooled_r_err_deg100m | 0.79 | deg/100 m | KITTI 00 (frames 1101-4540) + 05 + 07, camera-only stereo VO; KITTI protocol pooled over 4525 segments of 100-800 m | [results/kitti_summary.json#pooled.r_err_deg_per_100m](../results/kitti_summary.json) |
 | kitti_pooled_t_err_pct | 1.87 | % | KITTI 00 (frames 1101-4540) + 05 + 07, camera-only stereo VO; KITTI protocol pooled over 4525 segments of 100-800 m | [results/kitti_summary.json#pooled.t_err_pct](../results/kitti_summary.json) |
 | localizer_hz_640 | 31.5 | Hz | Localizer.update at 640 px with shared disparity, i5-1135G7 | [results/localizer_timing.json#hz_localizer_only](../results/localizer_timing.json) |
@@ -186,10 +190,12 @@ Measured by us inside the simulator (rendered or synthetic sensor data).
 | closed_loop_eval_tier0_FULL_false_stops | 5 | count | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; stops that ground truth does not justify (referee) | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.false_stops](../results/closed_loop_eval.json) |
 | closed_loop_eval_tier0_FULL_final_err_p50 | 2.00 | m | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; median GT distance to B at episode end | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.final_error_median_m](../results/closed_loop_eval.json) |
 | closed_loop_eval_tier0_FULL_mean_speed | 1.29 | m/s | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; mean over runs of referee path length / episode time | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.mean_speed_mps](../results/closed_loop_eval.json) |
+| closed_loop_eval_tier0_FULL_mppi_p50_ms | 5.4 | ms | EVAL closed loop run 2, tier0, FULL, 60 runs (seeds 0-59); median MPPI time per 5 Hz tick over 10454 ticks, 512 rollouts; 4 vCPU container | results/runs_eval_tier0/FULL/*/autonomy/timings.csv#mppi |
 | closed_loop_eval_tier0_FULL_n | 60 | runs | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; number of EVAL runs | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.n](../results/closed_loop_eval.json) |
 | closed_loop_eval_tier0_FULL_oob | 0 | runs | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs ended out of bounds | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.out_of_bounds](../results/closed_loop_eval.json) |
 | closed_loop_eval_tier0_FULL_success | 33 | runs | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; runs with the true goal within the mission success radius (referee) | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.n_success](../results/closed_loop_eval.json) |
 | closed_loop_eval_tier0_FULL_success_rate | 0.550 | fraction | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; success / n | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.success_rate](../results/closed_loop_eval.json) |
+| closed_loop_eval_tier0_FULL_telemetry_period_s | 0.6 | s | EVAL closed loop run 2, tier0, FULL, 60 runs (seeds 0-59); median gap between telemetry packets (the 2 Hz timer runs on the 5 Hz tick) | results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl#t |
 | closed_loop_eval_tier0_FULL_water | 9 | count | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; water entries (referee, GT) | [results/closed_loop_eval.json#tier0.aggregate.FULL.all.water_entries](../results/closed_loop_eval.json) |
 | closed_loop_eval_tier0_TYPICAL_arrived_short | 4 | runs | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; declared ARRIVED in its own pose estimate but ended outside the success radius | [results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.arrived_short](../results/closed_loop_eval.json) |
 | closed_loop_eval_tier0_TYPICAL_collision | 5 | count | EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config TYPICAL, n=60, seeds 0-59, split=eval; referee on GT; collisions (referee, GT) | [results/closed_loop_eval.json#tier0.aggregate.TYPICAL.all.collisions](../results/closed_loop_eval.json) |
@@ -284,8 +290,11 @@ Measured by us inside the simulator (rendered or synthetic sensor data).
 | closed_loop_tier0_TYPICAL_drive_speed | 1.25 m/s |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT path / time until estimated arrival or episode end | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.drive_speed_mps](../results/closed_loop_dev.json) |
 | closed_loop_tier0_TYPICAL_final_error_p50_p90 | 1.998 / 31.747 m |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; GT distance to B at episode end | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.final_error_median_m](../results/closed_loop_dev.json) |
 | closed_loop_tier0_TYPICAL_success | 16/30 |  | DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; success = true goal within the mission success radius | [results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.success_rate](../results/closed_loop_dev.json) |
+| console_eval_s044_seq38_dist_to_b_m | 24.9 | m | operator-console replay frame on the deck (t = 22.8 s): distance from the stack's pose estimate to B | [results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.pose + mission.json#goal_xy_a](../results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl) |
 | example_eval_ditch_entry_seeds_FULL | 14, 26 | seeds | EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entry_seeds.FULL](../results/example_runs_eval.json) |
 | example_eval_ditch_entry_seeds_TYPICAL | 7, 38 | seeds | EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry | [results/example_runs_eval.json#ditch_entry_seeds.TYPICAL](../results/example_runs_eval.json) |
+| example_eval_s038_crest_drop_m | 1.2 | m | EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; scenario input (data/scenarios/eval/38.json): height lost past the crest | [results/example_runs_eval.json#pair.hazards[0].drop](../results/example_runs_eval.json) |
+| example_eval_s038_ditch_depth_m | 0.54 | m | EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; scenario input (data/scenarios/eval/38.json): trench depth | [results/example_runs_eval.json#pair.hazards[1].depth](../results/example_runs_eval.json) |
 | example_eval_s038_full_cmd_w_max_after_confirm | 1.20 | rad/s | EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; peak commanded \|yaw rate\| in the 3 s after confirmation (turn toward the gap) | [results/example_runs_eval.json#pair.full_confirmation.max_abs_cmd_w_rad_s](../results/example_runs_eval.json) |
 | example_eval_s038_full_reached_b_s | 33.0 | s | EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; FULL reached B at this time | [results/example_runs_eval.json#pair.end_time_s.FULL](../results/example_runs_eval.json) |
 | example_eval_s038_full_speed_min_after_confirm_mps | 0.7 | m/s | EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; lowest GT speed in the 3 s after confirmation; governor binding in that window: {'platform': 15, 'r_cert': 1} (ticks), so the slowdown is the turn, not the seen-ground speed cap | [results/example_runs_eval.json#pair.full_confirmation.gt_speed_min_next3s_mps](../results/example_runs_eval.json) |
@@ -388,6 +397,7 @@ Computed from an analytic model with stated assumptions; not a measurement.
 | A 0.3 m rock is resolvable at 22.0 m (1/R vs 1/R^2) | 22.0 m |  |  | [results/theory.json#positive_detection](../results/theory.json) |
 | Safe-speed envelope at our mast/design ditch (before 2 m/s platform cap) | 2.60 m/s |  |  | [results/theory.json#envelope](../results/theory.json) |
 | Stopping distance from 2 m/s (a=1.5 m/s^2, T_r=0.6 s, B=0.5 m) | 3.03 m |  |  | [results/theory.json#stopping](../results/theory.json) |
+| theory_envelope_v_min_mps | 1.61 | m/s | lowest ditch-visibility speed limit over masts [0.4, 1.6] m and ditches [0.2, 1.2] m; analytic, level ground, small-angle model | [results/theory.json#envelope.v_min_mps](../results/theory.json) |
 
 ## Proposed
 

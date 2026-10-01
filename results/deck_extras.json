@@ -1,0 +1,70 @@
+{
+ "what": "Deck numbers that are derived from existing result files rather than produced by an evaluation.",
+ "generated_by": "metagross/eval/deck_extras.py",
+ "claims": [
+  {
+   "id": "kitti00_path_length",
+   "value": "2.91",
+   "unit": "km",
+   "label": "Tested",
+   "source": "results/kitti_vo_00.json#path_length_m",
+   "note": "KITTI 00 ground-truth path length driven (frames 1101-4540)"
+  },
+  {
+   "id": "kitti05_path_length",
+   "value": "2.21",
+   "unit": "km",
+   "label": "Tested",
+   "source": "results/kitti_vo_05.json#path_length_m",
+   "note": "KITTI 05 ground-truth path length driven"
+  },
+  {
+   "id": "kitti07_path_length",
+   "value": "695",
+   "unit": "m",
+   "label": "Tested",
+   "source": "results/kitti_vo_07.json#path_length_m",
+   "note": "KITTI 07 ground-truth path length driven"
+  },
+  {
+   "id": "kitti_pooled_path_km",
+   "value": "5.81",
+   "unit": "km",
+   "label": "Tested",
+   "source": "results/kitti_vo_00.json#path_length_m + results/kitti_vo_05.json#path_length_m + results/kitti_vo_07.json#path_length_m",
+   "note": "total KITTI distance over which the pooled 1.87 % segment drift was measured"
+  },
+  {
+   "id": "theory_envelope_v_min_mps",
+   "value": "1.61",
+   "unit": "m/s",
+   "label": "Estimated",
+   "source": "results/theory.json#envelope.v_min_mps",
+   "note": "lowest ditch-visibility speed limit over masts [0.4, 1.6] m and ditches [0.2, 1.2] m; analytic, level ground, small-angle model"
+  },
+  {
+   "id": "closed_loop_eval_tier0_FULL_mppi_p50_ms",
+   "value": "5.4",
+   "unit": "ms",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv#mppi",
+   "note": "EVAL closed loop run 2, tier0, FULL, 60 runs (seeds 0-59); median MPPI time per 5 Hz tick over 10454 ticks, 512 rollouts; 4 vCPU container"
+  },
+  {
+   "id": "closed_loop_eval_tier0_FULL_telemetry_period_s",
+   "value": "0.6",
+   "unit": "s",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl#t",
+   "note": "EVAL closed loop run 2, tier0, FULL, 60 runs (seeds 0-59); median gap between telemetry packets (the 2 Hz timer runs on the 5 Hz tick)"
+  },
+  {
+   "id": "console_eval_s044_seq38_dist_to_b_m",
+   "value": "24.9",
+   "unit": "m",
+   "label": "Simulated",
+   "source": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.pose + mission.json#goal_xy_a",
+   "note": "operator-console replay frame on the deck (t = 22.8 s): distance from the stack's pose estimate to B"
+  }
+ ]
+}

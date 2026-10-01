@@ -607,6 +607,14 @@
   "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.mean_speed_mps",
   "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; mean over runs of referee path length / episode time"
  },
+ "closed_loop_eval_tier0_FULL_mppi_p50_ms": {
+  "id": "closed_loop_eval_tier0_FULL_mppi_p50_ms",
+  "value": "5.4",
+  "unit": "ms",
+  "label": "Simulated",
+  "source": "results/runs_eval_tier0/FULL/*/autonomy/timings.csv#mppi",
+  "note": "EVAL closed loop run 2, tier0, FULL, 60 runs (seeds 0-59); median MPPI time per 5 Hz tick over 10454 ticks, 512 rollouts; 4 vCPU container"
+ },
  "closed_loop_eval_tier0_FULL_n": {
   "id": "closed_loop_eval_tier0_FULL_n",
   "value": "60",
@@ -638,6 +646,14 @@
   "label": "Simulated",
   "source": "results/closed_loop_eval.json#tier0.aggregate.FULL.all.success_rate",
   "note": "EVAL closed loop (pre-registered, docs/EVAL_PREREGISTRATION.md), sensor mode tier0, config FULL, n=60, seeds 0-59, split=eval; referee on GT; success / n"
+ },
+ "closed_loop_eval_tier0_FULL_telemetry_period_s": {
+  "id": "closed_loop_eval_tier0_FULL_telemetry_period_s",
+  "value": "0.6",
+  "unit": "s",
+  "label": "Simulated",
+  "source": "results/runs_eval_tier0/FULL/*/autonomy/telemetry.jsonl#t",
+  "note": "EVAL closed loop run 2, tier0, FULL, 60 runs (seeds 0-59); median gap between telemetry packets (the 2 Hz timer runs on the 5 Hz tick)"
  },
  "closed_loop_eval_tier0_FULL_water": {
   "id": "closed_loop_eval_tier0_FULL_water",
@@ -1391,6 +1407,14 @@
   "source": "results/closed_loop_dev.json#tier0.aggregate.TYPICAL.all.success_rate",
   "note": "DEV seeds 100-129 (n=30), sensor mode tier0, referee on GT; success = true goal within the mission success radius"
  },
+ "console_eval_s044_seq38_dist_to_b_m": {
+  "id": "console_eval_s044_seq38_dist_to_b_m",
+  "value": "24.9",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/runs_eval_tier0/FULL/044/autonomy/telemetry.jsonl#seq=38.pose + mission.json#goal_xy_a",
+  "note": "operator-console replay frame on the deck (t = 22.8 s): distance from the stack's pose estimate to B"
+ },
  "example_eval_ditch_entry_seeds_FULL": {
   "id": "example_eval_ditch_entry_seeds_FULL",
   "value": "14, 26",
@@ -1406,6 +1430,22 @@
   "label": "Simulated",
   "source": "results/example_runs_eval.json#ditch_entry_seeds.TYPICAL",
   "note": "EVAL closed loop run 2, tier0, all 60 seeds; seeds whose referee failure type is ditch_entry"
+ },
+ "example_eval_s038_crest_drop_m": {
+  "id": "example_eval_s038_crest_drop_m",
+  "value": "1.2",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.hazards[0].drop",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; scenario input (data/scenarios/eval/38.json): height lost past the crest"
+ },
+ "example_eval_s038_ditch_depth_m": {
+  "id": "example_eval_s038_ditch_depth_m",
+  "value": "0.54",
+  "unit": "m",
+  "label": "Simulated",
+  "source": "results/example_runs_eval.json#pair.hazards[1].depth",
+  "note": "EVAL closed loop run 2, sensor mode tier0, held-out seed 38 (F3_crest_ditch); one selected example, see docs/EVAL_PREREGISTRATION.md for the aggregate; scenario input (data/scenarios/eval/38.json): trench depth"
  },
  "example_eval_s038_full_cmd_w_max_after_confirm": {
   "id": "example_eval_s038_full_cmd_w_max_after_confirm",
@@ -1583,6 +1623,14 @@
   "source": "results/kitti_vo_00.json#drift_500m_pct",
   "note": "KITTI 00 (frames 1101-4540, 2.91 km drive), camera-only stereo VO; mean end-point drift over 298 segments of 500 m (= 12.6 m)"
  },
+ "kitti00_path_length": {
+  "id": "kitti00_path_length",
+  "value": "2.91",
+  "unit": "km",
+  "label": "Tested",
+  "source": "results/kitti_vo_00.json#path_length_m",
+  "note": "KITTI 00 ground-truth path length driven (frames 1101-4540)"
+ },
  "kitti00_r_err_deg100m": {
   "id": "kitti00_r_err_deg100m",
   "value": "0.81",
@@ -1623,6 +1671,14 @@
   "source": "results/kitti_vo_05.json#drift_500m_pct",
   "note": "KITTI 05"
  },
+ "kitti05_path_length": {
+  "id": "kitti05_path_length",
+  "value": "2.21",
+  "unit": "km",
+  "label": "Tested",
+  "source": "results/kitti_vo_05.json#path_length_m",
+  "note": "KITTI 05 ground-truth path length driven"
+ },
  "kitti05_r_err_deg100m": {
   "id": "kitti05_r_err_deg100m",
   "value": "0.68",
@@ -1655,6 +1711,14 @@
   "source": "results/kitti_vo_07.json#drift_500m_pct",
   "note": "KITTI 07"
  },
+ "kitti07_path_length": {
+  "id": "kitti07_path_length",
+  "value": "695",
+  "unit": "m",
+  "label": "Tested",
+  "source": "results/kitti_vo_07.json#path_length_m",
+  "note": "KITTI 07 ground-truth path length driven"
+ },
  "kitti07_r_err_deg100m": {
   "id": "kitti07_r_err_deg100m",
   "value": "1.28",
@@ -1686,6 +1750,14 @@
   "label": "Tested",
   "source": "results/kitti_vo_07_check.json#configs.*.vo_ms_p95_excl_sgbm",
   "note": "full-res KITTI VO excl. SGBM, paired per frame on a loaded shared laptop (ratio is the result)"
+ },
+ "kitti_pooled_path_km": {
+  "id": "kitti_pooled_path_km",
+  "value": "5.81",
+  "unit": "km",
+  "label": "Tested",
+  "source": "results/kitti_vo_00.json#path_length_m + results/kitti_vo_05.json#path_length_m + results/kitti_vo_07.json#path_length_m",
+  "note": "total KITTI distance over which the pooled 1.87 % segment drift was measured"
  },
  "kitti_pooled_r_err_deg100m": {
   "id": "kitti_pooled_r_err_deg100m",
@@ -2814,6 +2886,14 @@
   "label": "Tested",
   "source": "results/seg_zeroshot.json",
   "note": "Zero-shot SegFormer-B0 (ADE20K -> 5 classes)"
+ },
+ "theory_envelope_v_min_mps": {
+  "id": "theory_envelope_v_min_mps",
+  "value": "1.61",
+  "unit": "m/s",
+  "label": "Estimated",
+  "source": "results/theory.json#envelope.v_min_mps",
+  "note": "lowest ditch-visibility speed limit over masts [0.4, 1.6] m and ditches [0.2, 1.2] m; analytic, level ground, small-angle model"
  },
  "vo_sim_dev_median_drift_pct": {
   "id": "vo_sim_dev_median_drift_pct",
