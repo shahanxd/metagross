@@ -103,11 +103,11 @@
   "size": {
     "slide_px": [
       652,
-      400
+      340
     ],
     "png_px": [
       1956,
-      1200
+      1020
     ]
   },
   "note": "deck slot version of eval_by_family: same counts; min text 15 slide px; the F2+F3 table, the F4 note and the provenance line are carried by the slide caption",

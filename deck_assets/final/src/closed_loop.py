@@ -408,8 +408,8 @@ def fig_by_family(t: dict) -> dict:
     return {"figure": "eval_by_family", "size": size, "numbers": drawn}
 
 
-# ---- figure 1b: the same counts sized for the deck's 652 x 400 px right-hand slot -----------
-SLOT_W_PX, SLOT_H_PX = 652, 400  # slide pixels (1920 x 1080 slide)
+# ---- figure 1b: the same counts sized for the deck's 652 x 340 px right-hand slot -----------
+SLOT_W_PX, SLOT_H_PX = 652, 340  # slide pixels (1920 x 1080 slide); short enough to leave room for a 5-line caption
 SLOT_SCALE = 3  # output pixels per slide pixel
 SLOT_DPI = 100 * SLOT_SCALE
 SLOT_PT_PER_PX = SLOT_SCALE * 72 / SLOT_DPI  # font size in pt that renders 1 slide px tall
@@ -422,7 +422,7 @@ def fig_by_family_slot(t: dict) -> dict:
     """Bars only, every label >= 15 slide px; the F2+F3 table, F4 note and provenance go in the slide caption."""
     px = SLOT_PT_PER_PX
     fig = plt.figure(figsize=(SLOT_W_PX / 100, SLOT_H_PX / 100), dpi=SLOT_DPI)
-    left, right, bottom, top = 186, 606, 30, 360  # plot box in slide px (x from left, y from bottom)
+    left, right, bottom, top = 186, 606, 30, SLOT_H_PX - 40  # plot box in slide px (x from left, y from bottom)
     ax = fig.add_axes([left / SLOT_W_PX, bottom / SLOT_H_PX, (right - left) / SLOT_W_PX, (top - bottom) / SLOT_H_PX])
     n_fam = len(FAMILIES)
     bar_h, gap = 0.37, 0.05
