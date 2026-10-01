@@ -24,7 +24,7 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 | 1 | Stereo depth (SGBM) | RUNS IN LOOP (stereo mode) | Rendered DEV 102: 69-73 % valid disparity, 24-50 ms |
 | 2 | Ground model, BEV map, positive obstacles, certification | RUNS IN LOOP (both modes) | Stage timings in `autonomy/timings.csv`; unit tests |
 | 3 | Missing-ground (ditch) detector | RUNS IN LOOP (both modes) | DITCH_CANDIDATE cells in both modes; 0 ditch entries in 30 DEV runs |
-| 4 | **Terrain segmenter (ML)** | **BUILT, NOT IN LOOP**: no trained weights exist, so the node runs without semantics | The train → ONNX export → `Segmenter` chain was verified on CPU with a toy dataset and once on an AWS L4 GPU (2-epoch dry run). The deploy model (OFFROAD5) was never trained; next: `scripts/train_seg_gpu.ps1` on the laptop GPU. In tier-0 there are no images, so it cannot run there. |
+| 4 | **Terrain segmenter (ML)** | **BUILT, NOT IN LOOP**: no trained weights exist, so the node runs without semantics | The train → ONNX export → `Segmenter` chain was verified on CPU with a toy dataset and once on an AWS L4 GPU (2-epoch dry run). The deploy model (OFFROAD5) was never trained; next: the full SageMaker run on `ml.g6.12xlarge` (laptop fallback `scripts/train_seg_gpu.ps1`). In tier-0 there are no images, so it cannot run there. |
 | 5 | Semantic fusion (WATER cells) | BUILT, NOT IN LOOP | Needs item 4 and images. WATER was never produced in any closed-loop run. |
 | 6 | Stereo visual odometry | RUNS IN LOOP (stereo mode only) | Rendered DEV 102: 0.34 % drift over 13.5 m. KITTI 00/05/07: 1.53-2.11 % (`results/kitti_*.json`, measured on another machine; KITTI is not reachable from this container) |
 | 7 | Depth odometry (tier-0) | RUNS IN LOOP (tier-0) | DEV drives: along-track error 6.3 % → 1.5 % (median). No unit tests yet. |
@@ -48,8 +48,8 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 | Ditch visibility range 4.3 m, speed envelope | analytic | Estimated |
 
 ## Gaps to close for a fully built end-to-end pipeline
-1. **Train the terrain segmenter on the laptop GPU** (RTX 3050 Laptop, 4 GB) with `scripts/train_seg_gpu.ps1`
-   (commands below). This enables water and obstacle semantics in the loop.
+1. **Train the terrain segmenter on a GPU**: SageMaker training job on `ml.g6.12xlarge` (4x L4), commands below;
+   fallback: the laptop GPU (RTX 3050 Laptop, 4 GB) with `scripts/train_seg_gpu.ps1`. This enables water and obstacle semantics in the loop.
 2. **Run the closed loop in stereo mode on the laptop GPU**, so that SGBM, VO, the integrity monitor and the
    segmenter all run on rendered images. The published numbers are tier-0 only.
 3. **Connect the operator console live**, with a telemetry stream from the running episode and operator commands
@@ -57,11 +57,22 @@ left and right wheel speeds at 5 Hz, plus 2 Hz telemetry to an operator.
 4. Make the node fail loudly when the segmenter is missing, and record `impl` in `result.json`.
 
 ## Next steps (handoff, 2026-10-01)
-- **AWS is dropped.** GPU work now runs on the team's Windows laptop. `aws/` stays in the repo for reference only.
-  Before it was dropped, one SageMaker dry run did complete (2026-09-30, `ml.g6.16xlarge` = 1x L4, 2 epochs on
-  512 images, 0.24 billable hours): setup, download, training, ONNX export and evaluation all ran on a real GPU.
-  Its numbers are a pipeline check, not results, and were not committed.
-- **Train the segmenter on the laptop** (PowerShell, repo root). The script uses its own venv `.venv-gpu` with CUDA
+- **Back on AWS (2026-10-01).** A new account with free credits has a SageMaker **`ml.g6.12xlarge` for training job
+  usage** quota (4x NVIDIA L4 24 GB, 48 vCPU): the clean and robust runs each get a GPU. One SageMaker dry run already
+  completed (2026-09-30, `ml.g6.16xlarge` = 1x L4 in another account, 2 epochs on 512 images, 0.24 billable hours):
+  setup, download, training, ONNX export and evaluation all ran on a real GPU. Its numbers are a pipeline check, not
+  results, and were not committed.
+- **Full SageMaker run** (credentials only in the environment settings, never in chat or git):
+  1. Environment: `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` of an IAM user in that account and
+     `AWS_DEFAULT_REGION` = the quota's region; a new session picks them up.
+  2. `python aws/ec2_run.py check --backend sagemaker`: SageMaker API ok, training quota >= 1, and the Free/Paid
+     plan with remaining credits (the Free plan stops the account when credits run out).
+  3. `python aws/ec2_run.py launch --backend sagemaker --job seg --max-hours 12` (40 epochs, batch 32, 320x416, AMP;
+     training stops at a DEADLINE ~1 h before the cap so export + evaluation still run). Follow with `status`.
+  4. `python aws/ec2_run.py fetch --backend sagemaker --job seg`: `models/lraspp_offroad5_{clean,robust}.onnx`
+     + sidecars, `results/seg_lraspp_offroad5_*.json`, figures. Measure CPU latency on the laptop (`aws/README.md`
+     section 3) and register the JSON's `claims` rows as **Tested**.
+- **Fallback: train the segmenter on the laptop** (PowerShell, repo root). The script uses its own venv `.venv-gpu` with CUDA
   torch and leaves the CPU `.venv` untouched:
   1. `powershell -ExecutionPolicy Bypass -File scripts\train_seg_gpu.ps1 -Setup`: CUDA torch, dependencies, CUDA
      check, unit tests, OFFROAD5 (~8.5 GB) + RUGD-5L (~2.1 GB) download into `data/`.

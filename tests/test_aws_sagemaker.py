@@ -67,7 +67,7 @@ def test_request_shape_and_limits():
     req = _request()
     name = req["TrainingJobName"]
     assert req["ResourceConfig"] == {"InstanceType": smb.DEFAULT_INSTANCE, "InstanceCount": 1, "VolumeSizeInGB": 150}
-    assert smb.DEFAULT_INSTANCE == "ml.g6.16xlarge"  # the approved training-job quota (us-east-1)
+    assert smb.DEFAULT_INSTANCE == "ml.g6.12xlarge"  # the training-job quota of the full-run account (4x L4)
     assert req["StoppingCondition"] == {"MaxRuntimeInSeconds": 43200}
     algo = req["AlgorithmSpecification"]
     assert algo["TrainingImage"] == IMAGE and algo["TrainingInputMode"] == "File"
@@ -543,3 +543,27 @@ def test_launch_sagemaker_validates_before_touching_aws(kw, msg):
     args.update(kw)
     with pytest.raises(SystemExit, match=msg):
         er.launch_sagemaker(NoAws(), **args)
+
+
+def test_check_reports_plan_quota_and_api():
+    pytest.importorskip("botocore")
+
+    class Paginator:
+        def paginate(self, **kw):
+            yield {"Quotas": [{"QuotaName": "ml.g6.12xlarge for training job usage", "Value": 1.0}]}
+
+    class S(FakeSession):
+        def client(self, name, region_name=None):
+            self.calls.append((name, "client", {"region_name": region_name}))
+            return super().client(name)
+
+    s = S({("service-quotas", "get_paginator"): lambda op: Paginator(),
+           ("sagemaker", "list_training_jobs"): lambda **kw: {"TrainingJobSummaries": []},
+           ("freetier", "get_account_plan_state"): lambda: {
+               "accountPlanType": "FREE", "accountPlanStatus": "ACTIVE",
+               "accountPlanRemainingCredits": {"amount": 100.0, "unit": "USD"},
+               "accountPlanExpirationDate": dt.datetime(2027, 4, 1, tzinfo=dt.timezone.utc)}})
+    out = smb.check(s)
+    assert out["sagemaker_api"] == "ok" and out["sagemaker_training_quota"] == 1.0
+    assert out["account_plan"]["type"] == "FREE" and out["account_plan"]["remaining_credits"] == "100.0 USD"
+    assert ("freetier", "client", {"region_name": "us-east-1"}) in s.calls

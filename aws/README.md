@@ -1,7 +1,7 @@
 # Terrain-segmenter training on an AWS GPU box
 
-> **Not in use (2026-10-01).** The team dropped AWS; the segmenter is trained on the laptop GPU with
-> `scripts/train_seg_gpu.ps1` (see `docs/PIPELINE_STATUS.md`). This folder is kept for reference only.
+> **In use again (2026-10-01).** The full segmenter training runs as a SageMaker training job on `ml.g6.12xlarge`
+> (section below). The laptop-GPU script `scripts/train_seg_gpu.ps1` is the fallback.
 
 One command sets up a fresh Ubuntu 22.04/24.04 NVIDIA instance, downloads the data and trains two LR-ASPP models
 in parallel: CLEAN vs ROBUST augmentation. It then exports ONNX and writes evaluation JSONs and figures.
@@ -14,11 +14,14 @@ manual SSH route below still works. `pip install -e ".[aws]"` installs boto3.
 
 ## SageMaker training job (`--backend sagemaker`)
 
-The approved GPU quota is a SageMaker one: `ml.g6.16xlarge` for training job usage = 1 in **us-east-1** (1x NVIDIA L4
-24 GB, 64 vCPU; seen in the Service Quotas console on 2026-10-01), so set `AWS_DEFAULT_REGION=us-east-1`. The same
-account also has `ml.g6.24xlarge` for *notebook instance* usage, which training jobs cannot use. `--backend sagemaker`
-runs the same `aws/jobs/seg.sh` as a SageMaker training job in the AWS PyTorch GPU container
-(`pytorch-training:2.10.0-gpu-py313-cu130-ubuntu22.04-sagemaker`; `--image` and `--type` override):
+The GPU quota is a SageMaker one: **`ml.g6.12xlarge` for training job usage** (4x NVIDIA L4 24 GB, 48 vCPU), the
+launcher's default. Set `AWS_DEFAULT_REGION` to the region where that quota was granted; quotas are per region and per
+use (a *notebook instance* or *processing* quota does not count). The 2-epoch dry run on 2026-09-30 used
+`ml.g6.16xlarge` (1x L4) in another account and completed every stage. `--backend sagemaker` runs the same
+`aws/jobs/seg.sh` as a SageMaker training job in the AWS PyTorch GPU container
+(`pytorch-training:2.10.0-gpu-py313-cu130-ubuntu22.04-sagemaker`; `--image` and `--type` override).
+`check --backend sagemaker` also prints the account's Free/Paid plan and remaining credits: on the Free plan the
+account stops, rather than bills, when the credits run out, so check they cover the run first.
 
 ```bash
 python aws/ec2_run.py check --backend sagemaker            # identity, SageMaker API reachable?, training quota
@@ -39,9 +42,9 @@ How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
   `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with `SYSTEM_TORCH=1` (the container's CUDA torch
   is reused when it sees the GPU, so normally no torch download) and the datasets and venv on the instance's local
   NVMe.
-- **GPUs**: on `ml.g6.16xlarge` (one L4) the clean and robust runs share the GPU, as on any single-GPU box. With two
-  or more GPUs (e.g. `--type ml.g6.24xlarge`, 4x L4, if that training quota is granted), `run_pipeline.sh` puts the
-  clean run on GPU 0 and the robust run on GPU 1; `train_seg` has no multi-GPU mode, so further GPUs stay idle.
+- **GPUs**: on `ml.g6.12xlarge` (4x L4) `run_pipeline.sh` puts the clean run on GPU 0 and the robust run on GPU 1;
+  `train_seg` has no multi-GPU mode, so GPUs 2 and 3 stay idle. On a one-GPU type (`--type ml.g6.16xlarge`) both
+  runs share the GPU, as on any single-GPU box.
 - **Time cap**: `--max-hours` becomes `MaxRuntimeInSeconds`. Unless `DEADLINE` is passed, the entry script sets one
   at max-hours minus a margin (runtime/8, clamped to 15-60 min), so training checkpoints and stops in time for the
   ONNX export and evaluation.

@@ -1,7 +1,7 @@
 """SageMaker training-job backend for ``aws/ec2_run.py`` (``--backend sagemaker``).
 
 Runs the same job script as the EC2 path (``aws/jobs/<job>.sh``) as one SageMaker training job in an AWS PyTorch
-GPU Deep Learning Container (default instance ``ml.g6.16xlarge``: 1x NVIDIA L4 24 GB, 64 vCPU):
+GPU Deep Learning Container (default instance ``ml.g6.12xlarge``: 4x NVIDIA L4 24 GB, 48 vCPU):
 
 * **code**: the ``git archive HEAD`` tarball goes to S3 and reaches the container as the ``code`` input channel
   (``/opt/ml/input/data/code/metagross.tgz``). The job's ``ContainerEntrypoint`` (:func:`bootstrap_command`) unpacks
@@ -44,9 +44,11 @@ TAG = {"Key": "project", "Value": "metagross"}
 ROLE = "metagross-sagemaker-role"
 ROLE_POLICY = "metagross-sagemaker-job"
 NAME_PREFIX = "metagross"
-# Approved quota (seen in the Service Quotas console, 2026-10-01): "ml.g6.16xlarge for training job usage" = 1 in
-# us-east-1 (1x NVIDIA L4 24 GB, 64 vCPU, local NVMe). --type overrides it.
-DEFAULT_INSTANCE = "ml.g6.16xlarge"
+# Training-job quota of the account used for the full run (2026-10-01): "ml.g6.12xlarge for training job usage"
+# (4x NVIDIA L4 24 GB, 48 vCPU, local NVMe), so the clean and robust runs get a GPU each. The earlier dry run used
+# ml.g6.16xlarge (1x L4) in another account. --type overrides it.
+DEFAULT_INSTANCE = "ml.g6.12xlarge"
+FREETIER_REGION = "us-east-1"  # the Free Tier plan API (GetAccountPlanState) is served from us-east-1 only
 # AWS PyTorch training DLC, SageMaker flavour. Registry 763104351884 serves us-east-1 and ap-south-1 (sagemaker-python-sdk
 # image_uri_config/pytorch.json); tag from aws/deep-learning-containers docs/src/data/pytorch-training/
 # 2.10-gpu-sagemaker.yml (GA 2026-01-21, patched until 2027-01-21). Override with --image.
@@ -329,7 +331,22 @@ def check(s, instance_type: str = DEFAULT_INSTANCE) -> dict[str, Any]:
     except ClientError as exc:
         out["sagemaker_api"] = f"denied ({describe_denial(exc)})"
     out["sagemaker_training_quota"] = quota(s, instance_type)
+    out["account_plan"] = account_plan(s)
     return out
+
+
+def account_plan(s) -> Any:
+    """Free/Paid plan, status and remaining Free-plan credits (USD), or 'unknown (<reason>)'. On the Free plan the
+    account stops, rather than bills, when the credits run out: check they cover the run before launching."""
+    ClientError = _client_error()
+    try:
+        r = s.client("freetier", region_name=FREETIER_REGION).get_account_plan_state()
+    except (ClientError, ValueError) as exc:  # ValueError: a botocore without the freetier model
+        return f"unknown ({describe_denial(exc)})"
+    credits = r.get("accountPlanRemainingCredits") or {}
+    return {"type": r.get("accountPlanType"), "status": r.get("accountPlanStatus"),
+            "remaining_credits": f"{credits.get('amount')} {credits.get('unit', '')}".strip() if credits else None,
+            "expires": str(r.get("accountPlanExpirationDate")) if r.get("accountPlanExpirationDate") else None}
 
 
 def _jobs(s, job: str, status: Optional[str] = None) -> list[str]:
