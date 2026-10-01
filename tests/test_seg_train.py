@@ -12,7 +12,7 @@ import pytest
 torch = pytest.importorskip("torch")
 
 from metagross.train.losses import CEDiceLoss, soft_dice_loss  # noqa: E402
-from metagross.train.train_seg import lr_lambda_factory, parse_hw, torch_confusion  # noqa: E402
+from metagross.train.train_seg import amp_dtype_for_cuda, lr_lambda_factory, parse_hw, torch_confusion  # noqa: E402
 
 
 def test_dice_perfect_and_ignore() -> None:
@@ -94,3 +94,11 @@ def test_end_to_end_train_export_segment(tmp_path: Path) -> None:
     assert json.loads(onnx_path.with_suffix(".json").read_text())["smoke"] is True
     ids, ent = Segmenter(onnx_path, intra_op_threads=1)(np.zeros((50, 70, 3), np.uint8))
     assert ids.shape == (50, 70) and ent.shape == (50, 70)
+
+
+def test_amp_dtype_bf16_only_on_native_gpus() -> None:
+    # T4 (sm_75) reports emulated bf16 support but cuDNN has no bf16 conv engines there -> fp16 + GradScaler
+    assert amp_dtype_for_cuda((7, 5)) == torch.float16
+    assert amp_dtype_for_cuda((7, 0)) == torch.float16
+    for cap in ((8, 0), (8, 6), (8, 9), (9, 0), (12, 0)):  # A100, A10G, L4, H100, Blackwell
+        assert amp_dtype_for_cuda(cap) == torch.bfloat16
