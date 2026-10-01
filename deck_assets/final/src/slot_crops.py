@@ -98,7 +98,33 @@ def console_costmap_slot() -> Path:
     return out
 
 
+SLOTS = OUT.parent / "slots"
+INK_LUMA_MAX = 235  # any pixel darker than this counts as drawn ink when looking for an empty gutter column
+
+
+def split_at_gutter(src: Path) -> tuple[Path, Path]:
+    """Split a wide slot figure into left/right halves at the empty column nearest its centre.
+
+    Canva renders very wide uploads (e.g. 3584 px) from a downsampled copy, which blurs small text;
+    two halves of about 1800 px each, placed edge to edge on the slide, stay sharp.
+    """
+    im = Image.open(src).convert("RGB")
+    ink = (np.asarray(im) < INK_LUMA_MAX).any(2).sum(0)
+    empty = np.where(ink == 0)[0]
+    if not empty.size:
+        raise ValueError(f"{src.name}: no empty column to split at")
+    x = int(empty[np.argmin(np.abs(empty - im.size[0] // 2))])
+    while x - 1 in empty:  # start of that empty gutter run, so the cut is reproducible
+        x -= 1
+    left, right = src.with_name(f"{src.stem}_left.png"), src.with_name(f"{src.stem}_right.png")
+    im.crop((0, 0, x, im.size[1])).save(left)
+    im.crop((x, 0, im.size[0], im.size[1])).save(right)
+    LOG.info("split %s at x=%d -> %s, %s", src.name, x, Image.open(left).size, Image.open(right).size)
+    return left, right
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     run_map_pair_slot()
     console_costmap_slot()
+    split_at_gutter(SLOTS / "s2_how_it_works.png")
