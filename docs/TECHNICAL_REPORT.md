@@ -524,7 +524,7 @@ Run from the repository root [2] with Python 3.10 or 3.11. Component status is i
 ```bash
 pip install -e ".[dev]"
 export OMP_NUM_THREADS=2
-python -m pytest -q          # 514 tests collected on 1 Oct 2026; the last recorded full run (docs/BUILD_LOG.md) had 418 passed, 16 skipped (Chrome-dependent), on an earlier, smaller test set
+python -m pytest -q          # on 1 Oct 2026: 504 passed, 10 skipped (the skipped tests need Chrome for the renderer)
 
 # Scenarios; compare the sha256 fields of data/scenarios/manifest.json with results/scenario_manifest.json
 python scripts/gen_scenarios.py --split all --workers 4
