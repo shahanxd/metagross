@@ -6,16 +6,17 @@ job's outputs and then powers off (shutdown behaviour = terminate). A hard wall-
 (``--max-hours``) powers it off even if the job hangs.
 
 ``--backend sagemaker`` runs the same job script as a SageMaker training job instead (default
-``ml.g6.16xlarge``, AWS PyTorch GPU container; see ``aws/sagemaker_backend.py``): same bucket,
+``ml.g6.24xlarge``, AWS PyTorch GPU container; see ``aws/sagemaker_backend.py``): same bucket,
 same outputs, same ``fetch`` destinations, with the hard cap as ``MaxRuntimeInSeconds``.
 
 Commands::
 
     python aws/ec2_run.py check [--backend sagemaker]  # credentials, region, GPU quota, AMI / API + image
     python aws/ec2_run.py launch --job seg [--type g5.2xlarge] [--max-hours 12] [--env EPOCHS=40 ...]
-    python aws/ec2_run.py launch --backend sagemaker --job seg [--type ml.g6.16xlarge] [--resume-from NAME]
+    python aws/ec2_run.py launch --backend sagemaker --job seg [--type ml.g6.24xlarge] [--resume-from NAME]
     python aws/ec2_run.py status --job seg [--backend sagemaker]   # state + tail of the remote logs
     python aws/ec2_run.py fetch --job seg [--backend sagemaker]    # copy the job outputs into the repo
+    python aws/ec2_run.py logs --backend sagemaker --job seg [--follow]  # the job's live CloudWatch log
     python aws/ec2_run.py terminate --job seg [--backend sagemaker]
     python aws/ec2_run.py cleanup                     # delete bucket, roles, profile, security group
 
@@ -369,6 +370,11 @@ def build_parser() -> argparse.ArgumentParser:
         q = sub.add_parser(name, parents=[backend])
         q.add_argument("--job", default="seg")
         q.add_argument("--name", default=None, help="sagemaker: training job name (default: the newest for --job)")
+    lg = sub.add_parser("logs", help="sagemaker only: print the training job's CloudWatch log")
+    lg.add_argument("--backend", choices=["sagemaker"], default="sagemaker")
+    lg.add_argument("--job", default="seg")
+    lg.add_argument("--name", default=None, help="training job name (default: the newest for --job)")
+    lg.add_argument("--follow", action="store_true", help="keep printing new lines until the job ends")
     sub.add_parser("cleanup")
     return ap
 
@@ -392,6 +398,8 @@ def main(argv: list[str] | None = None) -> None:
         smb.status(s, a.job, a.name) if sm else status(s, a.job)
     elif a.cmd == "fetch":
         smb.fetch(s, a.job, REPO, JOB_OUTPUTS[a.job], a.name) if sm else fetch(s, a.job)
+    elif a.cmd == "logs":
+        smb.logs(s, a.job, a.name, follow=a.follow)
     elif a.cmd == "terminate":
         smb.stop(s, a.job, a.name) if sm else terminate(s, a.job)
     elif a.cmd == "cleanup":

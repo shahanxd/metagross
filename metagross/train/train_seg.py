@@ -71,6 +71,10 @@ MIN_LR_RATIO = 0.01  # final lr = MIN_LR_RATIO * base lr
 POLY_POWER = 0.9
 SAVE_RETRIES = 10  # os.replace can fail on Windows while another process reads the target
 SAVE_RETRY_S = 1.0  # seconds between retries
+# bf16 autocast only on GPUs with native bf16 (Ampere and newer). torch.cuda.is_bf16_supported() is also True on
+# Turing (T4, sm_75) through emulation, where cuDNN has no bf16 engine for MobileNetV3's convs (SageMaker
+# ml.g4dn.12xlarge, 2026-10-01: "FIND was unable to find an engine"); those GPUs train in fp16 with a GradScaler.
+BF16_MIN_CAPABILITY = (8, 0)
 
 SMOKE_DEFAULTS = {"bs": 4, "epochs": 1, "img": "128x160", "train_subset": 32, "val_subset": 8, "max_iters": 6, "workers": 0, "threads": 2}
 FULL_DEFAULTS = {"bs": 16, "epochs": 40, "img": "320x416", "train_subset": 0, "val_subset": 0, "max_iters": 0, "workers": 4, "threads": 0}
@@ -96,7 +100,7 @@ def build_argparser() -> argparse.ArgumentParser:
     ap.add_argument("--sched", choices=("poly", "cosine"), default="poly")
     ap.add_argument("--warmup-iters", type=int, default=None, help="default: min(500, 5%% of total)")
     ap.add_argument("--img", default=None, help="HxW training crop, e.g. 320x416")
-    ap.add_argument("--amp", action="store_true", help="mixed precision on CUDA (bf16 if supported else fp16)")
+    ap.add_argument("--amp", action="store_true", help="mixed precision on CUDA (bf16 on sm_80+, else fp16)")
     ap.add_argument("--workers", type=int, default=None)
     ap.add_argument("--threads", type=int, default=None, help="torch CPU threads (0 = torch default)")
     ap.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto")
@@ -148,6 +152,11 @@ def atomic_save(save_fn: Any, obj: Any, path: Path, retries: int = SAVE_RETRIES,
             LOG.warning("rename %s -> %s blocked (attempt %d/%d)", tmp.name, path.name, attempt + 1, retries)
             time.sleep(wait_s)
     return False
+
+
+def amp_dtype_for_cuda(capability: tuple[int, int]) -> torch.dtype:
+    """Autocast dtype for a CUDA device of compute ``capability`` (major, minor): bf16 if native, else fp16."""
+    return torch.bfloat16 if tuple(capability) >= BF16_MIN_CAPABILITY else torch.float16
 
 
 def resolve_args(args: argparse.Namespace) -> argparse.Namespace:
@@ -239,7 +248,7 @@ def train(args: argparse.Namespace) -> dict[str, Any]:
         torch.backends.cudnn.allow_tf32 = True
     amp_dtype: Optional[torch.dtype] = None
     if args.amp and use_cuda:
-        amp_dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        amp_dtype = amp_dtype_for_cuda(torch.cuda.get_device_capability(device))
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
 

@@ -112,15 +112,18 @@ assert torch.cuda.is_available(), "torch cannot see the GPU"
 p = torch.cuda.get_device_properties(0)
 cap = torch.cuda.get_device_capability(0)
 print(f"torch {torch.__version__} (CUDA {torch.version.cuda}) | {p.name} | sm_{cap[0]}{cap[1]} | "
-      f"{p.total_memory / 2**30:.1f} GiB | bf16={torch.cuda.is_bf16_supported()} | wheel archs {torch.cuda.get_arch_list()}")
-try:  # a conv forward/backward under autocast exercises cuDNN kernels for this architecture
-    net = torch.nn.Conv2d(3, 16, 3, padding=1).cuda()
+      f"{p.total_memory / 2**30:.1f} GiB | wheel archs {torch.cuda.get_arch_list()}")
+amp = torch.bfloat16 if cap >= (8, 0) else torch.float16  # same rule as train_seg.amp_dtype_for_cuda
+try:  # conv + depthwise conv (as in MobileNetV3) fwd/bwd under the training autocast dtype, cudnn.benchmark on
+    torch.backends.cudnn.benchmark = True
+    net = torch.nn.Sequential(torch.nn.Conv2d(3, 16, 3, padding=1), torch.nn.BatchNorm2d(16), torch.nn.Hardswish(),
+                              torch.nn.Conv2d(16, 16, 5, padding=2, groups=16), torch.nn.Conv2d(16, 16, 1)).cuda()
     x = torch.randn(4, 3, 64, 64, device="cuda", requires_grad=True)
-    with torch.autocast("cuda", dtype=torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16):
+    with torch.autocast("cuda", dtype=amp):
         y = net(x).float().mean()
     y.backward()
     torch.cuda.synchronize()
-    print("conv fwd/bwd ok", float(y))
+    print(f"conv fwd/bwd ok under {amp}", float(y.detach()))
 except RuntimeError as exc:
     sys.exit(f"CUDA kernels failed on this GPU ({exc}); set TORCH_INDEX to a newer wheel index, e.g. .../whl/cu128")
 EOF

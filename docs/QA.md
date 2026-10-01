@@ -44,8 +44,8 @@ thermal signatures (Matthies and Rankin 2003; Rankin et al. 2007, in `docs/REFER
 **6. Can the stereo camera see water?**
 Often not geometrically: calm water is flat and mostly gives no stereo match. In Tier-0 water has a 60 % dropout
 probability per block (`metagross/sim/sensors.py`). The `WATER` state comes from terrain segmentation, which can only
-raise cost, never clear a geometric hazard. So water avoidance depends on the segmenter, and the deploy segmenter is
-not trained yet (see question 17).
+raise cost, never clear a geometric hazard. So water avoidance depends on the segmenter, which is now trained but
+not yet in the closed loop, and water is its weakest class (see question 17).
 
 ## Localisation
 
@@ -102,8 +102,8 @@ DEV runs and the current engineering focus (`docs/BUILD_LOG.md`).
 Fusion is monotone: semantics can raise cost and mark water, but never clears a geometric obstacle or ditch. The
 safety metric is the false-safe rate, the share of hazard pixels labelled traversable. Zero-shot SegFormer-B0:
 2.6 % on RUGD-5L test, 16.9 % on validation. The CPU smoke model: 4.3 % test, 27.3 % validation
-(`results/seg_zeroshot.json`, `results/seg_smoke.json`, Tested). These are high on validation; the trained deploy
-model is expected to lower them but is not trained yet.
+(`results/seg_zeroshot.json`, `results/seg_smoke.json`, Tested). The GPU-trained deploy model (clean aug): 2.3 % on
+RUGD-5L test, 19.5 % on validation (`results/seg_lraspp_offroad5_clean_rugd5.json`, Tested).
 
 **15. How do you handle people or vehicles that move into the path?**
 A cell that becomes occupied where ground was seen recently becomes `DYNAMIC`: lethal, inflated by an extra 0.5 m,
@@ -120,9 +120,11 @@ are not modelled (`docs/SIMULATION.md`, section 6).
 ## Planning, control and safety
 
 **17. Is the terrain model actually trained?**
-Not yet for deployment. `models/lraspp_smoke.onnx` is a 300-iteration CPU smoke run on 800 RUGD images so that the
-pipeline runs end to end; it is labelled SMOKE everywhere. The deploy model (LR-ASPP MobileNetV3 on OFFROAD5, two
-augmentation policies) has a one-command GPU recipe in `aws/`, but no trained weights are in `models/` (Proposed).
+Yes, offline. The deploy model (LR-ASPP MobileNetV3 on OFFROAD5 = RUGD + RELLIS-3D, clean and robust augmentation)
+was trained on AWS SageMaker on 2026-10-01 (4x T4, 40 epochs, 1.05 billable hours). Test mIoU, clean aug: 0.825 on
+OFFROAD5 (n=2405) and 0.768 on RUGD-5L (n=733), against 0.544 for zero-shot SegFormer-B0 on the same 733 images
+(`results/seg_lraspp_offroad5_*.json`, Tested). Water stays weak (RUGD-5L val water IoU 0.02). It is not yet wired into
+the closed loop and its CPU latency is not yet measured. The ONNX weights are git-ignored (see `docs/PIPELINE_STATUS.md`).
 
 **18. Why MPPI and not DWA, TEB or a lattice planner?**
 MPPI takes any cost function, so the certification term (probe points at fractions of each rollout's stopping

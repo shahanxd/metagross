@@ -2407,6 +2407,102 @@
   "source": "results/renderer_bench.json#sgbm.valid_ground_fraction",
   "note": "rendered stereo, SGBM valid disparity on ground within 10 m"
  },
+ "seg_clean_offroad5_test_false_safe_rate": {
+  "id": "seg_clean_offroad5_test_false_safe_rate",
+  "value": "0.0381",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_offroad5.json",
+  "note": "LR-ASPP (clean aug), OFFROAD5"
+ },
+ "seg_clean_offroad5_test_miou": {
+  "id": "seg_clean_offroad5_test_miou",
+  "value": "0.8252",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_offroad5.json",
+  "note": "LR-ASPP (clean aug), OFFROAD5"
+ },
+ "seg_clean_offroad5_test_pixel_acc": {
+  "id": "seg_clean_offroad5_test_pixel_acc",
+  "value": "0.9422",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_offroad5.json",
+  "note": "LR-ASPP (clean aug), OFFROAD5"
+ },
+ "seg_clean_offroad5_val_false_safe_rate": {
+  "id": "seg_clean_offroad5_val_false_safe_rate",
+  "value": "0.1542",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_offroad5.json",
+  "note": "LR-ASPP (clean aug), OFFROAD5"
+ },
+ "seg_clean_offroad5_val_miou": {
+  "id": "seg_clean_offroad5_val_miou",
+  "value": "0.7389",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_offroad5.json",
+  "note": "LR-ASPP (clean aug), OFFROAD5"
+ },
+ "seg_clean_offroad5_val_pixel_acc": {
+  "id": "seg_clean_offroad5_val_pixel_acc",
+  "value": "0.8702",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_offroad5.json",
+  "note": "LR-ASPP (clean aug), OFFROAD5"
+ },
+ "seg_clean_rugd5_test_false_safe_rate": {
+  "id": "seg_clean_rugd5_test_false_safe_rate",
+  "value": "0.0226",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+  "note": "LR-ASPP (clean aug), RUGD-5L"
+ },
+ "seg_clean_rugd5_test_miou": {
+  "id": "seg_clean_rugd5_test_miou",
+  "value": "0.7677",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+  "note": "LR-ASPP (clean aug), RUGD-5L"
+ },
+ "seg_clean_rugd5_test_pixel_acc": {
+  "id": "seg_clean_rugd5_test_pixel_acc",
+  "value": "0.9432",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+  "note": "LR-ASPP (clean aug), RUGD-5L"
+ },
+ "seg_clean_rugd5_val_false_safe_rate": {
+  "id": "seg_clean_rugd5_val_false_safe_rate",
+  "value": "0.1954",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+  "note": "LR-ASPP (clean aug), RUGD-5L"
+ },
+ "seg_clean_rugd5_val_miou": {
+  "id": "seg_clean_rugd5_val_miou",
+  "value": "0.6181",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+  "note": "LR-ASPP (clean aug), RUGD-5L"
+ },
+ "seg_clean_rugd5_val_pixel_acc": {
+  "id": "seg_clean_rugd5_val_pixel_acc",
+  "value": "0.8449",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+  "note": "LR-ASPP (clean aug), RUGD-5L"
+ },
  "seg_cpu_latency_threads_2_ms": {
   "id": "seg_cpu_latency_threads_2_ms",
   "value": "63.49",
@@ -2782,6 +2878,102 @@
   "label": "Tested",
   "source": "results/seg_cpu.json",
   "note": "LR-ASPP CPU-trained on RUGD-5L (robust aug, repeat sampling), best @ iter 2500/2750 PARTIAL; RUGD-5L val (n=1924), label resolution"
+ },
+ "seg_robust_offroad5_test_false_safe_rate": {
+  "id": "seg_robust_offroad5_test_false_safe_rate",
+  "value": "0.0392",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_offroad5.json",
+  "note": "LR-ASPP (robust aug), OFFROAD5"
+ },
+ "seg_robust_offroad5_test_miou": {
+  "id": "seg_robust_offroad5_test_miou",
+  "value": "0.7998",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_offroad5.json",
+  "note": "LR-ASPP (robust aug), OFFROAD5"
+ },
+ "seg_robust_offroad5_test_pixel_acc": {
+  "id": "seg_robust_offroad5_test_pixel_acc",
+  "value": "0.9353",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_offroad5.json",
+  "note": "LR-ASPP (robust aug), OFFROAD5"
+ },
+ "seg_robust_offroad5_val_false_safe_rate": {
+  "id": "seg_robust_offroad5_val_false_safe_rate",
+  "value": "0.1656",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_offroad5.json",
+  "note": "LR-ASPP (robust aug), OFFROAD5"
+ },
+ "seg_robust_offroad5_val_miou": {
+  "id": "seg_robust_offroad5_val_miou",
+  "value": "0.7181",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_offroad5.json",
+  "note": "LR-ASPP (robust aug), OFFROAD5"
+ },
+ "seg_robust_offroad5_val_pixel_acc": {
+  "id": "seg_robust_offroad5_val_pixel_acc",
+  "value": "0.864",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_offroad5.json",
+  "note": "LR-ASPP (robust aug), OFFROAD5"
+ },
+ "seg_robust_rugd5_test_false_safe_rate": {
+  "id": "seg_robust_rugd5_test_false_safe_rate",
+  "value": "0.0259",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_rugd5.json",
+  "note": "LR-ASPP (robust aug), RUGD-5L"
+ },
+ "seg_robust_rugd5_test_miou": {
+  "id": "seg_robust_rugd5_test_miou",
+  "value": "0.7614",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_rugd5.json",
+  "note": "LR-ASPP (robust aug), RUGD-5L"
+ },
+ "seg_robust_rugd5_test_pixel_acc": {
+  "id": "seg_robust_rugd5_test_pixel_acc",
+  "value": "0.9417",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_rugd5.json",
+  "note": "LR-ASPP (robust aug), RUGD-5L"
+ },
+ "seg_robust_rugd5_val_false_safe_rate": {
+  "id": "seg_robust_rugd5_val_false_safe_rate",
+  "value": "0.2112",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_rugd5.json",
+  "note": "LR-ASPP (robust aug), RUGD-5L"
+ },
+ "seg_robust_rugd5_val_miou": {
+  "id": "seg_robust_rugd5_val_miou",
+  "value": "0.5985",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_rugd5.json",
+  "note": "LR-ASPP (robust aug), RUGD-5L"
+ },
+ "seg_robust_rugd5_val_pixel_acc": {
+  "id": "seg_robust_rugd5_val_pixel_acc",
+  "value": "0.837",
+  "unit": "",
+  "label": "Tested",
+  "source": "results/seg_lraspp_offroad5_robust_rugd5.json",
+  "note": "LR-ASPP (robust aug), RUGD-5L"
  },
  "seg_smoke_latency_threads_2_ms": {
   "id": "seg_smoke_latency_threads_2_ms",

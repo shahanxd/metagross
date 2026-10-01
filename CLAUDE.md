@@ -10,7 +10,7 @@ Thesis: **"Unknown is never free. It drives only on ground it has seen, and only
 - `metagross/sim/render/` — Three.js stereo renderer + Playwright bridge.
 - `metagross/autonomy/` — onboard stack. **Must never import `metagross.sim`, `metagross.eval`, or read scenario/GT files.**
 - `metagross/eval/` — offline evaluation (KITTI VO, seg metrics, closed-loop metrics, plots, claims ledger).
-- `metagross/train/` — segmentation training/export (runs on the laptop GPU via `scripts/train_seg_gpu.ps1`; CPU smoke mode).
+- `metagross/train/` — segmentation training/export (runs on AWS SageMaker via `aws/ec2_run.py --backend sagemaker`; laptop-GPU fallback `scripts/train_seg_gpu.ps1`; CPU smoke mode).
 - `operator_ui/` — static operator console. `video/` — replay + dashboard compositor. `deck_assets/` — figures/diagrams.
 - `tests/` — pytest. `results/` — generated CSV/JSON (never hand-edited). `data/` — downloaded datasets (git-ignored).
 
@@ -18,8 +18,9 @@ Thesis: **"Unknown is never free. It drives only on ground it has seen, and only
 - Repo root = this folder (`pip install -e ".[dev]"`; tests: `python -m pytest -q`). Work lands on `main`.
 - Two machines have been used: the team's Windows 11 laptop (Python 3.10 venv `.venv`, path with a space: use
   `pathlib`, quote paths) and Linux cloud containers (Python 3.11, 4 vCPU, no GPU, Hugging Face / KITTI hosts blocked).
-- GPU work runs on the team laptop's NVIDIA GPU (RTX 3050 Laptop, 4 GB): `scripts/train_seg_gpu.ps1`. AWS (`aws/`) is dropped
-  and kept for reference only.
+- GPU training runs as an AWS SageMaker training job (`ml.g6.24xlarge`, 4x L4, ap-southeast-2) through `aws/ec2_run.py --backend sagemaker`
+  (credentials from `AWS_*` environment variables, never in chat or git). Fallback: the team laptop's NVIDIA GPU
+  (RTX 3050 Laptop, 4 GB) with `scripts/train_seg_gpu.ps1`.
 - Rendered-stereo mode: Chrome/Edge + GPU on Windows by default; on Linux set `MG_RENDER_HEADLESS=1` and, CPU-only,
   `MG_ANGLE=swiftshader MG_ALLOW_SOFTWARE_GL=1` (seconds per frame, smoke tests only).
 - Keep live-loop code CPU-friendly (numpy-vectorised, OpenCV, ONNX Runtime).

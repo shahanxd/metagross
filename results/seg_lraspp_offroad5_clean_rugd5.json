@@ -1,0 +1,677 @@
+{
+ "schema": "metagross.seg_eval/1",
+ "label": "LR-ASPP (clean aug), RUGD-5L",
+ "smoke": false,
+ "claim_label": "Tested",
+ "created_utc": "2026-10-01T06:50:40+00:00",
+ "model": {
+  "path": "models/lraspp_offroad5_clean.onnx",
+  "sha256": "b617477a71f1db640f05f027a7b3448c17f019ba83543f521f50bb1ee3af5aa4",
+  "kind": "direct5",
+  "input_hw": [
+   320,
+   416
+  ],
+  "sidecar": {
+   "name": "LR-ASPP MobileNetV3 OFFROAD5 (clean aug)",
+   "kind": "direct5",
+   "architecture": "lraspp (torchvision lraspp_mobilenet_v3_large)",
+   "params": 3218818,
+   "input_hw": [
+    320,
+    416
+   ],
+   "input": "input: (1, 3, H, W) float32, RGB, (x/255 - mean) / std",
+   "output": "logits: (1, 5, H, W) float32",
+   "mean": [
+    0.485,
+    0.456,
+    0.406
+   ],
+   "std": [
+    0.229,
+    0.224,
+    0.225
+   ],
+   "classes": {
+    "0": "background/sky",
+    "1": "obstacle",
+    "2": "water/mud",
+    "3": "unstable (grass/dirt)",
+    "4": "stable (asphalt/concrete/gravel path)"
+   },
+   "colors_rgb": {
+    "0": [
+     203,
+     208,
+     214
+    ],
+    "1": [
+     220,
+     50,
+     47
+    ],
+    "2": [
+     20,
+     140,
+     190
+    ],
+    "3": [
+     217,
+     180,
+     58
+    ],
+    "4": [
+     34,
+     160,
+     90
+    ]
+   },
+   "smoke": false,
+   "training": {
+    "data": "offroad5",
+    "aug": "clean",
+    "init": "imagenet",
+    "img_hw": [
+     320,
+     416
+    ],
+    "batch_size": 32,
+    "lr": 0.0006,
+    "sched": "poly",
+    "epochs_planned": 40,
+    "best_epoch": 30,
+    "iterations_at_best": 7812,
+    "iterations_planned": 10080,
+    "partial": true,
+    "sampling": "uniform",
+    "repeat_factor_sampling": null,
+    "n_train_images": 8081,
+    "n_val_images": 2907,
+    "train_list_sha": "242287d136444986",
+    "class_weights": [
+     0.3899114429950714,
+     0.21167199313640594,
+     2.0579872131347656,
+     0.20962119102478027,
+     2.130808115005493
+    ],
+    "device": "cuda",
+    "torch": "2.10.0+cu130"
+   },
+   "val_metrics_at_train_res": {
+    "miou": 0.7311448271018027,
+    "pixel_acc": 0.8667530303387381,
+    "false_safe_rate": 0.1608481747233392,
+    "per_class_iou": {
+     "background/sky": 0.8861867902072882,
+     "obstacle": 0.786499913422719,
+     "water/mud": 0.44202959590286484,
+     "unstable (grass/dirt)": 0.7099157123732602,
+     "stable (asphalt/concrete/gravel path)": 0.8310921236028812
+    }
+   },
+   "licence": {
+    "code": "torchvision LR-ASPP MobileNetV3-Large architecture (BSD-3-Clause)",
+    "backbone_init": "torchvision ImageNet-1k MobileNetV3-Large weights (BSD-3-Clause distribution; ImageNet data terms apply)",
+    "training_data": "GAIA-URJC RUGD-5Labels-resized / OFFROAD5 (RUGD, RELLIS-3D, GOOSE) mirrors: CC BY-NC-SA 3.0",
+    "weights_use": "research / evaluation only (derived from non-commercial data). A production BEL deployment must retrain with the same pipeline on commercially licensed or own-collected data."
+   },
+   "export": {
+    "opset": 17,
+    "torch": "2.10.0+cu130",
+    "onnxruntime": "1.29.0",
+    "max_abs_logit_diff_vs_torch": 1.811981201171875e-05,
+    "argmax_agreement_vs_torch": 1.0,
+    "sha256": "b617477a71f1db640f05f027a7b3448c17f019ba83543f521f50bb1ee3af5aa4",
+    "source_checkpoint": "runs/seg/lraspp_offroad5_clean/best.pt",
+    "created_utc": "2026-10-01T06:46:19+00:00"
+   }
+  }
+ },
+ "eval_threads": 8,
+ "splits": {
+  "val": {
+   "n_images": 1924,
+   "overall": {
+    "n_pixels": 246272000,
+    "miou": 0.6180620622808621,
+    "miou_present": 0.6180620622808621,
+    "pixel_acc": 0.844899192762474,
+    "per_class_iou": {
+     "background/sky": 0.783363561117878,
+     "obstacle": 0.7702592148450599,
+     "water/mud": 0.01476230162954347,
+     "unstable (grass/dirt)": 0.6746171381334282,
+     "stable (asphalt/concrete/gravel path)": 0.8473080956784016
+    },
+    "per_class_recall": {
+     "background/sky": 0.8854456988212652,
+     "obstacle": 0.8004036632660159,
+     "water/mud": 0.014817211680036831,
+     "unstable (grass/dirt)": 0.9479974023710968,
+     "stable (asphalt/concrete/gravel path)": 0.9434044949336683
+    },
+    "per_class_precision": {
+     "background/sky": 0.8717090523099589,
+     "obstacle": 0.9533845909264811,
+     "water/mud": 0.799339253497036,
+     "unstable (grass/dirt)": 0.7005415653096602,
+     "stable (asphalt/concrete/gravel path)": 0.8926837591641203
+    },
+    "gt_class_fraction": {
+     "background/sky": 0.07125338243892931,
+     "obstacle": 0.6088020887474013,
+     "water/mud": 0.009348971868503118,
+     "unstable (grass/dirt)": 0.29719725750389814,
+     "stable (asphalt/concrete/gravel path)": 0.013398299441268191
+    },
+    "false_safe_rate": 0.19535701052735518,
+    "false_safe_obstacle": 0.1843511946182571,
+    "false_safe_water": 0.9120522587398312,
+    "false_hazard_rate": 0.04841140176655318,
+    "confusion": [
+     [
+      15537547,
+      1997708,
+      218,
+      11023,
+      1217
+     ],
+     [
+      2278330,
+      120005248,
+      7388,
+      27484147,
+      155795
+     ],
+     [
+      546,
+      167829,
+      34115,
+      2099900,
+      0
+     ],
+     [
+      6655,
+      3581408,
+      867,
+      69385222,
+      217211
+     ],
+     [
+      1157,
+      120670,
+      91,
+      64826,
+      3112882
+     ]
+    ]
+   },
+   "per_source": {
+    "rugd": {
+     "n_pixels": 246272000,
+     "miou": 0.6180620622808621,
+     "miou_present": 0.6180620622808621,
+     "pixel_acc": 0.844899192762474,
+     "per_class_iou": {
+      "background/sky": 0.783363561117878,
+      "obstacle": 0.7702592148450599,
+      "water/mud": 0.01476230162954347,
+      "unstable (grass/dirt)": 0.6746171381334282,
+      "stable (asphalt/concrete/gravel path)": 0.8473080956784016
+     },
+     "per_class_recall": {
+      "background/sky": 0.8854456988212652,
+      "obstacle": 0.8004036632660159,
+      "water/mud": 0.014817211680036831,
+      "unstable (grass/dirt)": 0.9479974023710968,
+      "stable (asphalt/concrete/gravel path)": 0.9434044949336683
+     },
+     "per_class_precision": {
+      "background/sky": 0.8717090523099589,
+      "obstacle": 0.9533845909264811,
+      "water/mud": 0.799339253497036,
+      "unstable (grass/dirt)": 0.7005415653096602,
+      "stable (asphalt/concrete/gravel path)": 0.8926837591641203
+     },
+     "gt_class_fraction": {
+      "background/sky": 0.07125338243892931,
+      "obstacle": 0.6088020887474013,
+      "water/mud": 0.009348971868503118,
+      "unstable (grass/dirt)": 0.29719725750389814,
+      "stable (asphalt/concrete/gravel path)": 0.013398299441268191
+     },
+     "false_safe_rate": 0.19535701052735518,
+     "false_safe_obstacle": 0.1843511946182571,
+     "false_safe_water": 0.9120522587398312,
+     "false_hazard_rate": 0.04841140176655318,
+     "confusion": [
+      [
+       15537547,
+       1997708,
+       218,
+       11023,
+       1217
+      ],
+      [
+       2278330,
+       120005248,
+       7388,
+       27484147,
+       155795
+      ],
+      [
+       546,
+       167829,
+       34115,
+       2099900,
+       0
+      ],
+      [
+       6655,
+       3581408,
+       867,
+       69385222,
+       217211
+      ],
+      [
+       1157,
+       120670,
+       91,
+       64826,
+       3112882
+      ]
+     ],
+     "n_images": 1924
+    }
+   },
+   "per_sequence": {
+    "creek": {
+     "n_images": 836,
+     "miou": 0.34330794114169566,
+     "false_safe_rate": 0.3127880641444671,
+     "hazard_px": 88551675,
+     "false_safe_px": 27697907
+    },
+    "park-1": {
+     "n_images": 627,
+     "miou": 0.7048284654397666,
+     "false_safe_rate": 0.031075958854226437,
+     "hazard_px": 36998794,
+     "false_safe_px": 1149773
+    },
+    "trail-13": {
+     "n_images": 172,
+     "miou": 0.6994352508229258,
+     "false_safe_rate": 0.015680301145976586,
+     "hazard_px": 8513612,
+     "false_safe_px": 133496
+    },
+    "trail-7": {
+     "n_images": 289,
+     "miou": 0.5302514385681953,
+     "false_safe_rate": 0.0417555693236533,
+     "hazard_px": 18169217,
+     "false_safe_px": 758666
+    }
+   },
+   "brightness": {
+    "luma_tercile_thresholds": [
+     97.41252136230469,
+     109.03202056884766
+    ],
+    "dark": {
+     "n_images": 641,
+     "luma_range": [
+      34.54737091064453,
+      97.39781188964844
+     ],
+     "miou": 0.6194023183456556,
+     "pixel_acc": 0.8835822811037441,
+     "false_safe_rate": 0.12587616728540205,
+     "per_class_iou": {
+      "background/sky": 0.6871470918295903,
+      "obstacle": 0.8280255991355921,
+      "water/mud": 0.010826452910574807,
+      "unstable (grass/dirt)": 0.7531100289395591,
+      "stable (asphalt/concrete/gravel path)": 0.8179024189129616
+     }
+    },
+    "mid": {
+     "n_images": 641,
+     "luma_range": [
+      97.41252136230469,
+      108.9923095703125
+     ],
+     "miou": 0.6182874101542071,
+     "pixel_acc": 0.8276078636895475,
+     "false_safe_rate": 0.22816159416339074,
+     "per_class_iou": {
+      "background/sky": 0.773203571928039,
+      "obstacle": 0.7535713160995597,
+      "water/mud": 0.008359371427700468,
+      "unstable (grass/dirt)": 0.6413502259314701,
+      "stable (asphalt/concrete/gravel path)": 0.9149525653842658
+     }
+    },
+    "bright": {
+     "n_images": 642,
+     "luma_range": [
+      109.03202056884766,
+      132.36117553710938
+     ],
+     "miou": 0.6035449589427954,
+     "pixel_acc": 0.823540753991433,
+     "false_safe_rate": 0.23338175223097257,
+     "per_class_iou": {
+      "background/sky": 0.8298387640953352,
+      "obstacle": 0.7264102854952907,
+      "water/mud": 0.02945071739120586,
+      "unstable (grass/dirt)": 0.6324140565029257,
+      "stable (asphalt/concrete/gravel path)": 0.7996109712292192
+     }
+    }
+   },
+   "entropy": {
+    "mean_on_correct": 0.05690126714534664,
+    "mean_on_wrong": 0.16366362356524689
+   },
+   "split": "val",
+   "data_root": "/opt/ml/input/data/scratch/data/rugd5",
+   "file_list_sha": "daf0978fff591e80",
+   "max_images": null,
+   "wall_s": 43.0
+  },
+  "test": {
+   "n_images": 733,
+   "overall": {
+    "n_pixels": 93824000,
+    "miou": 0.7677006306620268,
+    "miou_present": 0.7677006306620268,
+    "pixel_acc": 0.9432397467598909,
+    "per_class_iou": {
+     "background/sky": 0.616121801340908,
+     "obstacle": 0.8931682915836078,
+     "water/mud": 0.4780531037043247,
+     "unstable (grass/dirt)": 0.9364760905202268,
+     "stable (asphalt/concrete/gravel path)": 0.9146838661610666
+    },
+    "per_class_recall": {
+     "background/sky": 0.7027549310711738,
+     "obstacle": 0.9588138500803656,
+     "water/mud": 0.669776495066783,
+     "unstable (grass/dirt)": 0.9637807506025735,
+     "stable (asphalt/concrete/gravel path)": 0.9287041545870551
+    },
+    "per_class_precision": {
+     "background/sky": 0.8332746314259769,
+     "obstacle": 0.9288030506805464,
+     "water/mud": 0.6254759703527273,
+     "unstable (grass/dirt)": 0.9706358023226364,
+     "stable (asphalt/concrete/gravel path)": 0.9837632488281396
+    },
+    "gt_class_fraction": {
+     "background/sky": 0.06379675775920873,
+     "obstacle": 0.4690447859822647,
+     "water/mud": 0.0006351892905866303,
+     "unstable (grass/dirt)": 0.42741012960436564,
+     "stable (asphalt/concrete/gravel path)": 0.03911313736357435
+    },
+    "false_safe_rate": 0.02261969851808783,
+    "false_safe_obstacle": 0.022341770607288394,
+    "false_safe_water": 0.22785086247399156,
+    "false_hazard_rate": 0.034451081272179745,
+    "confusion": [
+     [
+      4206457,
+      1747482,
+      0,
+      22984,
+      8744
+     ],
+     [
+      828297,
+      42195152,
+      1000,
+      965668,
+      17541
+     ],
+     [
+      4194,
+      1907,
+      39916,
+      13579,
+      0
+     ],
+     [
+      6132,
+      1393442,
+      22901,
+      38648888,
+      29965
+     ],
+     [
+      3024,
+      91618,
+      0,
+      166996,
+      3408113
+     ]
+    ]
+   },
+   "per_source": {
+    "rugd": {
+     "n_pixels": 93824000,
+     "miou": 0.7677006306620268,
+     "miou_present": 0.7677006306620268,
+     "pixel_acc": 0.9432397467598909,
+     "per_class_iou": {
+      "background/sky": 0.616121801340908,
+      "obstacle": 0.8931682915836078,
+      "water/mud": 0.4780531037043247,
+      "unstable (grass/dirt)": 0.9364760905202268,
+      "stable (asphalt/concrete/gravel path)": 0.9146838661610666
+     },
+     "per_class_recall": {
+      "background/sky": 0.7027549310711738,
+      "obstacle": 0.9588138500803656,
+      "water/mud": 0.669776495066783,
+      "unstable (grass/dirt)": 0.9637807506025735,
+      "stable (asphalt/concrete/gravel path)": 0.9287041545870551
+     },
+     "per_class_precision": {
+      "background/sky": 0.8332746314259769,
+      "obstacle": 0.9288030506805464,
+      "water/mud": 0.6254759703527273,
+      "unstable (grass/dirt)": 0.9706358023226364,
+      "stable (asphalt/concrete/gravel path)": 0.9837632488281396
+     },
+     "gt_class_fraction": {
+      "background/sky": 0.06379675775920873,
+      "obstacle": 0.4690447859822647,
+      "water/mud": 0.0006351892905866303,
+      "unstable (grass/dirt)": 0.42741012960436564,
+      "stable (asphalt/concrete/gravel path)": 0.03911313736357435
+     },
+     "false_safe_rate": 0.02261969851808783,
+     "false_safe_obstacle": 0.022341770607288394,
+     "false_safe_water": 0.22785086247399156,
+     "false_hazard_rate": 0.034451081272179745,
+     "confusion": [
+      [
+       4206457,
+       1747482,
+       0,
+       22984,
+       8744
+      ],
+      [
+       828297,
+       42195152,
+       1000,
+       965668,
+       17541
+      ],
+      [
+       4194,
+       1907,
+       39916,
+       13579,
+       0
+      ],
+      [
+       6132,
+       1393442,
+       22901,
+       38648888,
+       29965
+      ],
+      [
+       3024,
+       91618,
+       0,
+       166996,
+       3408113
+      ]
+     ],
+     "n_images": 733
+    }
+   },
+   "per_sequence": {
+    "park-8": {
+     "n_images": 357,
+     "miou": 0.6848728106175761,
+     "false_safe_rate": 0.016040069967585634,
+     "hazard_px": 20806206,
+     "false_safe_px": 333733
+    },
+    "trail-5": {
+     "n_images": 376,
+     "miou": 0.5707108569938639,
+     "false_safe_rate": 0.02850494956203177,
+     "hazard_px": 23261048,
+     "false_safe_px": 663055
+    }
+   },
+   "brightness": {
+    "luma_tercile_thresholds": [
+     99.85183715820312,
+     107.86373138427734
+    ],
+    "dark": {
+     "n_images": 244,
+     "luma_range": [
+      74.03379821777344,
+      99.83824157714844
+     ],
+     "miou": 0.7469410110566085,
+     "pixel_acc": 0.9517752945696721,
+     "false_safe_rate": 0.019156495610214447,
+     "per_class_iou": {
+      "background/sky": 0.5795429383933904,
+      "obstacle": 0.9146809293435971,
+      "water/mud": 0.3836589030803907,
+      "unstable (grass/dirt)": 0.9411983386723709,
+      "stable (asphalt/concrete/gravel path)": 0.9156239457932935
+     }
+    },
+    "mid": {
+     "n_images": 244,
+     "luma_range": [
+      99.85183715820312,
+      107.85637664794922
+     ],
+     "miou": 0.8000449476545978,
+     "pixel_acc": 0.9450629162397541,
+     "false_safe_rate": 0.019053602680649626,
+     "per_class_iou": {
+      "background/sky": 0.5958215174205567,
+      "obstacle": 0.8955929401231228,
+      "water/mud": 0.6295599745554111,
+      "unstable (grass/dirt)": 0.9374536464771323,
+      "stable (asphalt/concrete/gravel path)": 0.9417966596967655
+     }
+    },
+    "bright": {
+     "n_images": 245,
+     "luma_range": [
+      107.86373138427734,
+      129.37631225585938
+     ],
+     "miou": 0.7268126417355536,
+     "pixel_acc": 0.9329233099489795,
+     "false_safe_rate": 0.02984922426979387,
+     "per_class_iou": {
+      "background/sky": 0.6490247943325407,
+      "obstacle": 0.8691690462998116,
+      "water/mud": 0.33494208494208494,
+      "unstable (grass/dirt)": 0.9310913672734901,
+      "stable (asphalt/concrete/gravel path)": 0.8498359158298406
+     }
+    }
+   },
+   "entropy": {
+    "mean_on_correct": 0.04545539823790796,
+    "mean_on_wrong": 0.28360166307845175
+   },
+   "split": "test",
+   "data_root": "/opt/ml/input/data/scratch/data/rugd5",
+   "file_list_sha": "89595e9806a630b2",
+   "max_images": null,
+   "wall_s": 20.2
+  }
+ },
+ "latency_ms": {},
+ "host": {
+  "platform": "Linux-6.12.103-127.188.amzn2023.x86_64-x86_64-with-glibc2.35",
+  "cpu_count": 48,
+  "onnxruntime": "1.29.0",
+  "python": "3.13.11"
+ },
+ "notes": "Evaluated at label resolution; per-class IoU None = class absent in GT and never predicted.",
+ "claims": [
+  {
+   "id": "seg_clean_rugd5_val_miou",
+   "value": 0.6181,
+   "label": "Tested",
+   "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+   "note": "LR-ASPP (clean aug), RUGD-5L"
+  },
+  {
+   "id": "seg_clean_rugd5_val_pixel_acc",
+   "value": 0.8449,
+   "label": "Tested",
+   "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+   "note": "LR-ASPP (clean aug), RUGD-5L"
+  },
+  {
+   "id": "seg_clean_rugd5_val_false_safe_rate",
+   "value": 0.1954,
+   "label": "Tested",
+   "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+   "note": "LR-ASPP (clean aug), RUGD-5L"
+  },
+  {
+   "id": "seg_clean_rugd5_test_miou",
+   "value": 0.7677,
+   "label": "Tested",
+   "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+   "note": "LR-ASPP (clean aug), RUGD-5L"
+  },
+  {
+   "id": "seg_clean_rugd5_test_pixel_acc",
+   "value": 0.9432,
+   "label": "Tested",
+   "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+   "note": "LR-ASPP (clean aug), RUGD-5L"
+  },
+  {
+   "id": "seg_clean_rugd5_test_false_safe_rate",
+   "value": 0.0226,
+   "label": "Tested",
+   "source": "results/seg_lraspp_offroad5_clean_rugd5.json",
+   "note": "LR-ASPP (clean aug), RUGD-5L"
+  }
+ ]
+}
