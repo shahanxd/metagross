@@ -88,7 +88,7 @@ The onboard stack (`metagross/autonomy/`) runs in its own OS process and sees on
 | Camera frame | 5 Hz in batch runs (10 Hz demo setting) | Rectified left RGB and right grey at 640 × 400 (stereo mode), or a synthetic disparity map (tier-0) |
 | Encoders, gyro | every frame | Cumulative wheel angle (4096 ticks/rev); mean z-rate with bias, bias random walk and white noise |
 | Wheel command | 5 Hz | Left and right wheel rates (rad/s) |
-| Segmenter | every 3rd frame (design; not in the loop, no trained weights) | 5-class mask; the last mask is reused on the two frames in between |
+| Segmenter | every 3rd frame (design; trained offline, not in the loop) | 5-class mask; the last mask is reused on the two frames in between |
 | Global planner | 1 Hz, or at once when a lethal cell cuts the route | Cost-to-go field |
 | Telemetry | 2 Hz timer on the 5 Hz tick: one packet every 0.6 s median (Simulated, ledger `closed_loop_eval_tier0_FULL_telemetry_period_s`); the 600 B budget assumes 2 Hz, so it is conservative | Pose, mode, speed cap, certified range, waypoints, 64 × 64 costmap, health |
 
@@ -111,7 +111,7 @@ The onboard stack (`metagross/autonomy/`) runs in its own OS process and sees on
  [12] Telemetry encoder (2 Hz timer; one packet per 0.6 s in practice) -> log (replay only, no radio)
 ```
 
-**Status.** In every scored (tier-0) run, stereo matching (step 1), the VO branch of step 2, the integrity monitor (q fixed at 1) and the segmenter (step 3a) did not run. Stereo matching and VO run only in rendered-stereo mode, which has no scored batch; the segmenter has no trained weights.
+**Status.** In every scored (tier-0) run, stereo matching (step 1), the VO branch of step 2, the integrity monitor (q fixed at 1) and the segmenter (step 3a) did not run. Stereo matching and VO run only in rendered-stereo mode, which has no scored batch; the segmenter was trained only after the scored runs and is not in the loop.
 
 ### 3.3 Perception modules
 
@@ -123,7 +123,7 @@ The onboard stack (`metagross/autonomy/`) runs in its own OS process and sees on
 
 **Terrain segmenter.** The segmenter labels five classes: sky, obstacle, water/mud, unstable and stable. It is LR-ASPP on MobileNetV3-Large [20] (3.2 M parameters), designed to run through ONNX Runtime [21] on the CPU. Fusion is monotone: semantics can raise a cell's cost or mark it WATER, but can never clear a geometric hazard.
 - **Why a small segmenter.** Learned systems predict traversability directly: GA-Nav [22], WVN [23], TerrainNet [24], and Velociraptor [25] (which uses camera plus LiDAR). We could not validate any of them in our loop and want geometry to keep the veto, so the segmenter is a cost layer under geometry.
-- **Status.** Built, not in the loop. The deploy model is not trained yet, so every closed-loop run in this report ran without semantics.
+- **Status.** Trained offline, not in the loop. The deploy model was trained on 2026-10-01 (test mIoU 0.825 on OFFROAD5, 0.768 on RUGD-5L, clean aug; `results/seg_lraspp_offroad5_*.json`, Tested), after the scored runs, so every closed-loop run in this report ran without semantics.
 
 ## 4. The seen-ground idea
 
@@ -507,7 +507,7 @@ Tier-0 EVAL, FULL stack, all 10,454 ticks of the 60 runs, on a Linux container w
 ## 9. Limitations and what we are doing next
 
 1. **The success rate is not shown to improve.** 33/60 against 31/60 is within noise. Resolving a difference this small needs more held-out worlds. We will pre-register a second, larger EVAL set the same way, before any run (Proposed).
-2. **Segmenter and water.** The deploy model (LR-ASPP on OFFROAD5 [72], clean and robust augmentation) is not trained yet. Training on the team laptop's GPU (RTX 3050 Laptop, 4 GB) with `scripts/train_seg_gpu.ps1` is the next step (Proposed). An earlier AWS route was dropped; `aws/` is kept for reference only. Until deploy weights exist, WATER never appears in the loop, and F6 fails in tier-0 by construction. When they arrive, we will report test metrics with the same false-safe measure and then wire the model into the stereo loop. Fine-tuning on Indian scenes such as IDD [77] (unstructured roads, not off-road) is Proposed.
+2. **Segmenter and water.** The deploy model (LR-ASPP on OFFROAD5 [72], clean and robust augmentation) was trained on AWS SageMaker on 2026-10-01: test mIoU 0.825 / 0.800 on OFFROAD5 and 0.768 / 0.761 on RUGD-5L, false-safe 2.3-3.9 % (Tested). Water remains the weak class (RUGD-5L val water IoU 0.02). Next: measure its CPU latency, wire it into the stereo loop, and only then can WATER appear in the loop; until then F6 fails in tier-0 by construction. Fine-tuning on Indian scenes such as IDD [77] (unstructured roads, not off-road) is Proposed.
 3. **Obstacles entering from the side: an undiagnosed regression** (F4 2/10 vs 5/10; section 8.1). TYPICAL has the same field of view, so that alone does not explain the gap. We will first diagnose this on DEV, then test (all Proposed): expiring certification near occluders; capping speed near occluders by how far an object could move into the corridor within `T_r`; and a wider field of view or a second camera pair.
 4. **Trench hidden behind a crest: a certification gap.** Certification assumes the ground continues past the last observed row, so a trench just behind a crest is seen only at about 2.8 m. Both FULL ditch entries on EVAL (seeds 14 and 26, both F3) were this case, and 25 hazard cells remain certified inside the stopping envelope on tier-0 DEV. We will make the governor treat the crest top as the end of certified ground on falling terrain, and measure the effect on F3 DEV worlds (Proposed).
 5. **Collisions, stuck runs and needless stops.** FULL had 7 collisions against 5 (all F4), 5 stuck runs against 1 and 5 unjustified stops against 2 on EVAL; three F2 worlds ended stuck despite the dead-end memory. This is DEV tuning work.
@@ -524,7 +524,7 @@ Run from the repository root [2] with Python 3.10 or 3.11. Component status is i
 ```bash
 pip install -e ".[dev]"
 export OMP_NUM_THREADS=2
-python -m pytest -q          # on 1 Oct 2026: 504 passed, 10 skipped (the skipped tests need Chrome for the renderer)
+python -m pytest -q          # on 1 Oct 2026 (Linux container): 506 passed, 11 skipped (skips need Chrome for the renderer or optional tools)
 
 # Scenarios; compare the sha256 fields of data/scenarios/manifest.json with results/scenario_manifest.json
 python scripts/gen_scenarios.py --split all --workers 4
