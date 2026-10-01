@@ -1,7 +1,7 @@
 # Terrain-segmenter training on an AWS GPU box
 
-> **In use again (2026-10-01).** The full segmenter training runs as a SageMaker training job on `ml.g6.12xlarge`
-> (section below). The laptop-GPU script `scripts/train_seg_gpu.ps1` is the fallback.
+> **In use again (2026-10-01).** The full segmenter training runs as a SageMaker training job on `ml.g6.24xlarge`
+> in ap-southeast-2 (section below). The laptop-GPU script `scripts/train_seg_gpu.ps1` is the fallback.
 
 One command sets up a fresh Ubuntu 22.04/24.04 NVIDIA instance, downloads the data and trains two LR-ASPP models
 in parallel: CLEAN vs ROBUST augmentation. It then exports ONNX and writes evaluation JSONs and figures.
@@ -14,9 +14,10 @@ manual SSH route below still works. `pip install -e ".[aws]"` installs boto3.
 
 ## SageMaker training job (`--backend sagemaker`)
 
-The GPU quota is a SageMaker one: **`ml.g6.12xlarge` for training job usage** (4x NVIDIA L4 24 GB, 48 vCPU), the
-launcher's default. Set `AWS_DEFAULT_REGION` to the region where that quota was granted; quotas are per region and per
-use (a *notebook instance* or *processing* quota does not count). The 2-epoch dry run on 2026-09-30 used
+The GPU quota is a SageMaker one: **`ml.g6.24xlarge` for training job usage = 1 in ap-southeast-2** (4x NVIDIA L4
+24 GB, 96 vCPU), the launcher's default, so set `AWS_DEFAULT_REGION=ap-southeast-2` with that account's keys. Quotas
+are per region and per use (a *notebook instance* or *processing* quota does not count); `--type` picks another one,
+e.g. `ml.g6.12xlarge` (same 4 GPUs, 48 vCPU). The 2-epoch dry run on 2026-09-30 used
 `ml.g6.16xlarge` (1x L4) in another account and completed every stage. `--backend sagemaker` runs the same
 `aws/jobs/seg.sh` as a SageMaker training job in the AWS PyTorch GPU container
 (`pytorch-training:2.10.0-gpu-py313-cu130-ubuntu22.04-sagemaker`; `--image` and `--type` override).
@@ -28,6 +29,7 @@ python aws/ec2_run.py check --backend sagemaker            # identity, SageMaker
 # 1) dry run of the whole chain on the real instance (2 epochs on 512 images; hard cap 1.5 h)
 python aws/ec2_run.py launch --backend sagemaker --job seg --max-hours 1.5 --env EPOCHS=2 TRAIN_SUBSET=512
 python aws/ec2_run.py status --backend sagemaker --job seg  # job state + tail of logs/ (copied to S3 every 2 min)
+python aws/ec2_run.py logs --backend sagemaker --job seg --follow  # live container log until the job ends
 python aws/ec2_run.py fetch  --backend sagemaker --job seg  # models/, results/, deck_assets/, runs/aws/logs/
 # 2) the real run (40 epochs by default; training stops at a DEADLINE ~1 h before the cap, then export + eval)
 python aws/ec2_run.py launch --backend sagemaker --job seg --max-hours 12
@@ -42,7 +44,7 @@ How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
   `aws/sagemaker_entry.sh`, which runs `aws/jobs/seg.sh` unchanged with `SYSTEM_TORCH=1` (the container's CUDA torch
   is reused when it sees the GPU, so normally no torch download) and the datasets and venv on the instance's local
   NVMe.
-- **GPUs**: on `ml.g6.12xlarge` (4x L4) `run_pipeline.sh` puts the clean run on GPU 0 and the robust run on GPU 1;
+- **GPUs**: on `ml.g6.24xlarge` / `ml.g6.12xlarge` (4x L4) `run_pipeline.sh` puts the clean run on GPU 0 and the robust run on GPU 1;
   `train_seg` has no multi-GPU mode, so GPUs 2 and 3 stay idle. On a one-GPU type (`--type ml.g6.16xlarge`) both
   runs share the GPU, as on any single-GPU box.
 - **Time cap**: `--max-hours` becomes `MaxRuntimeInSeconds`. Unless `DEADLINE` is passed, the entry script sets one
@@ -52,6 +54,11 @@ How it runs (`aws/sagemaker_backend.py`, `aws/sagemaker_entry.sh`):
   `logs/pipeline.log` and the tagged `logs/train_*.log` also stream to CloudWatch (`/aws/sagemaker/TrainingJobs`),
   where the job's metric definitions are set up to pick per-epoch val mIoU into `clean:val_miou` /
   `robust:val_miou` (the regexes are unit-tested on a sample log line, not yet seen on SageMaker).
+- **Watching it live**: `logs --follow` streams the container log from CloudWatch: setup output, then lines
+  tagged `[train_lraspp_offroad5_clean]` / `[..._robust]` with loss and seconds per iteration every 20 iterations
+  and val mIoU every epoch, then `[pipeline]` export/eval. In the console: SageMaker → Training → Training jobs →
+  the job → **View logs** (same stream), and the job page's metric graphs for `clean:val_miou` / `robust:val_miou`
+  and GPU utilization.
 - **Outputs**: the `JOB_OUTPUTS` globs are copied to `<checkpoints>/out/` (what `fetch` downloads) and to
   `/opt/ml/model` (`model.tar.gz`, the fallback once the job has ended). `fetch` writes only paths that match those
   globs (both backends), so a job cannot drop, say, `tests/conftest.py` into the local repo. A job that exits 0 without `models/lraspp_offroad5_*.onnx` is marked

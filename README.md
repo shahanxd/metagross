@@ -42,7 +42,7 @@ results file next to every number they quote.
 | Stereo renderer realism (SGBM on rendered images) | **Simulated** | `results/renderer_bench.json` |
 | Closed-loop A to B driving | **Simulated** (tier-0 depth sensor, no images): held-out EVAL seeds 0-59, FULL 33/60 reached B, TYPICAL baseline 31/60; DEV 100-129 FULL 20/30. A first EVAL run on a regressed commit (17/60) is kept and disclosed | `docs/EVAL_PREREGISTRATION.md`, `results/closed_loop_eval.json`, `results/closed_loop_dev.json` |
 | Detectability and safe-speed envelope | **Estimated** (closed-form geometry) | `results/theory.json` |
-| Trained off-road deploy segmenter (OFFROAD5, GPU) | **Proposed**: training runs as a SageMaker job (`aws/`, `ml.g6.12xlarge`; laptop-GPU fallback `scripts/train_seg_gpu.ps1`); no trained model is in `models/` yet | `docs/PIPELINE_STATUS.md` |
+| Trained off-road deploy segmenter (OFFROAD5, GPU) | **Proposed**: training runs as a SageMaker job (`aws/`, `ml.g6.24xlarge`; laptop-GPU fallback `scripts/train_seg_gpu.ps1`); no trained model is in `models/` yet | `docs/PIPELINE_STATUS.md` |
 | Operator console and narrow-band link | Implemented and unit-tested (codec, link emulator, replay console); not tested over a real radio | `tests/test_plan_link.py`, `operator_ui/` |
 | Real vehicle, real camera, embedded computer | **Proposed**; nothing has run on hardware | `docs/QA.md` (field-test plan) |
 

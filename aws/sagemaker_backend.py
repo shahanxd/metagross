@@ -1,7 +1,7 @@
 """SageMaker training-job backend for ``aws/ec2_run.py`` (``--backend sagemaker``).
 
 Runs the same job script as the EC2 path (``aws/jobs/<job>.sh``) as one SageMaker training job in an AWS PyTorch
-GPU Deep Learning Container (default instance ``ml.g6.12xlarge``: 4x NVIDIA L4 24 GB, 48 vCPU):
+GPU Deep Learning Container (default instance ``ml.g6.24xlarge``: 4x NVIDIA L4 24 GB, 96 vCPU):
 
 * **code**: the ``git archive HEAD`` tarball goes to S3 and reaches the container as the ``code`` input channel
   (``/opt/ml/input/data/code/metagross.tgz``). The job's ``ContainerEntrypoint`` (:func:`bootstrap_command`) unpacks
@@ -44,10 +44,11 @@ TAG = {"Key": "project", "Value": "metagross"}
 ROLE = "metagross-sagemaker-role"
 ROLE_POLICY = "metagross-sagemaker-job"
 NAME_PREFIX = "metagross"
-# Training-job quota of the account used for the full run (2026-10-01): "ml.g6.12xlarge for training job usage"
-# (4x NVIDIA L4 24 GB, 48 vCPU, local NVMe), so the clean and robust runs get a GPU each. The earlier dry run used
-# ml.g6.16xlarge (1x L4) in another account. --type overrides it.
-DEFAULT_INSTANCE = "ml.g6.12xlarge"
+# Training-job quota of the account used for the full run (Service Quotas console, 2026-10-01): "ml.g6.24xlarge for
+# training job usage" = 1 in ap-southeast-2 (4x NVIDIA L4 24 GB, 96 vCPU, local NVMe): the clean and robust runs get
+# a GPU each and twice the data-loading CPUs of ml.g6.12xlarge. The dry run used ml.g6.16xlarge (1x L4) in another
+# account. --type overrides it.
+DEFAULT_INSTANCE = "ml.g6.24xlarge"
 FREETIER_REGION = "us-east-1"  # the Free Tier plan API (GetAccountPlanState) is served from us-east-1 only
 # AWS PyTorch training DLC, SageMaker flavour. Registry 763104351884 serves us-east-1 and ap-south-1 (sagemaker-python-sdk
 # image_uri_config/pytorch.json); tag from aws/deep-learning-containers docs/src/data/pytorch-training/
@@ -64,6 +65,8 @@ CODE_TARBALL = "metagross.tgz"
 REPO_IN_CONTAINER = f"{ML_ROOT}/code/metagross"
 ROLE_RETRIES, ROLE_RETRY_S = 6, 10.0  # a new execution role can take ~10-60 s to become assumable
 ENDED = ("Completed", "Failed", "Stopped")  # TrainingJobStatus values after which output/ is final
+LOG_GROUP = "/aws/sagemaker/TrainingJobs"  # CloudWatch log group of every training job's container stdout
+LOG_POLL_S = 10.0  # `logs --follow` polling period (CloudWatch delivers container lines within seconds)
 
 # API limits from the botocore SageMaker service model (CreateTrainingJob).
 JOB_NAME_RE = re.compile(r"[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}")
@@ -465,6 +468,41 @@ def status(s, job: str, name: Optional[str] = None, tail: int = 25) -> None:
             print("   ", line[:220])
     if not listing:
         print("(no logs on S3 yet; container stdout is in CloudWatch /aws/sagemaker/TrainingJobs)")
+
+
+def logs(s, job: str, name: Optional[str] = None, follow: bool = False, sleep=time.sleep, out=print) -> int:
+    """Print the training job's container log (setup output, then the tagged ``[pipeline]`` / ``[train_...]`` lines:
+    loss and s/it every 20 iterations, val mIoU every epoch) from CloudWatch. With ``follow``, keep polling every
+    LOG_POLL_S seconds until the job has ended. Returns the number of lines printed."""
+    ClientError = _client_error()
+    name = resolve(s, job, name)
+    cw, sm = s.client("logs"), s.client("sagemaker")
+    start_ms, seen, printed = 0, set(), 0
+    while True:
+        kw: dict[str, Any] = {"logGroupName": LOG_GROUP, "logStreamNamePrefix": f"{name}/", "startTime": start_ms}
+        try:
+            while True:
+                page = cw.filter_log_events(**kw)
+                for ev in page.get("events", []):
+                    if ev["eventId"] in seen:
+                        continue
+                    seen.add(ev["eventId"])
+                    start_ms = max(start_ms, ev["timestamp"])
+                    out(ev["message"].rstrip("\n"))
+                    printed += 1
+                if not page.get("nextToken"):
+                    break
+                kw["nextToken"] = page["nextToken"]
+        except ClientError as exc:
+            if exc.response.get("Error", {}).get("Code") != "ResourceNotFoundException":  # no stream yet
+                raise
+        if not follow:
+            return printed
+        status = sm.describe_training_job(TrainingJobName=name)["TrainingJobStatus"]
+        if status in ENDED:
+            out(f"--- training job {name} {status}")
+            return printed
+        sleep(LOG_POLL_S)
 
 
 def fetch(s, job: str, repo: Path, output_globs: Iterable[str], name: Optional[str] = None) -> list[Path]:

@@ -67,7 +67,7 @@ def test_request_shape_and_limits():
     req = _request()
     name = req["TrainingJobName"]
     assert req["ResourceConfig"] == {"InstanceType": smb.DEFAULT_INSTANCE, "InstanceCount": 1, "VolumeSizeInGB": 150}
-    assert smb.DEFAULT_INSTANCE == "ml.g6.12xlarge"  # the training-job quota of the full-run account (4x L4)
+    assert smb.DEFAULT_INSTANCE == "ml.g6.24xlarge"  # the training-job quota of the full-run account (4x L4, Sydney)
     assert req["StoppingCondition"] == {"MaxRuntimeInSeconds": 43200}
     algo = req["AlgorithmSpecification"]
     assert algo["TrainingImage"] == IMAGE and algo["TrainingInputMode"] == "File"
@@ -550,7 +550,7 @@ def test_check_reports_plan_quota_and_api():
 
     class Paginator:
         def paginate(self, **kw):
-            yield {"Quotas": [{"QuotaName": "ml.g6.12xlarge for training job usage", "Value": 1.0}]}
+            yield {"Quotas": [{"QuotaName": "ml.g6.24xlarge for training job usage", "Value": 1.0}]}
 
     class S(FakeSession):
         def client(self, name, region_name=None):
@@ -567,3 +567,30 @@ def test_check_reports_plan_quota_and_api():
     assert out["sagemaker_api"] == "ok" and out["sagemaker_training_quota"] == 1.0
     assert out["account_plan"]["type"] == "FREE" and out["account_plan"]["remaining_credits"] == "100.0 USD"
     assert ("freetier", "client", {"region_name": "us-east-1"}) in s.calls
+
+
+def test_logs_follow_prints_new_lines_until_the_job_ends():
+    pytest.importorskip("botocore")
+    pages = [  # poll 1: two lines (paged); poll 2: one repeat + one new line
+        [{"events": [{"eventId": "1", "timestamp": 1000, "message": "setup\n"}], "nextToken": "t"},
+         {"events": [{"eventId": "2", "timestamp": 2000, "message": "[train_lraspp_offroad5_clean] ep 0 it 20\n"}]}],
+        [{"events": [{"eventId": "2", "timestamp": 2000, "message": "dup"},
+                     {"eventId": "3", "timestamp": 3000, "message": "[pipeline] pipeline done"}]}],
+    ]
+    calls, statuses = [], iter(["InProgress", "Completed"])
+
+    def filter_log_events(**kw):
+        calls.append(kw)
+        poll = 0 if len(calls) <= 2 else 1
+        return pages[poll][0 if poll == 1 else len(calls) - 1]
+
+    s = FakeSession({("logs", "filter_log_events"): filter_log_events,
+                     ("sagemaker", "describe_training_job"): lambda **kw: {"TrainingJobStatus": next(statuses)}})
+    lines, slept = [], []
+    n = smb.logs(s, "seg", name="metagross-seg-x", follow=True, sleep=slept.append, out=lines.append)
+    assert lines == ["setup", "[train_lraspp_offroad5_clean] ep 0 it 20", "[pipeline] pipeline done",
+                     "--- training job metagross-seg-x Completed"]
+    assert n == 3 and slept == [smb.LOG_POLL_S]
+    assert calls[0]["logGroupName"] == "/aws/sagemaker/TrainingJobs"
+    assert calls[0]["logStreamNamePrefix"] == "metagross-seg-x/" and calls[1]["nextToken"] == "t"
+    assert calls[2]["startTime"] == 2000  # the second poll resumes from the newest event seen
